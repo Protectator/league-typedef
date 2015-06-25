@@ -129,31 +129,31 @@ declare module riotGamesApi {
 		/**
 		 * The ID of the champion played by this participant
 		 */
-		championId: long;
+		championId: number;
 		/**
 		 * The masteries used by this participant
 		 */
-		masteries: List[Mastery];
+		masteries: Mastery[];
 		/**
 		 * The ID of the profile icon used by this participant
 		 */
-		profileIconId: long;
+		profileIconId: number;
 		/**
 		 * The runes used by this participant
 		 */
-		runes: List[Rune];
+		runes: Rune[];
 		/**
 		 * The ID of the first summoner spell used by this participant
 		 */
-		spell1Id: long;
+		spell1Id: number;
 		/**
 		 * The ID of the second summoner spell used by this participant
 		 */
-		spell2Id: long;
+		spell2Id: number;
 		/**
 		 * The summoner ID of this participant
 		 */
-		summonerId: long;
+		summonerId: number;
 		/**
 		 * The summoner name of this participant
 		 */
@@ -161,7 +161,7 @@ declare module riotGamesApi {
 		/**
 		 * The team ID of this participant, indicating the participant's team
 		 */
-		teamId: long;
+		teamId: number;
 	}
 	
 	/**
@@ -178,7 +178,131 @@ declare module riotGamesApi {
 	 * 
 	 */
 	export class Mastery {
-
+		/**
+		 * The ID of the mastery
+		 */
+		masteryId: number;
+		/**
+		 * The number of points put into this mastery by the user
+		 */
+		rank: number;
 	}
-
+	
+	/**
+	 * 
+	 */
+	export class Rune {
+		/**
+		 * The count of this rune used by the participant
+		 */
+		count: number;
+		/**
+		 * The ID of the rune
+		 */
+		runeId: number;
+	}
+	
+	/* features-games-v1.0 */
+	
+	/**
+	 * 
+	 */
+	export class FeaturesGames {
+		/**
+		 * The suggested interval to wait before requesting FeaturedGames again
+		 */
+		clientRefreshInterval: number;
+		/**
+		 * The list of featured games
+		 */
+		gameList: FeaturedGameInfo[];
+	}
+	
+	/**
+	 * 
+	 */
+	export class FeaturedGameInfo {
+		/**
+		 * Banned champion information
+		 */
+		bannedChampions: BannedChampion[];
+		/**
+		 * The ID of the game
+		 */
+		gameId: number;
+		/**
+		 * The amount of time in seconds that has passed since the game started
+		 */
+		gameLength: number;
+		/**
+		 * The game mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
+		 */
+		gameMode: string;
+		/**
+		 * The queue type (queue types are documented on the Game Constants page)
+		 */
+		gameQueueConfigId: number;
+		/**
+		 * The game start time represented in epoch milliseconds
+		 */
+		gameStartTime: number;
+		/**
+		 * The game type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
+		 */
+		gameType: string;
+		/**
+		 * The ID of the map
+		 */
+		mapId: number;
+		/**
+		 * The observer information
+		 */
+		observers: Observer;
+		/**
+		 * The participant information
+		 */
+		participants: Participant[];
+		/**
+		 * The ID of the platform on which the game is being played
+		 */
+		platformId: string;
+	}
+	
+	// BannedChampion is already defined
+	
+	// Observer is already defined
+	
+	/**
+	 * 
+	 */
+	export class Participant {
+		/**
+		 * Flag indicating whether or not this participant is a bot
+		 */
+		bot: boolean;
+		/**
+		 * The ID of the champion played by this participant
+		 */
+		championId: number;
+		/**
+		 * The ID of the profile icon used by this participant
+		 */
+		profileIconId: number;
+		/**
+		 * The ID of the first summoner spell used by this participant
+		 */
+		spell1Id: number;
+		/**
+		 * The ID of the second summoner spell used by this participant
+		 */
+		spell2Id: number;
+		/**
+		 * The summoner name of this participant
+		 */
+		summonerName: string;
+		/**
+		 * The team ID of this participant, indicating the participant's team
+		 */
+		teamId: number;
+	}
 }
