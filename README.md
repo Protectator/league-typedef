@@ -10,7 +10,7 @@ TypeScript Type Definitions for Riot Games' API at https://developer.riotgames.c
 | game            	| riotGamesApi.game | v1.3 |
 | league          	| riotGamesApi.league | v2.5 |
 | lol-static-data 	| riotGamesApi.lolStaticData | v1.2 |
-| lol-status      	|      	|
+| lol-status      	| riotGamesApi.lolStatus | v1.0 |
 | match           	|      	|
 | matchhistory    	|      	|
 | stats           	|      	|

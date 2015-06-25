@@ -2331,4 +2331,158 @@ declare module riotGamesApi {
 			vars: SpellVarsDto[];
 		}
 	}
+	
+	/**
+	 * lol-status-v1.0
+	 */
+	export module lolStatus {
+		/**
+		 * 
+		 */
+		export class Shard {
+			/**
+			 * 
+			 */
+			hostname: string;
+			/**
+			 * 
+			 */
+			locales: string[];
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * 
+			 */
+			region_tag: string;
+			/**
+			 * 
+			 */
+			slug: string;
+		}
+		
+		/**
+		 * 
+		 */
+		export class ShardStatus {
+			/**
+			 * 
+			 */
+			hostname: string;
+			/**
+			 * 
+			 */
+			locales: string[];
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * 
+			 */
+			region_tag: string;
+			/**
+			 * 
+			 */
+			services: Service[];
+			/**
+			 * 
+			 */
+			slug: string;
+		}
+		
+		/**
+		 * 
+		 */
+		export class Service {
+			/**
+			 * 
+			 */
+			incidents: Incident[];
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * 
+			 */
+			slug: string;
+			/**
+			 * Legal values: Online, Alert, Offline, Deploying
+			 */
+			status: string;
+		}
+
+		/**
+		 * 
+		 */
+		export class Incident {
+			/**
+			 * 
+			 */
+			active: boolean;
+			/**
+			 * 
+			 */
+			created_at: string;
+			/**
+			 * 
+			 */
+			id: number;
+			/**
+			 * 
+			 */
+			updates: Message[];
+		}
+
+		export class Message {
+			/**
+			 * 
+			 */
+			author: string;
+			/**
+			 * 
+			 */
+			content: string;
+			/**
+			 * 
+			 */
+			created_at: string;
+			/**
+			 * 
+			 */
+			id: number;
+			/**
+			 * Legal values: Info, Alert, Error
+			 */
+			severity: string;
+			/**
+			 * 
+			 */
+			translations: Translation[];
+			/**
+			 * 
+			 */
+			updated_at: string;
+		}
+
+		/**
+		 * 
+		 */
+		export class Translation {
+			/**
+			 * 
+			 */
+			content: string;
+			/**
+			 * 
+			 */
+			locale: string;
+			/**
+			 * 
+			 */
+			updated_at: string;
+		}
+	}
 }
