@@ -12,7 +12,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains a collection of champion information
 		 */
-		export class ChampionListDto {
+		export interface ChampionListDto {
 			/**
 			 * The collection of champion information.
 			 */
@@ -22,7 +22,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion information
 		 */
-		export class ChampionDto {
+		export interface ChampionDto {
 			/**
 			 * Indicates if the champion is active
 			 */
@@ -59,7 +59,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class CurrentGameInfo {
+		export interface CurrentGameInfo {
 			/**
 			 * Banned champion information
 			 */
@@ -109,7 +109,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class BannedChampion {
+		export interface BannedChampion {
 			/**
 			 * The ID of the banned champion
 			 */
@@ -129,7 +129,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class CurrentGameParticipant {
+		export interface CurrentGameParticipant {
 			/**
 			 * Flag indicating whether or not this participant is a bot
 			 */
@@ -175,7 +175,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class Observer {
+		export interface Observer {
 			/**
 			 * Key used to decrypt the spectator grid game data for playback
 			 */
@@ -185,7 +185,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class Mastery {
+		export interface Mastery {
 			/**
 			 * The ID of the mastery
 			 */
@@ -199,7 +199,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class Rune {
+		export interface Rune {
 			/**
 			 * The count of this rune used by the participant
 			 */
@@ -215,7 +215,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class FeaturesGames {
+		export interface FeaturesGames {
 			/**
 			 * The suggested interval to wait before requesting FeaturedGames again
 			 */
@@ -229,7 +229,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class FeaturedGameInfo {
+		export interface FeaturedGameInfo {
 			/**
 			 * Banned champion information
 			 */
@@ -283,7 +283,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class Participant {
+		export interface Participant {
 			/**
 			 * Flag indicating whether or not this participant is a bot
 			 */
@@ -324,7 +324,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains recent games information
 		 */
-		export class RecentGamesDto {
+		export interface RecentGamesDto {
 			/**
 			 * Collection of recent games played (max 10).
 			 */
@@ -338,7 +338,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains game information
 		 */
-		export class GameDto {
+		export interface GameDto {
 			/**
 			 * Champion ID associated with game.
 			 */
@@ -404,7 +404,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains player information
 		 */
-		export class PlayerDto {
+		export interface PlayerDto {
 			/**
 			 * Champion id associated with player.
 			 */
@@ -422,7 +422,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains raw stat information
 		 */
-		export class RawStatsDto {
+		export interface RawStatsDto {
 			/**
 			 * 
 			 */
@@ -747,7 +747,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains league information
 		 */
-		export class LeagueDto {
+		export interface LeagueDto {
 			/**
 			 * The requested league entries.
 			 */
@@ -776,7 +776,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains league participant information representing a summoner or team.
 		 */
-		export class LeagueEntryDto {
+		export interface LeagueEntryDto {
 			/**
 			 * The league division of the participant.
 			 */
@@ -826,7 +826,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains mini series information.
 		 */
-		export class MiniSeriesDto {
+		export interface MiniSeriesDto {
 			/**
 			 * Number of current losses in the mini series.
 			 */
@@ -854,7 +854,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion list data.
 		 */
-		export class ChampionListDto {
+		export interface ChampionListDto {
 			/**
 			 * 
 			 */
@@ -880,7 +880,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion data.
 		 */
-		export class ChampionDto {
+		export interface ChampionDto {
 			/**
 			 * 
 			 */
@@ -954,7 +954,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion spell data
 		 */
-		export class ChampionSpellDto {
+		export interface ChampionSpellDto {
 			/**
 			 * 
 			 */
@@ -1044,7 +1044,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains image data.
 		 */
-		export class ImageDto {
+		export interface ImageDto {
 			/**
 			 * 
 			 */
@@ -1078,7 +1078,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion information
 		 */
-		export class InfoDto {
+		export interface InfoDto {
 			/**
 			 * 
 			 */
@@ -1100,7 +1100,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion passive data.
 		 */
-		export class PassiveDto {
+		export interface PassiveDto {
 			/**
 			 * 
 			 */
@@ -1122,7 +1122,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion recommended data.
 		 */
-		export class RecommendedDto {
+		export interface RecommendedDto {
 			/**
 			 * 
 			 */
@@ -1156,7 +1156,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion skin data.
 		 */
-		export class SkinDto {
+		export interface SkinDto {
 			/**
 			 * 
 			 */
@@ -1174,7 +1174,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion stats data.
 		 */
-		export class StatsDto {
+		export interface StatsDto {
 			/**
 			 * 
 			 */
@@ -1260,7 +1260,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion level tip data.
 		 */
-		export class LevelTipDto {
+		export interface LevelTipDto {
 			/**
 			 * 
 			 */
@@ -1274,7 +1274,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains spell vars data.
 		 */
-		export class SpellVarsDto {
+		export interface SpellVarsDto {
 			/**
 			 * 
 			 */
@@ -1300,7 +1300,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion recommended block data
 		 */
-		export class BlockDto {
+		export interface BlockDto {
 			/**
 			 * 
 			 */
@@ -1318,7 +1318,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains champion recommended block item data.
 		 */
-		export class BlockItemDto {
+		export interface BlockItemDto {
 			/**
 			 * 
 			 */
@@ -1332,7 +1332,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains item list data.
 		 */
-		export class ItemListDto {
+		export interface ItemListDto {
 			/**
 			 * 
 			 */
@@ -1362,7 +1362,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains basic data.
 		 */
-		export class BasicDataDto {
+		export interface BasicDataDto {
 			/**
 			 * 
 			 */
@@ -1462,7 +1462,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains item group data.
 		 */
-		export class GroupDto {
+		export interface GroupDto {
 			/**
 			 * 
 			 */
@@ -1476,7 +1476,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains item data.
 		 */
-		export class ItemDto {
+		export interface ItemDto {
 			/**
 			 * 
 			 */
@@ -1580,7 +1580,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains item tree data.
 		 */
-		export class ItemTreeDto {
+		export interface ItemTreeDto {
 			/**
 			 * 
 			 */
@@ -1594,7 +1594,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains basic data stats.
 		 */
-		export class BasicDataStatsDto {
+		export interface BasicDataStatsDto {
 			/**
 			 * 
 			 */
@@ -1860,7 +1860,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains item gold data.
 		 */
-		export class GoldDto {
+		export interface GoldDto {
 			/**
 			 * 
 			 */
@@ -1882,7 +1882,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains image meta data.
 		 */
-		export class MetaDataDto {
+		export interface MetaDataDto {
 			/**
 			 * 
 			 */
@@ -1900,7 +1900,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains language strings data
 		 */
-		export class LanguageStringsDto {
+		export interface LanguageStringsDto {
 			/**
 			 * 
 			 */
@@ -1918,7 +1918,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains map data.
 		 */
-		export class MapDataDto {
+		export interface MapDataDto {
 			/**
 			 * 
 			 */
@@ -1936,7 +1936,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains map details data.
 		 */
-		export class MapDetailsDto {
+		export interface MapDetailsDto {
 			/**
 			 * 
 			 */
@@ -1958,7 +1958,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains mastery list data.
 		 */
-		export class MasteryListDto {
+		export interface MasteryListDto {
 			/**
 			 * 
 			 */
@@ -1980,7 +1980,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains mastery data.
 		 */
-		export class MasteryDto {
+		export interface MasteryDto {
 			/**
 			 * 
 			 */
@@ -2018,7 +2018,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains mastery tree data.
 		 */
-		export class MasteryTreeDto {
+		export interface MasteryTreeDto {
 			/**
 			 * 
 			 */
@@ -2036,7 +2036,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains mastery tree list data.
 		 */
-		export class MasteryTreeListDto {
+		export interface MasteryTreeListDto {
 			/**
 			 * 
 			 */
@@ -2046,7 +2046,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains mastery tree item data.
 		 */
-		export class MasteryTreeItemDto {
+		export interface MasteryTreeItemDto {
 			/**
 			 * 
 			 */
@@ -2060,7 +2060,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains realm data.
 		 */
-		export class RealmDto {
+		export interface RealmDto {
 			/**
 			 * The base CDN url.
 			 */
@@ -2102,7 +2102,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains rune list data
 		 */
-		export class RuneListDto {
+		export interface RuneListDto {
 			/**
 			 * 
 			 */
@@ -2124,7 +2124,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains rune data.
 		 */
-		export class RuneDto {
+		export interface RuneDto {
 			/**
 			 * 
 			 */
@@ -2218,7 +2218,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains summoner spell list data.
 		 */
-		export class SummonerSpellListDto {
+		export interface SummonerSpellListDto {
 			/**
 			 * 
 			 */
@@ -2236,7 +2236,7 @@ declare module riotGamesApi {
 		/**
 		 * Contains summoner spell data.
 		 */
-		export class SummonerSpellDto {
+		export interface SummonerSpellDto {
 			/**
 			 * 
 			 */
@@ -2339,7 +2339,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class Shard {
+		export interface Shard {
 			/**
 			 * 
 			 */
@@ -2365,7 +2365,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class ShardStatus {
+		export interface ShardStatus {
 			/**
 			 * 
 			 */
@@ -2395,7 +2395,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class Service {
+		export interface Service {
 			/**
 			 * 
 			 */
@@ -2417,7 +2417,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class Incident {
+		export interface Incident {
 			/**
 			 * 
 			 */
@@ -2436,7 +2436,7 @@ declare module riotGamesApi {
 			updates: Message[];
 		}
 
-		export class Message {
+		export interface Message {
 			/**
 			 * 
 			 */
@@ -2470,7 +2470,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export class Translation {
+		export interface Translation {
 			/**
 			 * 
 			 */
