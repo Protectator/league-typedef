@@ -723,4 +723,107 @@ declare module riotGamesApi {
 		 */
 		win: boolean;
 	}
+	
+	/* league-v2.5 */
+	
+	/**
+	 * Contains league information
+	 */
+	export class LeagueDto {
+		/**
+		 * The requested league entries.
+		 */
+		entries: LeagueEntryDto[];
+		/**
+		 * This name is an internal place-holder name only. Display and localization of names in the game client are handled client-side.
+		 */
+		name: string;
+		/**
+		 * Specifies the relevant participant that is a member of this league (i.e., a requested summoner ID, a
+		 * requested team ID, or the ID of a team to which one of the requested summoners belongs). Only present when
+		 * full league is requested so that participant's entry can be identified. Not present when individual
+		 * entry is requested.
+		 */
+		participantId: string;
+		/**
+		 * The league's queue type. (Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5)
+		 */
+		queue: string;
+		/**
+		 * The league's tier. (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE)
+		 */
+		tier: string;
+	}
+	
+	/**
+	 * Contains league participant information representing a summoner or team.
+	 */
+	export class LeagueEntryDto {
+		/**
+		 * The league division of the participant.
+		 */
+		division: string;
+		/**
+		 * Specifies if the participant is fresh blood.
+		 */
+		isFreshBlood: boolean;
+		/**
+		 * Specifies if the participant is on a hot streak.
+		 */
+		isHotStreak: boolean;
+		/**
+		 * Specifies if the participant is inactive.
+		 */
+		isInactive: boolean;
+		/**
+		 * Specifies if the participant is a veteran.
+		 */
+		isVeteran: boolean;
+		/**
+		 * The league points of the participant.
+		 */
+		leaguePoints: number;
+		/**
+		 * The number of losses for the participant.
+		 */
+		losses: number;
+		/**
+		 * Mini series data for the participant. Only present if the participant is currently in a mini series.
+		 */
+		miniSeries: MiniSeriesDto;
+		/**
+		 * The ID of the participant (i.e., summoner or team) represented by this entry.
+		 */
+		playerOrTeamId: string;
+		/**
+		 * The name of the the participant (i.e., summoner or team) represented by this entry.
+		 */
+		playerOrTeamName: string;
+		/**
+		 * The number of wins for the participant.
+		 */
+		wins: number;
+	}
+	
+	/**
+	 * Contains mini series information.
+	 */
+	export class MiniSeriesDto {
+		/**
+		 * Number of current losses in the mini series.
+		 */
+		losses: number;
+		/**
+		 * String showing the current, sequential mini series progress where 'W' represents a win, 'L' represents a loss, and 'N' represents a game that hasn't been played yet.
+		 */
+		progress: string;
+		/**
+		 * Number of wins required for promotion.
+		 */
+		target: number;
+		/**
+		 * Number of current wins in the mini series.
+		 */
+		wins: number;
+	}
 }

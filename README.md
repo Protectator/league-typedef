@@ -8,7 +8,7 @@ TypeScript Type Definitions for Riot Games' API at https://developer.riotgames.c
 | current-game    	| v1.0 	|
 | featured-games  	| v1.0 	|
 | game            	| v1.3 	|
-| league          	|      	|
+| league          	| v2.5 	|
 | lol-static-data 	|      	|
 | lol-status      	|      	|
 | match           	|      	|
