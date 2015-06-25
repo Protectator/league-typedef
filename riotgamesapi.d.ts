@@ -1328,5 +1328,1007 @@ declare module riotGamesApi {
 			 */
 			id: number;
 		}
+		
+		/**
+		 * Contains item list data.
+		 */
+		export class ItemListDto {
+			/**
+			 * 
+			 */
+			basic: BasicDataDto;
+			/**
+			 * 
+			 */
+			data: { [s: string]: ItemDto; };
+			/**
+			 * 
+			 */
+			groups: GroupDto[];
+			/**
+			 * 
+			 */
+			tree: ItemTreeDto[];
+			/**
+			 * 
+			 */
+			type: string;
+			/**
+			 * 
+			 */
+			version: string;
+		}
+		
+		/**
+		 * Contains basic data.
+		 */
+		export class BasicDataDto {
+			/**
+			 * 
+			 */
+			colloq: string;
+			/**
+			 * 
+			 */
+			consumeOnFull: boolean;
+			/**
+			 * 
+			 */
+			consumed: boolean;
+			/**
+			 * 
+			 */
+			depth: number;
+			/**
+			 * 
+			 */
+			description: string;
+			/**
+			 * 
+			 */
+			from: string[];
+			/**
+			 * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
+			 * However, only items have a gold field on them, representing their gold cost in the store.
+			 * Since runes are not sold in the store, they have no gold cost.
+			 */
+			gold: GoldDto;
+			/**
+			 * 
+			 */
+			group: string;
+			/**
+			 * 
+			 */
+			hideFromAll: boolean;
+			/**
+			 * 
+			 */
+			id: number;
+			/**
+			 * 
+			 */
+			image: ImageDto;
+			/**
+			 * 
+			 */
+			inStore: boolean;
+			/**
+			 * 
+			 */
+			into: string[];
+			/**
+			 * 
+			 */
+			maps: { [s: string]: boolean; };
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * 
+			 */
+			plaintext: string;
+			/**
+			 * 
+			 */
+			requiredChampion: string;
+			/**
+			 * 
+			 */
+			rune: MetaDataDto;
+			/**
+			 * 
+			 */
+			sanitizedDescription: string;
+			/**
+			 * 
+			 */
+			specialRecipe: number;
+			/**
+			 * 
+			 */
+			stacks: number;
+			/**
+			 * 
+			 */
+			stats: BasicDataStatsDto;
+			/**
+			 * 
+			 */
+			tags: string[];
+		}
+		
+		/**
+		 * Contains item group data.
+		 */
+		export class GroupDto {
+			/**
+			 * 
+			 */
+			MaxGroupOwnable: string;
+			/**
+			 * 
+			 */
+			key: string;
+		}
+		
+		/**
+		 * Contains item data.
+		 */
+		export class ItemDto {
+			/**
+			 * 
+			 */
+			colloq: string;
+			/**
+			 * 
+			 */
+			consumeOnFull: boolean;
+			/**
+			 * 
+			 */
+			consumed: boolean;
+			/**
+			 * 
+			 */
+			depth: number;
+			/**
+			 * 
+			 */
+			description: string;
+			/**
+			 * 
+			 */
+			effect: { [s: string]: string; };
+			/**
+			 * 
+			 */
+			from: string[];
+			/**
+			 * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
+			 * However, only items have a gold field on them, representing their gold cost in the store.
+			 * Since runes are not sold in the store, they have no gold cost.
+			 */
+			gold: GoldDto;
+			/**
+			 * 
+			 */
+			group: string;
+			/**
+			 * 
+			 */
+			hideFromAll: boolean;
+			/**
+			 * 
+			 */
+			id: number;
+			/**
+			 * 
+			 */
+			image: ImageDto;
+			/**
+			 * 
+			 */
+			inStore: boolean;
+			/**
+			 * 
+			 */
+			into: string[];
+			/**
+			 * 
+			 */
+			maps: { [s: string]: boolean; };
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * 
+			 */
+			plaintext: string;
+			/**
+			 * 
+			 */
+			requiredChampion: string;
+			/**
+			 * 
+			 */
+			rune: MetaDataDto;
+			/**
+			 * 
+			 */
+			sanitizedDescription: string;
+			/**
+			 * 
+			 */
+			specialRecipe: number;
+			/**
+			 * 
+			 */
+			stacks: number;
+			/**
+			 * 
+			 */
+			stats: BasicDataStatsDto;
+			/**
+			 * 
+			 */
+			tags: string[];
+		}
+		
+		/**
+		 * Contains item tree data.
+		 */
+		export class ItemTreeDto {
+			/**
+			 * 
+			 */
+			header: string;
+			/**
+			 * 
+			 */
+			tags: string[];
+		}
+		
+		/**
+		 * Contains basic data stats.
+		 */
+		export class BasicDataStatsDto {
+			/**
+			 * 
+			 */
+			FlatArmorMod: number;
+			/**
+			 * 
+			 */
+			FlatAttackSpeedMod: number;
+			/**
+			 * 
+			 */
+			FlatBlockMod: number;
+			/**
+			 * 
+			 */
+			FlatCritChanceMod: number;
+			/**
+			 * 
+			 */
+			FlatCritDamageMod: number;
+			/**
+			 * 
+			 */
+			FlatEXPBonus: number;
+			/**
+			 * 
+			 */
+			FlatEnergyPoolMod: number;
+			/**
+			 * 
+			 */
+			FlatEnergyRegenMod: number;
+			/**
+			 * 
+			 */
+			FlatHPPoolMod: number;
+			/**
+			 * 
+			 */
+			FlatHPRegenMod: number;
+			/**
+			 * 
+			 */
+			FlatMPPoolMod: number;
+			/**
+			 * 
+			 */
+			FlatMPRegenMod: number;
+			/**
+			 * 
+			 */
+			FlatMagicDamageMod: number;
+			/**
+			 * 
+			 */
+			FlatMovementSpeedMod: number;
+			/**
+			 * 
+			 */
+			FlatPhysicalDamageMod: number;
+			/**
+			 * 
+			 */
+			FlatSpellBlockMod: number;
+			/**
+			 * 
+			 */
+			PercentArmorMod: number;
+			/**
+			 * 
+			 */
+			PercentAttackSpeedMod: number;
+			/**
+			 * 
+			 */
+			PercentBlockMod: number;
+			/**
+			 * 
+			 */
+			PercentCritChanceMod: number;
+			/**
+			 * 
+			 */
+			PercentCritDamageMod: number;
+			/**
+			 * 
+			 */
+			PercentDodgeMod: number;
+			/**
+			 * 
+			 */
+			PercentEXPBonus: number;
+			/**
+			 * 
+			 */
+			PercentHPPoolMod: number;
+			/**
+			 * 
+			 */
+			PercentHPRegenMod: number;
+			/**
+			 * 
+			 */
+			PercentLifeStealMod: number;
+			/**
+			 * 
+			 */
+			PercentMPPoolMod: number;
+			/**
+			 * 
+			 */
+			PercentMPRegenMod: number;
+			/**
+			 * 
+			 */
+			PercentMagicDamageMod: number;
+			/**
+			 * 
+			 */
+			PercentMovementSpeedMod: number;
+			/**
+			 * 
+			 */
+			PercentPhysicalDamageMod: number;
+			/**
+			 * 
+			 */
+			PercentSpellBlockMod: number;
+			/**
+			 * 
+			 */
+			PercentSpellVampMod: number;
+			/**
+			 * 
+			 */
+			rFlatArmorModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatArmorPenetrationMod: number;
+			/**
+			 * 
+			 */
+			rFlatArmorPenetrationModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatCritChanceModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatCritDamageModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatDodgeMod: number;
+			/**
+			 * 
+			 */
+			rFlatDodgeModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatEnergyModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatEnergyRegenModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatGoldPer10Mod: number;
+			/**
+			 * 
+			 */
+			rFlatHPModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatHPRegenModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatMPModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatMPRegenModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatMagicDamageModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatMagicPenetrationMod: number;
+			/**
+			 * 
+			 */
+			rFlatMagicPenetrationModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatMovementSpeedModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatPhysicalDamageModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatSpellBlockModPerLevel: number;
+			/**
+			 * 
+			 */
+			rFlatTimeDeadMod: number;
+			/**
+			 * 
+			 */
+			rFlatTimeDeadModPerLevel: number;
+			/**
+			 * 
+			 */
+			rPercentArmorPenetrationMod: number;
+			/**
+			 * 
+			 */
+			rPercentArmorPenetrationModPerLevel: number;
+			/**
+			 * 
+			 */
+			rPercentAttackSpeedModPerLevel: number;
+			/**
+			 * 
+			 */
+			rPercentCooldownMod: number;
+			/**
+			 * 
+			 */
+			rPercentCooldownModPerLevel: number;
+			/**
+			 * 
+			 */
+			rPercentMagicPenetrationMod: number;
+			/**
+			 * 
+			 */
+			rPercentMagicPenetrationModPerLevel: number;
+			/**
+			 * 
+			 */
+			rPercentMovementSpeedModPerLevel: number;
+			/**
+			 * 
+			 */
+			rPercentTimeDeadMod: number;
+			/**
+			 * 
+			 */
+			rPercentTimeDeadModPerLevel: number;
+		}
+		
+		/**
+		 * Contains item gold data.
+		 */
+		export class GoldDto {
+			/**
+			 * 
+			 */
+			base: number;
+			/**
+			 * 
+			 */
+			purchasable: boolean;
+			/**
+			 * 
+			 */
+			sell: number;
+			/**
+			 * 
+			 */
+			total: number;
+		}
+		
+		/**
+		 * Contains image meta data.
+		 */
+		export class MetaDataDto {
+			/**
+			 * 
+			 */
+			isRune: boolean;
+			/**
+			 * 
+			 */
+			tier: string;
+			/**
+			 * 
+			 */
+			type: string;
+		}
+		
+		/**
+		 * Contains language strings data
+		 */
+		export class LanguageStringsDto {
+			/**
+			 * 
+			 */
+			data: { [s: string]: string; };
+			/**
+			 * 
+			 */
+			type: string;
+			/**
+			 * 
+			 */
+			version: string;
+		}
+		
+		/**
+		 * Contains map data.
+		 */
+		export class MapDataDto {
+			/**
+			 * 
+			 */
+			data: { [s: string]: MapDetailsDto; }
+			/**
+			 * 
+			 */
+			type: string;
+			/**
+			 * 
+			 */
+			version: string;
+		}
+		
+		/**
+		 * Contains map details data.
+		 */
+		export class MapDetailsDto {
+			/**
+			 * 
+			 */
+			image: ImageDto;
+			/**
+			 * 
+			 */
+			mapId: number;
+			/**
+			 * 
+			 */
+			mapName: string;
+			/**
+			 * 
+			 */
+			unpurchasableItemList: number[];
+		}
+		
+		/**
+		 * Contains mastery list data.
+		 */
+		export class MasteryListDto {
+			/**
+			 * 
+			 */
+			data: { [s: string]: MasteryDto; };
+			/**
+			 * 
+			 */
+			tree: MasteryTreeDto;
+			/**
+			 * 
+			 */
+			type: string;
+			/**
+			 * 
+			 */
+			version: string;
+		}
+		
+		/**
+		 * Contains mastery data.
+		 */
+		export class MasteryDto {
+			/**
+			 * 
+			 */
+			description: string[];
+			/**
+			 * 
+			 */
+			id: number;
+			/**
+			 * 
+			 */
+			image: ImageDto;
+			/**
+			 * Legal values: Defense, Offense, Utility
+			 */
+			masteryTree: string;
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * 
+			 */
+			prereq: string;
+			/**
+			 * 
+			 */
+			ranks: number;
+			/**
+			 * 
+			 */
+			sanitizedDescription: string[];
+		}
+		
+		/**
+		 * Contains mastery tree data.
+		 */
+		export class MasteryTreeDto {
+			/**
+			 * 
+			 */
+			Defense: MasteryTreeListDto[];
+			/**
+			 * 
+			 */
+			Offense: MasteryTreeListDto[];
+			/**
+			 * 
+			 */
+			Utility: MasteryTreeListDto[];
+		}
+		
+		/**
+		 * Contains mastery tree list data.
+		 */
+		export class MasteryTreeListDto {
+			/**
+			 * 
+			 */
+			masteryTreeItems: MasteryTreeItemDto[];
+		}
+		
+		/**
+		 * Contains mastery tree item data.
+		 */
+		export class MasteryTreeItemDto {
+			/**
+			 * 
+			 */
+			masteryId: number;
+			/**
+			 * 
+			 */
+			prereq: string;
+		}
+		
+		/**
+		 * Contains realm data.
+		 */
+		export class RealmDto {
+			/**
+			 * The base CDN url.
+			 */
+			cdn: string;
+			/**
+			 * Latest changed version of Dragon Magic's css file.
+			 */
+			css: string;
+			/**
+			 * Latest changed version of Dragon Magic.
+			 */
+			dd: string;
+			/**
+			 * Default language for this realm.
+			 */
+			l: string;
+			/**
+			 * Legacy script mode for IE6 or older.
+			 */
+			lg: string;
+			/**
+			 * Latest changed version for each data type listed.
+			 */
+			n: { [s: string]: string; };
+			/**
+			 * Special behavior number identifying the largest profileicon id that can be used under 500. Any profileicon that is requested between this number and 500 should be mapped to 0.
+			 */
+			profileiconmax: number;
+			/**
+			 * Additional api data drawn from other sources that may be related to data dragon functionality.
+			 */
+			store: string;
+			/**
+			 * Current version of this file for this realm.
+			 */
+			v: string;
+		}
+		
+		/**
+		 * Contains rune list data
+		 */
+		export class RuneListDto {
+			/**
+			 * 
+			 */
+			basic: BasicDataDto;
+			/**
+			 * 
+			 */
+			data: { [s: string]: RuneDto; };
+			/**
+			 * 
+			 */
+			type: string;
+			/**
+			 * 
+			 */
+			version: string;
+		}
+		
+		/**
+		 * Contains rune data.
+		 */
+		export class RuneDto {
+			/**
+			 * 
+			 */
+			colloq: string;
+			/**
+			 * 
+			 */
+			consumeOnFull: boolean;
+			/**
+			 * 
+			 */
+			consumed: boolean;
+			/**
+			 * 
+			 */
+			depth: number;
+			/**
+			 * 
+			 */
+			description: string;
+			/**
+			 * 
+			 */
+			from: string[];
+			/**
+			 * 
+			 */
+			group: string;
+			/**
+			 * 
+			 */
+			hideFromAll: boolean;
+			/**
+			 * 
+			 */
+			id: number;
+			/**
+			 * 
+			 */
+			image: ImageDto;
+			/**
+			 * 
+			 */
+			inStore: boolean;
+			/**
+			 * 
+			 */
+			into: string[];
+			/**
+			 * 
+			 */
+			maps: { [s: string]: boolean; };
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * 
+			 */
+			plaintext: string;
+			/**
+			 * 
+			 */
+			requiredChampion: string;
+			/**
+			 * 
+			 */
+			rune: MetaDataDto;
+			/**
+			 * 
+			 */
+			sanitizedDescription: string;
+			/**
+			 * 
+			 */
+			specialRecipe: number;
+			/**
+			 * 
+			 */
+			stacks: number;
+			/**
+			 * 
+			 */
+			stats: BasicDataStatsDto;
+			/**
+			 * 
+			 */
+			tags: string[];
+		}
+		
+		/**
+		 * Contains summoner spell list data.
+		 */
+		export class SummonerSpellListDto {
+			/**
+			 * 
+			 */
+			data: { [s: string]: SummonerSpellDto; };
+			/**
+			 * 
+			 */
+			type: string;
+			/**
+			 * 
+			 */
+			version: string;
+		}
+		
+		/**
+		 * Contains summoner spell data.
+		 */
+		export class SummonerSpellDto {
+			/**
+			 * 
+			 */
+			cooldown: number[];
+			/**
+			 * 
+			 */
+			cooldownBurn: string;
+			/**
+			 * 
+			 */
+			cost: number[];
+			/**
+			 * 
+			 */
+			costBurn: string;
+			/**
+			 * 
+			 */
+			costType: string;
+			/**
+			 * 
+			 */
+			description: string;
+			/**
+			 * This field is a List of List of Double.
+			 */
+			effect: number[][];
+			/**
+			 * 
+			 */
+			effectBurn: string[];
+			/**
+			 * 
+			 */
+			id: number;
+			/**
+			 * 
+			 */
+			image: ImageDto;
+			/**
+			 * 
+			 */
+			key: string;
+			/**
+			 * 
+			 */
+			leveltip: LevelTipDto;
+			/**
+			 * 
+			 */
+			maxrank: number;
+			/**
+			 * 
+			 */
+			modes: string[];
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * This field is either a List of Integer or the String 'self' for spells that target one's own champion.
+			 */
+			range: number[]|string;
+			/**
+			 * 
+			 */
+			rangeBurn: string;
+			/**
+			 * 
+			 */
+			resource: string;
+			/**
+			 * 
+			 */
+			sanitizedDescription: string;
+			/**
+			 * 
+			 */
+			sanitizedTooltip: string;
+			/**
+			 * 
+			 */
+			summonerLevel: number;
+			/**
+			 * 
+			 */
+			tooltip: string;
+			/**
+			 * 
+			 */
+			vars: SpellVarsDto[];
+		}
 	}
 }
