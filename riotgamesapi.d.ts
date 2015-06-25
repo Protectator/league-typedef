@@ -305,4 +305,422 @@ declare module riotGamesApi {
 		 */
 		teamId: number;
 	}
+	
+	/* game-v1.3 */
+	
+	/**
+	 * Contains recent games information
+	 */
+	export class RecentGamesDto {
+		/**
+		 * Collection of recent games played (max 10).
+		 */
+		games: GameDto[];
+		/**
+		 * Summoner ID.
+		 */
+		summonerId: number;
+	}
+	
+	/**
+	 * Contains game information
+	 */
+	export class GameDto {
+		/**
+		 * Champion ID associated with game.
+		 */
+		championId: number;
+		/**
+		 * Date that end game data was recorded, specified as epoch milliseconds.
+		 */
+		createDate: number;
+		/**
+		 * Other players associated with the game.
+		 */
+		fellowPlayers: PlayerDto[];
+		/**
+		 * Game ID.
+		 */
+		gameId: number;
+		/**
+		 * Game mode. (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
+		 */
+		gameMode: string;
+		/**
+		 * Game type. (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
+		 */
+		gameType: string;
+		/**
+		 * Invalid flag.
+		 */
+		invalid: boolean;
+		/**
+		 * IP Earned.
+		 */
+		ipEarned: number;
+		/**
+		 * Level.
+		 */
+		level: number;
+		/**
+		 * Map ID.
+		 */
+		mapId: number;
+		/**
+		 * ID of first summoner spell.
+		 */
+		spell1: number;
+		/**
+		 * ID of second summoner spell.
+		 */
+		spell2: number;
+		/**
+		 * Statistics associated with the game for this summoner.
+		 */
+		stats: RawStatsDto;
+		/**
+		 * Game sub-type. (Legal values: NONE, NORMAL, BOT, RANKED_SOLO_5x5, RANKED_PREMADE_3x3, RANKED_PREMADE_5x5, ODIN_UNRANKED, RANKED_TEAM_3x3, RANKED_TEAM_5x5, NORMAL_3x3, BOT_3x3, CAP_5x5, ARAM_UNRANKED_5x5, ONEFORALL_5x5, FIRSTBLOOD_1x1, FIRSTBLOOD_2x2, SR_6x6, URF, URF_BOT, NIGHTMARE_BOT, ASCENSION, HEXAKILL, KING_PORO, COUNTER_PICK)
+		 */
+		subType: string;
+		/**
+		 * Team ID associated with game. Team ID 100 is blue team. Team ID 200 is purple team.
+		 */
+		teamId: number;
+	}
+	
+	/**
+	 * Contains player information
+	 */
+	export class PlayerDto {
+		/**
+		 * Champion id associated with player.
+		 */
+		championId: number;
+		/**
+		 * Summoner id associated with player.
+		 */
+		summonerId: number;
+		/**
+		 * Team id associated with player.
+		 */
+		teamId: number;
+	}
+	
+	/**
+	 * Contains raw stat information
+	 */
+	export class RawStatsDto {
+		/**
+		 * 
+		 */
+		assists: number;
+		/**
+		 * Number of enemy inhibitors killed.
+		 */
+		barracksKilled: number;
+		/**
+		 * 
+		 */
+		championsKilled: number;
+		/**
+		 * 
+		 */
+		combatPlayerScore: number;
+		/**
+		 * 
+		 */
+		consumablesPurchased: number;
+		/**
+		 * 
+		 */
+		damageDealtPlayer: number;
+		/**
+		 * 
+		 */
+		doubleKills: number;
+		/**
+		 * 
+		 */
+		firstBlood: number;
+		/**
+		 * 
+		 */
+		gold: number;
+		/**
+		 * 
+		 */
+		goldEarned: number;
+		/**
+		 * 
+		 */
+		goldSpent: number;
+		/**
+		 * 
+		 */
+		item0: number;
+		/**
+		 * 
+		 */
+		item1: number;
+		/**
+		 * 
+		 */
+		item2: number;
+		/**
+		 * 
+		 */
+		item3: number;
+		/**
+		 * 
+		 */
+		item4: number;
+		/**
+		 * 
+		 */
+		item5: number;
+		/**
+		 * 
+		 */
+		item6: number;
+		/**
+		 * 
+		 */
+		itemsPurchased: number;
+		/**
+		 * 
+		 */
+		killingSprees: number;
+		/**
+		 * 
+		 */
+		largestCriticalStrike: number;
+		/**
+		 * 
+		 */
+		largestKillingSpree: number;
+		/**
+		 * 
+		 */
+		largestMultiKill: number;
+		/**
+		 * Number of tier 3 items built.
+		 */
+		legendaryItemsCreated: number;
+		/**
+		 * 
+		 */
+		level: number;
+		/**
+		 * 
+		 */
+		magicDamageDealtPlayer: number;
+		/**
+		 * 
+		 */
+		magicDamageDealtToChampions: number;
+		/**
+		 * 
+		 */
+		magicDamageTaken: number;
+		/**
+		 * 
+		 */
+		minionsDenied: number;
+		/**
+		 * 
+		 */
+		minionsKilled: number;
+		/**
+		 * 
+		 */
+		neutralMinionsKilled: number;
+		/**
+		 * 
+		 */
+		neutralMinionsKilledEnemyJungle: number;
+		/**
+		 * 
+		 */
+		neutralMinionsKilledYourJungle: number;
+		/**
+		 * Flag specifying if the summoner got the killing blow on the nexus.
+		 */
+		nexusKilled: boolean;
+		/**
+		 * 
+		 */
+		nodeCapture: number;
+		/**
+		 * 
+		 */
+		nodeCaptureAssist: number;
+		/**
+		 * 
+		 */
+		nodeNeutralize: number;
+		/**
+		 * 
+		 */
+		nodeNeutralizeAssist: number;
+		/**
+		 * 
+		 */
+		numDeaths: number;
+		/**
+		 * 
+		 */
+		numItemsBought: number;
+		/**
+		 * 
+		 */
+		objectivePlayerScore: number;
+		/**
+		 * 
+		 */
+		pentaKills: number;
+		/**
+		 * 
+		 */
+		physicalDamageDealtPlayer: number;
+		/**
+		 * 
+		 */
+		physicalDamageDealtToChampions: number;
+		/**
+		 * 
+		 */
+		physicalDamageTaken: number;
+		/**
+		 * 
+		 */
+		playerPosition: number;
+		/**
+		 * 
+		 */
+		playerRole: number;
+		/**
+		 * 
+		 */
+		quadraKills: number;
+		/**
+		 * 
+		 */
+		sightWardsBought: number;
+		/**
+		 * Number of times first champion spell was cast.
+		 */
+		spell1Cast: number;
+		/**
+		 * Number of times second champion spell was cast.
+		 */
+		spell2Cast: number;
+		/**
+		 * Number of times third champion spell was cast.
+		 */
+		spell3Cast: number;
+		/**
+		 * Number of times fourth champion spell was cast.
+		 */
+		spell4Cast: number;
+		/**
+		 * 
+		 */
+		summonSpell1Cast: number;
+		/**
+		 * 
+		 */
+		summonSpell2Cast: number;
+		/**
+		 * 
+		 */
+		superMonsterKilled: number;
+		/**
+		 * 
+		 */
+		team: number;
+		/**
+		 * 
+		 */
+		teamObjective: number;
+		/**
+		 * 
+		 */
+		timePlayed: number;
+		/**
+		 * 
+		 */
+		totalDamageDealt: number;
+		/**
+		 * 
+		 */
+		totalDamageDealtToChampions: number;
+		/**
+		 * 
+		 */
+		totalDamageTaken: number;
+		/**
+		 * 
+		 */
+		totalHeal: number;
+		/**
+		 * 
+		 */
+		totalPlayerScore: number;
+		/**
+		 * 
+		 */
+		totalScoreRank: number;
+		/**
+		 * 
+		 */
+		totalTimeCrowdControlDealt: number;
+		/**
+		 * 
+		 */
+		totalUnitsHealed: number;
+		/**
+		 * 
+		 */
+		tripleKills: number;
+		/**
+		 * 
+		 */
+		trueDamageDealtPlayer: number;
+		/**
+		 * 
+		 */
+		trueDamageDealtToChampions: number;
+		/**
+		 * 
+		 */
+		trueDamageTaken: number;
+		/**
+		 * 
+		 */
+		turretsKilled: number;
+		/**
+		 * 
+		 */
+		unrealKills: number;
+		/**
+		 * 
+		 */
+		victoryPointTotal: number;
+		/**
+		 * 
+		 */
+		visionWardsBought: number;
+		/**
+		 * 
+		 */
+		wardKilled: number;
+		/**
+		 * 
+		 */
+		wardPlaced: number;
+		/**
+		 * Flag specifying whether or not this game was won.
+		 */
+		win: boolean;
+	}
 }
