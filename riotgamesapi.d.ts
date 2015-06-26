@@ -4159,4 +4159,135 @@ declare module riotGamesApi {
 			totalUnrealKills: number;
 		}
 	}
+	
+	/**
+	 * summoner-v1.4
+	 */
+	export module summoner {
+		/**
+		 * Contains summoner information
+		 */
+		export interface SummonerDto {
+			/**
+			 * Summoner ID.
+			 */
+			id: number;
+			/**
+			 * Summoner name.
+			 */
+			name: string;
+			/**
+			 * ID of the summoner icon associated with the summoner.
+			 */
+			profileIconId: number;
+			/**
+			 * Date summoner was last modified specified as epoch milliseconds. The following events will update this timestamp: profile icon change, playing the tutorial or advanced tutorial, finishing a game, summoner name change
+			 */
+			revisionDate: number;
+			/**
+			 * Summoner level associated with the summoner.
+			 */
+			summonerLevel: number;
+		}
+		
+		/**
+		 * Contains masteries information
+		 */
+		export interface MasteryPagesDto {
+			/**
+			 * Collection of mastery pages associated with the summoner.
+			 */
+			pages: MasteryPageDto[];
+			/**
+			 * Summoner ID.
+			 */
+			summonerId: number;
+		}
+		
+		/**
+		 * Contains mastery page information
+		 */
+		export interface MasteryPageDto {
+			/**
+			 * Indicates if the mastery page is the current mastery page.
+			 */
+			current: boolean;
+			/**
+			 * Mastery page ID.
+			 */
+			id: number;
+			/**
+			 * Collection of masteries associated with the mastery page.
+			 */
+			masteries: MasteryDto[];
+			/**
+			 * Mastery page name.
+			 */
+			name: string;
+		}
+		
+		/**
+		 * Contains mastery information
+		 */
+		export interface MasteryDto {
+			/**
+			 * Mastery ID. For static information correlating to masteries, please refer to the LoL Static Data API.
+			 */
+			id: number;
+			/**
+			 * Mastery rank (i.e., the number of points put into this mastery).
+			 */
+			rank: number;
+		}
+		
+		/**
+		 * Contains rune pages information
+		 */
+		export interface RunePagesDto {
+			/**
+			 * Collection of rune pages associated with the summoner.
+			 */
+			pages: RunePageDto[];
+			/**
+			 * Summoner ID.
+			 */
+			summonerId: number;
+		}
+
+		/**
+		 * Contains rune page information
+		 */
+		export interface RunePageDto {
+			/**
+			 * Indicates if the page is the current page.
+			 */
+			current: boolean;
+			/**
+			 * Rune page ID.
+			 */
+			id: number;
+			/**
+			 * Rune page name.
+			 */
+			name: string;
+			/**
+			 * Collection of rune slots associated with the rune page.
+			 */
+			slots: RuneSlotDto[];
+		}
+		
+		/**
+		 * Contains rune slot information
+		 */
+		export interface RuneSlotDto {
+			/**
+			 * Rune ID associated with the rune slot. For static information correlating to rune IDs, please refer to the LoL Static Data API.
+			 */
+			runeId: number;
+			/**
+			 * Rune slot ID.
+			 */
+			runeSlotId: number;
+		}
+	}
 }
