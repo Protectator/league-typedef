@@ -3892,4 +3892,271 @@ declare module riotGamesApi {
 			zeroToTen: number;
 		}
 	}
+	
+	/**
+	 * stats-v1.3
+	 */
+	export module stats {
+		/**
+		 * Contains ranked stats information
+		 */
+		export interface RankedStatsDto {
+			/**
+			 * Collection of aggregated stats summarized by champion.
+			 */
+			champions: ChampionStatsDto[];
+			/**
+			 * Date stats were last modified specified as epoch milliseconds.
+			 */
+			modifyDate: number;
+			/**
+			 * Summoner ID.
+			 */
+			summonerId: number;
+		}
+		
+		/**
+		 * Contains a collection of champion stats information
+		 */
+		export interface ChampionStatsDto {
+			/**
+			 * Champion ID. Note that champion ID 0 represents the combined stats for all champions. For static information correlating to champion IDs, please refer to the LoL Static Data API.
+			 */
+			id: number;
+			/**
+			 * Aggregated stats associated with the champion.
+			 */
+			stats: AggregatedStatsDto;
+		}
+		
+		/**
+		 * Contains aggregated stat information
+		 */
+		export interface AggregatedStatsDto {
+			/**
+			 * Dominion only.
+			 */
+			averageAssists: number;
+			/**
+			 * Dominion only.
+			 */
+			averageChampionsKilled: number;
+			/**
+			 * Dominion only.
+			 */
+			averageCombatPlayerScore: number;
+			/**
+			 * Dominion only.
+			 */
+			averageNodeCapture: number;
+			/**
+			 * Dominion only.
+			 */
+			averageNodeCaptureAssist: number;
+			/**
+			 * Dominion only.
+			 */
+			averageNodeNeutralize: number;
+			/**
+			 * Dominion only.
+			 */
+			averageNodeNeutralizeAssist: number;
+			/**
+			 * Dominion only.
+			 */
+			averageNumDeaths: number;
+			/**
+			 * Dominion only.
+			 */
+			averageObjectivePlayerScore: number;
+			/**
+			 * Dominion only.
+			 */
+			averageTeamObjective: number;
+			/**
+			 * Dominion only.
+			 */
+			averageTotalPlayerScore: number;
+			/**
+			 * 
+			 */
+			botGamesPlayed: number;
+			/**
+			 * 
+			 */
+			killingSpree: number;
+			/**
+			 * Dominion only.
+			 */
+			maxAssists: number;
+			/**
+			 * 
+			 */
+			maxChampionsKilled: number;
+			/**
+			 * Dominion only.
+			 */
+			maxCombatPlayerScore: number;
+			/**
+			 * 
+			 */
+			maxLargestCriticalStrike: number;
+			/**
+			 * 
+			 */
+			maxLargestKillingSpree: number;
+			/**
+			 * Dominion only.
+			 */
+			maxNodeCapture: number;
+			/**
+			 * Dominion only.
+			 */
+			maxNodeCaptureAssist: number;
+			/**
+			 * Dominion only.
+			 */
+			maxNodeNeutralize: number;
+			/**
+			 * Dominion only.
+			 */
+			maxNodeNeutralizeAssist: number;
+			/**
+			 * Only returned for ranked statistics.
+			 */
+			maxNumDeaths: number;
+			/**
+			 * Dominion only.
+			 */
+			maxObjectivePlayerScore: number;
+			/**
+			 * Dominion only.
+			 */
+			maxTeamObjective: number;
+			/**
+			 * 
+			 */
+			maxTimePlayed: number;
+			/**
+			 * 
+			 */
+			maxTimeSpentLiving: number;
+			/**
+			 * Dominion only.
+			 */
+			maxTotalPlayerScore: number;
+			/**
+			 * 
+			 */
+			mostChampionKillsPerSession: number;
+			/**
+			 * 
+			 */
+			mostSpellsCast: number;
+			/**
+			 * 
+			 */
+			normalGamesPlayed: number;
+			/**
+			 * 
+			 */
+			rankedPremadeGamesPlayed: number;
+			/**
+			 * 
+			 */
+			rankedSoloGamesPlayed: number;
+			/**
+			 * 
+			 */
+			totalAssists: number;
+			/**
+			 * 
+			 */
+			totalChampionKills: number;
+			/**
+			 * 
+			 */
+			totalDamageDealt: number;
+			/**
+			 * 
+			 */
+			totalDamageTaken: number;
+			/**
+			 * Only returned for ranked statistics.
+			 */
+			totalDeathsPerSession: number;
+			/**
+			 * 
+			 */
+			totalDoubleKills: number;
+			/**
+			 * 
+			 */
+			totalFirstBlood: number;
+			/**
+			 * 
+			 */
+			totalGoldEarned: number;
+			/**
+			 * 
+			 */
+			totalHeal: number;
+			/**
+			 * 
+			 */
+			totalMagicDamageDealt: number;
+			/**
+			 * 
+			 */
+			totalMinionKills: number;
+			/**
+			 * 
+			 */
+			totalNeutralMinionsKilled: number;
+			/**
+			 * Dominion only.
+			 */
+			totalNodeCapture: number;
+			/**
+			 * Dominion only.
+			 */
+			totalNodeNeutralize: number;
+			/**
+			 * 
+			 */
+			totalPentaKills: number;
+			/**
+			 * 
+			 */
+			totalPhysicalDamageDealt: number;
+			/**
+			 * 
+			 */
+			totalQuadraKills: number;
+			/**
+			 * 
+			 */
+			totalSessionsLost: number;
+			/**
+			 * 
+			 */
+			totalSessionsPlayed: number;
+			/**
+			 * 
+			 */
+			totalSessionsWon: number;
+			/**
+			 * 
+			 */
+			totalTripleKills: number;
+			/**
+			 * 
+			 */
+			totalTurretsKilled: number;
+			/**
+			 * 
+			 */
+			totalUnrealKills: number;
+		}
+	}
 }
