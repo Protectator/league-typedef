@@ -16,3 +16,8 @@ TypeScript Type Definitions for Riot Games' API at https://developer.riotgames.c
 | stats           	|      	|
 | summoner        	|      	|
 | team            	|      	|
+
+License
+=======
+
+riotgamesapi-typedef is distributed under [The MIT License](http://opensource.org/licenses/MIT).
