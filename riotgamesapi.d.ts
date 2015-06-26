@@ -4290,4 +4290,179 @@ declare module riotGamesApi {
 			runeSlotId: number;
 		}
 	}
+
+	/**
+	 * team-v2.4
+	 */
+	export module team {
+		/**
+		 * Contains team information
+		 */
+		export interface TeamDto {
+			/**
+			 * Date that team was created specified as epoch milliseconds.
+			 */
+			createDate: number;
+			/**
+			 * 
+			 */
+			fullId: string;
+			/**
+			 * Date that last game played by team ended specified as epoch milliseconds.
+			 */
+			lastGameDate: number;
+			/**
+			 * Date that last member joined specified as epoch milliseconds.
+			 */
+			lastJoinDate: number;
+			/**
+			 * Date that team last joined the ranked team queue specified as epoch milliseconds.
+			 */
+			lastJoinedRankedTeamQueueDate: number;
+			/**
+			 * 
+			 */
+			matchHistory: MatchHistorySummaryDto[];
+			/**
+			 * Date that team was last modified specified as epoch milliseconds.
+			 */
+			modifyDate: number;
+			/**
+			 * 
+			 */
+			name: string;
+			/**
+			 * 
+			 */
+			roster: RosterDto;
+			/**
+			 * Date that second to last member joined specified as epoch milliseconds.
+			 */
+			secondLastJoinDate: number;
+			/**
+			 * 
+			 */
+			status: string;
+			/**
+			 * 
+			 */
+			tag: string;
+			/**
+			 * 
+			 */
+			teamStatDetails: TeamStatDetailDto[];
+			/**
+			 * Date that third to last member joined specified as epoch milliseconds.
+			 */
+			thirdLastJoinDate: number;
+		}
+
+		/**
+		 * Contains match history summary information
+		 */
+		export interface MatchHistorySummaryDto {
+			/**
+			 * 
+			 */
+			assists: number;
+			/**
+			 * Date that match was completed specified as epoch milliseconds.
+			 */
+			date: number;
+			/**
+			 * 
+			 */
+			deaths: number;
+			/**
+			 * 
+			 */
+			gameId: number;
+			/**
+			 * 
+			 */
+			gameMode: string;
+			/**
+			 * 
+			 */
+			invalid: boolean;
+			/**
+			 * 
+			 */
+			kills: number;
+			/**
+			 * 
+			 */
+			mapId: number;
+			/**
+			 * 
+			 */
+			opposingTeamKills: number;
+			/**
+			 * 
+			 */
+			opposingTeamName: string;
+			/**
+			 * 
+			 */
+			win: boolean;
+		}
+
+		/**
+		 * Contains roster information
+		 */
+		export interface RosterDto {
+			/**
+			 * 
+			 */
+			memberList: TeamMemberInfoDto[];
+			/**
+			 * 
+			 */
+			ownerId: number;
+		}
+
+		/**
+		 * Contains team statistics detail information
+		 */
+		export interface TeamStatDetailDto {
+			/**
+			 * 
+			 */
+			averageGamesPlayed: number;
+			/**
+			 * 
+			 */
+			losses: number;
+			/**
+			 * 
+			 */
+			teamStatType: string;
+			/**
+			 * 
+			 */
+			wins: number;
+		}
+
+		/**
+		 * Contains team member information
+		 */
+		export interface TeamMemberInfoDto {
+			/**
+			 * Date that team member was invited to team specified as epoch milliseconds.
+			 */
+			inviteDate: number;
+			/**
+			 * Date that team member joined team specified as epoch milliseconds.
+			 */
+			joinDate: number;
+			/**
+			 * 
+			 */
+			playerId: number;
+			/**
+			 * 
+			 */
+			status: string;
+		}
+	}
 }
