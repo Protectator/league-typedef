@@ -3894,6 +3894,71 @@ declare module riotGamesApi {
 	}
 	
 	/**
+	 * matchlist-v2.2
+	 */
+	export module matchlist {
+		/**
+		 * This object contains match list information
+		 */
+		export interface MatchList {
+			/**
+			 * 
+			 */
+			endIndex: number;
+			/**
+			 * 
+			 */
+			matches: MatchReference[];
+			/**
+			 * 
+			 */
+			startIndex: number;
+			/**
+			 * 
+			 */
+			totalGames: number;
+		}
+		
+		/**
+		 * This object contains match reference information
+		 */
+		export interface MatchReference {
+			/**
+			 * 
+			 */
+			champion: number;
+			/**
+			 * Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM
+			 */
+			lane: string;
+			/**
+			 * 
+			 */
+			matchId: number;
+			/**
+			 * 
+			 */
+			platformId: number;
+			/**
+			 * Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5
+			 */
+			queue: number;
+			/**
+			 * Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT
+			 */
+			role: number;
+			/**
+			 * Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015
+			 */
+			season: number;
+			/**
+			 * 
+			 */
+			timestamp: number;
+		}
+	}
+	
+	/**
 	 * stats-v1.3
 	 */
 	export module stats {
