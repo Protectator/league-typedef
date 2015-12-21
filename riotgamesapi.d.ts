@@ -3368,19 +3368,19 @@ declare module riotGamesApi {
 			/**
 			 * 
 			 */
-			platformId: number;
+			platformId: string;
 			/**
 			 * Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5
 			 */
-			queue: number;
+			queue: string;
 			/**
 			 * Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT
 			 */
-			role: number;
+			role: string;
 			/**
 			 * Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016
 			 */
-			season: number;
+			season: string;
 			/**
 			 * 
 			 */
