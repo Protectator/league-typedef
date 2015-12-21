@@ -3960,4 +3960,187 @@ declare module riotGamesApi {
 			status: string;
 		}
 	}
+    
+    /**
+	 * tournament-provider-v1
+	 */
+	export module tournamentProvider {
+		/**
+		 * 
+		 */
+		export interface TournamentCodeParameters {
+			/**
+			 * Optional list of participants in order to validate the players eligible to join the lobby.
+             * NOTE: We currently do not enforce participants at the team level, but rather the aggregate of teamOne and teamTwo.
+             * We may add the ability to enforce at the team level in the future.
+			 */
+			allowedSummonerIds?: SummonerIdParams;
+            /**
+             * The map type of the game. Valid values are SUMMONERS_RIFT, TWISTED_TREELINE, CRYSTAL_SCAR, and HOWLING_ABYSS.
+             */
+            mapType: string;
+            /**
+             * Optional string that may contain any data in any format, if specified at all. Used to denote any custom information about the game.
+             */
+            metadata?: string;
+            /**
+             * The pick type of the game. Valid values are BLIND_PICK, DRAFT_MODE, ALL_RANDOM, TOURNAMENT_DRAFT.
+             */
+            pickType: string;
+            /**
+             * The spectator type of the game. Valid values are NONE, LOBBYONLY, ALL.
+             */
+            spectatorType: string;
+            /**
+             * The team size of the game. Valid values are 1-5.
+             */
+            teamSize: number;
+        }
+        
+        /**
+         * 
+         */
+        export interface SummonerIdParams {
+            /**
+             * the tournament participants
+             */
+            participants: number[];
+        }
+        
+        /**
+         * 
+         */
+		export interface TournamentCodeDTO {
+            /**
+             * The tournament code.
+             */
+            code: string;
+            /**
+             * The tournament code's ID.
+             */
+            id: number;
+            /**
+             * The lobby name for the tournament code game.
+             */
+            lobbyName: string;
+            /**
+             * The game map for the tournament code game
+             */
+            map: string;
+            /**
+             * The metadata for tournament code.
+             */
+            metaData: string;
+            /**
+             * 
+             */
+            participants: number[];
+            /**
+             * The password for the tournament code game.
+             */
+            password: string;
+            /**
+             * The pick mode for tournament code game.
+             */
+            pickType: string;
+            /**
+             * The provider's ID.
+             */
+            providerId: number;
+            /**
+             * The tournament code's region. (Legal values: BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, PBE, RU, TR)
+             */
+            region: string;
+            /**
+             * The spectator mode for the tournament code game.
+             */
+            spectators: string;
+            /**
+             * The team size for the tournament code game.
+             */
+            teamSize: number;
+            /**
+             * The tournament's ID.
+             */
+            tournamentId: number;
+        }
+        
+        /**
+         * 
+         */
+        export interface TournamentCodeUpdateParameters {
+            /**
+             * Comma separated list of summoner Ids
+             */
+            allowedParticipants: string;
+            /**
+             * The map type (Legal values: SUMMONERS_RIFT, CRYSTAL_SCAR, TWISTED_TREELINE, HOWLING_ABYSS)
+             */
+            mapType: string;
+            /**
+             * The pick type (Legal values: BLIND_PICK, DRAFT_MODE, ALL_RANDOM, TOURNAMENT_DRAFT)
+             */
+            pickType: string;
+            /**
+             * The spectator type (Legal values: NONE, LOBBYONLY, ALL)
+             */
+            spectatorType: string;
+        }
+        
+        /**
+         * 
+         */
+        export interface LobbyEventDTOWrapper {
+            /**
+             * 
+             */
+            eventList: LobbyEventDTO[];
+        }
+        
+        /**
+         * 
+         */
+        export interface LobbyEventDTO {
+            /**
+             * The type of event that was triggered
+             */
+            eventType: string;
+            /**
+             * The summoner that triggered the event
+             */
+            summonerId: string;
+            /**
+             * Timestamp from the event
+             */
+            timestamp: string;
+        }
+
+        /**
+         * 
+         */
+        export interface ProviderRegistrationParameters {
+            /**
+             * The region in which the provider will be running tournaments. (Legal values: BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, PBE, RU, TR)
+             */
+            region: string;
+            /**
+             * The provider's callback URL to which tournament game results in this region should be posted. The URL must be well-formed, use the http or https protocol, and use the default port for the protocol (http URLs must use port 80, https URLs must use port 443).
+             */
+            url: string;
+        }
+        
+        /**
+         * 
+         */
+        export interface TournamentRegistrationParameters {
+            /**
+             * The optional name of the tournament.
+             */
+            name?: string;
+            /**
+             * The provider ID to specify the regional registered provider data to associate this tournament.
+             */
+            providerId: number;
+        }
+    }
 }

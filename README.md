@@ -16,6 +16,7 @@ TypeScript Type Definitions for Riot Games' API at https://developer.riotgames.c
 | [stats](https://developer.riotgames.com/api/methods#!/1018)           	| riotGamesApi.stats | v1.3 |
 | [summoner](https://developer.riotgames.com/api/methods#!/1017)        	| riotGamesApi.summoner	| v1.4 |
 | [team](https://developer.riotgames.com/api/methods#!/986)            	| riotGamesApi.team | v2.4 |
+| [tournament-provider](https://developer.riotgames.com/api/methods#!/1057) | riotGamesApi.tournamentProvider | v1 |
 
 License
 =======
