@@ -2543,7 +2543,7 @@ declare module riotGamesApi {
 			 */
 			region: string;
 			/**
-			 * Season match was played (Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015)
+			 * Season match was played (Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016)
 			 */
 			season: string;
 			/**
@@ -2652,6 +2652,10 @@ declare module riotGamesApi {
 			 * Flag indicating whether or not the team destroyed the first inhibitor
 			 */
 			firstInhibitor: boolean;
+            /**
+			 * Flag indicating whether or not the team got the first rift herald kill
+			 */
+			firstRiftHerald: boolean;
 			/**
 			 * Flag indicating whether or not the team destroyed the first tower
 			 */
@@ -3217,7 +3221,7 @@ declare module riotGamesApi {
 			 */
 			levelUpType: string;
 			/**
-			 * The monster type of the event. Only present if relevant. (Legal values: BARON_NASHOR, BLUE_GOLEM, DRAGON, RED_LIZARD, VILEMAW)
+			 * The monster type of the event. Only present if relevant. (Legal values: BARON_NASHOR, BLUE_GOLEM, DRAGON, RED_LIZARD, VILEMAW, RIFTHERALD)
 			 */
 			monsterType: string;
 			/**
@@ -3374,7 +3378,7 @@ declare module riotGamesApi {
 			 */
 			role: number;
 			/**
-			 * Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015
+			 * Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016
 			 */
 			season: number;
 			/**
