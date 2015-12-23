@@ -6,7 +6,7 @@ TypeScript Type Definitions for Riot Games' API at https://developer.riotgames.c
 |-----------------	|----------- |------	|
 | [champion](https://developer.riotgames.com/api/methods#!/1015)        	| riotGamesApi.champion | v1.2 |
 | [current-game](https://developer.riotgames.com/api/methods#!/976)    	| riotGamesApi.currentGame | v1.0 |
-| [featured-games](https://developer.riotgames.com/api/methods#!/977)  	| riotGamesApi.featuresGames | v1.0 |
+| [featured-games](https://developer.riotgames.com/api/methods#!/977)  	| riotGamesApi.currentGame (will be split) | v1.0 |
 | [game](https://developer.riotgames.com/api/methods#!/1016)            	| riotGamesApi.game | v1.3 |
 | [league](https://developer.riotgames.com/api/methods#!/985)          	| riotGamesApi.league | v2.5 |
 | [lol-static-data](https://developer.riotgames.com/api/methods#!/1055) 	| riotGamesApi.lolStaticData | v1.2 |

@@ -9,6 +9,33 @@ declare module riotGamesApi {
 	 * champion-v1.2
 	 */
 	export module champion {
+        /**
+         * Contains all operations of the endpoint.
+         */
+		export interface Endpoints {
+			/**
+             * Retrieve all champions. (REST)
+             * Sould call GET /api/lol/{region}/v1.2/champion
+			 * @param region     Region where to retrieve the data.
+			 * @param freeToPlay Optional filter param to retrieve only free to play champions.
+			 */
+			allChampions(
+                region: string,
+                freeToPlay?: boolean
+            ): ChampionListDto;
+            
+            /**
+             * Retrieve champion by ID. (REST)
+             * Should call GET /api/lol/{region}/v1.2/champion/{id}
+             * @param region Region where to retrieve the data.
+             * @param id     ID of the champion to retrieve.
+             */
+            championById(
+                region: string,
+                id: number
+            ): ChampionDto;
+		}
+
 		/**
 		 * Contains a collection of champion information
 		 */
@@ -56,6 +83,31 @@ declare module riotGamesApi {
 	 * current-game-v1.0
 	 */
 	export module currentGame {
+        /**
+         * Contains all operations of the endpoint.
+         */
+		export interface Endpoints {
+			/**
+             * Get current game information for the given summoner ID. (REST)
+             * Should call GET /observer-mode/rest/consumer/getSpectatorGameInfo/{platformId}/{summonerId}
+			 * @param platformId The platform ID for which to fetch data.
+			 * @param summonerId The ID of the summoner.
+			 */
+			spectatorGameInfo(
+                platformId: string,
+                summonerId: number
+            ): CurrentGameInfo;
+            
+            /**
+             * Get list of featured games. (REST)
+             * Should call GET /observer-mode/rest/featured
+			 * @param region Region where to retrieve the data.
+			 */
+			featuredGames(
+                region: string
+            ): CurrentGameInfo;
+		}
+        
 		/**
 		 * 
 		 */
@@ -215,7 +267,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export interface FeaturesGames {
+		export interface FeaturedGames {
 			/**
 			 * The suggested interval to wait before requesting FeaturedGames again
 			 */
@@ -319,6 +371,23 @@ declare module riotGamesApi {
 	 * game-v1.3
 	 */
 	export module game {
+        /**
+         * Contains all operations of the endpoint.
+         */
+		export interface Endpoints {
+			/**
+             * Get recent games by summoner ID. (REST)
+             * Should call GET /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
+			 * @param region Region where to retrieve the data.
+			 * @param summonerId ID of the summoner for which to retrieve recent games.
+			 */
+			spectatorGameInfo(
+                region: string,
+                summonerId: number
+            ): RecentGamesDto;
+		}
+        
+        
 		/**
 		 * Contains recent games information
 		 */
