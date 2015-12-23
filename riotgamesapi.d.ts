@@ -313,9 +313,7 @@ declare module riotGamesApi {
 			 */
 			teamId: number;
 		}
-
 	}
-	
 	
 	/**
 	 * game-v1.3
@@ -736,9 +734,7 @@ declare module riotGamesApi {
 			 */
 			win: boolean;
 		}
-
 	}
-	
 	
 	/**
 	 * league-v2.5
@@ -845,7 +841,6 @@ declare module riotGamesApi {
 			wins: number;
 		}
 	}
-	
 	
 	/**
 	 * lol-static-data-v1.2
@@ -3960,7 +3955,7 @@ declare module riotGamesApi {
 			status: string;
 		}
 	}
-    
+
     /**
 	 * tournament-provider-v1
 	 */
