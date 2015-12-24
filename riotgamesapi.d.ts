@@ -3847,9 +3847,9 @@ declare module riotGamesApi {
             /**
              * Get ranked stats by summoner ID. (REST)
              * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked
-             * @param region Region where to retrieve the data.
+             * @param region     Region where to retrieve the data.
              * @param summonerId ID of the summoner for which to retrieve ranked stats.
-             * @param season If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+             * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
              */
             rankedBySummonerId(
                 region: string,
@@ -3860,9 +3860,9 @@ declare module riotGamesApi {
             /**
              * Get player stats summaries by summoner ID. (REST)
              * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/summary
-             * @param region Region where to retrieve the data.
+             * @param region     Region where to retrieve the data.
              * @param summonerId ID of the summoner for which to retrieve player stats.
-             * @param season If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+             * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
              */
             SummaryBySummonerId(
                 region: string,
@@ -4182,7 +4182,7 @@ declare module riotGamesApi {
             /**
              * Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
              * Should call GET /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
-             * @param region Region where to retrieve the data.
+             * @param region        Region where to retrieve the data.
              * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
              */
             summonerByNames(
@@ -4193,7 +4193,7 @@ declare module riotGamesApi {
             /**
              * Get summoner objects mapped by summoner ID for a given list of summoner IDs. (REST)
              * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}
-             * @param region Region where to retrieve the data.
+             * @param region      Region where to retrieve the data.
              * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
              */
             summonerBySummonerIds(
@@ -4204,7 +4204,7 @@ declare module riotGamesApi {
             /**
              * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
              * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/masteries
-             * @param region Region where to retrieve the data.
+             * @param region      Region where to retrieve the data.
              * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
              */
             masteryBySummonerIds(
@@ -4215,7 +4215,7 @@ declare module riotGamesApi {
             /**
              * Get summoner names mapped by summoner ID for a given list of summoner IDs. (REST)
              * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/name
-             * @param region Region where to retrieve the data.
+             * @param region      Region where to retrieve the data.
              * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
              */
             namesBySummonerIds(
@@ -4226,7 +4226,7 @@ declare module riotGamesApi {
             /**
              * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
              * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/runes
-             * @param region Region where to retrieve the data.
+             * @param region      Region where to retrieve the data.
              * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
              */
             runesBySummonerIds(
@@ -4370,7 +4370,7 @@ declare module riotGamesApi {
             /**
              * Get teams mapped by summoner ID for a given list of summoner IDs. (REST)
              * Should call GET /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
-             * @param region The region of the summoner.
+             * @param region      The region of the summoner.
              * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
              */
             teamsBySummonerIds(
@@ -4381,7 +4381,7 @@ declare module riotGamesApi {
             /**
              * Get teams mapped by team ID for a given list of team IDs. (REST)
              * Should call GET /api/lol/{region}/v2.4/team/{teamIds}
-             * @param region The region of the summoner.
+             * @param region  The region of the summoner.
              * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
              */
             teamsByTeamIds(
@@ -4566,6 +4566,68 @@ declare module riotGamesApi {
 	 * tournament-provider-v1
 	 */
 	export module tournamentProvider {
+        export interface Endpoints {
+            /**
+             * Create a tournament code for the given tournament. (REST)
+             * Should call POST /tournament/public/v1/code
+             * @param tournamentId The tournament ID
+             * @param count        The number of codes to create (max 1000)
+             * @param body         Metadata for the generated code
+             */
+            tournamentCodesByTournamentId(
+                tournamentId: number,
+                count: number,
+                body: TournamentCodeParameters
+            ): string[];
+
+            /**
+             * Returns the tournament code DTO associated with a tournament code string. (REST)
+             * Should call GET /tournament/public/v1/code/{tournamentCode}
+             * @param tournamentCode The tournament code string.
+             */
+            tournamentByTournamentsCode(
+                tournamentCode: string
+            ): TournamentCodeDTO;
+
+            /**
+             * Update the pick type, map, spectator type, or allowed summoners for a code (REST)
+             * Should call PUT /tournament/public/v1/code/{tournamentCode}
+             * @param tournamentCode The tournament code to update
+             * @param body           The fields to update
+             */
+            updateByTournamentCode(
+                tournamentCode: string,
+                body: TournamentCodeUpdateParameters
+            ): void;
+
+            /**
+             * Gets a list of lobby events by tournament code (REST)
+             * Should call GET /tournament/public/v1/lobby/events/by-code/{tournamentCode}
+             * @param tournamentCode The short code to look up lobby events for
+             */
+            getLobbyEventsByTournamentCode(
+                tournamentCode: string
+            ): LobbyEventDTOWrapper;
+
+            /**
+             * Creates a tournament provider and returns its ID. (REST)
+             * Should call POST /tournament/public/v1/provider
+             * @param body The provider definition.
+             */
+            createTournamentProvider(
+                body: ProviderRegistrationParameters
+            ): number;
+            
+            /**
+             * Creates a tournament and returns its ID. (REST)
+             * Should call POST /tournament/public/v1/tournament
+             * @param body The tournament definition.
+             */
+            createTournament(
+                body: TournamentRegistrationParameters
+            ): number;
+        }
+        
 		/**
 		 * 
 		 */
