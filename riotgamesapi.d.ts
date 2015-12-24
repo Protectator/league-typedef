@@ -4178,6 +4178,63 @@ declare module riotGamesApi {
 	 * summoner-v1.4
 	 */
 	export module summoner {
+        export interface Endpoints {
+            /**
+             * Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
+             * @param region Region where to retrieve the data.
+             * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
+             */
+            summonerByNames(
+                region: string,
+                summonerNames: string
+            ): { [s: string]: SummonerDto; };
+
+            /**
+             * Get summoner objects mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}
+             * @param region Region where to retrieve the data.
+             * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
+             */
+            summonerBySummonerIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: SummonerDto; };
+
+            /**
+             * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/masteries
+             * @param region Region where to retrieve the data.
+             * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
+             */
+            masteryBySummonerIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: MasteryPagesDto; };
+
+            /**
+             * Get summoner names mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/name
+             * @param region Region where to retrieve the data.
+             * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
+             */
+            namesBySummonerIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: string; };
+
+            /**
+             * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/runes
+             * @param region Region where to retrieve the data.
+             * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
+             */
+            runesBySummonerIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: RunePagesDto; };
+        }
+
 		/**
 		 * Contains summoner information
 		 */
@@ -4309,6 +4366,31 @@ declare module riotGamesApi {
 	 * team-v2.4
 	 */
 	export module team {
+        export interface Endpoints {
+            /**
+             * Get teams mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
+             * @param region The region of the summoner.
+             * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
+             */
+            teamsBySummonerIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: TeamDto[]; };
+
+            /**
+             * Get teams mapped by team ID for a given list of team IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.4/team/{teamIds}
+             * @param region The region of the summoner.
+             * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+             */
+            teamsByTeamIds(
+                region: string,
+                teamIds: string
+            ): { [s: string]: TeamDto; };
+
+
+        }
 		/**
 		 * Contains team information
 		 */
