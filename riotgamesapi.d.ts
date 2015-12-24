@@ -78,6 +78,37 @@ declare module riotGamesApi {
 			rankedPlayEnabled: boolean;
 		}
 	}
+    
+    // Interfaces to both current-game and featured-games
+    /**
+     * 
+     */
+    export interface GenericBannedChampion {
+        /**
+         * The ID of the banned champion
+         */
+        championId: number;
+
+        /**
+         * The turn during which the champion was banned
+         */
+        pickTurn: number;
+
+        /**
+         * The ID of the team that banned the champion
+         */
+        teamId: number;
+    }
+
+    /**
+     * 
+     */
+    export interface GenericObserver {
+        /**
+         * Key used to decrypt the spectator grid game data for playback
+         */
+        encryptionKey: string;
+    }
 	
 	/**
 	 * current-game-v1.0
@@ -152,22 +183,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export interface BannedChampion {
-			/**
-			 * The ID of the banned champion
-			 */
-			championId: number;
-	
-			/**
-			 * The turn during which the champion was banned
-			 */
-			pickTurn: number;
-	
-			/**
-			 * The ID of the team that banned the champion
-			 */
-			teamId: number;
-		}
+		export interface BannedChampion extends GenericBannedChampion{}
 		
 		/**
 		 * 
@@ -218,12 +234,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export interface Observer {
-			/**
-			 * Key used to decrypt the spectator grid game data for playback
-			 */
-			encryptionKey: string;
-		}
+		export interface Observer extends GenericObserver{}
 		 
 		/**
 		 * 
@@ -335,26 +346,11 @@ declare module riotGamesApi {
 			 */
 			platformId: string;
 		}
-		
+        
         /**
-		 * 
-		 */
-		export interface BannedChampion {
-			/**
-			 * The ID of the banned champion
-			 */
-			championId: number;
-	
-			/**
-			 * The turn during which the champion was banned
-			 */
-			pickTurn: number;
-	
-			/**
-			 * The ID of the team that banned the champion
-			 */
-			teamId: number;
-		}
+         * 
+         */
+        export interface BannedChampion extends GenericBannedChampion{}
 		
 		/**
 		 * 
@@ -405,12 +401,7 @@ declare module riotGamesApi {
 		/**
 		 * 
 		 */
-		export interface Observer {
-			/**
-			 * Key used to decrypt the spectator grid game data for playback
-			 */
-			encryptionKey: string;
-		}
+		export interface Observer extends GenericObserver{}
 		 
 		/**
 		 * 
