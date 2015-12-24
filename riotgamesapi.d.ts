@@ -4,10 +4,10 @@
 // Definitions: https://github.com/Protectator/riotgamesapi-typedef
 
 declare module riotGamesApi {
-	
-	/**
-	 * champion-v1.2
-	 */
+    
+    /**
+     * champion-v1.2
+     */
     export module champion {
         /**
          * Retrieve all champions. (REST)
@@ -31,45 +31,45 @@ declare module riotGamesApi {
             id: number
         ): ChampionDto;
 
-		/**
-		 * Contains a collection of champion information
-		 */
+        /**
+         * Contains a collection of champion information
+         */
         export interface ChampionListDto {
-			/**
-			 * The collection of champion information.
-			 */
+            /**
+             * The collection of champion information.
+             */
             champions: ChampionDto[];
         }
-		
-		/**
-		 * Contains champion information
-		 */
+        
+        /**
+         * Contains champion information
+         */
         export interface ChampionDto {
-			/**
-			 * Indicates if the champion is active
-			 */
+            /**
+             * Indicates if the champion is active
+             */
             active: boolean;
-			/**
-			 * Bot enabled flag (for custom games)
-			 */
+            /**
+             * Bot enabled flag (for custom games)
+             */
             botEnabled: boolean;
-			/**
-			 * Bot Match Made enabled flag (for Co-op vs. AI games).
-			 */
+            /**
+             * Bot Match Made enabled flag (for Co-op vs. AI games).
+             */
             botMmEnabled: boolean;
-			/**
-			 * Indicates if the champion is free to play.
-			 * Free to play champions are rotated periodically.
-			 */
+            /**
+             * Indicates if the champion is free to play.
+             * Free to play champions are rotated periodically.
+             */
             freeToPlay: boolean;
-			/**
-			 * Champion ID.
-			 * For static information correlating champion IDs, refer to the LoL Static Data API.
-			 */
+            /**
+             * Champion ID.
+             * For static information correlating champion IDs, refer to the LoL Static Data API.
+             */
             id: number;
-			/**
-			 * Ranked play enabled flag
-			 */
+            /**
+             * Ranked play enabled flag
+             */
             rankedPlayEnabled: boolean;
         }
     }
@@ -104,10 +104,10 @@ declare module riotGamesApi {
          */
         encryptionKey: string;
     }
-	
-	/**
-	 * current-game-v1.0
-	 */
+    
+    /**
+     * current-game-v1.0
+     */
     export module currentGame {
         /**
          * Get current game information for the given summoner ID. (REST)
@@ -120,144 +120,144 @@ declare module riotGamesApi {
             summonerId: number
         ): CurrentGameInfo;
         
-		/**
-		 * 
-		 */
+        /**
+         * 
+         */
         export interface CurrentGameInfo {
-			/**
-			 * Banned champion information
-			 */
+            /**
+             * Banned champion information
+             */
             bannedChampions: BannedChampion[];
-			/**
-			 * The ID of the game
-			 */
+            /**
+             * The ID of the game
+             */
             gameId: number;
-			/**
-			 * The amount of time in seconds that has passed since the game started
-			 */
+            /**
+             * The amount of time in seconds that has passed since the game started
+             */
             gameLength: number;
-			/**
-			 * The game mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
-			 */
+            /**
+             * The game mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
+             */
             gameMode: string;
-			/**
-			 * The queue type (queue types are documented on the Game Constants page)
-			 */
+            /**
+             * The queue type (queue types are documented on the Game Constants page)
+             */
             gameQueueConfigId: number;
-			/**
-			 * The game start time represented in epoch milliseconds
-			 */
+            /**
+             * The game start time represented in epoch milliseconds
+             */
             gameStartTime: number;
-			/**
-			 * The game type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
-			 */
+            /**
+             * The game type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
+             */
             gameType: string;
-			/**
-			 * The ID of the map
-			 */
+            /**
+             * The ID of the map
+             */
             mapId: number;
-			/**
-			 * The observer information
-			 */
+            /**
+             * The observer information
+             */
             observers: Observer;
-			/**
-			 * The participant information
-			 */
+            /**
+             * The participant information
+             */
             participants: CurrentGameParticipant[];
-			/**
-			 * The ID of the platform on which the game is being played
-			 */
+            /**
+             * The ID of the platform on which the game is being played
+             */
             platformId: string;
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface BannedChampion extends GenericBannedChampion { }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface CurrentGameParticipant {
-			/**
-			 * Flag indicating whether or not this participant is a bot
-			 */
+            /**
+             * Flag indicating whether or not this participant is a bot
+             */
             bot: boolean;
-			/**
-			 * The ID of the champion played by this participant
-			 */
+            /**
+             * The ID of the champion played by this participant
+             */
             championId: number;
-			/**
-			 * The masteries used by this participant
-			 */
+            /**
+             * The masteries used by this participant
+             */
             masteries: Mastery[];
-			/**
-			 * The ID of the profile icon used by this participant
-			 */
+            /**
+             * The ID of the profile icon used by this participant
+             */
             profileIconId: number;
-			/**
-			 * The runes used by this participant
-			 */
+            /**
+             * The runes used by this participant
+             */
             runes: Rune[];
-			/**
-			 * The ID of the first summoner spell used by this participant
-			 */
+            /**
+             * The ID of the first summoner spell used by this participant
+             */
             spell1Id: number;
-			/**
-			 * The ID of the second summoner spell used by this participant
-			 */
+            /**
+             * The ID of the second summoner spell used by this participant
+             */
             spell2Id: number;
-			/**
-			 * The summoner ID of this participant
-			 */
+            /**
+             * The summoner ID of this participant
+             */
             summonerId: number;
-			/**
-			 * The summoner name of this participant
-			 */
+            /**
+             * The summoner name of this participant
+             */
             summonerName: string;
-			/**
-			 * The team ID of this participant, indicating the participant's team
-			 */
+            /**
+             * The team ID of this participant, indicating the participant's team
+             */
             teamId: number;
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface Observer extends GenericObserver { }
-		 
-		/**
-		 * 
-		 */
+         
+        /**
+         * 
+         */
         export interface Mastery {
-			/**
-			 * The ID of the mastery
-			 */
+            /**
+             * The ID of the mastery
+             */
             masteryId: number;
-			/**
-			 * The number of points put into this mastery by the user
-			 */
+            /**
+             * The number of points put into this mastery by the user
+             */
             rank: number;
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface Rune {
-			/**
-			 * The count of this rune used by the participant
-			 */
+            /**
+             * The count of this rune used by the participant
+             */
             count: number;
-			/**
-			 * The ID of the rune
-			 */
+            /**
+             * The ID of the rune
+             */
             runeId: number;
         }
     }
-		
-	/**
-	 * featured-game-v1.0
-	 */
+        
+    /**
+     * featured-game-v1.0
+     */
     export module featuredGames {
         /**
          * Get list of featured games. (REST)
@@ -267,68 +267,68 @@ declare module riotGamesApi {
         export function getGeaturedGames(
             region: string
         ): FeaturedGames;
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface FeaturedGames {
-			/**
-			 * The suggested interval to wait before requesting FeaturedGames again
-			 */
+            /**
+             * The suggested interval to wait before requesting FeaturedGames again
+             */
             clientRefreshInterval: number;
-			/**
-			 * The list of featured games
-			 */
+            /**
+             * The list of featured games
+             */
             gameList: FeaturedGameInfo[];
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface FeaturedGameInfo {
-			/**
-			 * Banned champion information
-			 */
+            /**
+             * Banned champion information
+             */
             bannedChampions: BannedChampion[];
-			/**
-			 * The ID of the game
-			 */
+            /**
+             * The ID of the game
+             */
             gameId: number;
-			/**
-			 * The amount of time in seconds that has passed since the game started
-			 */
+            /**
+             * The amount of time in seconds that has passed since the game started
+             */
             gameLength: number;
-			/**
-			 * The game mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
-			 */
+            /**
+             * The game mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
+             */
             gameMode: string;
-			/**
-			 * The queue type (queue types are documented on the Game Constants page)
-			 */
+            /**
+             * The queue type (queue types are documented on the Game Constants page)
+             */
             gameQueueConfigId: number;
-			/**
-			 * The game start time represented in epoch milliseconds
-			 */
+            /**
+             * The game start time represented in epoch milliseconds
+             */
             gameStartTime: number;
-			/**
-			 * The game type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
-			 */
+            /**
+             * The game type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
+             */
             gameType: string;
-			/**
-			 * The ID of the map
-			 */
+            /**
+             * The ID of the map
+             */
             mapId: number;
-			/**
-			 * The observer information
-			 */
+            /**
+             * The observer information
+             */
             observers: Observer;
-			/**
-			 * The participant information
-			 */
+            /**
+             * The participant information
+             */
             participants: Participant[];
-			/**
-			 * The ID of the platform on which the game is being played
-			 */
+            /**
+             * The ID of the platform on which the game is being played
+             */
             platformId: string;
         }
         
@@ -336,124 +336,124 @@ declare module riotGamesApi {
          * 
          */
         export interface BannedChampion extends GenericBannedChampion { }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface CurrentGameParticipant {
-			/**
-			 * Flag indicating whether or not this participant is a bot
-			 */
+            /**
+             * Flag indicating whether or not this participant is a bot
+             */
             bot: boolean;
-			/**
-			 * The ID of the champion played by this participant
-			 */
+            /**
+             * The ID of the champion played by this participant
+             */
             championId: number;
-			/**
-			 * The masteries used by this participant
-			 */
+            /**
+             * The masteries used by this participant
+             */
             masteries: Mastery[];
-			/**
-			 * The ID of the profile icon used by this participant
-			 */
+            /**
+             * The ID of the profile icon used by this participant
+             */
             profileIconId: number;
-			/**
-			 * The runes used by this participant
-			 */
+            /**
+             * The runes used by this participant
+             */
             runes: Rune[];
-			/**
-			 * The ID of the first summoner spell used by this participant
-			 */
+            /**
+             * The ID of the first summoner spell used by this participant
+             */
             spell1Id: number;
-			/**
-			 * The ID of the second summoner spell used by this participant
-			 */
+            /**
+             * The ID of the second summoner spell used by this participant
+             */
             spell2Id: number;
-			/**
-			 * The summoner ID of this participant
-			 */
+            /**
+             * The summoner ID of this participant
+             */
             summonerId: number;
-			/**
-			 * The summoner name of this participant
-			 */
+            /**
+             * The summoner name of this participant
+             */
             summonerName: string;
-			/**
-			 * The team ID of this participant, indicating the participant's team
-			 */
+            /**
+             * The team ID of this participant, indicating the participant's team
+             */
             teamId: number;
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface Observer extends GenericObserver { }
-		 
-		/**
-		 * 
-		 */
+         
+        /**
+         * 
+         */
         export interface Mastery {
-			/**
-			 * The ID of the mastery
-			 */
+            /**
+             * The ID of the mastery
+             */
             masteryId: number;
-			/**
-			 * The number of points put into this mastery by the user
-			 */
+            /**
+             * The number of points put into this mastery by the user
+             */
             rank: number;
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface Rune {
-			/**
-			 * The count of this rune used by the participant
-			 */
+            /**
+             * The count of this rune used by the participant
+             */
             count: number;
-			/**
-			 * The ID of the rune
-			 */
+            /**
+             * The ID of the rune
+             */
             runeId: number;
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface Participant {
-			/**
-			 * Flag indicating whether or not this participant is a bot
-			 */
+            /**
+             * Flag indicating whether or not this participant is a bot
+             */
             bot: boolean;
-			/**
-			 * The ID of the champion played by this participant
-			 */
+            /**
+             * The ID of the champion played by this participant
+             */
             championId: number;
-			/**
-			 * The ID of the profile icon used by this participant
-			 */
+            /**
+             * The ID of the profile icon used by this participant
+             */
             profileIconId: number;
-			/**
-			 * The ID of the first summoner spell used by this participant
-			 */
+            /**
+             * The ID of the first summoner spell used by this participant
+             */
             spell1Id: number;
-			/**
-			 * The ID of the second summoner spell used by this participant
-			 */
+            /**
+             * The ID of the second summoner spell used by this participant
+             */
             spell2Id: number;
-			/**
-			 * The summoner name of this participant
-			 */
+            /**
+             * The summoner name of this participant
+             */
             summonerName: string;
-			/**
-			 * The team ID of this participant, indicating the participant's team
-			 */
+            /**
+             * The team ID of this participant, indicating the participant's team
+             */
             teamId: number;
         }
     }
-	
-	/**
-	 * game-v1.3
-	 */
+    
+    /**
+     * game-v1.3
+     */
     export module game {
         /**
          * Get recent games by summoner ID. (REST)
@@ -467,431 +467,431 @@ declare module riotGamesApi {
         ): RecentGamesDto;
         
         
-		/**
-		 * Contains recent games information
-		 */
+        /**
+         * Contains recent games information
+         */
         export interface RecentGamesDto {
-			/**
-			 * Collection of recent games played (max 10).
-			 */
+            /**
+             * Collection of recent games played (max 10).
+             */
             games: GameDto[];
-			/**
-			 * Summoner ID.
-			 */
+            /**
+             * Summoner ID.
+             */
             summonerId: number;
         }
-		
-		/**
-		 * Contains game information
-		 */
+        
+        /**
+         * Contains game information
+         */
         export interface GameDto {
-			/**
-			 * Champion ID associated with game.
-			 */
+            /**
+             * Champion ID associated with game.
+             */
             championId: number;
-			/**
-			 * Date that end game data was recorded, specified as epoch milliseconds.
-			 */
+            /**
+             * Date that end game data was recorded, specified as epoch milliseconds.
+             */
             createDate: number;
-			/**
-			 * Other players associated with the game.
-			 */
+            /**
+             * Other players associated with the game.
+             */
             fellowPlayers: PlayerDto[];
-			/**
-			 * Game ID.
-			 */
+            /**
+             * Game ID.
+             */
             gameId: number;
-			/**
-			 * Game mode. (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
-			 */
+            /**
+             * Game mode. (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
+             */
             gameMode: string;
-			/**
-			 * Game type. (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
-			 */
+            /**
+             * Game type. (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
+             */
             gameType: string;
-			/**
-			 * Invalid flag.
-			 */
+            /**
+             * Invalid flag.
+             */
             invalid: boolean;
-			/**
-			 * IP Earned.
-			 */
+            /**
+             * IP Earned.
+             */
             ipEarned: number;
-			/**
-			 * Level.
-			 */
+            /**
+             * Level.
+             */
             level: number;
-			/**
-			 * Map ID.
-			 */
+            /**
+             * Map ID.
+             */
             mapId: number;
-			/**
-			 * ID of first summoner spell.
-			 */
+            /**
+             * ID of first summoner spell.
+             */
             spell1: number;
-			/**
-			 * ID of second summoner spell.
-			 */
+            /**
+             * ID of second summoner spell.
+             */
             spell2: number;
-			/**
-			 * Statistics associated with the game for this summoner.
-			 */
+            /**
+             * Statistics associated with the game for this summoner.
+             */
             stats: RawStatsDto;
-			/**
-			 * Game sub-type. (Legal values: NONE, NORMAL, BOT, RANKED_SOLO_5x5, RANKED_PREMADE_3x3, RANKED_PREMADE_5x5, ODIN_UNRANKED, RANKED_TEAM_3x3, RANKED_TEAM_5x5, NORMAL_3x3, BOT_3x3, CAP_5x5, ARAM_UNRANKED_5x5, ONEFORALL_5x5, FIRSTBLOOD_1x1, FIRSTBLOOD_2x2, SR_6x6, URF, URF_BOT, NIGHTMARE_BOT, ASCENSION, HEXAKILL, KING_PORO, COUNTER_PICK)
-			 */
+            /**
+             * Game sub-type. (Legal values: NONE, NORMAL, BOT, RANKED_SOLO_5x5, RANKED_PREMADE_3x3, RANKED_PREMADE_5x5, ODIN_UNRANKED, RANKED_TEAM_3x3, RANKED_TEAM_5x5, NORMAL_3x3, BOT_3x3, CAP_5x5, ARAM_UNRANKED_5x5, ONEFORALL_5x5, FIRSTBLOOD_1x1, FIRSTBLOOD_2x2, SR_6x6, URF, URF_BOT, NIGHTMARE_BOT, ASCENSION, HEXAKILL, KING_PORO, COUNTER_PICK)
+             */
             subType: string;
-			/**
-			 * Team ID associated with game. Team ID 100 is blue team. Team ID 200 is purple team.
-			 */
+            /**
+             * Team ID associated with game. Team ID 100 is blue team. Team ID 200 is purple team.
+             */
             teamId: number;
         }
-		
-		/**
-		 * Contains player information
-		 */
+        
+        /**
+         * Contains player information
+         */
         export interface PlayerDto {
-			/**
-			 * Champion id associated with player.
-			 */
+            /**
+             * Champion id associated with player.
+             */
             championId: number;
-			/**
-			 * Summoner id associated with player.
-			 */
+            /**
+             * Summoner id associated with player.
+             */
             summonerId: number;
-			/**
-			 * Team id associated with player.
-			 */
+            /**
+             * Team id associated with player.
+             */
             teamId: number;
         }
-		
-		/**
-		 * Contains raw stat information
-		 */
+        
+        /**
+         * Contains raw stat information
+         */
         export interface RawStatsDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             assists: number;
-			/**
-			 * Number of enemy inhibitors killed.
-			 */
+            /**
+             * Number of enemy inhibitors killed.
+             */
             barracksKilled: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             championsKilled: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             combatPlayerScore: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             consumablesPurchased: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             damageDealtPlayer: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             doubleKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             firstBlood: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             gold: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             goldEarned: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             goldSpent: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             item0: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             item1: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             item2: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             item3: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             item4: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             item5: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             item6: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             itemsPurchased: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             killingSprees: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             largestCriticalStrike: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             largestKillingSpree: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             largestMultiKill: number;
-			/**
-			 * Number of tier 3 items built.
-			 */
+            /**
+             * Number of tier 3 items built.
+             */
             legendaryItemsCreated: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             level: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             magicDamageDealtPlayer: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             magicDamageDealtToChampions: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             magicDamageTaken: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             minionsDenied: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             minionsKilled: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             neutralMinionsKilled: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             neutralMinionsKilledEnemyJungle: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             neutralMinionsKilledYourJungle: number;
-			/**
-			 * Flag specifying if the summoner got the killing blow on the nexus.
-			 */
+            /**
+             * Flag specifying if the summoner got the killing blow on the nexus.
+             */
             nexusKilled: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             nodeCapture: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             nodeCaptureAssist: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             nodeNeutralize: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             nodeNeutralizeAssist: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             numDeaths: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             numItemsBought: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             objectivePlayerScore: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             pentaKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             physicalDamageDealtPlayer: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             physicalDamageDealtToChampions: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             physicalDamageTaken: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             playerPosition: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             playerRole: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             quadraKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sightWardsBought: number;
-			/**
-			 * Number of times first champion spell was cast.
-			 */
+            /**
+             * Number of times first champion spell was cast.
+             */
             spell1Cast: number;
-			/**
-			 * Number of times second champion spell was cast.
-			 */
+            /**
+             * Number of times second champion spell was cast.
+             */
             spell2Cast: number;
-			/**
-			 * Number of times third champion spell was cast.
-			 */
+            /**
+             * Number of times third champion spell was cast.
+             */
             spell3Cast: number;
-			/**
-			 * Number of times fourth champion spell was cast.
-			 */
+            /**
+             * Number of times fourth champion spell was cast.
+             */
             spell4Cast: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             summonSpell1Cast: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             summonSpell2Cast: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             superMonsterKilled: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             team: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             teamObjective: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             timePlayed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalDamageDealt: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalDamageDealtToChampions: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalDamageTaken: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalHeal: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalPlayerScore: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalScoreRank: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalTimeCrowdControlDealt: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalUnitsHealed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tripleKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             trueDamageDealtPlayer: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             trueDamageDealtToChampions: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             trueDamageTaken: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             turretsKilled: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             unrealKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             victoryPointTotal: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             visionWardsBought: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             wardKilled: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             wardPlaced: number;
-			/**
-			 * Flag specifying whether or not this game was won.
-			 */
+            /**
+             * Flag specifying whether or not this game was won.
+             */
             win: boolean;
         }
     }
-	
-	/**
-	 * league-v2.5
-	 */
+    
+    /**
+     * league-v2.5
+     */
     export module league {
         /**
          * Get leagues mapped by summoner ID for a given list of summoner IDs. (REST)
          * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}
-         * @param region 	  The region of the leagues.
+         * @param region       The region of the leagues.
          * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
         export function getLeagueBySummonerIds(
@@ -902,7 +902,7 @@ declare module riotGamesApi {
         /**
          * Get league entries mapped by summoner ID for a given list of summoner IDs. (REST)
          * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry
-         * @param region 	  The region of the leagues.
+         * @param region       The region of the leagues.
          * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
         export function getLeagueEntryBySummonerIds(
@@ -954,111 +954,111 @@ declare module riotGamesApi {
             type: string
         ): LeagueDto;
         
-		/**
-		 * Contains league information
-		 */
+        /**
+         * Contains league information
+         */
         export interface LeagueDto {
-			/**
-			 * The requested league entries.
-			 */
+            /**
+             * The requested league entries.
+             */
             entries: LeagueEntryDto[];
-			/**
-			 * This name is an internal place-holder name only. Display and localization of names in the game client are handled client-side.
-			 */
+            /**
+             * This name is an internal place-holder name only. Display and localization of names in the game client are handled client-side.
+             */
             name: string;
-			/**
-			 * Specifies the relevant participant that is a member of this league (i.e., a requested summoner ID, a
-			 * requested team ID, or the ID of a team to which one of the requested summoners belongs). Only present when
-			 * full league is requested so that participant's entry can be identified. Not present when individual
-			 * entry is requested.
-			 */
+            /**
+             * Specifies the relevant participant that is a member of this league (i.e., a requested summoner ID, a
+             * requested team ID, or the ID of a team to which one of the requested summoners belongs). Only present when
+             * full league is requested so that participant's entry can be identified. Not present when individual
+             * entry is requested.
+             */
             participantId: string;
-			/**
-			 * The league's queue type. (Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5)
-			 */
+            /**
+             * The league's queue type. (Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5)
+             */
             queue: string;
-			/**
-			 * The league's tier. (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE)
-			 */
+            /**
+             * The league's tier. (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE)
+             */
             tier: string;
         }
-		
-		/**
-		 * Contains league participant information representing a summoner or team.
-		 */
+        
+        /**
+         * Contains league participant information representing a summoner or team.
+         */
         export interface LeagueEntryDto {
-			/**
-			 * The league division of the participant.
-			 */
+            /**
+             * The league division of the participant.
+             */
             division: string;
-			/**
-			 * Specifies if the participant is fresh blood.
-			 */
+            /**
+             * Specifies if the participant is fresh blood.
+             */
             isFreshBlood: boolean;
-			/**
-			 * Specifies if the participant is on a hot streak.
-			 */
+            /**
+             * Specifies if the participant is on a hot streak.
+             */
             isHotStreak: boolean;
-			/**
-			 * Specifies if the participant is inactive.
-			 */
+            /**
+             * Specifies if the participant is inactive.
+             */
             isInactive: boolean;
-			/**
-			 * Specifies if the participant is a veteran.
-			 */
+            /**
+             * Specifies if the participant is a veteran.
+             */
             isVeteran: boolean;
-			/**
-			 * The league points of the participant.
-			 */
+            /**
+             * The league points of the participant.
+             */
             leaguePoints: number;
-			/**
-			 * The number of losses for the participant.
-			 */
+            /**
+             * The number of losses for the participant.
+             */
             losses: number;
-			/**
-			 * Mini series data for the participant. Only present if the participant is currently in a mini series.
-			 */
+            /**
+             * Mini series data for the participant. Only present if the participant is currently in a mini series.
+             */
             miniSeries: MiniSeriesDto;
-			/**
-			 * The ID of the participant (i.e., summoner or team) represented by this entry.
-			 */
+            /**
+             * The ID of the participant (i.e., summoner or team) represented by this entry.
+             */
             playerOrTeamId: string;
-			/**
-			 * The name of the the participant (i.e., summoner or team) represented by this entry.
-			 */
+            /**
+             * The name of the the participant (i.e., summoner or team) represented by this entry.
+             */
             playerOrTeamName: string;
-			/**
-			 * The number of wins for the participant.
-			 */
+            /**
+             * The number of wins for the participant.
+             */
             wins: number;
         }
-		
-		/**
-		 * Contains mini series information.
-		 */
+        
+        /**
+         * Contains mini series information.
+         */
         export interface MiniSeriesDto {
-			/**
-			 * Number of current losses in the mini series.
-			 */
+            /**
+             * Number of current losses in the mini series.
+             */
             losses: number;
-			/**
-			 * String showing the current, sequential mini series progress where 'W' represents a win, 'L' represents a loss, and 'N' represents a game that hasn't been played yet.
-			 */
+            /**
+             * String showing the current, sequential mini series progress where 'W' represents a win, 'L' represents a loss, and 'N' represents a game that hasn't been played yet.
+             */
             progress: string;
-			/**
-			 * Number of wins required for promotion.
-			 */
+            /**
+             * Number of wins required for promotion.
+             */
             target: number;
-			/**
-			 * Number of current wins in the mini series.
-			 */
+            /**
+             * Number of current wins in the mini series.
+             */
             wins: number;
         }
     }
-	
-	/**
-	 * lol-static-data-v1.2
-	 */
+    
+    /**
+     * lol-static-data-v1.2
+     */
     export module lolStaticData {
         /**
          * Retrieves champion list. (REST)
@@ -1277,1490 +1277,1490 @@ declare module riotGamesApi {
             region: string
         ): string[];
             
-		/**
-		 * Contains champion list data.
-		 */
+        /**
+         * Contains champion list data.
+         */
         export interface ChampionListDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             data: { [s: string]: ChampionDto; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             format: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             keys: { [s: string]: string; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             version: string;
         }
-		
-		/**
-		 * Contains champion data.
-		 */
+        
+        /**
+         * Contains champion data.
+         */
         export interface ChampionDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             allytips: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             blurb: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             enemytips: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             info: InfoDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             key: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             lore: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             partype: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             passive: PassiveDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             recommended: RecommendedDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             skins: SkinDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             spells: ChampionSpellDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             stats: StatsDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tags: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             title: string;
         }
-		
-		/**
-		 * Contains champion spell data
-		 */
+        
+        /**
+         * Contains champion spell data
+         */
         export interface ChampionSpellDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             altimages: ImageDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             cooldown: number[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             cooldownBurn: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             cost: number[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             costBurn: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             costType: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             description: string;
-			/**
-			 * This field is a List of List of Double.
-			 */
+            /**
+             * This field is a List of List of Double.
+             */
             effect: number[][];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             effectBurn: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             key: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             leveltip: LevelTipDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maxrank: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * This field is either a List of Integer or the String 'self' for spells that target one's own champion.
-			 */
+            /**
+             * This field is either a List of Integer or the String 'self' for spells that target one's own champion.
+             */
             range: string | number[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rangeBurn: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             resource: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedDescription: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedTooltip: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tooltip: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             vars: SpellVarsDto[];
         }
-		
-		/**
-		 * Contains image data.
-		 */
+        
+        /**
+         * Contains image data.
+         */
         export interface ImageDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             full: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             group: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             h: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sprite: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             w: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             x: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             y: number;
         }
-		
-		/**
-		 * Contains champion information
-		 */
+        
+        /**
+         * Contains champion information
+         */
         export interface InfoDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             attack: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             defense: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             difficulty: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             magic: number;
         }
-		
-		/**
-		 * Contains champion passive data.
-		 */
+        
+        /**
+         * Contains champion passive data.
+         */
         export interface PassiveDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             description: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedDescription: string;
         }
-		
-		/**
-		 * Contains champion recommended data.
-		 */
+        
+        /**
+         * Contains champion recommended data.
+         */
         export interface RecommendedDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             blocks: BlockDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             champion: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             map: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mode: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             priority: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             title: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
         }
-		
-		/**
-		 * Contains champion skin data.
-		 */
+        
+        /**
+         * Contains champion skin data.
+         */
         export interface SkinDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             num: number;
         }
-		
-		/**
-		 * Contains champion stats data.
-		 */
+        
+        /**
+         * Contains champion stats data.
+         */
         export interface StatsDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             armor: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             armorperlevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             attackdamage: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             attackdamageperlevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             attackrange: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             attackspeedoffset: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             attackspeedperlevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             crit: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             critperlevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hp: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hpperlevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hpregen: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hpregenperlevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             movespeed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mp: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mpperlevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mpregen: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mpregenperlevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             spellblock: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             spellblockperlevel: number;
         }
-		
-		/**
-		 * Contains champion level tip data.
-		 */
+        
+        /**
+         * Contains champion level tip data.
+         */
         export interface LevelTipDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             effect: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             label: string[];
         }
-		
-		/**
-		 * Contains spell vars data.
-		 */
+        
+        /**
+         * Contains spell vars data.
+         */
         export interface SpellVarsDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             coeff: number[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             dyn: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             key: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             link: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             ranksWith: string;
         }
-		
-		/**
-		 * Contains champion recommended block data
-		 */
+        
+        /**
+         * Contains champion recommended block data
+         */
         export interface BlockDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             items: BlockItemDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             recMath: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
         }
-		
-		/**
-		 * Contains champion recommended block item data.
-		 */
+        
+        /**
+         * Contains champion recommended block item data.
+         */
         export interface BlockItemDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             count: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
         }
-		
-		/**
-		 * Contains item list data.
-		 */
+        
+        /**
+         * Contains item list data.
+         */
         export interface ItemListDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             basic: BasicDataDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             data: { [s: string]: ItemDto; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             groups: GroupDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tree: ItemTreeDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             version: string;
         }
-		
-		/**
-		 * Contains basic data.
-		 */
+        
+        /**
+         * Contains basic data.
+         */
         export interface BasicDataDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             colloq: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             consumeOnFull: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             consumed: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             depth: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             description: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             from: string[];
-			/**
-			 * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
-			 * However, only items have a gold field on them, representing their gold cost in the store.
-			 * Since runes are not sold in the store, they have no gold cost.
-			 */
+            /**
+             * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
+             * However, only items have a gold field on them, representing their gold cost in the store.
+             * Since runes are not sold in the store, they have no gold cost.
+             */
             gold: GoldDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             group: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hideFromAll: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             inStore: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             into: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maps: { [s: string]: boolean; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             plaintext: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             requiredChampion: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rune: MetaDataDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedDescription: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             specialRecipe: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             stacks: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             stats: BasicDataStatsDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tags: string[];
         }
-		
-		/**
-		 * Contains item group data.
-		 */
+        
+        /**
+         * Contains item group data.
+         */
         export interface GroupDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             MaxGroupOwnable: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             key: string;
         }
-		
-		/**
-		 * Contains item data.
-		 */
+        
+        /**
+         * Contains item data.
+         */
         export interface ItemDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             colloq: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             consumeOnFull: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             consumed: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             depth: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             description: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             effect: { [s: string]: string; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             from: string[];
-			/**
-			 * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
-			 * However, only items have a gold field on them, representing their gold cost in the store.
-			 * Since runes are not sold in the store, they have no gold cost.
-			 */
+            /**
+             * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
+             * However, only items have a gold field on them, representing their gold cost in the store.
+             * Since runes are not sold in the store, they have no gold cost.
+             */
             gold: GoldDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             group: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hideFromAll: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             inStore: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             into: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maps: { [s: string]: boolean; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             plaintext: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             requiredChampion: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rune: MetaDataDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedDescription: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             specialRecipe: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             stacks: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             stats: BasicDataStatsDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tags: string[];
         }
-		
-		/**
-		 * Contains item tree data.
-		 */
+        
+        /**
+         * Contains item tree data.
+         */
         export interface ItemTreeDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             header: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tags: string[];
         }
-		
-		/**
-		 * Contains basic data stats.
-		 */
+        
+        /**
+         * Contains basic data stats.
+         */
         export interface BasicDataStatsDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatArmorMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatAttackSpeedMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatBlockMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatCritChanceMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatCritDamageMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatEXPBonus: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatEnergyPoolMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatEnergyRegenMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatHPPoolMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatHPRegenMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatMPPoolMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatMPRegenMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatMagicDamageMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatMovementSpeedMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatPhysicalDamageMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             FlatSpellBlockMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentArmorMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentAttackSpeedMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentBlockMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentCritChanceMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentCritDamageMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentDodgeMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentEXPBonus: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentHPPoolMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentHPRegenMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentLifeStealMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentMPPoolMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentMPRegenMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentMagicDamageMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentMovementSpeedMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentPhysicalDamageMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentSpellBlockMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             PercentSpellVampMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatArmorModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatArmorPenetrationMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatArmorPenetrationModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatCritChanceModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatCritDamageModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatDodgeMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatDodgeModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatEnergyModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatEnergyRegenModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatGoldPer10Mod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatHPModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatHPRegenModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatMPModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatMPRegenModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatMagicDamageModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatMagicPenetrationMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatMagicPenetrationModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatMovementSpeedModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatPhysicalDamageModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatSpellBlockModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatTimeDeadMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rFlatTimeDeadModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentArmorPenetrationMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentArmorPenetrationModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentAttackSpeedModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentCooldownMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentCooldownModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentMagicPenetrationMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentMagicPenetrationModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentMovementSpeedModPerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentTimeDeadMod: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rPercentTimeDeadModPerLevel: number;
         }
-		
-		/**
-		 * Contains item gold data.
-		 */
+        
+        /**
+         * Contains item gold data.
+         */
         export interface GoldDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             base: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             purchasable: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sell: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             total: number;
         }
-		
-		/**
-		 * Contains image meta data.
-		 */
+        
+        /**
+         * Contains image meta data.
+         */
         export interface MetaDataDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             isRune: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tier: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
         }
-		
-		/**
-		 * Contains language strings data
-		 */
+        
+        /**
+         * Contains language strings data
+         */
         export interface LanguageStringsDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             data: { [s: string]: string; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             version: string;
         }
-		
-		/**
-		 * Contains map data.
-		 */
+        
+        /**
+         * Contains map data.
+         */
         export interface MapDataDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             data: { [s: string]: MapDetailsDto; }
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             version: string;
         }
-		
-		/**
-		 * Contains map details data.
-		 */
+        
+        /**
+         * Contains map details data.
+         */
         export interface MapDetailsDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mapId: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mapName: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             unpurchasableItemList: number[];
         }
-		
-		/**
-		 * Contains mastery list data.
-		 */
+        
+        /**
+         * Contains mastery list data.
+         */
         export interface MasteryListDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             data: { [s: string]: MasteryDto; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tree: MasteryTreeDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             version: string;
         }
-		
-		/**
-		 * Contains mastery data.
-		 */
+        
+        /**
+         * Contains mastery data.
+         */
         export interface MasteryDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             description: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * Legal values: Defense, Offense, Utility
-			 */
+            /**
+             * Legal values: Defense, Offense, Utility
+             */
             masteryTree: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             prereq: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             ranks: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedDescription: string[];
         }
-		
-		/**
-		 * Contains mastery tree data.
-		 */
+        
+        /**
+         * Contains mastery tree data.
+         */
         export interface MasteryTreeDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             Defense: MasteryTreeListDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             Offense: MasteryTreeListDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             Utility: MasteryTreeListDto[];
         }
-		
-		/**
-		 * Contains mastery tree list data.
-		 */
+        
+        /**
+         * Contains mastery tree list data.
+         */
         export interface MasteryTreeListDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             masteryTreeItems: MasteryTreeItemDto[];
         }
-		
-		/**
-		 * Contains mastery tree item data.
-		 */
+        
+        /**
+         * Contains mastery tree item data.
+         */
         export interface MasteryTreeItemDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             masteryId: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             prereq: string;
         }
-		
-		/**
-		 * Contains realm data.
-		 */
+        
+        /**
+         * Contains realm data.
+         */
         export interface RealmDto {
-			/**
-			 * The base CDN url.
-			 */
+            /**
+             * The base CDN url.
+             */
             cdn: string;
-			/**
-			 * Latest changed version of Dragon Magic's css file.
-			 */
+            /**
+             * Latest changed version of Dragon Magic's css file.
+             */
             css: string;
-			/**
-			 * Latest changed version of Dragon Magic.
-			 */
+            /**
+             * Latest changed version of Dragon Magic.
+             */
             dd: string;
-			/**
-			 * Default language for this realm.
-			 */
+            /**
+             * Default language for this realm.
+             */
             l: string;
-			/**
-			 * Legacy script mode for IE6 or older.
-			 */
+            /**
+             * Legacy script mode for IE6 or older.
+             */
             lg: string;
-			/**
-			 * Latest changed version for each data type listed.
-			 */
+            /**
+             * Latest changed version for each data type listed.
+             */
             n: { [s: string]: string; };
-			/**
-			 * Special behavior number identifying the largest profileicon id that can be used under 500. Any profileicon that is requested between this number and 500 should be mapped to 0.
-			 */
+            /**
+             * Special behavior number identifying the largest profileicon id that can be used under 500. Any profileicon that is requested between this number and 500 should be mapped to 0.
+             */
             profileiconmax: number;
-			/**
-			 * Additional api data drawn from other sources that may be related to data dragon functionality.
-			 */
+            /**
+             * Additional api data drawn from other sources that may be related to data dragon functionality.
+             */
             store: string;
-			/**
-			 * Current version of this file for this realm.
-			 */
+            /**
+             * Current version of this file for this realm.
+             */
             v: string;
         }
-		
-		/**
-		 * Contains rune list data
-		 */
+        
+        /**
+         * Contains rune list data
+         */
         export interface RuneListDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             basic: BasicDataDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             data: { [s: string]: RuneDto; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             version: string;
         }
-		
-		/**
-		 * Contains rune data.
-		 */
+        
+        /**
+         * Contains rune data.
+         */
         export interface RuneDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             colloq: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             consumeOnFull: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             consumed: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             depth: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             description: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             from: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             group: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hideFromAll: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             inStore: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             into: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maps: { [s: string]: boolean; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             plaintext: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             requiredChampion: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rune: MetaDataDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedDescription: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             specialRecipe: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             stacks: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             stats: BasicDataStatsDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tags: string[];
         }
-		
-		/**
-		 * Contains summoner spell list data.
-		 */
+        
+        /**
+         * Contains summoner spell list data.
+         */
         export interface SummonerSpellListDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             data: { [s: string]: SummonerSpellDto; };
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             type: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             version: string;
         }
-		
-		/**
-		 * Contains summoner spell data.
-		 */
+        
+        /**
+         * Contains summoner spell data.
+         */
         export interface SummonerSpellDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             cooldown: number[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             cooldownBurn: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             cost: number[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             costBurn: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             costType: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             description: string;
-			/**
-			 * This field is a List of List of Double.
-			 */
+            /**
+             * This field is a List of List of Double.
+             */
             effect: number[][];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             effectBurn: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             image: ImageDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             key: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             leveltip: LevelTipDto;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maxrank: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             modes: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * This field is either a List of Integer or the String 'self' for spells that target one's own champion.
-			 */
+            /**
+             * This field is either a List of Integer or the String 'self' for spells that target one's own champion.
+             */
             range: number[] | string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rangeBurn: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             resource: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedDescription: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             sanitizedTooltip: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             summonerLevel: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tooltip: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             vars: SpellVarsDto[];
         }
     }
-	
-	/**
-	 * lol-status-v1.0
-	 */
+    
+    /**
+     * lol-status-v1.0
+     */
     export module lolStatus {
         /**
          * Get shard list. (REST)
@@ -2777,159 +2777,159 @@ declare module riotGamesApi {
             region: string
         ): ShardStatus;
 
-		/**
-		 * 
-		 */
+        /**
+         * 
+         */
         export interface Shard {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hostname: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             locales: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             region_tag: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             slug: string;
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface ShardStatus {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             hostname: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             locales: string[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             region_tag: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             services: Service[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             slug: string;
         }
-		
-		/**
-		 * 
-		 */
+        
+        /**
+         * 
+         */
         export interface Service {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             incidents: Incident[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             slug: string;
-			/**
-			 * Legal values: Online, Alert, Offline, Deploying
-			 */
+            /**
+             * Legal values: Online, Alert, Offline, Deploying
+             */
             status: string;
         }
 
-		/**
-		 * 
-		 */
+        /**
+         * 
+         */
         export interface Incident {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             active: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             created_at: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             updates: Message[];
         }
 
         export interface Message {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             author: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             content: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             created_at: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             id: number;
-			/**
-			 * Legal values: Info, Alert, Error
-			 */
+            /**
+             * Legal values: Info, Alert, Error
+             */
             severity: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             translations: Translation[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             updated_at: string;
         }
 
-		/**
-		 * 
-		 */
+        /**
+         * 
+         */
         export interface Translation {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             content: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             locale: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             updated_at: string;
         }
     }
-	
-	/**
-	 * match-v2.2
-	 */
+    
+    /**
+     * match-v2.2
+     */
     export module match {
         /**
          * Retrieve match IDs by tournament code. (REST)
@@ -2970,842 +2970,842 @@ declare module riotGamesApi {
             includeTimeline: boolean
         ): MatchDetail;
 
-		/**
-		 * Contains match detail information.
-		 */
+        /**
+         * Contains match detail information.
+         */
         export interface MatchDetail {
-			/**
-			 * Match map ID
-			 */
+            /**
+             * Match map ID
+             */
             mapId: number;
-			/**
-			 * Match creation time. Designates when the team select lobby is created and/or the match is made through match making, not when the game actually starts.
-			 */
+            /**
+             * Match creation time. Designates when the team select lobby is created and/or the match is made through match making, not when the game actually starts.
+             */
             matchCreation: number;
-			/**
-			 * Match duration
-			 */
+            /**
+             * Match duration
+             */
             matchDuration: number;
-			/**
-			 * ID of the match
-			 */
+            /**
+             * ID of the match
+             */
             matchId: number;
-			/**
-			 * Match mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
-			 */
+            /**
+             * Match mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
+             */
             matchMode: string;
-			/**
-			 * Match type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
-			 */
+            /**
+             * Match type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
+             */
             matchType: string;
-			/**
-			 * Match version
-			 */
+            /**
+             * Match version
+             */
             matchVersion: string;
-			/**
-			 * Participant identity information
-			 */
+            /**
+             * Participant identity information
+             */
             participantIdentities: ParticipantIdentity[];
-			/**
-			 * Participant information
-			 */
+            /**
+             * Participant information
+             */
             participants: Participant[];
-			/**
-			 * Platform ID of the match
-			 */
+            /**
+             * Platform ID of the match
+             */
             platformId: string;
-			/**
-			 * Match queue type (Legal values: CUSTOM, NORMAL_5x5_BLIND, RANKED_SOLO_5x5, RANKED_PREMADE_5x5, BOT_5x5, NORMAL_3x3, RANKED_PREMADE_3x3, NORMAL_5x5_DRAFT, ODIN_5x5_BLIND, ODIN_5x5_DRAFT, BOT_ODIN_5x5, BOT_5x5_INTRO, BOT_5x5_BEGINNER, BOT_5x5_INTERMEDIATE, RANKED_TEAM_3x3, RANKED_TEAM_5x5, BOT_TT_3x3, GROUP_FINDER_5x5, ARAM_5x5, ONEFORALL_5x5, FIRSTBLOOD_1x1, FIRSTBLOOD_2x2, SR_6x6, URF_5x5, ONEFORALL_MIRRORMODE_5x5, BOT_URF_5x5, NIGHTMARE_BOT_5x5_RANK1, NIGHTMARE_BOT_5x5_RANK2, NIGHTMARE_BOT_5x5_RANK5, ASCENSION_5x5, HEXAKILL, KING_PORO_5x5, COUNTER_PICK)
-			 */
+            /**
+             * Match queue type (Legal values: CUSTOM, NORMAL_5x5_BLIND, RANKED_SOLO_5x5, RANKED_PREMADE_5x5, BOT_5x5, NORMAL_3x3, RANKED_PREMADE_3x3, NORMAL_5x5_DRAFT, ODIN_5x5_BLIND, ODIN_5x5_DRAFT, BOT_ODIN_5x5, BOT_5x5_INTRO, BOT_5x5_BEGINNER, BOT_5x5_INTERMEDIATE, RANKED_TEAM_3x3, RANKED_TEAM_5x5, BOT_TT_3x3, GROUP_FINDER_5x5, ARAM_5x5, ONEFORALL_5x5, FIRSTBLOOD_1x1, FIRSTBLOOD_2x2, SR_6x6, URF_5x5, ONEFORALL_MIRRORMODE_5x5, BOT_URF_5x5, NIGHTMARE_BOT_5x5_RANK1, NIGHTMARE_BOT_5x5_RANK2, NIGHTMARE_BOT_5x5_RANK5, ASCENSION_5x5, HEXAKILL, KING_PORO_5x5, COUNTER_PICK)
+             */
             queueType: string;
-			/**
-			 * Region where the match was played
-			 */
+            /**
+             * Region where the match was played
+             */
             region: string;
-			/**
-			 * Season match was played (Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016)
-			 */
+            /**
+             * Season match was played (Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016)
+             */
             season: string;
-			/**
-			 * Team information
-			 */
+            /**
+             * Team information
+             */
             teams: Team[];
-			/**
-			 * Match timeline data (not included by default)
-			 */
+            /**
+             * Match timeline data (not included by default)
+             */
             timeline: Timeline;
         }
-		
-		/**
-		 * Contains match participant information
-		 */
+        
+        /**
+         * Contains match participant information
+         */
         export interface Participant {
-			/**
-			 * Champion ID
-			 */
+            /**
+             * Champion ID
+             */
             championId: number;
-			/**
-			 * Highest ranked tier achieved for the previous season, if any, otherwise null. Used to display border in game loading screen. (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE, UNRANKED)
-			 */
+            /**
+             * Highest ranked tier achieved for the previous season, if any, otherwise null. Used to display border in game loading screen. (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE, UNRANKED)
+             */
             highestAchievedSeasonTier: string;
-			/**
-			 * List of mastery information
-			 */
+            /**
+             * List of mastery information
+             */
             masteries: Mastery[];
-			/**
-			 * Participant ID
-			 */
+            /**
+             * Participant ID
+             */
             participantId: number;
-			/**
-			 * List of rune information
-			 */
+            /**
+             * List of rune information
+             */
             runes: Rune[];
-			/**
-			 * First summoner spell ID
-			 */
+            /**
+             * First summoner spell ID
+             */
             spell1Id: number;
-			/**
-			 * Second summoner spell ID
-			 */
+            /**
+             * Second summoner spell ID
+             */
             spell2Id: number;
-			/**
-			 * Participant statistics
-			 */
+            /**
+             * Participant statistics
+             */
             stats: ParticipantStats;
-			/**
-			 * Team ID
-			 */
+            /**
+             * Team ID
+             */
             teamId: number;
-			/**
-			 * Timeline data. Delta fields refer to values for the specified period (e.g., the gold per minute over the first 10 minutes of the game versus the second 20 minutes of the game. Diffs fields refer to the deltas versus the calculated lane opponent(s).
-			 */
+            /**
+             * Timeline data. Delta fields refer to values for the specified period (e.g., the gold per minute over the first 10 minutes of the game versus the second 20 minutes of the game. Diffs fields refer to the deltas versus the calculated lane opponent(s).
+             */
             timeline: ParticipantTimeline;
         }
-		
-		/**
-		 * Contains participant identity information
-		 */
+        
+        /**
+         * Contains participant identity information
+         */
         export interface ParticipantIdentity {
-			/**
-			 * Participant ID
-			 */
+            /**
+             * Participant ID
+             */
             participantId: number;
-			/**
-			 * Player information
-			 */
+            /**
+             * Player information
+             */
             player: Player;
         }
-		
-		/**
-		 * Containts team information
-		 */
+        
+        /**
+         * Containts team information
+         */
         export interface Team {
-			/**
-			 * If game was draft mode, contains banned champion data, otherwise null
-			 */
+            /**
+             * If game was draft mode, contains banned champion data, otherwise null
+             */
             bans: BannedChampion[];
-			/**
-			 * Number of times the team killed baron
-			 */
+            /**
+             * Number of times the team killed baron
+             */
             baronKills: number;
-			/**
-			 * If game was a dominion game, specifies the points the team had at game end, otherwise null
-			 */
+            /**
+             * If game was a dominion game, specifies the points the team had at game end, otherwise null
+             */
             dominionVictoryScore: number;
-			/**
-			 * Number of times the team killed dragon
-			 */
+            /**
+             * Number of times the team killed dragon
+             */
             dragonKills: number;
-			/**
-			 * Flag indicating whether or not the team got the first baron kill
-			 */
+            /**
+             * Flag indicating whether or not the team got the first baron kill
+             */
             firstBaron: boolean;
-			/**
-			 * Flag indicating whether or not the team got first blood
-			 */
+            /**
+             * Flag indicating whether or not the team got first blood
+             */
             firstBlood: boolean;
-			/**
-			 * Flag indicating whether or not the team got the first dragon kill
-			 */
+            /**
+             * Flag indicating whether or not the team got the first dragon kill
+             */
             firstDragon: boolean;
-			/**
-			 * Flag indicating whether or not the team destroyed the first inhibitor
-			 */
+            /**
+             * Flag indicating whether or not the team destroyed the first inhibitor
+             */
             firstInhibitor: boolean;
             /**
-			 * Flag indicating whether or not the team got the first rift herald kill
-			 */
+             * Flag indicating whether or not the team got the first rift herald kill
+             */
             firstRiftHerald: boolean;
-			/**
-			 * Flag indicating whether or not the team destroyed the first tower
-			 */
+            /**
+             * Flag indicating whether or not the team destroyed the first tower
+             */
             firstTower: boolean;
-			/**
-			 * Number of inhibitors the team destroyed
-			 */
+            /**
+             * Number of inhibitors the team destroyed
+             */
             inhibitorKills: number;
-			/**
-			 * Team ID
-			 */
+            /**
+             * Team ID
+             */
             teamId: number;
-			/**
-			 * Number of towers the team destroyed
-			 */
+            /**
+             * Number of towers the team destroyed
+             */
             towerKills: number;
-			/**
-			 * Number of times the team killed vilemaw
-			 */
+            /**
+             * Number of times the team killed vilemaw
+             */
             vilemawKills: number;
-			/**
-			 * Flag indicating whether or not the team won
-			 */
+            /**
+             * Flag indicating whether or not the team won
+             */
             winner: boolean;
         }
-		
-		/**
-		 * Contains game timeline information.
-		 */
+        
+        /**
+         * Contains game timeline information.
+         */
         export interface Timeline {
-			/**
-			 * Time between each returned frame in milliseconds.
-			 */
+            /**
+             * Time between each returned frame in milliseconds.
+             */
             frameInterval: number;
-			/**
-			 * List of timeline frames for the game.
-			 */
+            /**
+             * List of timeline frames for the game.
+             */
             frames: Frame[];
         }
-		
-		/**
-		 * Contains mastery information.
-		 */
+        
+        /**
+         * Contains mastery information.
+         */
         export interface Mastery {
-			/**
-			 * Mastery ID
-			 */
+            /**
+             * Mastery ID
+             */
             masteryId: number;
-			/**
-			 * Mastery rank
-			 */
+            /**
+             * Mastery rank
+             */
             rank: number;
         }
-		
-		/**
-		 * Contains participant statistics information.
-		 */
+        
+        /**
+         * Contains participant statistics information.
+         */
         export interface ParticipantStats {
-			/**
-			 * Number of assists
-			 */
+            /**
+             * Number of assists
+             */
             assists: number;
-			/**
-			 * Champion level achieved
-			 */
+            /**
+             * Champion level achieved
+             */
             champLevel: number;
-			/**
-			 * If game was a dominion game, player's combat score, otherwise 0
-			 */
+            /**
+             * If game was a dominion game, player's combat score, otherwise 0
+             */
             combatPlayerScore: number;
-			/**
-			 * Number of deaths
-			 */
+            /**
+             * Number of deaths
+             */
             deaths: number;
-			/**
-			 * Number of double kills
-			 */
+            /**
+             * Number of double kills
+             */
             doubleKills: number;
-			/**
-			 * Flag indicating if participant got an assist on first blood
-			 */
+            /**
+             * Flag indicating if participant got an assist on first blood
+             */
             firstBloodAssist: boolean;
-			/**
-			 * Flag indicating if participant got first blood
-			 */
+            /**
+             * Flag indicating if participant got first blood
+             */
             firstBloodKill: boolean;
-			/**
-			 * Flag indicating if participant got an assist on the first inhibitor
-			 */
+            /**
+             * Flag indicating if participant got an assist on the first inhibitor
+             */
             firstInhibitorAssist: boolean;
-			/**
-			 * Flag indicating if participant destroyed the first inhibitor
-			 */
+            /**
+             * Flag indicating if participant destroyed the first inhibitor
+             */
             firstInhibitorKill: boolean;
-			/**
-			 * Flag indicating if participant got an assist on the first tower
-			 */
+            /**
+             * Flag indicating if participant got an assist on the first tower
+             */
             firstTowerAssist: boolean;
-			/**
-			 * Flag indicating if participant destroyed the first tower
-			 */
+            /**
+             * Flag indicating if participant destroyed the first tower
+             */
             firstTowerKill: boolean;
-			/**
-			 * Gold earned
-			 */
+            /**
+             * Gold earned
+             */
             goldEarned: number;
-			/**
-			 * Gold spent
-			 */
+            /**
+             * Gold spent
+             */
             goldSpent: number;
-			/**
-			 * Number of inhibitor kills
-			 */
+            /**
+             * Number of inhibitor kills
+             */
             inhibitorKills: number;
-			/**
-			 * First item ID
-			 */
+            /**
+             * First item ID
+             */
             item0: number;
-			/**
-			 * Second item ID
-			 */
+            /**
+             * Second item ID
+             */
             item1: number;
-			/**
-			 * Third item ID
-			 */
+            /**
+             * Third item ID
+             */
             item2: number;
-			/**
-			 * Fourth item ID
-			 */
+            /**
+             * Fourth item ID
+             */
             item3: number;
-			/**
-			 * Fifth item ID
-			 */
+            /**
+             * Fifth item ID
+             */
             item4: number;
-			/**
-			 * Sixth item ID
-			 */
+            /**
+             * Sixth item ID
+             */
             item5: number;
-			/**
-			 * Seventh item ID
-			 */
+            /**
+             * Seventh item ID
+             */
             item6: number;
-			/**
-			 * Number of killing sprees
-			 */
+            /**
+             * Number of killing sprees
+             */
             killingSprees: number;
-			/**
-			 * Number of kills
-			 */
+            /**
+             * Number of kills
+             */
             kills: number;
-			/**
-			 * Largest critical strike
-			 */
+            /**
+             * Largest critical strike
+             */
             largestCriticalStrike: number;
-			/**
-			 * Largest killing spree
-			 */
+            /**
+             * Largest killing spree
+             */
             largestKillingSpree: number;
-			/**
-			 * Largest multi kill
-			 */
+            /**
+             * Largest multi kill
+             */
             largestMultiKill: number;
-			/**
-			 * Magical damage dealt
-			 */
+            /**
+             * Magical damage dealt
+             */
             magicDamageDealt: number;
-			/**
-			 * Magical damage dealt to champions
-			 */
+            /**
+             * Magical damage dealt to champions
+             */
             magicDamageDealtToChampions: number;
-			/**
-			 * Magic damage taken
-			 */
+            /**
+             * Magic damage taken
+             */
             magicDamageTaken: number;
-			/**
-			 * Minions killed
-			 */
+            /**
+             * Minions killed
+             */
             minionsKilled: number;
-			/**
-			 * Neutral minions killed
-			 */
+            /**
+             * Neutral minions killed
+             */
             neutralMinionsKilled: number;
-			/**
-			 * Neutral jungle minions killed in the enemy team's jungle
-			 */
+            /**
+             * Neutral jungle minions killed in the enemy team's jungle
+             */
             neutralMinionsKilledEnemyJungle: number;
-			/**
-			 * Neutral jungle minions killed in your team's jungle
-			 */
+            /**
+             * Neutral jungle minions killed in your team's jungle
+             */
             neutralMinionsKilledTeamJungle: number;
-			/**
-			 * If game was a dominion game, number of node captures
-			 */
+            /**
+             * If game was a dominion game, number of node captures
+             */
             nodeCapture: number;
-			/**
-			 * If game was a dominion game, number of node capture assists
-			 */
+            /**
+             * If game was a dominion game, number of node capture assists
+             */
             nodeCaptureAssist: number;
-			/**
-			 * If game was a dominion game, number of node neutralizations
-			 */
+            /**
+             * If game was a dominion game, number of node neutralizations
+             */
             nodeNeutralize: number;
-			/**
-			 * If game was a dominion game, number of node neutralization assists
-			 */
+            /**
+             * If game was a dominion game, number of node neutralization assists
+             */
             nodeNeutralizeAssist: number;
-			/**
-			 * If game was a dominion game, player's objectives score, otherwise 0
-			 */
+            /**
+             * If game was a dominion game, player's objectives score, otherwise 0
+             */
             objectivePlayerScore: number;
-			/**
-			 * Number of penta kills
-			 */
+            /**
+             * Number of penta kills
+             */
             pentaKills: number;
-			/**
-			 * Physical damage dealt
-			 */
+            /**
+             * Physical damage dealt
+             */
             physicalDamageDealt: number;
-			/**
-			 * Physical damage dealt to champions
-			 */
+            /**
+             * Physical damage dealt to champions
+             */
             physicalDamageDealtToChampions: number;
-			/**
-			 * Physical damage taken
-			 */
+            /**
+             * Physical damage taken
+             */
             physicalDamageTaken: number;
-			/**
-			 * Number of quadra kills
-			 */
+            /**
+             * Number of quadra kills
+             */
             quadraKills: number;
-			/**
-			 * Sight wards purchased
-			 */
+            /**
+             * Sight wards purchased
+             */
             sightWardsBoughtInGame: number;
-			/**
-			 * If game was a dominion game, number of completed team objectives (i.e., quests)
-			 */
+            /**
+             * If game was a dominion game, number of completed team objectives (i.e., quests)
+             */
             teamObjective: number;
-			/**
-			 * Total damage dealt
-			 */
+            /**
+             * Total damage dealt
+             */
             totalDamageDealt: number;
-			/**
-			 * Total damage dealt to champions
-			 */
+            /**
+             * Total damage dealt to champions
+             */
             totalDamageDealtToChampions: number;
-			/**
-			 * Total damage taken
-			 */
+            /**
+             * Total damage taken
+             */
             totalDamageTaken: number;
-			/**
-			 * Total heal amount
-			 */
+            /**
+             * Total heal amount
+             */
             totalHeal: number;
-			/**
-			 * If game was a dominion game, player's total score, otherwise 0
-			 */
+            /**
+             * If game was a dominion game, player's total score, otherwise 0
+             */
             totalPlayerScore: number;
-			/**
-			 * If game was a dominion game, team rank of the player's total score (e.g., 1-5)
-			 */
+            /**
+             * If game was a dominion game, team rank of the player's total score (e.g., 1-5)
+             */
             totalScoreRank: number;
-			/**
-			 * Total dealt crowd control time
-			 */
+            /**
+             * Total dealt crowd control time
+             */
             totalTimeCrowdControlDealt: number;
-			/**
-			 * Total units healed
-			 */
+            /**
+             * Total units healed
+             */
             totalUnitsHealed: number;
-			/**
-			 * Number of tower kills
-			 */
+            /**
+             * Number of tower kills
+             */
             towerKills: number;
-			/**
-			 * Number of triple kills
-			 */
+            /**
+             * Number of triple kills
+             */
             tripleKills: number;
-			/**
-			 * True damage dealt
-			 */
+            /**
+             * True damage dealt
+             */
             trueDamageDealt: number;
-			/**
-			 * True damage dealt to champions
-			 */
+            /**
+             * True damage dealt to champions
+             */
             trueDamageDealtToChampions: number;
-			/**
-			 * True damage taken
-			 */
+            /**
+             * True damage taken
+             */
             trueDamageTaken: number;
-			/**
-			 * Number of unreal kills
-			 */
+            /**
+             * Number of unreal kills
+             */
             unrealKills: number;
-			/**
-			 * Vision wards purchased
-			 */
+            /**
+             * Vision wards purchased
+             */
             visionWardsBoughtInGame: number;
-			/**
-			 * Number of wards killed
-			 */
+            /**
+             * Number of wards killed
+             */
             wardsKilled: number;
-			/**
-			 * Number of wards placed
-			 */
+            /**
+             * Number of wards placed
+             */
             wardsPlaced: number;
-			/**
-			 * Flag indicating whether or not the participant won
-			 */
+            /**
+             * Flag indicating whether or not the participant won
+             */
             winner: boolean;
         }
-		
-		/**
-		 * Contains all timeline information.
-		 */
+        
+        /**
+         * Contains all timeline information.
+         */
         export interface ParticipantTimeline {
-			/**
-			 * Ancient golem assists per minute timeline counts
-			 */
+            /**
+             * Ancient golem assists per minute timeline counts
+             */
             ancientGolemAssistsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Ancient golem kills per minute timeline counts
-			 */
+            /**
+             * Ancient golem kills per minute timeline counts
+             */
             ancientGolemKillsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Assisted lane deaths per minute timeline data
-			 */
+            /**
+             * Assisted lane deaths per minute timeline data
+             */
             assistedLaneDeathsPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Assisted lane kills per minute timeline data
-			 */
+            /**
+             * Assisted lane kills per minute timeline data
+             */
             assistedLaneKillsPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Baron assists per minute timeline counts
-			 */
+            /**
+             * Baron assists per minute timeline counts
+             */
             baronAssistsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Baron kills per minute timeline counts
-			 */
+            /**
+             * Baron kills per minute timeline counts
+             */
             baronKillsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Creeps per minute timeline data
-			 */
+            /**
+             * Creeps per minute timeline data
+             */
             creepsPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Creep score difference per minute timeline data
-			 */
+            /**
+             * Creep score difference per minute timeline data
+             */
             csDiffPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Damage taken difference per minute timeline data
-			 */
+            /**
+             * Damage taken difference per minute timeline data
+             */
             damageTakenDiffPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Damage taken per minute timeline data
-			 */
+            /**
+             * Damage taken per minute timeline data
+             */
             damageTakenPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Dragon assists per minute timeline counts
-			 */
+            /**
+             * Dragon assists per minute timeline counts
+             */
             dragonAssistsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Dragon kills per minute timeline counts
-			 */
+            /**
+             * Dragon kills per minute timeline counts
+             */
             dragonKillsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Elder lizard assists per minute timeline counts
-			 */
+            /**
+             * Elder lizard assists per minute timeline counts
+             */
             elderLizardAssistsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Elder lizard kills per minute timeline counts
-			 */
+            /**
+             * Elder lizard kills per minute timeline counts
+             */
             elderLizardKillsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Gold per minute timeline data
-			 */
+            /**
+             * Gold per minute timeline data
+             */
             goldPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Inhibitor assists per minute timeline counts
-			 */
+            /**
+             * Inhibitor assists per minute timeline counts
+             */
             inhibitorAssistsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Inhibitor kills per minute timeline counts
-			 */
+            /**
+             * Inhibitor kills per minute timeline counts
+             */
             inhibitorKillsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Participant's lane (Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM)
-			 */
+            /**
+             * Participant's lane (Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM)
+             */
             lane: string;
-			/**
-			 * Participant's role (Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT)
-			 */
+            /**
+             * Participant's role (Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT)
+             */
             role: string;
-			/**
-			 * Tower assists per minute timeline counts
-			 */
+            /**
+             * Tower assists per minute timeline counts
+             */
             towerAssistsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Tower kills per minute timeline counts
-			 */
+            /**
+             * Tower kills per minute timeline counts
+             */
             towerKillsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Tower kills per minute timeline data
-			 */
+            /**
+             * Tower kills per minute timeline data
+             */
             towerKillsPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Vilemaw assists per minute timeline counts
-			 */
+            /**
+             * Vilemaw assists per minute timeline counts
+             */
             vilemawAssistsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Vilemaw kills per minute timeline counts
-			 */
+            /**
+             * Vilemaw kills per minute timeline counts
+             */
             vilemawKillsPerMinCounts: ParticipantTimelineData;
-			/**
-			 * Wards placed per minute timeline data
-			 */
+            /**
+             * Wards placed per minute timeline data
+             */
             wardsPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Experience difference per minute timeline data
-			 */
+            /**
+             * Experience difference per minute timeline data
+             */
             xpDiffPerMinDeltas: ParticipantTimelineData;
-			/**
-			 * Experience per minute timeline data
-			 */
+            /**
+             * Experience per minute timeline data
+             */
             xpPerMinDeltas: ParticipantTimelineData;
         }
-		
-		/**
-		 * Contains rune information.
-		 */
+        
+        /**
+         * Contains rune information.
+         */
         export interface Rune {
-			/**
-			 * Rune rank
-			 */
+            /**
+             * Rune rank
+             */
             rank: number;
-			/**
-			 * Rune ID
-			 */
+            /**
+             * Rune ID
+             */
             runeId: number;
         }
-		
-		/**
-		 * Contains match player information.
-		 */
+        
+        /**
+         * Contains match player information.
+         */
         export interface Player {
-			/**
-			 * Match history URI
-			 */
+            /**
+             * Match history URI
+             */
             matchHistoryUri: string;
-			/**
-			 * Profile icon ID
-			 */
+            /**
+             * Profile icon ID
+             */
             profileIcon: number;
-			/**
-			 * Summoner ID
-			 */
+            /**
+             * Summoner ID
+             */
             summonerId: number;
-			/**
-			 * Summoner name
-			 */
+            /**
+             * Summoner name
+             */
             summonerName: string;
         }
-		
-		/**
-		 * Contains information about banned champions.
-		 */
+        
+        /**
+         * Contains information about banned champions.
+         */
         export interface BannedChampion {
-			/**
-			 * Banned champion ID
-			 */
+            /**
+             * Banned champion ID
+             */
             championId: number;
-			/**
-			 * Turn during which the champion was banned
-			 */
+            /**
+             * Turn during which the champion was banned
+             */
             pickTurn: number;
         }
-		
-		/**
-		 * Contains contains game frame information.
-		 */
+        
+        /**
+         * Contains contains game frame information.
+         */
         export interface Frame {
-			/**
-			 * List of events for this frame.
-			 */
+            /**
+             * List of events for this frame.
+             */
             events: Event[];
-			/**
-			 * Map of each participant ID to the participant's information for the frame.
-			 */
+            /**
+             * Map of each participant ID to the participant's information for the frame.
+             */
             participantFrames: { [s: string]: ParticipantFrame; };
-			/**
-			 * Represents how many milliseconds into the game the frame occurred.
-			 */
+            /**
+             * Represents how many milliseconds into the game the frame occurred.
+             */
             timestamp: number;
         }
-		
-		/**
-		 * Contains timeline data.
-		 */
+        
+        /**
+         * Contains timeline data.
+         */
         export interface ParticipantTimelineData {
-			/**
-			 * Value per minute from 10 min to 20 min
-			 */
+            /**
+             * Value per minute from 10 min to 20 min
+             */
             tenToTwenty: number;
-			/**
-			 * Value per minute from 30 min to the end of the game
-			 */
+            /**
+             * Value per minute from 30 min to the end of the game
+             */
             thirtyToEnd: number;
-			/**
-			 * Value per minute from 20 min to 30 min
-			 */
+            /**
+             * Value per minute from 20 min to 30 min
+             */
             twentyToThirty: number;
-			/**
-			 * Value per minute from the beginning of the game to 10 min
-			 */
+            /**
+             * Value per minute from the beginning of the game to 10 min
+             */
             zeroToTen: number;
         }
-		
-		/**
-		 * Contains game event information. Note that not all legal type values documented below are valid for all games. Event data evolves over time and certain values may be relevant only for older or newer games.
-		 */
+        
+        /**
+         * Contains game event information. Note that not all legal type values documented below are valid for all games. Event data evolves over time and certain values may be relevant only for older or newer games.
+         */
         export interface Event {
-			/**
-			 * The ascended type of the event. Only present if relevant. Note that CLEAR_ASCENDED refers to when a participants kills the ascended player. (Legal values: CHAMPION_ASCENDED, CLEAR_ASCENDED, MINION_ASCENDED)
-			 */
+            /**
+             * The ascended type of the event. Only present if relevant. Note that CLEAR_ASCENDED refers to when a participants kills the ascended player. (Legal values: CHAMPION_ASCENDED, CLEAR_ASCENDED, MINION_ASCENDED)
+             */
             ascendedType: string;
-			/**
-			 * The assisting participant IDs of the event. Only present if relevant.
-			 */
+            /**
+             * The assisting participant IDs of the event. Only present if relevant.
+             */
             assistingParticipantIds: number[];
-			/**
-			 * The building type of the event. Only present if relevant. (Legal values: INHIBITOR_BUILDING, TOWER_BUILDING)
-			 */
+            /**
+             * The building type of the event. Only present if relevant. (Legal values: INHIBITOR_BUILDING, TOWER_BUILDING)
+             */
             buildingType: string;
-			/**
-			 * The creator ID of the event. Only present if relevant.
-			 */
+            /**
+             * The creator ID of the event. Only present if relevant.
+             */
             creatorId: number;
-			/**
-			 * Event type. (Legal values: ASCENDED_EVENT, BUILDING_KILL, CAPTURE_POINT, CHAMPION_KILL, ELITE_MONSTER_KILL, ITEM_DESTROYED, ITEM_PURCHASED, ITEM_SOLD, ITEM_UNDO, PORO_KING_SUMMON, SKILL_LEVEL_UP, WARD_KILL, WARD_PLACED)
-			 */
+            /**
+             * Event type. (Legal values: ASCENDED_EVENT, BUILDING_KILL, CAPTURE_POINT, CHAMPION_KILL, ELITE_MONSTER_KILL, ITEM_DESTROYED, ITEM_PURCHASED, ITEM_SOLD, ITEM_UNDO, PORO_KING_SUMMON, SKILL_LEVEL_UP, WARD_KILL, WARD_PLACED)
+             */
             eventType: string;
-			/**
-			 * The ending item ID of the event. Only present if relevant.
-			 */
+            /**
+             * The ending item ID of the event. Only present if relevant.
+             */
             itemAfter: number;
-			/**
-			 * The starting item ID of the event. Only present if relevant.
-			 */
+            /**
+             * The starting item ID of the event. Only present if relevant.
+             */
             itemBefore: number;
-			/**
-			 * The item ID of the event. Only present if relevant.
-			 */
+            /**
+             * The item ID of the event. Only present if relevant.
+             */
             itemId: number;
-			/**
-			 * The killer ID of the event. Only present if relevant. Killer ID 0 indicates a minion.
-			 */
+            /**
+             * The killer ID of the event. Only present if relevant. Killer ID 0 indicates a minion.
+             */
             killerId: number;
-			/**
-			 * The lane type of the event. Only present if relevant. (Legal values: BOT_LANE, MID_LANE, TOP_LANE)
-			 */
+            /**
+             * The lane type of the event. Only present if relevant. (Legal values: BOT_LANE, MID_LANE, TOP_LANE)
+             */
             laneType: string;
-			/**
-			 * The level up type of the event. Only present if relevant. (Legal values: EVOLVE, NORMAL)
-			 */
+            /**
+             * The level up type of the event. Only present if relevant. (Legal values: EVOLVE, NORMAL)
+             */
             levelUpType: string;
-			/**
-			 * The monster type of the event. Only present if relevant. (Legal values: BARON_NASHOR, BLUE_GOLEM, DRAGON, RED_LIZARD, VILEMAW, RIFTHERALD)
-			 */
+            /**
+             * The monster type of the event. Only present if relevant. (Legal values: BARON_NASHOR, BLUE_GOLEM, DRAGON, RED_LIZARD, VILEMAW, RIFTHERALD)
+             */
             monsterType: string;
-			/**
-			 * The participant ID of the event. Only present if relevant.
-			 */
+            /**
+             * The participant ID of the event. Only present if relevant.
+             */
             participantId: number;
-			/**
-			 * The point captured in the event. Only present if relevant. (Legal values: POINT_A, POINT_B, POINT_C, POINT_D, POINT_E)
-			 */
+            /**
+             * The point captured in the event. Only present if relevant. (Legal values: POINT_A, POINT_B, POINT_C, POINT_D, POINT_E)
+             */
             pointCaptured: string;
-			/**
-			 * The position of the event. Only present if relevant.
-			 */
+            /**
+             * The position of the event. Only present if relevant.
+             */
             position: Position;
-			/**
-			 * The skill slot of the event. Only present if relevant.
-			 */
+            /**
+             * The skill slot of the event. Only present if relevant.
+             */
             skillSlot: number;
-			/**
-			 * The team ID of the event. Only present if relevant.
-			 */
+            /**
+             * The team ID of the event. Only present if relevant.
+             */
             teamId: number;
-			/**
-			 * Represents how many milliseconds into the game the event occurred.
-			 */
+            /**
+             * Represents how many milliseconds into the game the event occurred.
+             */
             timestamp: number;
-			/**
-			 * The tower type of the event. Only present if relevant. (Legal values: BASE_TURRET, FOUNTAIN_TURRET, INNER_TURRET, NEXUS_TURRET, OUTER_TURRET, UNDEFINED_TURRET)
-			 */
+            /**
+             * The tower type of the event. Only present if relevant. (Legal values: BASE_TURRET, FOUNTAIN_TURRET, INNER_TURRET, NEXUS_TURRET, OUTER_TURRET, UNDEFINED_TURRET)
+             */
             towerType: string;
-			/**
-			 * The victim ID of the event. Only present if relevant.
-			 */
+            /**
+             * The victim ID of the event. Only present if relevant.
+             */
             victimId: number;
-			/**
-			 * The ward type of the event. Only present if relevant. (Legal values: SIGHT_WARD, TEEMO_MUSHROOM, UNDEFINED, VISION_WARD, YELLOW_TRINKET, YELLOW_TRINKET_UPGRADE)
-			 */
+            /**
+             * The ward type of the event. Only present if relevant. (Legal values: SIGHT_WARD, TEEMO_MUSHROOM, UNDEFINED, VISION_WARD, YELLOW_TRINKET, YELLOW_TRINKET_UPGRADE)
+             */
             wardType: string;
         }
-		
-		/**
-		 * Contains participant frame information.
-		 */
+        
+        /**
+         * Contains participant frame information.
+         */
         export interface ParticipantFrame {
-			/**
-			 * Participant's current gold
-			 */
+            /**
+             * Participant's current gold
+             */
             currentGold: number;
-			/**
-			 * Dominion score of the participant
-			 */
+            /**
+             * Dominion score of the participant
+             */
             dominionScore: number;
-			/**
-			 * Number of jungle minions killed by participant
-			 */
+            /**
+             * Number of jungle minions killed by participant
+             */
             jungleMinionsKilled: number;
-			/**
-			 * Participant's current level
-			 */
+            /**
+             * Participant's current level
+             */
             level: number;
-			/**
-			 * Number of minions killed by participant
-			 */
+            /**
+             * Number of minions killed by participant
+             */
             minionsKilled: number;
-			/**
-			 * Participant ID
-			 */
+            /**
+             * Participant ID
+             */
             participantId: number;
-			/**
-			 * Participant's position
-			 */
+            /**
+             * Participant's position
+             */
             position: Position;
-			/**
-			 * Team score of the participant
-			 */
+            /**
+             * Team score of the participant
+             */
             teamScore: number;
-			/**
-			 * Participant's total gold
-			 */
+            /**
+             * Participant's total gold
+             */
             totalGold: number;
-			/**
-			 * Experience earned by participant
-			 */
+            /**
+             * Experience earned by participant
+             */
             xp: number;
         }
-		
-		/**
-		 * Contains participant frame position information.
-		 */
+        
+        /**
+         * Contains participant frame position information.
+         */
         export interface Position {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             x: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             y: number;
         }
     }
-	
-	/**
-	 * matchlist-v2.2
-	 */
+    
+    /**
+     * matchlist-v2.2
+     */
     export module matchlist {
         /**
          * Retrieve match list by summoner ID. (REST)
@@ -3832,70 +3832,70 @@ declare module riotGamesApi {
             endIndex: number
         ): MatchList;
 
-		/**
-		 * This object contains match list information
-		 */
+        /**
+         * This object contains match list information
+         */
         export interface MatchList {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             endIndex: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             matches: MatchReference[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             startIndex: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalGames: number;
         }
-		
-		/**
-		 * This object contains match reference information
-		 */
+        
+        /**
+         * This object contains match reference information
+         */
         export interface MatchReference {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             champion: number;
-			/**
-			 * Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM
-			 */
+            /**
+             * Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM
+             */
             lane: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             matchId: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             platformId: string;
-			/**
-			 * Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5
-			 */
+            /**
+             * Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5
+             */
             queue: string;
-			/**
-			 * Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT
-			 */
+            /**
+             * Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT
+             */
             role: string;
-			/**
-			 * Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016
-			 */
+            /**
+             * Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016
+             */
             season: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             timestamp: number;
         }
     }
-	
-	/**
-	 * stats-v1.3
-	 */
+    
+    /**
+     * stats-v1.3
+     */
     export module stats {
         /**
          * Get ranked stats by summoner ID. (REST)
@@ -3923,312 +3923,312 @@ declare module riotGamesApi {
             season: string
         ): PlayerStatsSummaryListDto;
         
-		/**
-		 * Contains ranked stats information
-		 */
+        /**
+         * Contains ranked stats information
+         */
         export interface RankedStatsDto {
-			/**
-			 * Collection of aggregated stats summarized by champion.
-			 */
+            /**
+             * Collection of aggregated stats summarized by champion.
+             */
             champions: ChampionStatsDto[];
-			/**
-			 * Date stats were last modified specified as epoch milliseconds.
-			 */
+            /**
+             * Date stats were last modified specified as epoch milliseconds.
+             */
             modifyDate: number;
-			/**
-			 * Summoner ID.
-			 */
+            /**
+             * Summoner ID.
+             */
             summonerId: number;
         }
-		
-		/**
-		 * Contains a collection of champion stats information
-		 */
+        
+        /**
+         * Contains a collection of champion stats information
+         */
         export interface ChampionStatsDto {
-			/**
-			 * Champion ID. Note that champion ID 0 represents the combined stats for all champions. For static information correlating to champion IDs, please refer to the LoL Static Data API.
-			 */
+            /**
+             * Champion ID. Note that champion ID 0 represents the combined stats for all champions. For static information correlating to champion IDs, please refer to the LoL Static Data API.
+             */
             id: number;
-			/**
-			 * Aggregated stats associated with the champion.
-			 */
+            /**
+             * Aggregated stats associated with the champion.
+             */
             stats: AggregatedStatsDto;
         }
-		
-		/**
-		 * Contains aggregated stat information
-		 */
+        
+        /**
+         * Contains aggregated stat information
+         */
         export interface AggregatedStatsDto {
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageAssists: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageChampionsKilled: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageCombatPlayerScore: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageNodeCapture: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageNodeCaptureAssist: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageNodeNeutralize: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageNodeNeutralizeAssist: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageNumDeaths: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageObjectivePlayerScore: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageTeamObjective: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             averageTotalPlayerScore: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             botGamesPlayed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             killingSpree: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxAssists: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maxChampionsKilled: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxCombatPlayerScore: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maxLargestCriticalStrike: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maxLargestKillingSpree: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxNodeCapture: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxNodeCaptureAssist: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxNodeNeutralize: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxNodeNeutralizeAssist: number;
-			/**
-			 * Only returned for ranked statistics.
-			 */
+            /**
+             * Only returned for ranked statistics.
+             */
             maxNumDeaths: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxObjectivePlayerScore: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxTeamObjective: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maxTimePlayed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             maxTimeSpentLiving: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             maxTotalPlayerScore: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mostChampionKillsPerSession: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mostSpellsCast: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             normalGamesPlayed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rankedPremadeGamesPlayed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             rankedSoloGamesPlayed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalAssists: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalChampionKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalDamageDealt: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalDamageTaken: number;
-			/**
-			 * Only returned for ranked statistics.
-			 */
+            /**
+             * Only returned for ranked statistics.
+             */
             totalDeathsPerSession: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalDoubleKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalFirstBlood: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalGoldEarned: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalHeal: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalMagicDamageDealt: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalMinionKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalNeutralMinionsKilled: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             totalNodeCapture: number;
-			/**
-			 * Dominion only.
-			 */
+            /**
+             * Dominion only.
+             */
             totalNodeNeutralize: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalPentaKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalPhysicalDamageDealt: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalQuadraKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalSessionsLost: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalSessionsPlayed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalSessionsWon: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalTripleKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalTurretsKilled: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             totalUnrealKills: number;
         }
         
         /**
-		 * Contains a collection of player stats summary information.
-		 */
+         * Contains a collection of player stats summary information.
+         */
         export interface PlayerStatsSummaryListDto {
-			/**
-			 * Collection of player stats summaries associated with the summoner.
-			 */
+            /**
+             * Collection of player stats summaries associated with the summoner.
+             */
             playerStatSummaries: PlayerStatsSummaryDto[];
-			/**
-			 * Summoner ID.
-			 */
+            /**
+             * Summoner ID.
+             */
             summonerId: number;
         }
         
         /**
-		 * Contains player stats summary information.
-		 */
+         * Contains player stats summary information.
+         */
         export interface PlayerStatsSummaryDto {
-			/**
-			 * Aggregated stats.
-			 */
+            /**
+             * Aggregated stats.
+             */
             aggregatedStats: AggregatedStatsDto;
-			/**
-			 * Number of losses for this queue type. Returned for ranked queue types only.
-			 */
+            /**
+             * Number of losses for this queue type. Returned for ranked queue types only.
+             */
             losses: number;
             /**
-			 * Date stats were last modified specified as epoch milliseconds.
-			 */
+             * Date stats were last modified specified as epoch milliseconds.
+             */
             modifyDate: number;
             /**
-			 * Player stats summary type. (Legal values: AramUnranked5x5, Ascension, CAP5x5, CoopVsAI, CoopVsAI3x3, CounterPick, FirstBlood1x1, FirstBlood2x2, Hexakill, KingPoro, NightmareBot, OdinUnranked, OneForAll5x5, RankedPremade3x3, RankedPremade5x5, RankedSolo5x5, RankedTeam3x3, RankedTeam5x5, SummonersRift6x6, Unranked, Unranked3x3, URF, URFBots, Bilgewater)
-			 */
+             * Player stats summary type. (Legal values: AramUnranked5x5, Ascension, CAP5x5, CoopVsAI, CoopVsAI3x3, CounterPick, FirstBlood1x1, FirstBlood2x2, Hexakill, KingPoro, NightmareBot, OdinUnranked, OneForAll5x5, RankedPremade3x3, RankedPremade5x5, RankedSolo5x5, RankedTeam3x3, RankedTeam5x5, SummonersRift6x6, Unranked, Unranked3x3, URF, URFBots, Bilgewater)
+             */
             playerStatSummaryType: string;
             /**
-			 * Number of wins for this queue type.
-			 */
+             * Number of wins for this queue type.
+             */
             wins: number;
         }
     }
-	
-	/**
-	 * summoner-v1.4
-	 */
+    
+    /**
+     * summoner-v1.4
+     */
     export module summoner {
         /**
          * Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
@@ -4285,136 +4285,136 @@ declare module riotGamesApi {
             summonerIds: string
         ): { [s: string]: RunePagesDto; };
 
-		/**
-		 * Contains summoner information
-		 */
+        /**
+         * Contains summoner information
+         */
         export interface SummonerDto {
-			/**
-			 * Summoner ID.
-			 */
+            /**
+             * Summoner ID.
+             */
             id: number;
-			/**
-			 * Summoner name.
-			 */
+            /**
+             * Summoner name.
+             */
             name: string;
-			/**
-			 * ID of the summoner icon associated with the summoner.
-			 */
+            /**
+             * ID of the summoner icon associated with the summoner.
+             */
             profileIconId: number;
-			/**
-			 * Date summoner was last modified specified as epoch milliseconds. The following events will update this timestamp: profile icon change, playing the tutorial or advanced tutorial, finishing a game, summoner name change
-			 */
+            /**
+             * Date summoner was last modified specified as epoch milliseconds. The following events will update this timestamp: profile icon change, playing the tutorial or advanced tutorial, finishing a game, summoner name change
+             */
             revisionDate: number;
-			/**
-			 * Summoner level associated with the summoner.
-			 */
+            /**
+             * Summoner level associated with the summoner.
+             */
             summonerLevel: number;
         }
-		
-		/**
-		 * Contains masteries information
-		 */
+        
+        /**
+         * Contains masteries information
+         */
         export interface MasteryPagesDto {
-			/**
-			 * Collection of mastery pages associated with the summoner.
-			 */
+            /**
+             * Collection of mastery pages associated with the summoner.
+             */
             pages: MasteryPageDto[];
-			/**
-			 * Summoner ID.
-			 */
+            /**
+             * Summoner ID.
+             */
             summonerId: number;
         }
-		
-		/**
-		 * Contains mastery page information
-		 */
+        
+        /**
+         * Contains mastery page information
+         */
         export interface MasteryPageDto {
-			/**
-			 * Indicates if the mastery page is the current mastery page.
-			 */
+            /**
+             * Indicates if the mastery page is the current mastery page.
+             */
             current: boolean;
-			/**
-			 * Mastery page ID.
-			 */
+            /**
+             * Mastery page ID.
+             */
             id: number;
-			/**
-			 * Collection of masteries associated with the mastery page.
-			 */
+            /**
+             * Collection of masteries associated with the mastery page.
+             */
             masteries: MasteryDto[];
-			/**
-			 * Mastery page name.
-			 */
+            /**
+             * Mastery page name.
+             */
             name: string;
         }
-		
-		/**
-		 * Contains mastery information
-		 */
+        
+        /**
+         * Contains mastery information
+         */
         export interface MasteryDto {
-			/**
-			 * Mastery ID. For static information correlating to masteries, please refer to the LoL Static Data API.
-			 */
+            /**
+             * Mastery ID. For static information correlating to masteries, please refer to the LoL Static Data API.
+             */
             id: number;
-			/**
-			 * Mastery rank (i.e., the number of points put into this mastery).
-			 */
+            /**
+             * Mastery rank (i.e., the number of points put into this mastery).
+             */
             rank: number;
         }
-		
-		/**
-		 * Contains rune pages information
-		 */
+        
+        /**
+         * Contains rune pages information
+         */
         export interface RunePagesDto {
-			/**
-			 * Collection of rune pages associated with the summoner.
-			 */
+            /**
+             * Collection of rune pages associated with the summoner.
+             */
             pages: RunePageDto[];
-			/**
-			 * Summoner ID.
-			 */
+            /**
+             * Summoner ID.
+             */
             summonerId: number;
         }
 
-		/**
-		 * Contains rune page information
-		 */
+        /**
+         * Contains rune page information
+         */
         export interface RunePageDto {
-			/**
-			 * Indicates if the page is the current page.
-			 */
+            /**
+             * Indicates if the page is the current page.
+             */
             current: boolean;
-			/**
-			 * Rune page ID.
-			 */
+            /**
+             * Rune page ID.
+             */
             id: number;
-			/**
-			 * Rune page name.
-			 */
+            /**
+             * Rune page name.
+             */
             name: string;
-			/**
-			 * Collection of rune slots associated with the rune page.
-			 */
+            /**
+             * Collection of rune slots associated with the rune page.
+             */
             slots: RuneSlotDto[];
         }
-		
-		/**
-		 * Contains rune slot information
-		 */
+        
+        /**
+         * Contains rune slot information
+         */
         export interface RuneSlotDto {
-			/**
-			 * Rune ID associated with the rune slot. For static information correlating to rune IDs, please refer to the LoL Static Data API.
-			 */
+            /**
+             * Rune ID associated with the rune slot. For static information correlating to rune IDs, please refer to the LoL Static Data API.
+             */
             runeId: number;
-			/**
-			 * Rune slot ID.
-			 */
+            /**
+             * Rune slot ID.
+             */
             runeSlotId: number;
         }
     }
 
-	/**
-	 * team-v2.4
-	 */
+    /**
+     * team-v2.4
+     */
     export module team {
         /**
          * Get teams mapped by summoner ID for a given list of summoner IDs. (REST)
@@ -4438,180 +4438,180 @@ declare module riotGamesApi {
             teamIds: string
         ): { [s: string]: TeamDto; };
         
-		/**
-		 * Contains team information
-		 */
+        /**
+         * Contains team information
+         */
         export interface TeamDto {
-			/**
-			 * Date that team was created specified as epoch milliseconds.
-			 */
+            /**
+             * Date that team was created specified as epoch milliseconds.
+             */
             createDate: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             fullId: string;
-			/**
-			 * Date that last game played by team ended specified as epoch milliseconds.
-			 */
+            /**
+             * Date that last game played by team ended specified as epoch milliseconds.
+             */
             lastGameDate: number;
-			/**
-			 * Date that last member joined specified as epoch milliseconds.
-			 */
+            /**
+             * Date that last member joined specified as epoch milliseconds.
+             */
             lastJoinDate: number;
-			/**
-			 * Date that team last joined the ranked team queue specified as epoch milliseconds.
-			 */
+            /**
+             * Date that team last joined the ranked team queue specified as epoch milliseconds.
+             */
             lastJoinedRankedTeamQueueDate: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             matchHistory: MatchHistorySummaryDto[];
-			/**
-			 * Date that team was last modified specified as epoch milliseconds.
-			 */
+            /**
+             * Date that team was last modified specified as epoch milliseconds.
+             */
             modifyDate: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             name: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             roster: RosterDto;
-			/**
-			 * Date that second to last member joined specified as epoch milliseconds.
-			 */
+            /**
+             * Date that second to last member joined specified as epoch milliseconds.
+             */
             secondLastJoinDate: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             status: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             tag: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             teamStatDetails: TeamStatDetailDto[];
-			/**
-			 * Date that third to last member joined specified as epoch milliseconds.
-			 */
+            /**
+             * Date that third to last member joined specified as epoch milliseconds.
+             */
             thirdLastJoinDate: number;
         }
 
-		/**
-		 * Contains match history summary information
-		 */
+        /**
+         * Contains match history summary information
+         */
         export interface MatchHistorySummaryDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             assists: number;
-			/**
-			 * Date that match was completed specified as epoch milliseconds.
-			 */
+            /**
+             * Date that match was completed specified as epoch milliseconds.
+             */
             date: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             deaths: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             gameId: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             gameMode: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             invalid: boolean;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             kills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             mapId: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             opposingTeamKills: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             opposingTeamName: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             win: boolean;
         }
 
-		/**
-		 * Contains roster information
-		 */
+        /**
+         * Contains roster information
+         */
         export interface RosterDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             memberList: TeamMemberInfoDto[];
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             ownerId: number;
         }
 
-		/**
-		 * Contains team statistics detail information
-		 */
+        /**
+         * Contains team statistics detail information
+         */
         export interface TeamStatDetailDto {
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             averageGamesPlayed: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             losses: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             teamStatType: string;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             wins: number;
         }
 
-		/**
-		 * Contains team member information
-		 */
+        /**
+         * Contains team member information
+         */
         export interface TeamMemberInfoDto {
-			/**
-			 * Date that team member was invited to team specified as epoch milliseconds.
-			 */
+            /**
+             * Date that team member was invited to team specified as epoch milliseconds.
+             */
             inviteDate: number;
-			/**
-			 * Date that team member joined team specified as epoch milliseconds.
-			 */
+            /**
+             * Date that team member joined team specified as epoch milliseconds.
+             */
             joinDate: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             playerId: number;
-			/**
-			 * 
-			 */
+            /**
+             * 
+             */
             status: string;
         }
     }
 
     /**
-	 * tournament-provider-v1
-	 */
+     * tournament-provider-v1
+     */
     export module tournamentProvider {
         /**
          * Create a tournament code for the given tournament. (REST)
@@ -4673,15 +4673,15 @@ declare module riotGamesApi {
             body: TournamentRegistrationParameters
         ): number;
         
-		/**
-		 * 
-		 */
+        /**
+         * 
+         */
         export interface TournamentCodeParameters {
-			/**
-			 * Optional list of participants in order to validate the players eligible to join the lobby.
+            /**
+             * Optional list of participants in order to validate the players eligible to join the lobby.
              * NOTE: We currently do not enforce participants at the team level, but rather the aggregate of teamOne and teamTwo.
              * We may add the ability to enforce at the team level in the future.
-			 */
+             */
             allowedSummonerIds?: SummonerIdParams;
             /**
              * The map type of the game. Valid values are SUMMONERS_RIFT, TWISTED_TREELINE, CRYSTAL_SCAR, and HOWLING_ABYSS.
