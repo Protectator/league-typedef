@@ -12,7 +12,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-		export interface Endpoints {
+		export interface Endpoint {
 			/**
              * Retrieve all champions. (REST)
              * Sould call GET /api/lol/{region}/v1.2/champion
@@ -86,7 +86,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-		export interface Endpoints {
+		export interface Endpoint {
 			/**
              * Get current game information for the given summoner ID. (REST)
              * Should call GET /observer-mode/rest/consumer/getSpectatorGameInfo/{platformId}/{summonerId}
@@ -374,7 +374,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-		export interface Endpoints {
+		export interface Endpoint {
 			/**
              * Get recent games by summoner ID. (REST)
              * Should call GET /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
@@ -812,7 +812,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-		export interface Endpoints {
+		export interface Endpoint {
 			/**
              * Get leagues mapped by summoner ID for a given list of summoner IDs. (REST)
              * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}
@@ -989,7 +989,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-		export interface Endpoints {
+		export interface Endpoint {
             /**
              * Retrieves champion list. (REST)
              * Should call GET /api/lol/static-data/{region}/v1.2/champion
@@ -2696,7 +2696,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-		export interface Endpoints {
+		export interface Endpoint {
             /**
              * Get shard list. (REST)
              * Should call GET /shards
@@ -2869,7 +2869,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-        export interface Endpoints {
+        export interface Endpoint {
             /**
              * Retrieve match IDs by tournament code. (REST)
              * Should call GET /api/lol/{region}/v2.2/match/by-tournament/{tournamentCode}/ids
@@ -3749,7 +3749,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-        export interface Endpoints {
+        export interface Endpoint {
             /**
              * Retrieve match list by summoner ID. (REST)
              * Should call GET /api/lol/{region}/v2.2/matchlist/by-summoner/{summonerId}
@@ -3843,7 +3843,7 @@ declare module riotGamesApi {
         /**
          * Contains all operations of the endpoint.
          */
-        export interface Endpoints {
+        export interface Endpoint {
             /**
              * Get ranked stats by summoner ID. (REST)
              * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked
@@ -4178,7 +4178,7 @@ declare module riotGamesApi {
 	 * summoner-v1.4
 	 */
 	export module summoner {
-        export interface Endpoints {
+        export interface Endpoint {
             /**
              * Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
              * Should call GET /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
@@ -4366,7 +4366,7 @@ declare module riotGamesApi {
 	 * team-v2.4
 	 */
 	export module team {
-        export interface Endpoints {
+        export interface Endpoint {
             /**
              * Get teams mapped by summoner ID for a given list of summoner IDs. (REST)
              * Should call GET /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
@@ -4388,9 +4388,8 @@ declare module riotGamesApi {
                 region: string,
                 teamIds: string
             ): { [s: string]: TeamDto; };
-
-
         }
+        
 		/**
 		 * Contains team information
 		 */
@@ -4566,7 +4565,7 @@ declare module riotGamesApi {
 	 * tournament-provider-v1
 	 */
 	export module tournamentProvider {
-        export interface Endpoints {
+        export interface Endpoint {
             /**
              * Create a tournament code for the given tournament. (REST)
              * Should call POST /tournament/public/v1/code
