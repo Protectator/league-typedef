@@ -15,7 +15,7 @@ declare module riotGamesApi {
          * @param region     Region where to retrieve the data.
          * @param freeToPlay Optional filter param to retrieve only free to play champions.
          */
-        export function allChampions(
+        export function getChampions(
             region: string,
             freeToPlay?: boolean
         ): ChampionListDto;
@@ -26,7 +26,7 @@ declare module riotGamesApi {
          * @param region Region where to retrieve the data.
          * @param id     ID of the champion to retrieve.
          */
-        export function championById(
+        export function getChampionById(
             region: string,
             id: number
         ): ChampionDto;
@@ -115,7 +115,7 @@ declare module riotGamesApi {
          * @param platformId The platform ID for which to fetch data.
          * @param summonerId The ID of the summoner.
          */
-        export function spectatorGameInfo(
+        export function getSpectatorGameInfoBySummonerId(
             platformId: string,
             summonerId: number
         ): CurrentGameInfo;
@@ -264,7 +264,7 @@ declare module riotGamesApi {
          * Should call GET /observer-mode/rest/featured
          * @param region Region where to retrieve the data.
          */
-        export function featuredGames(
+        export function getGeaturedGames(
             region: string
         ): FeaturedGames;
 		
@@ -461,7 +461,7 @@ declare module riotGamesApi {
          * @param region     Region where to retrieve the data.
          * @param summonerId ID of the summoner for which to retrieve recent games.
          */
-        export function spectatorGameInfo(
+        export function getRecentGamesBySummonerId(
             region: string,
             summonerId: number
         ): RecentGamesDto;
@@ -894,7 +894,7 @@ declare module riotGamesApi {
          * @param region 	  The region of the leagues.
          * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
-        export function leagueByIds(
+        export function getLeagueBySummonerIds(
             region: string,
             summonerIds: string
         ): { [s: string]: LeagueDto[]; };
@@ -905,7 +905,7 @@ declare module riotGamesApi {
          * @param region 	  The region of the leagues.
          * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
-        export function leagueEntryByIds(
+        export function getLeagueEntryBySummonerIds(
             region: string,
             summonerIds: string
         ): { [s: string]: LeagueDto[]; };
@@ -916,7 +916,7 @@ declare module riotGamesApi {
          * @param region  The region of the leagues.
          * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
          */
-        export function leagueByTeamIds(
+        export function getLeagueByTeamIds(
             region: string,
             summonerIds: string
         ): { [s: string]: LeagueDto[]; };
@@ -927,7 +927,7 @@ declare module riotGamesApi {
          * @param region  The region of the leagues.
          * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
          */
-        export function leagueEntryByTeamIds(
+        export function getLeagueEntryByTeamIds(
             region: string,
             summonerIds: string
         ): { [s: string]: LeagueDto[]; };
@@ -938,7 +938,7 @@ declare module riotGamesApi {
          * @param region Region where to retrieve the data.
          * @param type   Game queue type.
          */
-        export function leagueChallenger(
+        export function getLeagueChallenger(
             region: string,
             type: string
         ): LeagueDto;
@@ -949,7 +949,7 @@ declare module riotGamesApi {
          * @param region Region where to retrieve the data.
          * @param type   Game queue type.
          */
-        export function leagueMaster(
+        export function getLeagueMaster(
             region: string,
             type: string
         ): LeagueDto;
@@ -1069,7 +1069,7 @@ declare module riotGamesApi {
          * @param dataById  If specified as true, the returned data map will use the champions' IDs as the keys. If not specified or specified as false, the returned data map will use the champions' keys instead.
          * @param champData Tags to return additional data. Only type, version, data, id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function championList(
+        export function getChampions(
             region: string,
             locale: string,
             version: string,
@@ -1086,7 +1086,7 @@ declare module riotGamesApi {
          * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param champData Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function championById(
+        export function getChampionById(
             region: string,
             id: number,
             locale: string,
@@ -1102,7 +1102,7 @@ declare module riotGamesApi {
          * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param itemListData Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function itemList(
+        export function getItems(
             region: string,
             locale: string,
             version: string,
@@ -1118,7 +1118,7 @@ declare module riotGamesApi {
          * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param itemData Tags to return additional data. Only id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function itemById(
+        export function getItemById(
             region: string,
             id: number,
             locale: string,
@@ -1133,7 +1133,7 @@ declare module riotGamesApi {
          * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
          * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          */
-        export function languageStrings(
+        export function getLanguageStrings(
             region: string,
             locale: string,
             version: string
@@ -1144,7 +1144,7 @@ declare module riotGamesApi {
          * Should call GET /api/lol/static-data/{region}/v1.2/languages
          * @param region Region from which to retrieve data.
          */
-        export function languages(
+        export function getLanguages(
             region: string
         ): string[];
         
@@ -1155,7 +1155,7 @@ declare module riotGamesApi {
          * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
          * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          */
-        export function map(
+        export function getMaps(
             region: string,
             locale: string,
             version: string
@@ -1169,7 +1169,7 @@ declare module riotGamesApi {
          * @param version         Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param masteryListData Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function masteryList(
+        export function getMasteries(
             region: string,
             locale: string,
             version: string,
@@ -1185,7 +1185,7 @@ declare module riotGamesApi {
          * @param version     Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param masteryData Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function masteryById(
+        export function getMasteryById(
             region: string,
             id: number,
             locale: string,
@@ -1198,7 +1198,7 @@ declare module riotGamesApi {
          * Should call GET /api/lol/static-data/{region}/v1.2/realm
          * @param region Region corresponding to data to retrieve.
          */
-        export function realm(
+        export function getRealm(
             region: string
         ): RealmDto;
         
@@ -1210,7 +1210,7 @@ declare module riotGamesApi {
          * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param runeListData Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function runeList(
+        export function getRunes(
             region: string,
             locale: string,
             version: string,
@@ -1226,7 +1226,7 @@ declare module riotGamesApi {
          * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param runeData Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function runeById(
+        export function getRuneById(
             region: string,
             id: number,
             locale: string,
@@ -1243,7 +1243,7 @@ declare module riotGamesApi {
          * @param dataById  If specified as true, the returned data map will use the spells' IDs as the keys. If not specified or specified as false, the returned data map will use the spells' keys instead.
          * @param spellData Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function summonerSpellList(
+        export function getSummonerSpells(
             region: string,
             locale: string,
             version: string,
@@ -1260,7 +1260,7 @@ declare module riotGamesApi {
          * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param spellData Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function summonerSpellById(
+        export function getSummonerSpellById(
             region: string,
             id: number,
             locale: string,
@@ -1273,7 +1273,7 @@ declare module riotGamesApi {
          * Should call GET /api/lol/static-data/{region}/v1.2/versions
          * @param region Region from which to retrieve data.
          */
-        export function versions(
+        export function getVersions(
             region: string
         ): string[];
             
@@ -2766,14 +2766,14 @@ declare module riotGamesApi {
          * Get shard list. (REST)
          * Should call GET /shards
          */
-        export function shardList(): Shard[];
+        export function getShards(): Shard[];
         
         /**
          * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region. (REST)
          * Should call GET /shards/{region}
          * @param region The region for which to fetch data.
          */
-        export function shard(
+        export function getShard(
             region: string
         ): ShardStatus;
 
@@ -2937,7 +2937,7 @@ declare module riotGamesApi {
          * @param region         The region of the match.
          * @param tournamentCode The tournament code of the match
          */
-        export function matchIdsByTournamentCode(
+        export function getMatchIdsByTournamentCode(
             region: string,
             tournamentCode: string
         ): number[];
@@ -2950,7 +2950,7 @@ declare module riotGamesApi {
          * @param tournamentCode  The tournament code of the match
          * @param includeTimeline Flag indicating whether or not to include match timeline data
          */
-        export function matchByMatchIdAndTournamentCode(
+        export function getMatchByIdAndTournamentCode(
             region: string,
             matchId: number,
             tournamentCode: string,
@@ -2964,7 +2964,7 @@ declare module riotGamesApi {
          * @param matchId         The ID of the match.
          * @param includeTimeline Flag indicating whether or not to include match timeline data
          */
-        export function matchByMatchId(
+        export function getMatchById(
             region: string,
             matchId: number,
             includeTimeline: boolean
@@ -3820,7 +3820,7 @@ declare module riotGamesApi {
          * @param beginIndex   The begin index to use for fetching games.
          * @param endIndex     The end index to use for fetching games.
          */
-        export function matchListBySummonerId(
+        export function getMatchesBySummonerId(
             region: string,
             summonerId: number,
             championIds: string,
@@ -3904,7 +3904,7 @@ declare module riotGamesApi {
          * @param summonerId ID of the summoner for which to retrieve ranked stats.
          * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
          */
-        export function rankedBySummonerId(
+        export function getRankedBySummonerId(
             region: string,
             summonerId: number,
             season: string
@@ -3917,7 +3917,7 @@ declare module riotGamesApi {
          * @param summonerId ID of the summoner for which to retrieve player stats.
          * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
          */
-        export function SummaryBySummonerId(
+        export function getSummaryBySummonerId(
             region: string,
             summonerId: number,
             season: string
@@ -4236,7 +4236,7 @@ declare module riotGamesApi {
          * @param region        Region where to retrieve the data.
          * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
          */
-        export function summonerByNames(
+        export function getSummonerByNames(
             region: string,
             summonerNames: string
         ): { [s: string]: SummonerDto; };
@@ -4247,7 +4247,7 @@ declare module riotGamesApi {
          * @param region      Region where to retrieve the data.
          * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
          */
-        export function summonerBySummonerIds(
+        export function getSummonerByIds(
             region: string,
             summonerIds: string
         ): { [s: string]: SummonerDto; };
@@ -4258,7 +4258,7 @@ declare module riotGamesApi {
          * @param region      Region where to retrieve the data.
          * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
          */
-        export function masteryBySummonerIds(
+        export function getMasteryPagesBySummonerIds(
             region: string,
             summonerIds: string
         ): { [s: string]: MasteryPagesDto; };
@@ -4269,7 +4269,7 @@ declare module riotGamesApi {
          * @param region      Region where to retrieve the data.
          * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
          */
-        export function namesBySummonerIds(
+        export function getNameBySummonerIds(
             region: string,
             summonerIds: string
         ): { [s: string]: string; };
@@ -4280,7 +4280,7 @@ declare module riotGamesApi {
          * @param region      Region where to retrieve the data.
          * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
          */
-        export function runesBySummonerIds(
+        export function getRunePagesBySummonerIds(
             region: string,
             summonerIds: string
         ): { [s: string]: RunePagesDto; };
@@ -4422,7 +4422,7 @@ declare module riotGamesApi {
          * @param region      The region of the summoner.
          * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
-        export function teamsBySummonerIds(
+        export function getTeamsBySummonerIds(
             region: string,
             summonerIds: string
         ): { [s: string]: TeamDto[]; };
@@ -4433,7 +4433,7 @@ declare module riotGamesApi {
          * @param region  The region of the summoner.
          * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
          */
-        export function teamsByTeamIds(
+        export function getTeamsByTeamIds(
             region: string,
             teamIds: string
         ): { [s: string]: TeamDto; };
@@ -4620,7 +4620,7 @@ declare module riotGamesApi {
          * @param count        The number of codes to create (max 1000)
          * @param body         Metadata for the generated code
          */
-        export function tournamentCodesByTournamentId(
+        export function createTournamentCodesById(
             tournamentId: number,
             count: number,
             body: TournamentCodeParameters
@@ -4631,7 +4631,7 @@ declare module riotGamesApi {
          * Should call GET /tournament/public/v1/code/{tournamentCode}
          * @param tournamentCode The tournament code string.
          */
-        export function tournamentByTournamentsCode(
+        export function getTournamentByCode(
             tournamentCode: string
         ): TournamentCodeDTO;
 
@@ -4641,7 +4641,7 @@ declare module riotGamesApi {
          * @param tournamentCode The tournament code to update
          * @param body           The fields to update
          */
-        export function updateByTournamentCode(
+        export function updateTournamentByCode(
             tournamentCode: string,
             body: TournamentCodeUpdateParameters
         ): void;
