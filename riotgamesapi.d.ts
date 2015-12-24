@@ -2873,7 +2873,7 @@ declare module riotGamesApi {
             /**
              * Retrieve match IDs by tournament code. (REST)
              * Should call GET /api/lol/{region}/v2.2/match/by-tournament/{tournamentCode}/ids
-             * @param region The region of the match.
+             * @param region         The region of the match.
              * @param tournamentCode The tournament code of the match
              */
             matchIdsByTournamentCode(
@@ -2884,9 +2884,9 @@ declare module riotGamesApi {
             /**
              * Retrieve match by match ID and tournament code. (REST)
              * Should call GET /api/lol/{region}/v2.2/match/for-tournament/{matchId}
-             * @param region The region of the match.
-             * @param matchId The ID of the match.
-             * @param tournamentCode The tournament code of the match
+             * @param region          The region of the match.
+             * @param matchId         The ID of the match.
+             * @param tournamentCode  The tournament code of the match
              * @param includeTimeline Flag indicating whether or not to include match timeline data
              */
             matchByMatchIdAndTournamentCode(
@@ -2899,8 +2899,8 @@ declare module riotGamesApi {
             /**
              * Retrieve match by match ID. (REST)
              * Should call GET /api/lol/{region}/v2.2/match/{matchId}
-             * @param region The region of the summoner.
-             * @param matchId The ID of the match.
+             * @param region          The region of the summoner.
+             * @param matchId         The ID of the match.
              * @param includeTimeline Flag indicating whether or not to include match timeline data
              */
             matchByMatchId(
@@ -3753,17 +3753,17 @@ declare module riotGamesApi {
             /**
              * Retrieve match list by summoner ID. (REST)
              * Should call GET /api/lol/{region}/v2.2/matchlist/by-summoner/{summonerId}
-             * @param region The region of the summoner.
-             * @param summonerId The ID of the summoner.
-             * @param championIds Comma-separated list of champion IDs to use for fetching games.
+             * @param region       The region of the summoner.
+             * @param summonerId   The ID of the summoner.
+             * @param championIds  Comma-separated list of champion IDs to use for fetching games.
              * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
-             * @param seasons Comma-separated list of seasons to use for fetching games.
-             * @param beginTime The begin time to use for fetching games specified as epoch milliseconds.
-             * @param endTime The end time to use for fetching games specified as epoch milliseconds.
-             * @param beginIndex The begin index to use for fetching games.
-             * @param endIndex The end index to use for fetching games.
+             * @param seasons      Comma-separated list of seasons to use for fetching games.
+             * @param beginTime    The begin time to use for fetching games specified as epoch milliseconds.
+             * @param endTime      The end time to use for fetching games specified as epoch milliseconds.
+             * @param beginIndex   The begin index to use for fetching games.
+             * @param endIndex     The end index to use for fetching games.
              */
-            methodName(
+            matchListBySummonerId(
                 region: string,
                 summonerId: number,
                 championIds: string,
@@ -3840,6 +3840,37 @@ declare module riotGamesApi {
 	 * stats-v1.3
 	 */
 	export module stats {
+        /**
+         * Contains all operations of the endpoint.
+         */
+        export interface Endpoints {
+            /**
+             * Get ranked stats by summoner ID. (REST)
+             * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked
+             * @param region Region where to retrieve the data.
+             * @param summonerId ID of the summoner for which to retrieve ranked stats.
+             * @param season If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+             */
+            rankedBySummonerId(
+                region: string,
+                summonerId: number,
+                season: string
+            ): RankedStatsDto;
+
+            /**
+             * Get player stats summaries by summoner ID. (REST)
+             * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/summary
+             * @param region Region where to retrieve the data.
+             * @param summonerId ID of the summoner for which to retrieve player stats.
+             * @param season If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+             */
+            SummaryBySummonerId(
+                region: string,
+                summonerId: number,
+                season: string
+            ): PlayerStatsSummaryListDto;
+        }
+        
 		/**
 		 * Contains ranked stats information
 		 */
@@ -4100,6 +4131,46 @@ declare module riotGamesApi {
 			 * 
 			 */
 			totalUnrealKills: number;
+		}
+        
+        /**
+		 * Contains a collection of player stats summary information.
+		 */
+		export interface PlayerStatsSummaryListDto {
+			/**
+			 * Collection of player stats summaries associated with the summoner.
+			 */
+			playerStatSummaries: PlayerStatsSummaryDto[];
+			/**
+			 * Summoner ID.
+			 */
+			summonerId: number;
+		}
+        
+        /**
+		 * Contains player stats summary information.
+		 */
+		export interface PlayerStatsSummaryDto  {
+			/**
+			 * Aggregated stats.
+			 */
+			aggregatedStats: AggregatedStatsDto;
+			/**
+			 * Number of losses for this queue type. Returned for ranked queue types only.
+			 */
+			losses: number;
+            /**
+			 * Date stats were last modified specified as epoch milliseconds.
+			 */
+			modifyDate: number;
+            /**
+			 * Player stats summary type. (Legal values: AramUnranked5x5, Ascension, CAP5x5, CoopVsAI, CoopVsAI3x3, CounterPick, FirstBlood1x1, FirstBlood2x2, Hexakill, KingPoro, NightmareBot, OdinUnranked, OneForAll5x5, RankedPremade3x3, RankedPremade5x5, RankedSolo5x5, RankedTeam3x3, RankedTeam5x5, SummonersRift6x6, Unranked, Unranked3x3, URF, URFBots, Bilgewater)
+			 */
+			playerStatSummaryType: string;
+            /**
+			 * Number of wins for this queue type.
+			 */
+			wins: number;
 		}
 	}
 	
