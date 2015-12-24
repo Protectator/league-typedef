@@ -2693,6 +2693,25 @@ declare module riotGamesApi {
 	 * lol-status-v1.0
 	 */
 	export module lolStatus {
+        /**
+         * Contains all operations of the endpoint.
+         */
+		export interface Endpoints {
+            /**
+             * Get shard list. (REST)
+             * Should call GET /shards
+             */
+            shardList(): Shard[];
+            
+            /**
+             * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region. (REST)
+             * Should call GET /shards/{region}
+             * @param region The region for which to fetch data.
+             */
+            shard(
+                region: string
+            ): ShardStatus;
+        }
 		/**
 		 * 
 		 */
@@ -2847,6 +2866,49 @@ declare module riotGamesApi {
 	 * match-v2.2
 	 */
 	export module match {
+        /**
+         * Contains all operations of the endpoint.
+         */
+        export interface Endpoints {
+            /**
+             * Retrieve match IDs by tournament code. (REST)
+             * Should call GET /api/lol/{region}/v2.2/match/by-tournament/{tournamentCode}/ids
+             * @param region The region of the match.
+             * @param tournamentCode The tournament code of the match
+             */
+            matchIdsByTournamentCode(
+                region: string,
+                tournamentCode: string
+            ): number[];
+            
+            /**
+             * Retrieve match by match ID and tournament code. (REST)
+             * Should call GET /api/lol/{region}/v2.2/match/for-tournament/{matchId}
+             * @param region The region of the match.
+             * @param matchId The ID of the match.
+             * @param tournamentCode The tournament code of the match
+             * @param includeTimeline Flag indicating whether or not to include match timeline data
+             */
+            matchByMatchIdAndTournamentCode(
+                region: string,
+                matchId: number,
+                tournamentCode: string,
+                includeTimeline: boolean
+            ): MatchDetail;
+            
+            /**
+             * Retrieve match by match ID. (REST)
+             * Should call GET /api/lol/{region}/v2.2/match/{matchId}
+             * @param region The region of the summoner.
+             * @param matchId The ID of the match.
+             * @param includeTimeline Flag indicating whether or not to include match timeline data
+             */
+            matchByMatchId(
+                region: string,
+                matchId: number,
+                includeTimeline: boolean
+            ): MatchDetail;
+        }
 		/**
 		 * Contains match detail information.
 		 */
@@ -3684,6 +3746,35 @@ declare module riotGamesApi {
 	 * matchlist-v2.2
 	 */
 	export module matchlist {
+        /**
+         * Contains all operations of the endpoint.
+         */
+        export interface Endpoints {
+            /**
+             * Retrieve match list by summoner ID. (REST)
+             * Should call GET /api/lol/{region}/v2.2/matchlist/by-summoner/{summonerId}
+             * @param region The region of the summoner.
+             * @param summonerId The ID of the summoner.
+             * @param championIds Comma-separated list of champion IDs to use for fetching games.
+             * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
+             * @param seasons Comma-separated list of seasons to use for fetching games.
+             * @param beginTime The begin time to use for fetching games specified as epoch milliseconds.
+             * @param endTime The end time to use for fetching games specified as epoch milliseconds.
+             * @param beginIndex The begin index to use for fetching games.
+             * @param endIndex The end index to use for fetching games.
+             */
+            methodName(
+                region: string,
+                summonerId: number,
+                championIds: string,
+                rankedQueues: string,
+                seasons: string,
+                beginTime: number,
+                endTime: number,
+                beginIndex: number,
+                endIndex: number
+            ): MatchList;
+        }
 		/**
 		 * This object contains match list information
 		 */
