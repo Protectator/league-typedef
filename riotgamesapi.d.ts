@@ -378,7 +378,7 @@ declare module riotGamesApi {
 			/**
              * Get recent games by summoner ID. (REST)
              * Should call GET /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
-			 * @param region Region where to retrieve the data.
+			 * @param region     Region where to retrieve the data.
 			 * @param summonerId ID of the summoner for which to retrieve recent games.
 			 */
 			spectatorGameInfo(
@@ -809,6 +809,77 @@ declare module riotGamesApi {
 	 * league-v2.5
 	 */
 	export module league {
+        /**
+         * Contains all operations of the endpoint.
+         */
+		export interface Endpoints {
+			/**
+             * Get leagues mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}
+			 * @param region 	  The region of the leagues.
+			 * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
+			 */
+			leagueByIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: LeagueDto[]; };
+            
+			/**
+             * Get league entries mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry
+			 * @param region 	  The region of the leagues.
+			 * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
+			 */
+			leagueEntryByIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: LeagueDto[]; };
+            
+            /**
+             * Get leagues mapped by team ID for a given list of team IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}
+			 * @param region  The region of the leagues.
+			 * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+			 */
+			leagueByTeamIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: LeagueDto[]; };
+            
+            /**
+             * Get league entries mapped by team ID for a given list of team IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}/entry
+			 * @param region  The region of the leagues.
+			 * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+			 */
+			leagueEntryByTeamIds(
+                region: string,
+                summonerIds: string
+            ): { [s: string]: LeagueDto[]; };
+            
+            /**
+             * Get challenger tier leagues. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/challenger
+			 * @param region Region where to retrieve the data.
+			 * @param type   Game queue type.
+			 */
+			leagueChallenger(
+                region: string,
+                type: string
+            ): LeagueDto;
+            
+            /**
+             * Get master tier leagues. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/master
+			 * @param region Region where to retrieve the data.
+			 * @param type   Game queue type.
+			 */
+			leagueMaster(
+                region: string,
+                type: string
+            ): LeagueDto;
+		}
+        
 		/**
 		 * Contains league information
 		 */
