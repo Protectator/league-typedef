@@ -8,76 +8,71 @@ declare module riotGamesApi {
 	/**
 	 * champion-v1.2
 	 */
-	export module champion {
+    export module champion {
         /**
-         * Contains all operations of the endpoint.
+         * Retrieve all champions. (REST)
+         * Sould call GET /api/lol/{region}/v1.2/champion
+         * @param region     Region where to retrieve the data.
+         * @param freeToPlay Optional filter param to retrieve only free to play champions.
          */
-		export interface Endpoint {
-			/**
-             * Retrieve all champions. (REST)
-             * Sould call GET /api/lol/{region}/v1.2/champion
-			 * @param region     Region where to retrieve the data.
-			 * @param freeToPlay Optional filter param to retrieve only free to play champions.
-			 */
-			allChampions(
-                region: string,
-                freeToPlay?: boolean
-            ): ChampionListDto;
-            
-            /**
-             * Retrieve champion by ID. (REST)
-             * Should call GET /api/lol/{region}/v1.2/champion/{id}
-             * @param region Region where to retrieve the data.
-             * @param id     ID of the champion to retrieve.
-             */
-            championById(
-                region: string,
-                id: number
-            ): ChampionDto;
-		}
+        export function allChampions(
+            region: string,
+            freeToPlay?: boolean
+        ): ChampionListDto;
+        
+        /**
+         * Retrieve champion by ID. (REST)
+         * Should call GET /api/lol/{region}/v1.2/champion/{id}
+         * @param region Region where to retrieve the data.
+         * @param id     ID of the champion to retrieve.
+         */
+        export function championById(
+            region: string,
+            id: number
+        ): ChampionDto;
 
 		/**
 		 * Contains a collection of champion information
 		 */
-		export interface ChampionListDto {
+        export interface ChampionListDto {
 			/**
 			 * The collection of champion information.
 			 */
-			champions: ChampionDto[];
-		}
+            champions: ChampionDto[];
+        }
 		
 		/**
 		 * Contains champion information
 		 */
-		export interface ChampionDto {
+        export interface ChampionDto {
 			/**
 			 * Indicates if the champion is active
 			 */
-			active: boolean;
+            active: boolean;
 			/**
 			 * Bot enabled flag (for custom games)
 			 */
-			botEnabled: boolean;
+            botEnabled: boolean;
 			/**
 			 * Bot Match Made enabled flag (for Co-op vs. AI games).
 			 */
-			botMmEnabled: boolean;
+            botMmEnabled: boolean;
 			/**
 			 * Indicates if the champion is free to play.
 			 * Free to play champions are rotated periodically.
 			 */
-			freeToPlay: boolean;
+            freeToPlay: boolean;
 			/**
 			 * Champion ID.
 			 * For static information correlating champion IDs, refer to the LoL Static Data API.
 			 */
-			id: number;
+            id: number;
 			/**
 			 * Ranked play enabled flag
 			 */
-			rankedPlayEnabled: boolean;
-		}
-	}
+            rankedPlayEnabled: boolean;
+        }
+    }
     
     // Interfaces to both current-game and featured-games
     /**
@@ -113,4629 +108,4581 @@ declare module riotGamesApi {
 	/**
 	 * current-game-v1.0
 	 */
-	export module currentGame {
+    export module currentGame {
         /**
-         * Contains all operations of the endpoint.
+         * Get current game information for the given summoner ID. (REST)
+         * Should call GET /observer-mode/rest/consumer/getSpectatorGameInfo/{platformId}/{summonerId}
+         * @param platformId The platform ID for which to fetch data.
+         * @param summonerId The ID of the summoner.
          */
-		export interface Endpoint {
-			/**
-             * Get current game information for the given summoner ID. (REST)
-             * Should call GET /observer-mode/rest/consumer/getSpectatorGameInfo/{platformId}/{summonerId}
-			 * @param platformId The platform ID for which to fetch data.
-			 * @param summonerId The ID of the summoner.
-			 */
-			spectatorGameInfo(
-                platformId: string,
-                summonerId: number
-            ): CurrentGameInfo;
-        }
+        export function spectatorGameInfo(
+            platformId: string,
+            summonerId: number
+        ): CurrentGameInfo;
         
 		/**
 		 * 
 		 */
-		export interface CurrentGameInfo {
+        export interface CurrentGameInfo {
 			/**
 			 * Banned champion information
 			 */
-			bannedChampions: BannedChampion[];
+            bannedChampions: BannedChampion[];
 			/**
 			 * The ID of the game
 			 */
-			gameId: number;
+            gameId: number;
 			/**
 			 * The amount of time in seconds that has passed since the game started
 			 */
-			gameLength: number;
+            gameLength: number;
 			/**
 			 * The game mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
 			 */
-			gameMode: string;
+            gameMode: string;
 			/**
 			 * The queue type (queue types are documented on the Game Constants page)
 			 */
-			gameQueueConfigId: number;
+            gameQueueConfigId: number;
 			/**
 			 * The game start time represented in epoch milliseconds
 			 */
-			gameStartTime: number;
+            gameStartTime: number;
 			/**
 			 * The game type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
 			 */
-			gameType: string;
+            gameType: string;
 			/**
 			 * The ID of the map
 			 */
-			mapId: number;
+            mapId: number;
 			/**
 			 * The observer information
 			 */
-			observers: Observer;
+            observers: Observer;
 			/**
 			 * The participant information
 			 */
-			participants: CurrentGameParticipant[];
+            participants: CurrentGameParticipant[];
 			/**
 			 * The ID of the platform on which the game is being played
 			 */
-			platformId: string;
-		}
+            platformId: string;
+        }
 		
 		/**
 		 * 
 		 */
-		export interface BannedChampion extends GenericBannedChampion{}
+        export interface BannedChampion extends GenericBannedChampion { }
 		
 		/**
 		 * 
 		 */
-		export interface CurrentGameParticipant {
+        export interface CurrentGameParticipant {
 			/**
 			 * Flag indicating whether or not this participant is a bot
 			 */
-			bot: boolean;
+            bot: boolean;
 			/**
 			 * The ID of the champion played by this participant
 			 */
-			championId: number;
+            championId: number;
 			/**
 			 * The masteries used by this participant
 			 */
-			masteries: Mastery[];
+            masteries: Mastery[];
 			/**
 			 * The ID of the profile icon used by this participant
 			 */
-			profileIconId: number;
+            profileIconId: number;
 			/**
 			 * The runes used by this participant
 			 */
-			runes: Rune[];
+            runes: Rune[];
 			/**
 			 * The ID of the first summoner spell used by this participant
 			 */
-			spell1Id: number;
+            spell1Id: number;
 			/**
 			 * The ID of the second summoner spell used by this participant
 			 */
-			spell2Id: number;
+            spell2Id: number;
 			/**
 			 * The summoner ID of this participant
 			 */
-			summonerId: number;
+            summonerId: number;
 			/**
 			 * The summoner name of this participant
 			 */
-			summonerName: string;
+            summonerName: string;
 			/**
 			 * The team ID of this participant, indicating the participant's team
 			 */
-			teamId: number;
-		}
+            teamId: number;
+        }
 		
 		/**
 		 * 
 		 */
-		export interface Observer extends GenericObserver{}
+        export interface Observer extends GenericObserver { }
 		 
 		/**
 		 * 
 		 */
-		export interface Mastery {
+        export interface Mastery {
 			/**
 			 * The ID of the mastery
 			 */
-			masteryId: number;
+            masteryId: number;
 			/**
 			 * The number of points put into this mastery by the user
 			 */
-			rank: number;
-		}
+            rank: number;
+        }
 		
 		/**
 		 * 
 		 */
-		export interface Rune {
+        export interface Rune {
 			/**
 			 * The count of this rune used by the participant
 			 */
-			count: number;
+            count: number;
 			/**
 			 * The ID of the rune
 			 */
-			runeId: number;
-		}
+            runeId: number;
+        }
     }
 		
 	/**
 	 * featured-game-v1.0
 	 */
-	export module FeaturedGames {
+    export module FeaturedGames {
         /**
-         * Contains all operations of the endpoint.
+         * Get list of featured games. (REST)
+         * Should call GET /observer-mode/rest/featured
+         * @param region Region where to retrieve the data.
          */
-		export interface Endpoint {
-            /**
-             * Get list of featured games. (REST)
-             * Should call GET /observer-mode/rest/featured
-			 * @param region Region where to retrieve the data.
-			 */
-			featuredGames(
-                region: string
-            ): FeaturedGames;
-		}
+        export function featuredGames(
+            region: string
+        ): FeaturedGames;
 		
 		/**
 		 * 
 		 */
-		export interface FeaturedGames {
+        export interface FeaturedGames {
 			/**
 			 * The suggested interval to wait before requesting FeaturedGames again
 			 */
-			clientRefreshInterval: number;
+            clientRefreshInterval: number;
 			/**
 			 * The list of featured games
 			 */
-			gameList: FeaturedGameInfo[];
-		}
+            gameList: FeaturedGameInfo[];
+        }
 		
 		/**
 		 * 
 		 */
-		export interface FeaturedGameInfo {
+        export interface FeaturedGameInfo {
 			/**
 			 * Banned champion information
 			 */
-			bannedChampions: BannedChampion[];
+            bannedChampions: BannedChampion[];
 			/**
 			 * The ID of the game
 			 */
-			gameId: number;
+            gameId: number;
 			/**
 			 * The amount of time in seconds that has passed since the game started
 			 */
-			gameLength: number;
+            gameLength: number;
 			/**
 			 * The game mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
 			 */
-			gameMode: string;
+            gameMode: string;
 			/**
 			 * The queue type (queue types are documented on the Game Constants page)
 			 */
-			gameQueueConfigId: number;
+            gameQueueConfigId: number;
 			/**
 			 * The game start time represented in epoch milliseconds
 			 */
-			gameStartTime: number;
+            gameStartTime: number;
 			/**
 			 * The game type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
 			 */
-			gameType: string;
+            gameType: string;
 			/**
 			 * The ID of the map
 			 */
-			mapId: number;
+            mapId: number;
 			/**
 			 * The observer information
 			 */
-			observers: Observer;
+            observers: Observer;
 			/**
 			 * The participant information
 			 */
-			participants: Participant[];
+            participants: Participant[];
 			/**
 			 * The ID of the platform on which the game is being played
 			 */
-			platformId: string;
-		}
+            platformId: string;
+        }
         
         /**
          * 
          */
-        export interface BannedChampion extends GenericBannedChampion{}
+        export interface BannedChampion extends GenericBannedChampion { }
 		
 		/**
 		 * 
 		 */
-		export interface CurrentGameParticipant {
+        export interface CurrentGameParticipant {
 			/**
 			 * Flag indicating whether or not this participant is a bot
 			 */
-			bot: boolean;
+            bot: boolean;
 			/**
 			 * The ID of the champion played by this participant
 			 */
-			championId: number;
+            championId: number;
 			/**
 			 * The masteries used by this participant
 			 */
-			masteries: Mastery[];
+            masteries: Mastery[];
 			/**
 			 * The ID of the profile icon used by this participant
 			 */
-			profileIconId: number;
+            profileIconId: number;
 			/**
 			 * The runes used by this participant
 			 */
-			runes: Rune[];
+            runes: Rune[];
 			/**
 			 * The ID of the first summoner spell used by this participant
 			 */
-			spell1Id: number;
+            spell1Id: number;
 			/**
 			 * The ID of the second summoner spell used by this participant
 			 */
-			spell2Id: number;
+            spell2Id: number;
 			/**
 			 * The summoner ID of this participant
 			 */
-			summonerId: number;
+            summonerId: number;
 			/**
 			 * The summoner name of this participant
 			 */
-			summonerName: string;
+            summonerName: string;
 			/**
 			 * The team ID of this participant, indicating the participant's team
 			 */
-			teamId: number;
-		}
+            teamId: number;
+        }
 		
 		/**
 		 * 
 		 */
-		export interface Observer extends GenericObserver{}
+        export interface Observer extends GenericObserver { }
 		 
 		/**
 		 * 
 		 */
-		export interface Mastery {
+        export interface Mastery {
 			/**
 			 * The ID of the mastery
 			 */
-			masteryId: number;
+            masteryId: number;
 			/**
 			 * The number of points put into this mastery by the user
 			 */
-			rank: number;
-		}
+            rank: number;
+        }
 		
 		/**
 		 * 
 		 */
-		export interface Rune {
+        export interface Rune {
 			/**
 			 * The count of this rune used by the participant
 			 */
-			count: number;
+            count: number;
 			/**
 			 * The ID of the rune
 			 */
-			runeId: number;
-		}
+            runeId: number;
+        }
 		
 		/**
 		 * 
 		 */
-		export interface Participant {
+        export interface Participant {
 			/**
 			 * Flag indicating whether or not this participant is a bot
 			 */
-			bot: boolean;
+            bot: boolean;
 			/**
 			 * The ID of the champion played by this participant
 			 */
-			championId: number;
+            championId: number;
 			/**
 			 * The ID of the profile icon used by this participant
 			 */
-			profileIconId: number;
+            profileIconId: number;
 			/**
 			 * The ID of the first summoner spell used by this participant
 			 */
-			spell1Id: number;
+            spell1Id: number;
 			/**
 			 * The ID of the second summoner spell used by this participant
 			 */
-			spell2Id: number;
+            spell2Id: number;
 			/**
 			 * The summoner name of this participant
 			 */
-			summonerName: string;
+            summonerName: string;
 			/**
 			 * The team ID of this participant, indicating the participant's team
 			 */
-			teamId: number;
-		}
-	}
+            teamId: number;
+        }
+    }
 	
 	/**
 	 * game-v1.3
 	 */
-	export module game {
+    export module game {
         /**
-         * Contains all operations of the endpoint.
+         * Get recent games by summoner ID. (REST)
+         * Should call GET /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
+         * @param region     Region where to retrieve the data.
+         * @param summonerId ID of the summoner for which to retrieve recent games.
          */
-		export interface Endpoint {
-			/**
-             * Get recent games by summoner ID. (REST)
-             * Should call GET /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
-			 * @param region     Region where to retrieve the data.
-			 * @param summonerId ID of the summoner for which to retrieve recent games.
-			 */
-			spectatorGameInfo(
-                region: string,
-                summonerId: number
-            ): RecentGamesDto;
-		}
+        export function spectatorGameInfo(
+            region: string,
+            summonerId: number
+        ): RecentGamesDto;
         
         
 		/**
 		 * Contains recent games information
 		 */
-		export interface RecentGamesDto {
+        export interface RecentGamesDto {
 			/**
 			 * Collection of recent games played (max 10).
 			 */
-			games: GameDto[];
+            games: GameDto[];
 			/**
 			 * Summoner ID.
 			 */
-			summonerId: number;
-		}
+            summonerId: number;
+        }
 		
 		/**
 		 * Contains game information
 		 */
-		export interface GameDto {
+        export interface GameDto {
 			/**
 			 * Champion ID associated with game.
 			 */
-			championId: number;
+            championId: number;
 			/**
 			 * Date that end game data was recorded, specified as epoch milliseconds.
 			 */
-			createDate: number;
+            createDate: number;
 			/**
 			 * Other players associated with the game.
 			 */
-			fellowPlayers: PlayerDto[];
+            fellowPlayers: PlayerDto[];
 			/**
 			 * Game ID.
 			 */
-			gameId: number;
+            gameId: number;
 			/**
 			 * Game mode. (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
 			 */
-			gameMode: string;
+            gameMode: string;
 			/**
 			 * Game type. (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
 			 */
-			gameType: string;
+            gameType: string;
 			/**
 			 * Invalid flag.
 			 */
-			invalid: boolean;
+            invalid: boolean;
 			/**
 			 * IP Earned.
 			 */
-			ipEarned: number;
+            ipEarned: number;
 			/**
 			 * Level.
 			 */
-			level: number;
+            level: number;
 			/**
 			 * Map ID.
 			 */
-			mapId: number;
+            mapId: number;
 			/**
 			 * ID of first summoner spell.
 			 */
-			spell1: number;
+            spell1: number;
 			/**
 			 * ID of second summoner spell.
 			 */
-			spell2: number;
+            spell2: number;
 			/**
 			 * Statistics associated with the game for this summoner.
 			 */
-			stats: RawStatsDto;
+            stats: RawStatsDto;
 			/**
 			 * Game sub-type. (Legal values: NONE, NORMAL, BOT, RANKED_SOLO_5x5, RANKED_PREMADE_3x3, RANKED_PREMADE_5x5, ODIN_UNRANKED, RANKED_TEAM_3x3, RANKED_TEAM_5x5, NORMAL_3x3, BOT_3x3, CAP_5x5, ARAM_UNRANKED_5x5, ONEFORALL_5x5, FIRSTBLOOD_1x1, FIRSTBLOOD_2x2, SR_6x6, URF, URF_BOT, NIGHTMARE_BOT, ASCENSION, HEXAKILL, KING_PORO, COUNTER_PICK)
 			 */
-			subType: string;
+            subType: string;
 			/**
 			 * Team ID associated with game. Team ID 100 is blue team. Team ID 200 is purple team.
 			 */
-			teamId: number;
-		}
+            teamId: number;
+        }
 		
 		/**
 		 * Contains player information
 		 */
-		export interface PlayerDto {
+        export interface PlayerDto {
 			/**
 			 * Champion id associated with player.
 			 */
-			championId: number;
+            championId: number;
 			/**
 			 * Summoner id associated with player.
 			 */
-			summonerId: number;
+            summonerId: number;
 			/**
 			 * Team id associated with player.
 			 */
-			teamId: number;
-		}
+            teamId: number;
+        }
 		
 		/**
 		 * Contains raw stat information
 		 */
-		export interface RawStatsDto {
+        export interface RawStatsDto {
 			/**
 			 * 
 			 */
-			assists: number;
+            assists: number;
 			/**
 			 * Number of enemy inhibitors killed.
 			 */
-			barracksKilled: number;
+            barracksKilled: number;
 			/**
 			 * 
 			 */
-			championsKilled: number;
+            championsKilled: number;
 			/**
 			 * 
 			 */
-			combatPlayerScore: number;
+            combatPlayerScore: number;
 			/**
 			 * 
 			 */
-			consumablesPurchased: number;
+            consumablesPurchased: number;
 			/**
 			 * 
 			 */
-			damageDealtPlayer: number;
+            damageDealtPlayer: number;
 			/**
 			 * 
 			 */
-			doubleKills: number;
+            doubleKills: number;
 			/**
 			 * 
 			 */
-			firstBlood: number;
+            firstBlood: number;
 			/**
 			 * 
 			 */
-			gold: number;
+            gold: number;
 			/**
 			 * 
 			 */
-			goldEarned: number;
+            goldEarned: number;
 			/**
 			 * 
 			 */
-			goldSpent: number;
+            goldSpent: number;
 			/**
 			 * 
 			 */
-			item0: number;
+            item0: number;
 			/**
 			 * 
 			 */
-			item1: number;
+            item1: number;
 			/**
 			 * 
 			 */
-			item2: number;
+            item2: number;
 			/**
 			 * 
 			 */
-			item3: number;
+            item3: number;
 			/**
 			 * 
 			 */
-			item4: number;
+            item4: number;
 			/**
 			 * 
 			 */
-			item5: number;
+            item5: number;
 			/**
 			 * 
 			 */
-			item6: number;
+            item6: number;
 			/**
 			 * 
 			 */
-			itemsPurchased: number;
+            itemsPurchased: number;
 			/**
 			 * 
 			 */
-			killingSprees: number;
+            killingSprees: number;
 			/**
 			 * 
 			 */
-			largestCriticalStrike: number;
+            largestCriticalStrike: number;
 			/**
 			 * 
 			 */
-			largestKillingSpree: number;
+            largestKillingSpree: number;
 			/**
 			 * 
 			 */
-			largestMultiKill: number;
+            largestMultiKill: number;
 			/**
 			 * Number of tier 3 items built.
 			 */
-			legendaryItemsCreated: number;
+            legendaryItemsCreated: number;
 			/**
 			 * 
 			 */
-			level: number;
+            level: number;
 			/**
 			 * 
 			 */
-			magicDamageDealtPlayer: number;
+            magicDamageDealtPlayer: number;
 			/**
 			 * 
 			 */
-			magicDamageDealtToChampions: number;
+            magicDamageDealtToChampions: number;
 			/**
 			 * 
 			 */
-			magicDamageTaken: number;
+            magicDamageTaken: number;
 			/**
 			 * 
 			 */
-			minionsDenied: number;
+            minionsDenied: number;
 			/**
 			 * 
 			 */
-			minionsKilled: number;
+            minionsKilled: number;
 			/**
 			 * 
 			 */
-			neutralMinionsKilled: number;
+            neutralMinionsKilled: number;
 			/**
 			 * 
 			 */
-			neutralMinionsKilledEnemyJungle: number;
+            neutralMinionsKilledEnemyJungle: number;
 			/**
 			 * 
 			 */
-			neutralMinionsKilledYourJungle: number;
+            neutralMinionsKilledYourJungle: number;
 			/**
 			 * Flag specifying if the summoner got the killing blow on the nexus.
 			 */
-			nexusKilled: boolean;
+            nexusKilled: boolean;
 			/**
 			 * 
 			 */
-			nodeCapture: number;
+            nodeCapture: number;
 			/**
 			 * 
 			 */
-			nodeCaptureAssist: number;
+            nodeCaptureAssist: number;
 			/**
 			 * 
 			 */
-			nodeNeutralize: number;
+            nodeNeutralize: number;
 			/**
 			 * 
 			 */
-			nodeNeutralizeAssist: number;
+            nodeNeutralizeAssist: number;
 			/**
 			 * 
 			 */
-			numDeaths: number;
+            numDeaths: number;
 			/**
 			 * 
 			 */
-			numItemsBought: number;
+            numItemsBought: number;
 			/**
 			 * 
 			 */
-			objectivePlayerScore: number;
+            objectivePlayerScore: number;
 			/**
 			 * 
 			 */
-			pentaKills: number;
+            pentaKills: number;
 			/**
 			 * 
 			 */
-			physicalDamageDealtPlayer: number;
+            physicalDamageDealtPlayer: number;
 			/**
 			 * 
 			 */
-			physicalDamageDealtToChampions: number;
+            physicalDamageDealtToChampions: number;
 			/**
 			 * 
 			 */
-			physicalDamageTaken: number;
+            physicalDamageTaken: number;
 			/**
 			 * 
 			 */
-			playerPosition: number;
+            playerPosition: number;
 			/**
 			 * 
 			 */
-			playerRole: number;
+            playerRole: number;
 			/**
 			 * 
 			 */
-			quadraKills: number;
+            quadraKills: number;
 			/**
 			 * 
 			 */
-			sightWardsBought: number;
+            sightWardsBought: number;
 			/**
 			 * Number of times first champion spell was cast.
 			 */
-			spell1Cast: number;
+            spell1Cast: number;
 			/**
 			 * Number of times second champion spell was cast.
 			 */
-			spell2Cast: number;
+            spell2Cast: number;
 			/**
 			 * Number of times third champion spell was cast.
 			 */
-			spell3Cast: number;
+            spell3Cast: number;
 			/**
 			 * Number of times fourth champion spell was cast.
 			 */
-			spell4Cast: number;
+            spell4Cast: number;
 			/**
 			 * 
 			 */
-			summonSpell1Cast: number;
+            summonSpell1Cast: number;
 			/**
 			 * 
 			 */
-			summonSpell2Cast: number;
+            summonSpell2Cast: number;
 			/**
 			 * 
 			 */
-			superMonsterKilled: number;
+            superMonsterKilled: number;
 			/**
 			 * 
 			 */
-			team: number;
+            team: number;
 			/**
 			 * 
 			 */
-			teamObjective: number;
+            teamObjective: number;
 			/**
 			 * 
 			 */
-			timePlayed: number;
+            timePlayed: number;
 			/**
 			 * 
 			 */
-			totalDamageDealt: number;
+            totalDamageDealt: number;
 			/**
 			 * 
 			 */
-			totalDamageDealtToChampions: number;
+            totalDamageDealtToChampions: number;
 			/**
 			 * 
 			 */
-			totalDamageTaken: number;
+            totalDamageTaken: number;
 			/**
 			 * 
 			 */
-			totalHeal: number;
+            totalHeal: number;
 			/**
 			 * 
 			 */
-			totalPlayerScore: number;
+            totalPlayerScore: number;
 			/**
 			 * 
 			 */
-			totalScoreRank: number;
+            totalScoreRank: number;
 			/**
 			 * 
 			 */
-			totalTimeCrowdControlDealt: number;
+            totalTimeCrowdControlDealt: number;
 			/**
 			 * 
 			 */
-			totalUnitsHealed: number;
+            totalUnitsHealed: number;
 			/**
 			 * 
 			 */
-			tripleKills: number;
+            tripleKills: number;
 			/**
 			 * 
 			 */
-			trueDamageDealtPlayer: number;
+            trueDamageDealtPlayer: number;
 			/**
 			 * 
 			 */
-			trueDamageDealtToChampions: number;
+            trueDamageDealtToChampions: number;
 			/**
 			 * 
 			 */
-			trueDamageTaken: number;
+            trueDamageTaken: number;
 			/**
 			 * 
 			 */
-			turretsKilled: number;
+            turretsKilled: number;
 			/**
 			 * 
 			 */
-			unrealKills: number;
+            unrealKills: number;
 			/**
 			 * 
 			 */
-			victoryPointTotal: number;
+            victoryPointTotal: number;
 			/**
 			 * 
 			 */
-			visionWardsBought: number;
+            visionWardsBought: number;
 			/**
 			 * 
 			 */
-			wardKilled: number;
+            wardKilled: number;
 			/**
 			 * 
 			 */
-			wardPlaced: number;
+            wardPlaced: number;
 			/**
 			 * Flag specifying whether or not this game was won.
 			 */
-			win: boolean;
-		}
-	}
+            win: boolean;
+        }
+    }
 	
 	/**
 	 * league-v2.5
 	 */
-	export module league {
+    export module league {
         /**
-         * Contains all operations of the endpoint.
+         * Get leagues mapped by summoner ID for a given list of summoner IDs. (REST)
+         * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}
+         * @param region 	  The region of the leagues.
+         * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
-		export interface Endpoint {
-			/**
-             * Get leagues mapped by summoner ID for a given list of summoner IDs. (REST)
-             * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}
-			 * @param region 	  The region of the leagues.
-			 * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
-			 */
-			leagueByIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: LeagueDto[]; };
+        export function leagueByIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: LeagueDto[]; };
             
-			/**
-             * Get league entries mapped by summoner ID for a given list of summoner IDs. (REST)
-             * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry
-			 * @param region 	  The region of the leagues.
-			 * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
-			 */
-			leagueEntryByIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: LeagueDto[]; };
+        /**
+         * Get league entries mapped by summoner ID for a given list of summoner IDs. (REST)
+         * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry
+         * @param region 	  The region of the leagues.
+         * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
+         */
+        export function leagueEntryByIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: LeagueDto[]; };
             
-            /**
-             * Get leagues mapped by team ID for a given list of team IDs. (REST)
-             * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}
-			 * @param region  The region of the leagues.
-			 * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
-			 */
-			leagueByTeamIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: LeagueDto[]; };
+        /**
+         * Get leagues mapped by team ID for a given list of team IDs. (REST)
+         * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}
+         * @param region  The region of the leagues.
+         * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+         */
+        export function leagueByTeamIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: LeagueDto[]; };
             
-            /**
-             * Get league entries mapped by team ID for a given list of team IDs. (REST)
-             * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}/entry
-			 * @param region  The region of the leagues.
-			 * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
-			 */
-			leagueEntryByTeamIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: LeagueDto[]; };
+        /**
+         * Get league entries mapped by team ID for a given list of team IDs. (REST)
+         * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}/entry
+         * @param region  The region of the leagues.
+         * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+         */
+        export function leagueEntryByTeamIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: LeagueDto[]; };
             
-            /**
-             * Get challenger tier leagues. (REST)
-             * Should call GET /api/lol/{region}/v2.5/league/challenger
-			 * @param region Region where to retrieve the data.
-			 * @param type   Game queue type.
-			 */
-			leagueChallenger(
-                region: string,
-                type: string
-            ): LeagueDto;
+        /**
+         * Get challenger tier leagues. (REST)
+         * Should call GET /api/lol/{region}/v2.5/league/challenger
+         * @param region Region where to retrieve the data.
+         * @param type   Game queue type.
+         */
+        export function leagueChallenger(
+            region: string,
+            type: string
+        ): LeagueDto;
             
-            /**
-             * Get master tier leagues. (REST)
-             * Should call GET /api/lol/{region}/v2.5/league/master
-			 * @param region Region where to retrieve the data.
-			 * @param type   Game queue type.
-			 */
-			leagueMaster(
-                region: string,
-                type: string
-            ): LeagueDto;
-		}
+        /**
+         * Get master tier leagues. (REST)
+         * Should call GET /api/lol/{region}/v2.5/league/master
+         * @param region Region where to retrieve the data.
+         * @param type   Game queue type.
+         */
+        export function leagueMaster(
+            region: string,
+            type: string
+        ): LeagueDto;
         
 		/**
 		 * Contains league information
 		 */
-		export interface LeagueDto {
+        export interface LeagueDto {
 			/**
 			 * The requested league entries.
 			 */
-			entries: LeagueEntryDto[];
+            entries: LeagueEntryDto[];
 			/**
 			 * This name is an internal place-holder name only. Display and localization of names in the game client are handled client-side.
 			 */
-			name: string;
+            name: string;
 			/**
 			 * Specifies the relevant participant that is a member of this league (i.e., a requested summoner ID, a
 			 * requested team ID, or the ID of a team to which one of the requested summoners belongs). Only present when
 			 * full league is requested so that participant's entry can be identified. Not present when individual
 			 * entry is requested.
 			 */
-			participantId: string;
+            participantId: string;
 			/**
 			 * The league's queue type. (Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5)
 			 */
-			queue: string;
+            queue: string;
 			/**
 			 * The league's tier. (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE)
 			 */
-			tier: string;
-		}
+            tier: string;
+        }
 		
 		/**
 		 * Contains league participant information representing a summoner or team.
 		 */
-		export interface LeagueEntryDto {
+        export interface LeagueEntryDto {
 			/**
 			 * The league division of the participant.
 			 */
-			division: string;
+            division: string;
 			/**
 			 * Specifies if the participant is fresh blood.
 			 */
-			isFreshBlood: boolean;
+            isFreshBlood: boolean;
 			/**
 			 * Specifies if the participant is on a hot streak.
 			 */
-			isHotStreak: boolean;
+            isHotStreak: boolean;
 			/**
 			 * Specifies if the participant is inactive.
 			 */
-			isInactive: boolean;
+            isInactive: boolean;
 			/**
 			 * Specifies if the participant is a veteran.
 			 */
-			isVeteran: boolean;
+            isVeteran: boolean;
 			/**
 			 * The league points of the participant.
 			 */
-			leaguePoints: number;
+            leaguePoints: number;
 			/**
 			 * The number of losses for the participant.
 			 */
-			losses: number;
+            losses: number;
 			/**
 			 * Mini series data for the participant. Only present if the participant is currently in a mini series.
 			 */
-			miniSeries: MiniSeriesDto;
+            miniSeries: MiniSeriesDto;
 			/**
 			 * The ID of the participant (i.e., summoner or team) represented by this entry.
 			 */
-			playerOrTeamId: string;
+            playerOrTeamId: string;
 			/**
 			 * The name of the the participant (i.e., summoner or team) represented by this entry.
 			 */
-			playerOrTeamName: string;
+            playerOrTeamName: string;
 			/**
 			 * The number of wins for the participant.
 			 */
-			wins: number;
-		}
+            wins: number;
+        }
 		
 		/**
 		 * Contains mini series information.
 		 */
-		export interface MiniSeriesDto {
+        export interface MiniSeriesDto {
 			/**
 			 * Number of current losses in the mini series.
 			 */
-			losses: number;
+            losses: number;
 			/**
 			 * String showing the current, sequential mini series progress where 'W' represents a win, 'L' represents a loss, and 'N' represents a game that hasn't been played yet.
 			 */
-			progress: string;
+            progress: string;
 			/**
 			 * Number of wins required for promotion.
 			 */
-			target: number;
+            target: number;
 			/**
 			 * Number of current wins in the mini series.
 			 */
-			wins: number;
-		}
-	}
+            wins: number;
+        }
+    }
 	
 	/**
 	 * lol-static-data-v1.2
 	 */
-	export module lolStaticData {
+    export module lolStaticData {
         /**
-         * Contains all operations of the endpoint.
+         * Retrieves champion list. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/champion
+         * @param region    Region from which to retrieve data.
+         * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param dataById  If specified as true, the returned data map will use the champions' IDs as the keys. If not specified or specified as false, the returned data map will use the champions' keys instead.
+         * @param champData Tags to return additional data. Only type, version, data, id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-		export interface Endpoint {
-            /**
-             * Retrieves champion list. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/champion
-             * @param region    Region from which to retrieve data.
-             * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param dataById  If specified as true, the returned data map will use the champions' IDs as the keys. If not specified or specified as false, the returned data map will use the champions' keys instead.
-             * @param champData Tags to return additional data. Only type, version, data, id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            championList(
-                region: string,
-                locale: string,
-                version: string,
-                dataById: boolean,
-                champData: string
-            ): ChampionListDto;
+        export function championList(
+            region: string,
+            locale: string,
+            version: string,
+            dataById: boolean,
+            champData: string
+        ): ChampionListDto;
 
-            /**
-             * Retrieves a champion by its id. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/champion/{id}
-             * @param region    Region from which to retrieve data.
-             * @param id        Champion ID
-             * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param champData Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            championById(
-                region: string,
-                id: number,
-                locale: string,
-                version: string,
-                champData: string
-            ): ChampionDto;
+        /**
+         * Retrieves a champion by its id. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/champion/{id}
+         * @param region    Region from which to retrieve data.
+         * @param id        Champion ID
+         * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param champData Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function championById(
+            region: string,
+            id: number,
+            locale: string,
+            version: string,
+            champData: string
+        ): ChampionDto;
 
-            /**
-             * Retrieves item list. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/item
-             * @param region       Region from which to retrieve data.
-             * @param locale       Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param itemListData Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            itemList(
-                region: string,
-                locale: string,
-                version: string,
-                itemListData: string
-            ): ItemListDto;
+        /**
+         * Retrieves item list. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/item
+         * @param region       Region from which to retrieve data.
+         * @param locale       Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param itemListData Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function itemList(
+            region: string,
+            locale: string,
+            version: string,
+            itemListData: string
+        ): ItemListDto;
 
-            /**
-             * Retrieves item by its unique id. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/item/{id}
-             * @param region   Region from which to retrieve data.
-             * @param id       Item ID
-             * @param locale   Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param itemData Tags to return additional data. Only id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            itemById(
-                region: string,
-                id: number,
-                locale: string,
-                version: string,
-                itemData: string
-            ): ItemDto;
+        /**
+         * Retrieves item by its unique id. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/item/{id}
+         * @param region   Region from which to retrieve data.
+         * @param id       Item ID
+         * @param locale   Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param itemData Tags to return additional data. Only id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function itemById(
+            region: string,
+            id: number,
+            locale: string,
+            version: string,
+            itemData: string
+        ): ItemDto;
 
-            /**
-             * Retrieve language strings data. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/language-strings
-             * @param region  Region from which to retrieve data.
-             * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             */
-            languageStrings(
-                region: string,
-                locale: string,
-                version: string
-            ): LanguageStringsDto;
+        /**
+         * Retrieve language strings data. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/language-strings
+         * @param region  Region from which to retrieve data.
+         * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         */
+        export function languageStrings(
+            region: string,
+            locale: string,
+            version: string
+        ): LanguageStringsDto;
 
-            /**
-             * Retrieve supported languages data. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/languages
-             * @param region Region from which to retrieve data.
-             */
-            languages(
-                region: string
-            ): string[];
-            
-            /**
-             * Retrieve map data. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/map
-             * @param region  Region from which to retrieve data.
-             * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             */
-            map(
-                region: string,
-                locale: string,
-                version: string
-            ): MapDataDto;
-            
-            /**
-             * Retrieves mastery list. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/mastery
-             * @param region          Region from which to retrieve data.
-             * @param locale          Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version         Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param masteryListData Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            masteryList(
-                region: string,
-                locale: string,
-                version: string,
-                masteryListData: string
-            ): MasteryListDto;
-            
-            /**
-             * Retrieves mastery item by its unique id. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/mastery/{id}
-             * @param region      Region from which to retrieve data.
-             * @param id          Mastery ID
-             * @param locale      Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version     Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param masteryData Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            masteryById(
-                region: string,
-                id: number,
-                locale: string,
-                version: string,
-                masteryData: string
-            ): MasteryDto;
-            
-            /**
-             * Retrieve realm data. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/realm
-             * @param region Region corresponding to data to retrieve.
-             */
-            realm(
-                region: string
-            ): RealmDto;
-            
-            /**
-             * Retrieves rune list. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/rune
-             * @param region       Region from which to retrieve data.
-             * @param locale       Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param runeListData Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            runeList(
-                region: string,
-                locale: string,
-                version: string,
-                runeListData: string
-            ): RuneListDto;
-            
-            /**
-             * Retrieves rune by its unique id. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/rune/{id}
-             * @param region   Region from which to retrieve data.
-             * @param id       Rune ID
-             * @param locale   Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param runeData Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            runeById(
-                region: string,
-                id: number,
-                locale: string,
-                version: string,
-                runeData: string
-            ): RuneDto;
-            
-            /**
-             * Retrieves summoner spell list. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell
-             * @param region    Region from which to retrieve data.
-             * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param dataById  If specified as true, the returned data map will use the spells' IDs as the keys. If not specified or specified as false, the returned data map will use the spells' keys instead.
-             * @param spellData Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            summonerSpellList(
-                region: string,
-                locale: string,
-                version: string,
-                dataById: boolean,
-                spellData: string
-            ): SummonerSpellListDto;
-            
-            /**
-             * Retrieves summoner spell by its unique id. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell/{id}
-             * @param region    Region from which to retrieve data.
-             * @param id        Summoner spell ID
-             * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-             * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-             * @param spellData Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-             */
-            summonerSpellById(
-                region: string,
-                id: number,
-                locale: string,
-                version: string,
-                spellData: string
-            ): SummonerSpellDto;    
-            
-            /**
-             * Retrieve version data. (REST)
-             * Should call GET /api/lol/static-data/{region}/v1.2/versions
-             * @param region Region from which to retrieve data.
-             */
-            versions(
-                region: string
-            ): string[];
-        }
+        /**
+         * Retrieve supported languages data. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/languages
+         * @param region Region from which to retrieve data.
+         */
+        export function languages(
+            region: string
+        ): string[];
+        
+        /**
+         * Retrieve map data. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/map
+         * @param region  Region from which to retrieve data.
+         * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         */
+        export function map(
+            region: string,
+            locale: string,
+            version: string
+        ): MapDataDto;
+        
+        /**
+         * Retrieves mastery list. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/mastery
+         * @param region          Region from which to retrieve data.
+         * @param locale          Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version         Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param masteryListData Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function masteryList(
+            region: string,
+            locale: string,
+            version: string,
+            masteryListData: string
+        ): MasteryListDto;
+        
+        /**
+         * Retrieves mastery item by its unique id. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/mastery/{id}
+         * @param region      Region from which to retrieve data.
+         * @param id          Mastery ID
+         * @param locale      Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version     Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param masteryData Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function masteryById(
+            region: string,
+            id: number,
+            locale: string,
+            version: string,
+            masteryData: string
+        ): MasteryDto;
+        
+        /**
+         * Retrieve realm data. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/realm
+         * @param region Region corresponding to data to retrieve.
+         */
+        export function realm(
+            region: string
+        ): RealmDto;
+        
+        /**
+         * Retrieves rune list. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/rune
+         * @param region       Region from which to retrieve data.
+         * @param locale       Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param runeListData Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function runeList(
+            region: string,
+            locale: string,
+            version: string,
+            runeListData: string
+        ): RuneListDto;
+        
+        /**
+         * Retrieves rune by its unique id. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/rune/{id}
+         * @param region   Region from which to retrieve data.
+         * @param id       Rune ID
+         * @param locale   Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param runeData Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function runeById(
+            region: string,
+            id: number,
+            locale: string,
+            version: string,
+            runeData: string
+        ): RuneDto;
+        
+        /**
+         * Retrieves summoner spell list. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell
+         * @param region    Region from which to retrieve data.
+         * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param dataById  If specified as true, the returned data map will use the spells' IDs as the keys. If not specified or specified as false, the returned data map will use the spells' keys instead.
+         * @param spellData Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function summonerSpellList(
+            region: string,
+            locale: string,
+            version: string,
+            dataById: boolean,
+            spellData: string
+        ): SummonerSpellListDto;
+        
+        /**
+         * Retrieves summoner spell by its unique id. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell/{id}
+         * @param region    Region from which to retrieve data.
+         * @param id        Summoner spell ID
+         * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+         * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+         * @param spellData Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+         */
+        export function summonerSpellById(
+            region: string,
+            id: number,
+            locale: string,
+            version: string,
+            spellData: string
+        ): SummonerSpellDto;    
+        
+        /**
+         * Retrieve version data. (REST)
+         * Should call GET /api/lol/static-data/{region}/v1.2/versions
+         * @param region Region from which to retrieve data.
+         */
+        export function versions(
+            region: string
+        ): string[];
             
 		/**
 		 * Contains champion list data.
 		 */
-		export interface ChampionListDto {
+        export interface ChampionListDto {
 			/**
 			 * 
 			 */
-			data: { [s: string]: ChampionDto; };
+            data: { [s: string]: ChampionDto; };
 			/**
 			 * 
 			 */
-			format: string;
+            format: string;
 			/**
 			 * 
 			 */
-			keys: { [s: string]: string; };
+            keys: { [s: string]: string; };
 			/**
 			 * 
 			 */
-			type: string;
+            type: string;
 			/**
 			 * 
 			 */
-			version: string;
-		}
+            version: string;
+        }
 		
 		/**
 		 * Contains champion data.
 		 */
-		export interface ChampionDto {
+        export interface ChampionDto {
 			/**
 			 * 
 			 */
-			allytips: string[];
+            allytips: string[];
 			/**
 			 * 
 			 */
-			blurb: string;
+            blurb: string;
 			/**
 			 * 
 			 */
-			enemytips: string[];
+            enemytips: string[];
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * 
 			 */
-			info: InfoDto;
+            info: InfoDto;
 			/**
 			 * 
 			 */
-			key: string;
+            key: string;
 			/**
 			 * 
 			 */
-			lore: string;
+            lore: string;
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			partype: string;
+            partype: string;
 			/**
 			 * 
 			 */
-			passive: PassiveDto;
+            passive: PassiveDto;
 			/**
 			 * 
 			 */
-			recommended: RecommendedDto[];
+            recommended: RecommendedDto[];
 			/**
 			 * 
 			 */
-			skins: SkinDto[];
+            skins: SkinDto[];
 			/**
 			 * 
 			 */
-			spells: ChampionSpellDto[];
+            spells: ChampionSpellDto[];
 			/**
 			 * 
 			 */
-			stats: StatsDto;
+            stats: StatsDto;
 			/**
 			 * 
 			 */
-			tags: string[];
+            tags: string[];
 			/**
 			 * 
 			 */
-			title: string;
-		}
+            title: string;
+        }
 		
 		/**
 		 * Contains champion spell data
 		 */
-		export interface ChampionSpellDto {
+        export interface ChampionSpellDto {
 			/**
 			 * 
 			 */
-			altimages: ImageDto[];
+            altimages: ImageDto[];
 			/**
 			 * 
 			 */
-			cooldown: number[];
+            cooldown: number[];
 			/**
 			 * 
 			 */
-			cooldownBurn: string;
+            cooldownBurn: string;
 			/**
 			 * 
 			 */
-			cost: number[];
+            cost: number[];
 			/**
 			 * 
 			 */
-			costBurn: string;
+            costBurn: string;
 			/**
 			 * 
 			 */
-			costType: string;
+            costType: string;
 			/**
 			 * 
 			 */
-			description: string;
+            description: string;
 			/**
 			 * This field is a List of List of Double.
 			 */
-			effect: number[][];
+            effect: number[][];
 			/**
 			 * 
 			 */
-			effectBurn: string[];
+            effectBurn: string[];
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * 
 			 */
-			key: string;
+            key: string;
 			/**
 			 * 
 			 */
-			leveltip: LevelTipDto;
+            leveltip: LevelTipDto;
 			/**
 			 * 
 			 */
-			maxrank: number;
+            maxrank: number;
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * This field is either a List of Integer or the String 'self' for spells that target one's own champion.
 			 */
-			range: string|number[];
+            range: string | number[];
 			/**
 			 * 
 			 */
-			rangeBurn: string;
+            rangeBurn: string;
 			/**
 			 * 
 			 */
-			resource: string;
+            resource: string;
 			/**
 			 * 
 			 */
-			sanitizedDescription: string;
+            sanitizedDescription: string;
 			/**
 			 * 
 			 */
-			sanitizedTooltip: string;
+            sanitizedTooltip: string;
 			/**
 			 * 
 			 */
-			tooltip: string;
+            tooltip: string;
 			/**
 			 * 
 			 */
-			vars: SpellVarsDto[];
-		}
+            vars: SpellVarsDto[];
+        }
 		
 		/**
 		 * Contains image data.
 		 */
-		export interface ImageDto {
+        export interface ImageDto {
 			/**
 			 * 
 			 */
-			full: string;
+            full: string;
 			/**
 			 * 
 			 */
-			group: string;
+            group: string;
 			/**
 			 * 
 			 */
-			h: number;
+            h: number;
 			/**
 			 * 
 			 */
-			sprite: string;
+            sprite: string;
 			/**
 			 * 
 			 */
-			w: number;
+            w: number;
 			/**
 			 * 
 			 */
-			x: number;
+            x: number;
 			/**
 			 * 
 			 */
-			y: number;
-		}
+            y: number;
+        }
 		
 		/**
 		 * Contains champion information
 		 */
-		export interface InfoDto {
+        export interface InfoDto {
 			/**
 			 * 
 			 */
-			attack: number;
+            attack: number;
 			/**
 			 * 
 			 */
-			defense: number;
+            defense: number;
 			/**
 			 * 
 			 */
-			difficulty: number;
+            difficulty: number;
 			/**
 			 * 
 			 */
-			magic: number;
-		}
+            magic: number;
+        }
 		
 		/**
 		 * Contains champion passive data.
 		 */
-		export interface PassiveDto {
+        export interface PassiveDto {
 			/**
 			 * 
 			 */
-			description: string;
+            description: string;
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			sanitizedDescription: string;
-		}
+            sanitizedDescription: string;
+        }
 		
 		/**
 		 * Contains champion recommended data.
 		 */
-		export interface RecommendedDto {
+        export interface RecommendedDto {
 			/**
 			 * 
 			 */
-			blocks: BlockDto[];
+            blocks: BlockDto[];
 			/**
 			 * 
 			 */
-			champion: string;
+            champion: string;
 			/**
 			 * 
 			 */
-			map: string;
+            map: string;
 			/**
 			 * 
 			 */
-			mode: string;
+            mode: string;
 			/**
 			 * 
 			 */
-			priority: boolean;
+            priority: boolean;
 			/**
 			 * 
 			 */
-			title: string;
+            title: string;
 			/**
 			 * 
 			 */
-			type: string;
-		}
+            type: string;
+        }
 		
 		/**
 		 * Contains champion skin data.
 		 */
-		export interface SkinDto {
+        export interface SkinDto {
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			num: number;
-		}
+            num: number;
+        }
 		
 		/**
 		 * Contains champion stats data.
 		 */
-		export interface StatsDto {
+        export interface StatsDto {
 			/**
 			 * 
 			 */
-			armor: number;
+            armor: number;
 			/**
 			 * 
 			 */
-			armorperlevel: number;
+            armorperlevel: number;
 			/**
 			 * 
 			 */
-			attackdamage: number;
+            attackdamage: number;
 			/**
 			 * 
 			 */
-			attackdamageperlevel: number;
+            attackdamageperlevel: number;
 			/**
 			 * 
 			 */
-			attackrange: number;
+            attackrange: number;
 			/**
 			 * 
 			 */
-			attackspeedoffset: number;
+            attackspeedoffset: number;
 			/**
 			 * 
 			 */
-			attackspeedperlevel: number;
+            attackspeedperlevel: number;
 			/**
 			 * 
 			 */
-			crit: number;
+            crit: number;
 			/**
 			 * 
 			 */
-			critperlevel: number;
+            critperlevel: number;
 			/**
 			 * 
 			 */
-			hp: number;
+            hp: number;
 			/**
 			 * 
 			 */
-			hpperlevel: number;
+            hpperlevel: number;
 			/**
 			 * 
 			 */
-			hpregen: number;
+            hpregen: number;
 			/**
 			 * 
 			 */
-			hpregenperlevel: number;
+            hpregenperlevel: number;
 			/**
 			 * 
 			 */
-			movespeed: number;
+            movespeed: number;
 			/**
 			 * 
 			 */
-			mp: number;
+            mp: number;
 			/**
 			 * 
 			 */
-			mpperlevel: number;
+            mpperlevel: number;
 			/**
 			 * 
 			 */
-			mpregen: number;
+            mpregen: number;
 			/**
 			 * 
 			 */
-			mpregenperlevel: number;
+            mpregenperlevel: number;
 			/**
 			 * 
 			 */
-			spellblock: number;
+            spellblock: number;
 			/**
 			 * 
 			 */
-			spellblockperlevel: number;
-		}
+            spellblockperlevel: number;
+        }
 		
 		/**
 		 * Contains champion level tip data.
 		 */
-		export interface LevelTipDto {
+        export interface LevelTipDto {
 			/**
 			 * 
 			 */
-			effect: string[];
+            effect: string[];
 			/**
 			 * 
 			 */
-			label: string[];
-		}
+            label: string[];
+        }
 		
 		/**
 		 * Contains spell vars data.
 		 */
-		export interface SpellVarsDto {
+        export interface SpellVarsDto {
 			/**
 			 * 
 			 */
-			coeff: number[];
+            coeff: number[];
 			/**
 			 * 
 			 */
-			dyn: string;
+            dyn: string;
 			/**
 			 * 
 			 */
-			key: string;
+            key: string;
 			/**
 			 * 
 			 */
-			link: string;
+            link: string;
 			/**
 			 * 
 			 */
-			ranksWith: string;
-		}
+            ranksWith: string;
+        }
 		
 		/**
 		 * Contains champion recommended block data
 		 */
-		export interface BlockDto {
+        export interface BlockDto {
 			/**
 			 * 
 			 */
-			items: BlockItemDto[];
+            items: BlockItemDto[];
 			/**
 			 * 
 			 */
-			recMath: boolean;
+            recMath: boolean;
 			/**
 			 * 
 			 */
-			type: string;
-		}
+            type: string;
+        }
 		
 		/**
 		 * Contains champion recommended block item data.
 		 */
-		export interface BlockItemDto {
+        export interface BlockItemDto {
 			/**
 			 * 
 			 */
-			count: number;
+            count: number;
 			/**
 			 * 
 			 */
-			id: number;
-		}
+            id: number;
+        }
 		
 		/**
 		 * Contains item list data.
 		 */
-		export interface ItemListDto {
+        export interface ItemListDto {
 			/**
 			 * 
 			 */
-			basic: BasicDataDto;
+            basic: BasicDataDto;
 			/**
 			 * 
 			 */
-			data: { [s: string]: ItemDto; };
+            data: { [s: string]: ItemDto; };
 			/**
 			 * 
 			 */
-			groups: GroupDto[];
+            groups: GroupDto[];
 			/**
 			 * 
 			 */
-			tree: ItemTreeDto[];
+            tree: ItemTreeDto[];
 			/**
 			 * 
 			 */
-			type: string;
+            type: string;
 			/**
 			 * 
 			 */
-			version: string;
-		}
+            version: string;
+        }
 		
 		/**
 		 * Contains basic data.
 		 */
-		export interface BasicDataDto {
+        export interface BasicDataDto {
 			/**
 			 * 
 			 */
-			colloq: string;
+            colloq: string;
 			/**
 			 * 
 			 */
-			consumeOnFull: boolean;
+            consumeOnFull: boolean;
 			/**
 			 * 
 			 */
-			consumed: boolean;
+            consumed: boolean;
 			/**
 			 * 
 			 */
-			depth: number;
+            depth: number;
 			/**
 			 * 
 			 */
-			description: string;
+            description: string;
 			/**
 			 * 
 			 */
-			from: string[];
+            from: string[];
 			/**
 			 * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
 			 * However, only items have a gold field on them, representing their gold cost in the store.
 			 * Since runes are not sold in the store, they have no gold cost.
 			 */
-			gold: GoldDto;
+            gold: GoldDto;
 			/**
 			 * 
 			 */
-			group: string;
+            group: string;
 			/**
 			 * 
 			 */
-			hideFromAll: boolean;
+            hideFromAll: boolean;
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * 
 			 */
-			inStore: boolean;
+            inStore: boolean;
 			/**
 			 * 
 			 */
-			into: string[];
+            into: string[];
 			/**
 			 * 
 			 */
-			maps: { [s: string]: boolean; };
+            maps: { [s: string]: boolean; };
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			plaintext: string;
+            plaintext: string;
 			/**
 			 * 
 			 */
-			requiredChampion: string;
+            requiredChampion: string;
 			/**
 			 * 
 			 */
-			rune: MetaDataDto;
+            rune: MetaDataDto;
 			/**
 			 * 
 			 */
-			sanitizedDescription: string;
+            sanitizedDescription: string;
 			/**
 			 * 
 			 */
-			specialRecipe: number;
+            specialRecipe: number;
 			/**
 			 * 
 			 */
-			stacks: number;
+            stacks: number;
 			/**
 			 * 
 			 */
-			stats: BasicDataStatsDto;
+            stats: BasicDataStatsDto;
 			/**
 			 * 
 			 */
-			tags: string[];
-		}
+            tags: string[];
+        }
 		
 		/**
 		 * Contains item group data.
 		 */
-		export interface GroupDto {
+        export interface GroupDto {
 			/**
 			 * 
 			 */
-			MaxGroupOwnable: string;
+            MaxGroupOwnable: string;
 			/**
 			 * 
 			 */
-			key: string;
-		}
+            key: string;
+        }
 		
 		/**
 		 * Contains item data.
 		 */
-		export interface ItemDto {
+        export interface ItemDto {
 			/**
 			 * 
 			 */
-			colloq: string;
+            colloq: string;
 			/**
 			 * 
 			 */
-			consumeOnFull: boolean;
+            consumeOnFull: boolean;
 			/**
 			 * 
 			 */
-			consumed: boolean;
+            consumed: boolean;
 			/**
 			 * 
 			 */
-			depth: number;
+            depth: number;
 			/**
 			 * 
 			 */
-			description: string;
+            description: string;
 			/**
 			 * 
 			 */
-			effect: { [s: string]: string; };
+            effect: { [s: string]: string; };
 			/**
 			 * 
 			 */
-			from: string[];
+            from: string[];
 			/**
 			 * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
 			 * However, only items have a gold field on them, representing their gold cost in the store.
 			 * Since runes are not sold in the store, they have no gold cost.
 			 */
-			gold: GoldDto;
+            gold: GoldDto;
 			/**
 			 * 
 			 */
-			group: string;
+            group: string;
 			/**
 			 * 
 			 */
-			hideFromAll: boolean;
+            hideFromAll: boolean;
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * 
 			 */
-			inStore: boolean;
+            inStore: boolean;
 			/**
 			 * 
 			 */
-			into: string[];
+            into: string[];
 			/**
 			 * 
 			 */
-			maps: { [s: string]: boolean; };
+            maps: { [s: string]: boolean; };
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			plaintext: string;
+            plaintext: string;
 			/**
 			 * 
 			 */
-			requiredChampion: string;
+            requiredChampion: string;
 			/**
 			 * 
 			 */
-			rune: MetaDataDto;
+            rune: MetaDataDto;
 			/**
 			 * 
 			 */
-			sanitizedDescription: string;
+            sanitizedDescription: string;
 			/**
 			 * 
 			 */
-			specialRecipe: number;
+            specialRecipe: number;
 			/**
 			 * 
 			 */
-			stacks: number;
+            stacks: number;
 			/**
 			 * 
 			 */
-			stats: BasicDataStatsDto;
+            stats: BasicDataStatsDto;
 			/**
 			 * 
 			 */
-			tags: string[];
-		}
+            tags: string[];
+        }
 		
 		/**
 		 * Contains item tree data.
 		 */
-		export interface ItemTreeDto {
+        export interface ItemTreeDto {
 			/**
 			 * 
 			 */
-			header: string;
+            header: string;
 			/**
 			 * 
 			 */
-			tags: string[];
-		}
+            tags: string[];
+        }
 		
 		/**
 		 * Contains basic data stats.
 		 */
-		export interface BasicDataStatsDto {
+        export interface BasicDataStatsDto {
 			/**
 			 * 
 			 */
-			FlatArmorMod: number;
+            FlatArmorMod: number;
 			/**
 			 * 
 			 */
-			FlatAttackSpeedMod: number;
+            FlatAttackSpeedMod: number;
 			/**
 			 * 
 			 */
-			FlatBlockMod: number;
+            FlatBlockMod: number;
 			/**
 			 * 
 			 */
-			FlatCritChanceMod: number;
+            FlatCritChanceMod: number;
 			/**
 			 * 
 			 */
-			FlatCritDamageMod: number;
+            FlatCritDamageMod: number;
 			/**
 			 * 
 			 */
-			FlatEXPBonus: number;
+            FlatEXPBonus: number;
 			/**
 			 * 
 			 */
-			FlatEnergyPoolMod: number;
+            FlatEnergyPoolMod: number;
 			/**
 			 * 
 			 */
-			FlatEnergyRegenMod: number;
+            FlatEnergyRegenMod: number;
 			/**
 			 * 
 			 */
-			FlatHPPoolMod: number;
+            FlatHPPoolMod: number;
 			/**
 			 * 
 			 */
-			FlatHPRegenMod: number;
+            FlatHPRegenMod: number;
 			/**
 			 * 
 			 */
-			FlatMPPoolMod: number;
+            FlatMPPoolMod: number;
 			/**
 			 * 
 			 */
-			FlatMPRegenMod: number;
+            FlatMPRegenMod: number;
 			/**
 			 * 
 			 */
-			FlatMagicDamageMod: number;
+            FlatMagicDamageMod: number;
 			/**
 			 * 
 			 */
-			FlatMovementSpeedMod: number;
+            FlatMovementSpeedMod: number;
 			/**
 			 * 
 			 */
-			FlatPhysicalDamageMod: number;
+            FlatPhysicalDamageMod: number;
 			/**
 			 * 
 			 */
-			FlatSpellBlockMod: number;
+            FlatSpellBlockMod: number;
 			/**
 			 * 
 			 */
-			PercentArmorMod: number;
+            PercentArmorMod: number;
 			/**
 			 * 
 			 */
-			PercentAttackSpeedMod: number;
+            PercentAttackSpeedMod: number;
 			/**
 			 * 
 			 */
-			PercentBlockMod: number;
+            PercentBlockMod: number;
 			/**
 			 * 
 			 */
-			PercentCritChanceMod: number;
+            PercentCritChanceMod: number;
 			/**
 			 * 
 			 */
-			PercentCritDamageMod: number;
+            PercentCritDamageMod: number;
 			/**
 			 * 
 			 */
-			PercentDodgeMod: number;
+            PercentDodgeMod: number;
 			/**
 			 * 
 			 */
-			PercentEXPBonus: number;
+            PercentEXPBonus: number;
 			/**
 			 * 
 			 */
-			PercentHPPoolMod: number;
+            PercentHPPoolMod: number;
 			/**
 			 * 
 			 */
-			PercentHPRegenMod: number;
+            PercentHPRegenMod: number;
 			/**
 			 * 
 			 */
-			PercentLifeStealMod: number;
+            PercentLifeStealMod: number;
 			/**
 			 * 
 			 */
-			PercentMPPoolMod: number;
+            PercentMPPoolMod: number;
 			/**
 			 * 
 			 */
-			PercentMPRegenMod: number;
+            PercentMPRegenMod: number;
 			/**
 			 * 
 			 */
-			PercentMagicDamageMod: number;
+            PercentMagicDamageMod: number;
 			/**
 			 * 
 			 */
-			PercentMovementSpeedMod: number;
+            PercentMovementSpeedMod: number;
 			/**
 			 * 
 			 */
-			PercentPhysicalDamageMod: number;
+            PercentPhysicalDamageMod: number;
 			/**
 			 * 
 			 */
-			PercentSpellBlockMod: number;
+            PercentSpellBlockMod: number;
 			/**
 			 * 
 			 */
-			PercentSpellVampMod: number;
+            PercentSpellVampMod: number;
 			/**
 			 * 
 			 */
-			rFlatArmorModPerLevel: number;
+            rFlatArmorModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatArmorPenetrationMod: number;
+            rFlatArmorPenetrationMod: number;
 			/**
 			 * 
 			 */
-			rFlatArmorPenetrationModPerLevel: number;
+            rFlatArmorPenetrationModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatCritChanceModPerLevel: number;
+            rFlatCritChanceModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatCritDamageModPerLevel: number;
+            rFlatCritDamageModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatDodgeMod: number;
+            rFlatDodgeMod: number;
 			/**
 			 * 
 			 */
-			rFlatDodgeModPerLevel: number;
+            rFlatDodgeModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatEnergyModPerLevel: number;
+            rFlatEnergyModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatEnergyRegenModPerLevel: number;
+            rFlatEnergyRegenModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatGoldPer10Mod: number;
+            rFlatGoldPer10Mod: number;
 			/**
 			 * 
 			 */
-			rFlatHPModPerLevel: number;
+            rFlatHPModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatHPRegenModPerLevel: number;
+            rFlatHPRegenModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatMPModPerLevel: number;
+            rFlatMPModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatMPRegenModPerLevel: number;
+            rFlatMPRegenModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatMagicDamageModPerLevel: number;
+            rFlatMagicDamageModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatMagicPenetrationMod: number;
+            rFlatMagicPenetrationMod: number;
 			/**
 			 * 
 			 */
-			rFlatMagicPenetrationModPerLevel: number;
+            rFlatMagicPenetrationModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatMovementSpeedModPerLevel: number;
+            rFlatMovementSpeedModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatPhysicalDamageModPerLevel: number;
+            rFlatPhysicalDamageModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatSpellBlockModPerLevel: number;
+            rFlatSpellBlockModPerLevel: number;
 			/**
 			 * 
 			 */
-			rFlatTimeDeadMod: number;
+            rFlatTimeDeadMod: number;
 			/**
 			 * 
 			 */
-			rFlatTimeDeadModPerLevel: number;
+            rFlatTimeDeadModPerLevel: number;
 			/**
 			 * 
 			 */
-			rPercentArmorPenetrationMod: number;
+            rPercentArmorPenetrationMod: number;
 			/**
 			 * 
 			 */
-			rPercentArmorPenetrationModPerLevel: number;
+            rPercentArmorPenetrationModPerLevel: number;
 			/**
 			 * 
 			 */
-			rPercentAttackSpeedModPerLevel: number;
+            rPercentAttackSpeedModPerLevel: number;
 			/**
 			 * 
 			 */
-			rPercentCooldownMod: number;
+            rPercentCooldownMod: number;
 			/**
 			 * 
 			 */
-			rPercentCooldownModPerLevel: number;
+            rPercentCooldownModPerLevel: number;
 			/**
 			 * 
 			 */
-			rPercentMagicPenetrationMod: number;
+            rPercentMagicPenetrationMod: number;
 			/**
 			 * 
 			 */
-			rPercentMagicPenetrationModPerLevel: number;
+            rPercentMagicPenetrationModPerLevel: number;
 			/**
 			 * 
 			 */
-			rPercentMovementSpeedModPerLevel: number;
+            rPercentMovementSpeedModPerLevel: number;
 			/**
 			 * 
 			 */
-			rPercentTimeDeadMod: number;
+            rPercentTimeDeadMod: number;
 			/**
 			 * 
 			 */
-			rPercentTimeDeadModPerLevel: number;
-		}
+            rPercentTimeDeadModPerLevel: number;
+        }
 		
 		/**
 		 * Contains item gold data.
 		 */
-		export interface GoldDto {
+        export interface GoldDto {
 			/**
 			 * 
 			 */
-			base: number;
+            base: number;
 			/**
 			 * 
 			 */
-			purchasable: boolean;
+            purchasable: boolean;
 			/**
 			 * 
 			 */
-			sell: number;
+            sell: number;
 			/**
 			 * 
 			 */
-			total: number;
-		}
+            total: number;
+        }
 		
 		/**
 		 * Contains image meta data.
 		 */
-		export interface MetaDataDto {
+        export interface MetaDataDto {
 			/**
 			 * 
 			 */
-			isRune: boolean;
+            isRune: boolean;
 			/**
 			 * 
 			 */
-			tier: string;
+            tier: string;
 			/**
 			 * 
 			 */
-			type: string;
-		}
+            type: string;
+        }
 		
 		/**
 		 * Contains language strings data
 		 */
-		export interface LanguageStringsDto {
+        export interface LanguageStringsDto {
 			/**
 			 * 
 			 */
-			data: { [s: string]: string; };
+            data: { [s: string]: string; };
 			/**
 			 * 
 			 */
-			type: string;
+            type: string;
 			/**
 			 * 
 			 */
-			version: string;
-		}
+            version: string;
+        }
 		
 		/**
 		 * Contains map data.
 		 */
-		export interface MapDataDto {
+        export interface MapDataDto {
 			/**
 			 * 
 			 */
-			data: { [s: string]: MapDetailsDto; }
+            data: { [s: string]: MapDetailsDto; }
 			/**
 			 * 
 			 */
-			type: string;
+            type: string;
 			/**
 			 * 
 			 */
-			version: string;
-		}
+            version: string;
+        }
 		
 		/**
 		 * Contains map details data.
 		 */
-		export interface MapDetailsDto {
+        export interface MapDetailsDto {
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * 
 			 */
-			mapId: number;
+            mapId: number;
 			/**
 			 * 
 			 */
-			mapName: string;
+            mapName: string;
 			/**
 			 * 
 			 */
-			unpurchasableItemList: number[];
-		}
+            unpurchasableItemList: number[];
+        }
 		
 		/**
 		 * Contains mastery list data.
 		 */
-		export interface MasteryListDto {
+        export interface MasteryListDto {
 			/**
 			 * 
 			 */
-			data: { [s: string]: MasteryDto; };
+            data: { [s: string]: MasteryDto; };
 			/**
 			 * 
 			 */
-			tree: MasteryTreeDto;
+            tree: MasteryTreeDto;
 			/**
 			 * 
 			 */
-			type: string;
+            type: string;
 			/**
 			 * 
 			 */
-			version: string;
-		}
+            version: string;
+        }
 		
 		/**
 		 * Contains mastery data.
 		 */
-		export interface MasteryDto {
+        export interface MasteryDto {
 			/**
 			 * 
 			 */
-			description: string[];
+            description: string[];
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * Legal values: Defense, Offense, Utility
 			 */
-			masteryTree: string;
+            masteryTree: string;
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			prereq: string;
+            prereq: string;
 			/**
 			 * 
 			 */
-			ranks: number;
+            ranks: number;
 			/**
 			 * 
 			 */
-			sanitizedDescription: string[];
-		}
+            sanitizedDescription: string[];
+        }
 		
 		/**
 		 * Contains mastery tree data.
 		 */
-		export interface MasteryTreeDto {
+        export interface MasteryTreeDto {
 			/**
 			 * 
 			 */
-			Defense: MasteryTreeListDto[];
+            Defense: MasteryTreeListDto[];
 			/**
 			 * 
 			 */
-			Offense: MasteryTreeListDto[];
+            Offense: MasteryTreeListDto[];
 			/**
 			 * 
 			 */
-			Utility: MasteryTreeListDto[];
-		}
+            Utility: MasteryTreeListDto[];
+        }
 		
 		/**
 		 * Contains mastery tree list data.
 		 */
-		export interface MasteryTreeListDto {
+        export interface MasteryTreeListDto {
 			/**
 			 * 
 			 */
-			masteryTreeItems: MasteryTreeItemDto[];
-		}
+            masteryTreeItems: MasteryTreeItemDto[];
+        }
 		
 		/**
 		 * Contains mastery tree item data.
 		 */
-		export interface MasteryTreeItemDto {
+        export interface MasteryTreeItemDto {
 			/**
 			 * 
 			 */
-			masteryId: number;
+            masteryId: number;
 			/**
 			 * 
 			 */
-			prereq: string;
-		}
+            prereq: string;
+        }
 		
 		/**
 		 * Contains realm data.
 		 */
-		export interface RealmDto {
+        export interface RealmDto {
 			/**
 			 * The base CDN url.
 			 */
-			cdn: string;
+            cdn: string;
 			/**
 			 * Latest changed version of Dragon Magic's css file.
 			 */
-			css: string;
+            css: string;
 			/**
 			 * Latest changed version of Dragon Magic.
 			 */
-			dd: string;
+            dd: string;
 			/**
 			 * Default language for this realm.
 			 */
-			l: string;
+            l: string;
 			/**
 			 * Legacy script mode for IE6 or older.
 			 */
-			lg: string;
+            lg: string;
 			/**
 			 * Latest changed version for each data type listed.
 			 */
-			n: { [s: string]: string; };
+            n: { [s: string]: string; };
 			/**
 			 * Special behavior number identifying the largest profileicon id that can be used under 500. Any profileicon that is requested between this number and 500 should be mapped to 0.
 			 */
-			profileiconmax: number;
+            profileiconmax: number;
 			/**
 			 * Additional api data drawn from other sources that may be related to data dragon functionality.
 			 */
-			store: string;
+            store: string;
 			/**
 			 * Current version of this file for this realm.
 			 */
-			v: string;
-		}
+            v: string;
+        }
 		
 		/**
 		 * Contains rune list data
 		 */
-		export interface RuneListDto {
+        export interface RuneListDto {
 			/**
 			 * 
 			 */
-			basic: BasicDataDto;
+            basic: BasicDataDto;
 			/**
 			 * 
 			 */
-			data: { [s: string]: RuneDto; };
+            data: { [s: string]: RuneDto; };
 			/**
 			 * 
 			 */
-			type: string;
+            type: string;
 			/**
 			 * 
 			 */
-			version: string;
-		}
+            version: string;
+        }
 		
 		/**
 		 * Contains rune data.
 		 */
-		export interface RuneDto {
+        export interface RuneDto {
 			/**
 			 * 
 			 */
-			colloq: string;
+            colloq: string;
 			/**
 			 * 
 			 */
-			consumeOnFull: boolean;
+            consumeOnFull: boolean;
 			/**
 			 * 
 			 */
-			consumed: boolean;
+            consumed: boolean;
 			/**
 			 * 
 			 */
-			depth: number;
+            depth: number;
 			/**
 			 * 
 			 */
-			description: string;
+            description: string;
 			/**
 			 * 
 			 */
-			from: string[];
+            from: string[];
 			/**
 			 * 
 			 */
-			group: string;
+            group: string;
 			/**
 			 * 
 			 */
-			hideFromAll: boolean;
+            hideFromAll: boolean;
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * 
 			 */
-			inStore: boolean;
+            inStore: boolean;
 			/**
 			 * 
 			 */
-			into: string[];
+            into: string[];
 			/**
 			 * 
 			 */
-			maps: { [s: string]: boolean; };
+            maps: { [s: string]: boolean; };
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			plaintext: string;
+            plaintext: string;
 			/**
 			 * 
 			 */
-			requiredChampion: string;
+            requiredChampion: string;
 			/**
 			 * 
 			 */
-			rune: MetaDataDto;
+            rune: MetaDataDto;
 			/**
 			 * 
 			 */
-			sanitizedDescription: string;
+            sanitizedDescription: string;
 			/**
 			 * 
 			 */
-			specialRecipe: number;
+            specialRecipe: number;
 			/**
 			 * 
 			 */
-			stacks: number;
+            stacks: number;
 			/**
 			 * 
 			 */
-			stats: BasicDataStatsDto;
+            stats: BasicDataStatsDto;
 			/**
 			 * 
 			 */
-			tags: string[];
-		}
+            tags: string[];
+        }
 		
 		/**
 		 * Contains summoner spell list data.
 		 */
-		export interface SummonerSpellListDto {
+        export interface SummonerSpellListDto {
 			/**
 			 * 
 			 */
-			data: { [s: string]: SummonerSpellDto; };
+            data: { [s: string]: SummonerSpellDto; };
 			/**
 			 * 
 			 */
-			type: string;
+            type: string;
 			/**
 			 * 
 			 */
-			version: string;
-		}
+            version: string;
+        }
 		
 		/**
 		 * Contains summoner spell data.
 		 */
-		export interface SummonerSpellDto {
+        export interface SummonerSpellDto {
 			/**
 			 * 
 			 */
-			cooldown: number[];
+            cooldown: number[];
 			/**
 			 * 
 			 */
-			cooldownBurn: string;
+            cooldownBurn: string;
 			/**
 			 * 
 			 */
-			cost: number[];
+            cost: number[];
 			/**
 			 * 
 			 */
-			costBurn: string;
+            costBurn: string;
 			/**
 			 * 
 			 */
-			costType: string;
+            costType: string;
 			/**
 			 * 
 			 */
-			description: string;
+            description: string;
 			/**
 			 * This field is a List of List of Double.
 			 */
-			effect: number[][];
+            effect: number[][];
 			/**
 			 * 
 			 */
-			effectBurn: string[];
+            effectBurn: string[];
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * 
 			 */
-			image: ImageDto;
+            image: ImageDto;
 			/**
 			 * 
 			 */
-			key: string;
+            key: string;
 			/**
 			 * 
 			 */
-			leveltip: LevelTipDto;
+            leveltip: LevelTipDto;
 			/**
 			 * 
 			 */
-			maxrank: number;
+            maxrank: number;
 			/**
 			 * 
 			 */
-			modes: string[];
+            modes: string[];
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * This field is either a List of Integer or the String 'self' for spells that target one's own champion.
 			 */
-			range: number[]|string;
+            range: number[] | string;
 			/**
 			 * 
 			 */
-			rangeBurn: string;
+            rangeBurn: string;
 			/**
 			 * 
 			 */
-			resource: string;
+            resource: string;
 			/**
 			 * 
 			 */
-			sanitizedDescription: string;
+            sanitizedDescription: string;
 			/**
 			 * 
 			 */
-			sanitizedTooltip: string;
+            sanitizedTooltip: string;
 			/**
 			 * 
 			 */
-			summonerLevel: number;
+            summonerLevel: number;
 			/**
 			 * 
 			 */
-			tooltip: string;
+            tooltip: string;
 			/**
 			 * 
 			 */
-			vars: SpellVarsDto[];
-		}
-	}
+            vars: SpellVarsDto[];
+        }
+    }
 	
 	/**
 	 * lol-status-v1.0
 	 */
-	export module lolStatus {
+    export module lolStatus {
         /**
-         * Contains all operations of the endpoint.
+         * Get shard list. (REST)
+         * Should call GET /shards
          */
-		export interface Endpoint {
-            /**
-             * Get shard list. (REST)
-             * Should call GET /shards
-             */
-            shardList(): Shard[];
-            
-            /**
-             * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region. (REST)
-             * Should call GET /shards/{region}
-             * @param region The region for which to fetch data.
-             */
-            shard(
-                region: string
-            ): ShardStatus;
+        export function shardList(): Shard[];
+        
+        /**
+         * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region. (REST)
+         * Should call GET /shards/{region}
+         * @param region The region for which to fetch data.
+         */
+        export function shard(
+            region: string
+        ): ShardStatus;
+
+		/**
+		 * 
+		 */
+        export interface Shard {
+			/**
+			 * 
+			 */
+            hostname: string;
+			/**
+			 * 
+			 */
+            locales: string[];
+			/**
+			 * 
+			 */
+            name: string;
+			/**
+			 * 
+			 */
+            region_tag: string;
+			/**
+			 * 
+			 */
+            slug: string;
         }
-		/**
-		 * 
-		 */
-		export interface Shard {
-			/**
-			 * 
-			 */
-			hostname: string;
-			/**
-			 * 
-			 */
-			locales: string[];
-			/**
-			 * 
-			 */
-			name: string;
-			/**
-			 * 
-			 */
-			region_tag: string;
-			/**
-			 * 
-			 */
-			slug: string;
-		}
 		
 		/**
 		 * 
 		 */
-		export interface ShardStatus {
+        export interface ShardStatus {
 			/**
 			 * 
 			 */
-			hostname: string;
+            hostname: string;
 			/**
 			 * 
 			 */
-			locales: string[];
+            locales: string[];
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			region_tag: string;
+            region_tag: string;
 			/**
 			 * 
 			 */
-			services: Service[];
+            services: Service[];
 			/**
 			 * 
 			 */
-			slug: string;
-		}
+            slug: string;
+        }
 		
 		/**
 		 * 
 		 */
-		export interface Service {
+        export interface Service {
 			/**
 			 * 
 			 */
-			incidents: Incident[];
+            incidents: Incident[];
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			slug: string;
+            slug: string;
 			/**
 			 * Legal values: Online, Alert, Offline, Deploying
 			 */
-			status: string;
-		}
+            status: string;
+        }
 
 		/**
 		 * 
 		 */
-		export interface Incident {
+        export interface Incident {
 			/**
 			 * 
 			 */
-			active: boolean;
+            active: boolean;
 			/**
 			 * 
 			 */
-			created_at: string;
+            created_at: string;
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * 
 			 */
-			updates: Message[];
-		}
+            updates: Message[];
+        }
 
-		export interface Message {
+        export interface Message {
 			/**
 			 * 
 			 */
-			author: string;
+            author: string;
 			/**
 			 * 
 			 */
-			content: string;
+            content: string;
 			/**
 			 * 
 			 */
-			created_at: string;
+            created_at: string;
 			/**
 			 * 
 			 */
-			id: number;
+            id: number;
 			/**
 			 * Legal values: Info, Alert, Error
 			 */
-			severity: string;
+            severity: string;
 			/**
 			 * 
 			 */
-			translations: Translation[];
+            translations: Translation[];
 			/**
 			 * 
 			 */
-			updated_at: string;
-		}
+            updated_at: string;
+        }
 
 		/**
 		 * 
 		 */
-		export interface Translation {
+        export interface Translation {
 			/**
 			 * 
 			 */
-			content: string;
+            content: string;
 			/**
 			 * 
 			 */
-			locale: string;
+            locale: string;
 			/**
 			 * 
 			 */
-			updated_at: string;
-		}
-	}
+            updated_at: string;
+        }
+    }
 	
 	/**
 	 * match-v2.2
 	 */
-	export module match {
+    export module match {
         /**
-         * Contains all operations of the endpoint.
+         * Retrieve match IDs by tournament code. (REST)
+         * Should call GET /api/lol/{region}/v2.2/match/by-tournament/{tournamentCode}/ids
+         * @param region         The region of the match.
+         * @param tournamentCode The tournament code of the match
          */
-        export interface Endpoint {
-            /**
-             * Retrieve match IDs by tournament code. (REST)
-             * Should call GET /api/lol/{region}/v2.2/match/by-tournament/{tournamentCode}/ids
-             * @param region         The region of the match.
-             * @param tournamentCode The tournament code of the match
-             */
-            matchIdsByTournamentCode(
-                region: string,
-                tournamentCode: string
-            ): number[];
-            
-            /**
-             * Retrieve match by match ID and tournament code. (REST)
-             * Should call GET /api/lol/{region}/v2.2/match/for-tournament/{matchId}
-             * @param region          The region of the match.
-             * @param matchId         The ID of the match.
-             * @param tournamentCode  The tournament code of the match
-             * @param includeTimeline Flag indicating whether or not to include match timeline data
-             */
-            matchByMatchIdAndTournamentCode(
-                region: string,
-                matchId: number,
-                tournamentCode: string,
-                includeTimeline: boolean
-            ): MatchDetail;
-            
-            /**
-             * Retrieve match by match ID. (REST)
-             * Should call GET /api/lol/{region}/v2.2/match/{matchId}
-             * @param region          The region of the summoner.
-             * @param matchId         The ID of the match.
-             * @param includeTimeline Flag indicating whether or not to include match timeline data
-             */
-            matchByMatchId(
-                region: string,
-                matchId: number,
-                includeTimeline: boolean
-            ): MatchDetail;
-        }
+        export function matchIdsByTournamentCode(
+            region: string,
+            tournamentCode: string
+        ): number[];
+        
+        /**
+         * Retrieve match by match ID and tournament code. (REST)
+         * Should call GET /api/lol/{region}/v2.2/match/for-tournament/{matchId}
+         * @param region          The region of the match.
+         * @param matchId         The ID of the match.
+         * @param tournamentCode  The tournament code of the match
+         * @param includeTimeline Flag indicating whether or not to include match timeline data
+         */
+        export function matchByMatchIdAndTournamentCode(
+            region: string,
+            matchId: number,
+            tournamentCode: string,
+            includeTimeline: boolean
+        ): MatchDetail;
+        
+        /**
+         * Retrieve match by match ID. (REST)
+         * Should call GET /api/lol/{region}/v2.2/match/{matchId}
+         * @param region          The region of the summoner.
+         * @param matchId         The ID of the match.
+         * @param includeTimeline Flag indicating whether or not to include match timeline data
+         */
+        export function matchByMatchId(
+            region: string,
+            matchId: number,
+            includeTimeline: boolean
+        ): MatchDetail;
+
 		/**
 		 * Contains match detail information.
 		 */
-		export interface MatchDetail {
+        export interface MatchDetail {
 			/**
 			 * Match map ID
 			 */
-			mapId: number;
+            mapId: number;
 			/**
 			 * Match creation time. Designates when the team select lobby is created and/or the match is made through match making, not when the game actually starts.
 			 */
-			matchCreation: number;
+            matchCreation: number;
 			/**
 			 * Match duration
 			 */
-			matchDuration: number;
+            matchDuration: number;
 			/**
 			 * ID of the match
 			 */
-			matchId: number;
+            matchId: number;
 			/**
 			 * Match mode (Legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, ASCENSION, FIRSTBLOOD, KINGPORO)
 			 */
-			matchMode: string;
+            matchMode: string;
 			/**
 			 * Match type (Legal values: CUSTOM_GAME, MATCHED_GAME, TUTORIAL_GAME)
 			 */
-			matchType: string;
+            matchType: string;
 			/**
 			 * Match version
 			 */
-			matchVersion: string;
+            matchVersion: string;
 			/**
 			 * Participant identity information
 			 */
-			participantIdentities: ParticipantIdentity[];
+            participantIdentities: ParticipantIdentity[];
 			/**
 			 * Participant information
 			 */
-			participants: Participant[];
+            participants: Participant[];
 			/**
 			 * Platform ID of the match
 			 */
-			platformId: string;
+            platformId: string;
 			/**
 			 * Match queue type (Legal values: CUSTOM, NORMAL_5x5_BLIND, RANKED_SOLO_5x5, RANKED_PREMADE_5x5, BOT_5x5, NORMAL_3x3, RANKED_PREMADE_3x3, NORMAL_5x5_DRAFT, ODIN_5x5_BLIND, ODIN_5x5_DRAFT, BOT_ODIN_5x5, BOT_5x5_INTRO, BOT_5x5_BEGINNER, BOT_5x5_INTERMEDIATE, RANKED_TEAM_3x3, RANKED_TEAM_5x5, BOT_TT_3x3, GROUP_FINDER_5x5, ARAM_5x5, ONEFORALL_5x5, FIRSTBLOOD_1x1, FIRSTBLOOD_2x2, SR_6x6, URF_5x5, ONEFORALL_MIRRORMODE_5x5, BOT_URF_5x5, NIGHTMARE_BOT_5x5_RANK1, NIGHTMARE_BOT_5x5_RANK2, NIGHTMARE_BOT_5x5_RANK5, ASCENSION_5x5, HEXAKILL, KING_PORO_5x5, COUNTER_PICK)
 			 */
-			queueType: string;
+            queueType: string;
 			/**
 			 * Region where the match was played
 			 */
-			region: string;
+            region: string;
 			/**
 			 * Season match was played (Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016)
 			 */
-			season: string;
+            season: string;
 			/**
 			 * Team information
 			 */
-			teams: Team[];
+            teams: Team[];
 			/**
 			 * Match timeline data (not included by default)
 			 */
-			timeline: Timeline;
-		}
+            timeline: Timeline;
+        }
 		
 		/**
 		 * Contains match participant information
 		 */
-		export interface Participant {
+        export interface Participant {
 			/**
 			 * Champion ID
 			 */
-			championId: number;
+            championId: number;
 			/**
 			 * Highest ranked tier achieved for the previous season, if any, otherwise null. Used to display border in game loading screen. (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE, UNRANKED)
 			 */
-			highestAchievedSeasonTier: string;
+            highestAchievedSeasonTier: string;
 			/**
 			 * List of mastery information
 			 */
-			masteries: Mastery[];
+            masteries: Mastery[];
 			/**
 			 * Participant ID
 			 */
-			participantId: number;
+            participantId: number;
 			/**
 			 * List of rune information
 			 */
-			runes: Rune[];
+            runes: Rune[];
 			/**
 			 * First summoner spell ID
 			 */
-			spell1Id: number;
+            spell1Id: number;
 			/**
 			 * Second summoner spell ID
 			 */
-			spell2Id: number;
+            spell2Id: number;
 			/**
 			 * Participant statistics
 			 */
-			stats: ParticipantStats;
+            stats: ParticipantStats;
 			/**
 			 * Team ID
 			 */
-			teamId: number;
+            teamId: number;
 			/**
 			 * Timeline data. Delta fields refer to values for the specified period (e.g., the gold per minute over the first 10 minutes of the game versus the second 20 minutes of the game. Diffs fields refer to the deltas versus the calculated lane opponent(s).
 			 */
-			timeline: ParticipantTimeline;
-		}
+            timeline: ParticipantTimeline;
+        }
 		
 		/**
 		 * Contains participant identity information
 		 */
-		export interface ParticipantIdentity {
+        export interface ParticipantIdentity {
 			/**
 			 * Participant ID
 			 */
-			participantId: number;
+            participantId: number;
 			/**
 			 * Player information
 			 */
-			player: Player;
-		}
+            player: Player;
+        }
 		
 		/**
 		 * Containts team information
 		 */
-		export interface Team {
+        export interface Team {
 			/**
 			 * If game was draft mode, contains banned champion data, otherwise null
 			 */
-			bans: BannedChampion[];
+            bans: BannedChampion[];
 			/**
 			 * Number of times the team killed baron
 			 */
-			baronKills: number;
+            baronKills: number;
 			/**
 			 * If game was a dominion game, specifies the points the team had at game end, otherwise null
 			 */
-			dominionVictoryScore: number;
+            dominionVictoryScore: number;
 			/**
 			 * Number of times the team killed dragon
 			 */
-			dragonKills: number;
+            dragonKills: number;
 			/**
 			 * Flag indicating whether or not the team got the first baron kill
 			 */
-			firstBaron: boolean;
+            firstBaron: boolean;
 			/**
 			 * Flag indicating whether or not the team got first blood
 			 */
-			firstBlood: boolean;
+            firstBlood: boolean;
 			/**
 			 * Flag indicating whether or not the team got the first dragon kill
 			 */
-			firstDragon: boolean;
+            firstDragon: boolean;
 			/**
 			 * Flag indicating whether or not the team destroyed the first inhibitor
 			 */
-			firstInhibitor: boolean;
+            firstInhibitor: boolean;
             /**
 			 * Flag indicating whether or not the team got the first rift herald kill
 			 */
-			firstRiftHerald: boolean;
+            firstRiftHerald: boolean;
 			/**
 			 * Flag indicating whether or not the team destroyed the first tower
 			 */
-			firstTower: boolean;
+            firstTower: boolean;
 			/**
 			 * Number of inhibitors the team destroyed
 			 */
-			inhibitorKills: number;
+            inhibitorKills: number;
 			/**
 			 * Team ID
 			 */
-			teamId: number;
+            teamId: number;
 			/**
 			 * Number of towers the team destroyed
 			 */
-			towerKills: number;
+            towerKills: number;
 			/**
 			 * Number of times the team killed vilemaw
 			 */
-			vilemawKills: number;
+            vilemawKills: number;
 			/**
 			 * Flag indicating whether or not the team won
 			 */
-			winner: boolean;
-		}
+            winner: boolean;
+        }
 		
 		/**
 		 * Contains game timeline information.
 		 */
-		export interface Timeline {
+        export interface Timeline {
 			/**
 			 * Time between each returned frame in milliseconds.
 			 */
-			frameInterval: number;
+            frameInterval: number;
 			/**
 			 * List of timeline frames for the game.
 			 */
-			frames: Frame[];
-		}
+            frames: Frame[];
+        }
 		
 		/**
 		 * Contains mastery information.
 		 */
-		export interface Mastery {
+        export interface Mastery {
 			/**
 			 * Mastery ID
 			 */
-			masteryId: number;
+            masteryId: number;
 			/**
 			 * Mastery rank
 			 */
-			rank: number;
-		}
+            rank: number;
+        }
 		
 		/**
 		 * Contains participant statistics information.
 		 */
-		export interface ParticipantStats {
+        export interface ParticipantStats {
 			/**
 			 * Number of assists
 			 */
-			assists: number;
+            assists: number;
 			/**
 			 * Champion level achieved
 			 */
-			champLevel: number;
+            champLevel: number;
 			/**
 			 * If game was a dominion game, player's combat score, otherwise 0
 			 */
-			combatPlayerScore: number;
+            combatPlayerScore: number;
 			/**
 			 * Number of deaths
 			 */
-			deaths: number;
+            deaths: number;
 			/**
 			 * Number of double kills
 			 */
-			doubleKills: number;
+            doubleKills: number;
 			/**
 			 * Flag indicating if participant got an assist on first blood
 			 */
-			firstBloodAssist: boolean;
+            firstBloodAssist: boolean;
 			/**
 			 * Flag indicating if participant got first blood
 			 */
-			firstBloodKill: boolean;
+            firstBloodKill: boolean;
 			/**
 			 * Flag indicating if participant got an assist on the first inhibitor
 			 */
-			firstInhibitorAssist: boolean;
+            firstInhibitorAssist: boolean;
 			/**
 			 * Flag indicating if participant destroyed the first inhibitor
 			 */
-			firstInhibitorKill: boolean;
+            firstInhibitorKill: boolean;
 			/**
 			 * Flag indicating if participant got an assist on the first tower
 			 */
-			firstTowerAssist: boolean;
+            firstTowerAssist: boolean;
 			/**
 			 * Flag indicating if participant destroyed the first tower
 			 */
-			firstTowerKill: boolean;
+            firstTowerKill: boolean;
 			/**
 			 * Gold earned
 			 */
-			goldEarned: number;
+            goldEarned: number;
 			/**
 			 * Gold spent
 			 */
-			goldSpent: number;
+            goldSpent: number;
 			/**
 			 * Number of inhibitor kills
 			 */
-			inhibitorKills: number;
+            inhibitorKills: number;
 			/**
 			 * First item ID
 			 */
-			item0: number;
+            item0: number;
 			/**
 			 * Second item ID
 			 */
-			item1: number;
+            item1: number;
 			/**
 			 * Third item ID
 			 */
-			item2: number;
+            item2: number;
 			/**
 			 * Fourth item ID
 			 */
-			item3: number;
+            item3: number;
 			/**
 			 * Fifth item ID
 			 */
-			item4: number;
+            item4: number;
 			/**
 			 * Sixth item ID
 			 */
-			item5: number;
+            item5: number;
 			/**
 			 * Seventh item ID
 			 */
-			item6: number;
+            item6: number;
 			/**
 			 * Number of killing sprees
 			 */
-			killingSprees: number;
+            killingSprees: number;
 			/**
 			 * Number of kills
 			 */
-			kills: number;
+            kills: number;
 			/**
 			 * Largest critical strike
 			 */
-			largestCriticalStrike: number;
+            largestCriticalStrike: number;
 			/**
 			 * Largest killing spree
 			 */
-			largestKillingSpree: number;
+            largestKillingSpree: number;
 			/**
 			 * Largest multi kill
 			 */
-			largestMultiKill: number;
+            largestMultiKill: number;
 			/**
 			 * Magical damage dealt
 			 */
-			magicDamageDealt: number;
+            magicDamageDealt: number;
 			/**
 			 * Magical damage dealt to champions
 			 */
-			magicDamageDealtToChampions: number;
+            magicDamageDealtToChampions: number;
 			/**
 			 * Magic damage taken
 			 */
-			magicDamageTaken: number;
+            magicDamageTaken: number;
 			/**
 			 * Minions killed
 			 */
-			minionsKilled: number;
+            minionsKilled: number;
 			/**
 			 * Neutral minions killed
 			 */
-			neutralMinionsKilled: number;
+            neutralMinionsKilled: number;
 			/**
 			 * Neutral jungle minions killed in the enemy team's jungle
 			 */
-			neutralMinionsKilledEnemyJungle: number;
+            neutralMinionsKilledEnemyJungle: number;
 			/**
 			 * Neutral jungle minions killed in your team's jungle
 			 */
-			neutralMinionsKilledTeamJungle: number;
+            neutralMinionsKilledTeamJungle: number;
 			/**
 			 * If game was a dominion game, number of node captures
 			 */
-			nodeCapture: number;
+            nodeCapture: number;
 			/**
 			 * If game was a dominion game, number of node capture assists
 			 */
-			nodeCaptureAssist: number;
+            nodeCaptureAssist: number;
 			/**
 			 * If game was a dominion game, number of node neutralizations
 			 */
-			nodeNeutralize: number;
+            nodeNeutralize: number;
 			/**
 			 * If game was a dominion game, number of node neutralization assists
 			 */
-			nodeNeutralizeAssist: number;
+            nodeNeutralizeAssist: number;
 			/**
 			 * If game was a dominion game, player's objectives score, otherwise 0
 			 */
-			objectivePlayerScore: number;
+            objectivePlayerScore: number;
 			/**
 			 * Number of penta kills
 			 */
-			pentaKills: number;
+            pentaKills: number;
 			/**
 			 * Physical damage dealt
 			 */
-			physicalDamageDealt: number;
+            physicalDamageDealt: number;
 			/**
 			 * Physical damage dealt to champions
 			 */
-			physicalDamageDealtToChampions: number;
+            physicalDamageDealtToChampions: number;
 			/**
 			 * Physical damage taken
 			 */
-			physicalDamageTaken: number;
+            physicalDamageTaken: number;
 			/**
 			 * Number of quadra kills
 			 */
-			quadraKills: number;
+            quadraKills: number;
 			/**
 			 * Sight wards purchased
 			 */
-			sightWardsBoughtInGame: number;
+            sightWardsBoughtInGame: number;
 			/**
 			 * If game was a dominion game, number of completed team objectives (i.e., quests)
 			 */
-			teamObjective: number;
+            teamObjective: number;
 			/**
 			 * Total damage dealt
 			 */
-			totalDamageDealt: number;
+            totalDamageDealt: number;
 			/**
 			 * Total damage dealt to champions
 			 */
-			totalDamageDealtToChampions: number;
+            totalDamageDealtToChampions: number;
 			/**
 			 * Total damage taken
 			 */
-			totalDamageTaken: number;
+            totalDamageTaken: number;
 			/**
 			 * Total heal amount
 			 */
-			totalHeal: number;
+            totalHeal: number;
 			/**
 			 * If game was a dominion game, player's total score, otherwise 0
 			 */
-			totalPlayerScore: number;
+            totalPlayerScore: number;
 			/**
 			 * If game was a dominion game, team rank of the player's total score (e.g., 1-5)
 			 */
-			totalScoreRank: number;
+            totalScoreRank: number;
 			/**
 			 * Total dealt crowd control time
 			 */
-			totalTimeCrowdControlDealt: number;
+            totalTimeCrowdControlDealt: number;
 			/**
 			 * Total units healed
 			 */
-			totalUnitsHealed: number;
+            totalUnitsHealed: number;
 			/**
 			 * Number of tower kills
 			 */
-			towerKills: number;
+            towerKills: number;
 			/**
 			 * Number of triple kills
 			 */
-			tripleKills: number;
+            tripleKills: number;
 			/**
 			 * True damage dealt
 			 */
-			trueDamageDealt: number;
+            trueDamageDealt: number;
 			/**
 			 * True damage dealt to champions
 			 */
-			trueDamageDealtToChampions: number;
+            trueDamageDealtToChampions: number;
 			/**
 			 * True damage taken
 			 */
-			trueDamageTaken: number;
+            trueDamageTaken: number;
 			/**
 			 * Number of unreal kills
 			 */
-			unrealKills: number;
+            unrealKills: number;
 			/**
 			 * Vision wards purchased
 			 */
-			visionWardsBoughtInGame: number;
+            visionWardsBoughtInGame: number;
 			/**
 			 * Number of wards killed
 			 */
-			wardsKilled: number;
+            wardsKilled: number;
 			/**
 			 * Number of wards placed
 			 */
-			wardsPlaced: number;
+            wardsPlaced: number;
 			/**
 			 * Flag indicating whether or not the participant won
 			 */
-			winner: boolean;
-		}
+            winner: boolean;
+        }
 		
 		/**
 		 * Contains all timeline information.
 		 */
-		export interface ParticipantTimeline {
+        export interface ParticipantTimeline {
 			/**
 			 * Ancient golem assists per minute timeline counts
 			 */
-			ancientGolemAssistsPerMinCounts: ParticipantTimelineData;
+            ancientGolemAssistsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Ancient golem kills per minute timeline counts
 			 */
-			ancientGolemKillsPerMinCounts: ParticipantTimelineData;
+            ancientGolemKillsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Assisted lane deaths per minute timeline data
 			 */
-			assistedLaneDeathsPerMinDeltas: ParticipantTimelineData;
+            assistedLaneDeathsPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Assisted lane kills per minute timeline data
 			 */
-			assistedLaneKillsPerMinDeltas: ParticipantTimelineData;
+            assistedLaneKillsPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Baron assists per minute timeline counts
 			 */
-			baronAssistsPerMinCounts: ParticipantTimelineData;
+            baronAssistsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Baron kills per minute timeline counts
 			 */
-			baronKillsPerMinCounts: ParticipantTimelineData;
+            baronKillsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Creeps per minute timeline data
 			 */
-			creepsPerMinDeltas: ParticipantTimelineData;
+            creepsPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Creep score difference per minute timeline data
 			 */
-			csDiffPerMinDeltas: ParticipantTimelineData;
+            csDiffPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Damage taken difference per minute timeline data
 			 */
-			damageTakenDiffPerMinDeltas: ParticipantTimelineData;
+            damageTakenDiffPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Damage taken per minute timeline data
 			 */
-			damageTakenPerMinDeltas: ParticipantTimelineData;
+            damageTakenPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Dragon assists per minute timeline counts
 			 */
-			dragonAssistsPerMinCounts: ParticipantTimelineData;
+            dragonAssistsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Dragon kills per minute timeline counts
 			 */
-			dragonKillsPerMinCounts: ParticipantTimelineData;
+            dragonKillsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Elder lizard assists per minute timeline counts
 			 */
-			elderLizardAssistsPerMinCounts: ParticipantTimelineData;
+            elderLizardAssistsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Elder lizard kills per minute timeline counts
 			 */
-			elderLizardKillsPerMinCounts: ParticipantTimelineData;
+            elderLizardKillsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Gold per minute timeline data
 			 */
-			goldPerMinDeltas: ParticipantTimelineData;
+            goldPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Inhibitor assists per minute timeline counts
 			 */
-			inhibitorAssistsPerMinCounts: ParticipantTimelineData;
+            inhibitorAssistsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Inhibitor kills per minute timeline counts
 			 */
-			inhibitorKillsPerMinCounts: ParticipantTimelineData;
+            inhibitorKillsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Participant's lane (Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM)
 			 */
-			lane: string;
+            lane: string;
 			/**
 			 * Participant's role (Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT)
 			 */
-			role: string;
+            role: string;
 			/**
 			 * Tower assists per minute timeline counts
 			 */
-			towerAssistsPerMinCounts: ParticipantTimelineData;
+            towerAssistsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Tower kills per minute timeline counts
 			 */
-			towerKillsPerMinCounts: ParticipantTimelineData;
+            towerKillsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Tower kills per minute timeline data
 			 */
-			towerKillsPerMinDeltas: ParticipantTimelineData;
+            towerKillsPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Vilemaw assists per minute timeline counts
 			 */
-			vilemawAssistsPerMinCounts: ParticipantTimelineData;
+            vilemawAssistsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Vilemaw kills per minute timeline counts
 			 */
-			vilemawKillsPerMinCounts: ParticipantTimelineData;
+            vilemawKillsPerMinCounts: ParticipantTimelineData;
 			/**
 			 * Wards placed per minute timeline data
 			 */
-			wardsPerMinDeltas: ParticipantTimelineData;
+            wardsPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Experience difference per minute timeline data
 			 */
-			xpDiffPerMinDeltas: ParticipantTimelineData;
+            xpDiffPerMinDeltas: ParticipantTimelineData;
 			/**
 			 * Experience per minute timeline data
 			 */
-			xpPerMinDeltas: ParticipantTimelineData;
-		}
+            xpPerMinDeltas: ParticipantTimelineData;
+        }
 		
 		/**
 		 * Contains rune information.
 		 */
-		export interface Rune {
+        export interface Rune {
 			/**
 			 * Rune rank
 			 */
-			rank: number;
+            rank: number;
 			/**
 			 * Rune ID
 			 */
-			runeId: number;
-		}
+            runeId: number;
+        }
 		
 		/**
 		 * Contains match player information.
 		 */
-		export interface Player {
+        export interface Player {
 			/**
 			 * Match history URI
 			 */
-			matchHistoryUri: string;
+            matchHistoryUri: string;
 			/**
 			 * Profile icon ID
 			 */
-			profileIcon: number;
+            profileIcon: number;
 			/**
 			 * Summoner ID
 			 */
-			summonerId: number;
+            summonerId: number;
 			/**
 			 * Summoner name
 			 */
-			summonerName: string;
-		}
+            summonerName: string;
+        }
 		
 		/**
 		 * Contains information about banned champions.
 		 */
-		export interface BannedChampion {
+        export interface BannedChampion {
 			/**
 			 * Banned champion ID
 			 */
-			championId: number;
+            championId: number;
 			/**
 			 * Turn during which the champion was banned
 			 */
-			pickTurn: number;
-		}
+            pickTurn: number;
+        }
 		
 		/**
 		 * Contains contains game frame information.
 		 */
-		export interface Frame {
+        export interface Frame {
 			/**
 			 * List of events for this frame.
 			 */
-			events: Event[];
+            events: Event[];
 			/**
 			 * Map of each participant ID to the participant's information for the frame.
 			 */
-			participantFrames: { [s: string]: ParticipantFrame; };
+            participantFrames: { [s: string]: ParticipantFrame; };
 			/**
 			 * Represents how many milliseconds into the game the frame occurred.
 			 */
-			timestamp: number;
-		}
+            timestamp: number;
+        }
 		
 		/**
 		 * Contains timeline data.
 		 */
-		export interface ParticipantTimelineData {
+        export interface ParticipantTimelineData {
 			/**
 			 * Value per minute from 10 min to 20 min
 			 */
-			tenToTwenty: number;
+            tenToTwenty: number;
 			/**
 			 * Value per minute from 30 min to the end of the game
 			 */
-			thirtyToEnd: number;
+            thirtyToEnd: number;
 			/**
 			 * Value per minute from 20 min to 30 min
 			 */
-			twentyToThirty: number;
+            twentyToThirty: number;
 			/**
 			 * Value per minute from the beginning of the game to 10 min
 			 */
-			zeroToTen: number;
-		}
+            zeroToTen: number;
+        }
 		
 		/**
 		 * Contains game event information. Note that not all legal type values documented below are valid for all games. Event data evolves over time and certain values may be relevant only for older or newer games.
 		 */
-		export interface Event {
+        export interface Event {
 			/**
 			 * The ascended type of the event. Only present if relevant. Note that CLEAR_ASCENDED refers to when a participants kills the ascended player. (Legal values: CHAMPION_ASCENDED, CLEAR_ASCENDED, MINION_ASCENDED)
 			 */
-			ascendedType: string;
+            ascendedType: string;
 			/**
 			 * The assisting participant IDs of the event. Only present if relevant.
 			 */
-			assistingParticipantIds: number[];
+            assistingParticipantIds: number[];
 			/**
 			 * The building type of the event. Only present if relevant. (Legal values: INHIBITOR_BUILDING, TOWER_BUILDING)
 			 */
-			buildingType: string;
+            buildingType: string;
 			/**
 			 * The creator ID of the event. Only present if relevant.
 			 */
-			creatorId: number;
+            creatorId: number;
 			/**
 			 * Event type. (Legal values: ASCENDED_EVENT, BUILDING_KILL, CAPTURE_POINT, CHAMPION_KILL, ELITE_MONSTER_KILL, ITEM_DESTROYED, ITEM_PURCHASED, ITEM_SOLD, ITEM_UNDO, PORO_KING_SUMMON, SKILL_LEVEL_UP, WARD_KILL, WARD_PLACED)
 			 */
-			eventType: string;
+            eventType: string;
 			/**
 			 * The ending item ID of the event. Only present if relevant.
 			 */
-			itemAfter: number;
+            itemAfter: number;
 			/**
 			 * The starting item ID of the event. Only present if relevant.
 			 */
-			itemBefore: number;
+            itemBefore: number;
 			/**
 			 * The item ID of the event. Only present if relevant.
 			 */
-			itemId: number;
+            itemId: number;
 			/**
 			 * The killer ID of the event. Only present if relevant. Killer ID 0 indicates a minion.
 			 */
-			killerId: number;
+            killerId: number;
 			/**
 			 * The lane type of the event. Only present if relevant. (Legal values: BOT_LANE, MID_LANE, TOP_LANE)
 			 */
-			laneType: string;
+            laneType: string;
 			/**
 			 * The level up type of the event. Only present if relevant. (Legal values: EVOLVE, NORMAL)
 			 */
-			levelUpType: string;
+            levelUpType: string;
 			/**
 			 * The monster type of the event. Only present if relevant. (Legal values: BARON_NASHOR, BLUE_GOLEM, DRAGON, RED_LIZARD, VILEMAW, RIFTHERALD)
 			 */
-			monsterType: string;
+            monsterType: string;
 			/**
 			 * The participant ID of the event. Only present if relevant.
 			 */
-			participantId: number;
+            participantId: number;
 			/**
 			 * The point captured in the event. Only present if relevant. (Legal values: POINT_A, POINT_B, POINT_C, POINT_D, POINT_E)
 			 */
-			pointCaptured: string;
+            pointCaptured: string;
 			/**
 			 * The position of the event. Only present if relevant.
 			 */
-			position: Position;
+            position: Position;
 			/**
 			 * The skill slot of the event. Only present if relevant.
 			 */
-			skillSlot: number;
+            skillSlot: number;
 			/**
 			 * The team ID of the event. Only present if relevant.
 			 */
-			teamId: number;
+            teamId: number;
 			/**
 			 * Represents how many milliseconds into the game the event occurred.
 			 */
-			timestamp: number;
+            timestamp: number;
 			/**
 			 * The tower type of the event. Only present if relevant. (Legal values: BASE_TURRET, FOUNTAIN_TURRET, INNER_TURRET, NEXUS_TURRET, OUTER_TURRET, UNDEFINED_TURRET)
 			 */
-			towerType: string;
+            towerType: string;
 			/**
 			 * The victim ID of the event. Only present if relevant.
 			 */
-			victimId: number;
+            victimId: number;
 			/**
 			 * The ward type of the event. Only present if relevant. (Legal values: SIGHT_WARD, TEEMO_MUSHROOM, UNDEFINED, VISION_WARD, YELLOW_TRINKET, YELLOW_TRINKET_UPGRADE)
 			 */
-			wardType: string;
-		}
+            wardType: string;
+        }
 		
 		/**
 		 * Contains participant frame information.
 		 */
-		export interface ParticipantFrame {
+        export interface ParticipantFrame {
 			/**
 			 * Participant's current gold
 			 */
-			currentGold: number;
+            currentGold: number;
 			/**
 			 * Dominion score of the participant
 			 */
-			dominionScore: number;
+            dominionScore: number;
 			/**
 			 * Number of jungle minions killed by participant
 			 */
-			jungleMinionsKilled: number;
+            jungleMinionsKilled: number;
 			/**
 			 * Participant's current level
 			 */
-			level: number;
+            level: number;
 			/**
 			 * Number of minions killed by participant
 			 */
-			minionsKilled: number;
+            minionsKilled: number;
 			/**
 			 * Participant ID
 			 */
-			participantId: number;
+            participantId: number;
 			/**
 			 * Participant's position
 			 */
-			position: Position;
+            position: Position;
 			/**
 			 * Team score of the participant
 			 */
-			teamScore: number;
+            teamScore: number;
 			/**
 			 * Participant's total gold
 			 */
-			totalGold: number;
+            totalGold: number;
 			/**
 			 * Experience earned by participant
 			 */
-			xp: number;
-		}
+            xp: number;
+        }
 		
 		/**
 		 * Contains participant frame position information.
 		 */
-		export interface Position {
+        export interface Position {
 			/**
 			 * 
 			 */
-			x: number;
+            x: number;
 			/**
 			 * 
 			 */
-			y: number;
-		}
-	}
+            y: number;
+        }
+    }
 	
 	/**
 	 * matchlist-v2.2
 	 */
-	export module matchlist {
+    export module matchlist {
         /**
-         * Contains all operations of the endpoint.
+         * Retrieve match list by summoner ID. (REST)
+         * Should call GET /api/lol/{region}/v2.2/matchlist/by-summoner/{summonerId}
+         * @param region       The region of the summoner.
+         * @param summonerId   The ID of the summoner.
+         * @param championIds  Comma-separated list of champion IDs to use for fetching games.
+         * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
+         * @param seasons      Comma-separated list of seasons to use for fetching games.
+         * @param beginTime    The begin time to use for fetching games specified as epoch milliseconds.
+         * @param endTime      The end time to use for fetching games specified as epoch milliseconds.
+         * @param beginIndex   The begin index to use for fetching games.
+         * @param endIndex     The end index to use for fetching games.
          */
-        export interface Endpoint {
-            /**
-             * Retrieve match list by summoner ID. (REST)
-             * Should call GET /api/lol/{region}/v2.2/matchlist/by-summoner/{summonerId}
-             * @param region       The region of the summoner.
-             * @param summonerId   The ID of the summoner.
-             * @param championIds  Comma-separated list of champion IDs to use for fetching games.
-             * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
-             * @param seasons      Comma-separated list of seasons to use for fetching games.
-             * @param beginTime    The begin time to use for fetching games specified as epoch milliseconds.
-             * @param endTime      The end time to use for fetching games specified as epoch milliseconds.
-             * @param beginIndex   The begin index to use for fetching games.
-             * @param endIndex     The end index to use for fetching games.
-             */
-            matchListBySummonerId(
-                region: string,
-                summonerId: number,
-                championIds: string,
-                rankedQueues: string,
-                seasons: string,
-                beginTime: number,
-                endTime: number,
-                beginIndex: number,
-                endIndex: number
-            ): MatchList;
-        }
+        export function matchListBySummonerId(
+            region: string,
+            summonerId: number,
+            championIds: string,
+            rankedQueues: string,
+            seasons: string,
+            beginTime: number,
+            endTime: number,
+            beginIndex: number,
+            endIndex: number
+        ): MatchList;
+
 		/**
 		 * This object contains match list information
 		 */
-		export interface MatchList {
+        export interface MatchList {
 			/**
 			 * 
 			 */
-			endIndex: number;
+            endIndex: number;
 			/**
 			 * 
 			 */
-			matches: MatchReference[];
+            matches: MatchReference[];
 			/**
 			 * 
 			 */
-			startIndex: number;
+            startIndex: number;
 			/**
 			 * 
 			 */
-			totalGames: number;
-		}
+            totalGames: number;
+        }
 		
 		/**
 		 * This object contains match reference information
 		 */
-		export interface MatchReference {
+        export interface MatchReference {
 			/**
 			 * 
 			 */
-			champion: number;
+            champion: number;
 			/**
 			 * Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM
 			 */
-			lane: string;
+            lane: string;
 			/**
 			 * 
 			 */
-			matchId: number;
+            matchId: number;
 			/**
 			 * 
 			 */
-			platformId: string;
+            platformId: string;
 			/**
 			 * Legal values: RANKED_SOLO_5x5, RANKED_TEAM_3x3, RANKED_TEAM_5x5
 			 */
-			queue: string;
+            queue: string;
 			/**
 			 * Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT
 			 */
-			role: string;
+            role: string;
 			/**
 			 * Legal values: PRESEASON3, SEASON3, PRESEASON2014, SEASON2014, PRESEASON2015, SEASON2015, PRESEASON2016, SEASON2016
 			 */
-			season: string;
+            season: string;
 			/**
 			 * 
 			 */
-			timestamp: number;
-		}
-	}
+            timestamp: number;
+        }
+    }
 	
 	/**
 	 * stats-v1.3
 	 */
-	export module stats {
+    export module stats {
         /**
-         * Contains all operations of the endpoint.
+         * Get ranked stats by summoner ID. (REST)
+         * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked
+         * @param region     Region where to retrieve the data.
+         * @param summonerId ID of the summoner for which to retrieve ranked stats.
+         * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
          */
-        export interface Endpoint {
-            /**
-             * Get ranked stats by summoner ID. (REST)
-             * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked
-             * @param region     Region where to retrieve the data.
-             * @param summonerId ID of the summoner for which to retrieve ranked stats.
-             * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-             */
-            rankedBySummonerId(
-                region: string,
-                summonerId: number,
-                season: string
-            ): RankedStatsDto;
+        export function rankedBySummonerId(
+            region: string,
+            summonerId: number,
+            season: string
+        ): RankedStatsDto;
 
-            /**
-             * Get player stats summaries by summoner ID. (REST)
-             * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/summary
-             * @param region     Region where to retrieve the data.
-             * @param summonerId ID of the summoner for which to retrieve player stats.
-             * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-             */
-            SummaryBySummonerId(
-                region: string,
-                summonerId: number,
-                season: string
-            ): PlayerStatsSummaryListDto;
-        }
+        /**
+         * Get player stats summaries by summoner ID. (REST)
+         * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/summary
+         * @param region     Region where to retrieve the data.
+         * @param summonerId ID of the summoner for which to retrieve player stats.
+         * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+         */
+        export function SummaryBySummonerId(
+            region: string,
+            summonerId: number,
+            season: string
+        ): PlayerStatsSummaryListDto;
         
 		/**
 		 * Contains ranked stats information
 		 */
-		export interface RankedStatsDto {
+        export interface RankedStatsDto {
 			/**
 			 * Collection of aggregated stats summarized by champion.
 			 */
-			champions: ChampionStatsDto[];
+            champions: ChampionStatsDto[];
 			/**
 			 * Date stats were last modified specified as epoch milliseconds.
 			 */
-			modifyDate: number;
+            modifyDate: number;
 			/**
 			 * Summoner ID.
 			 */
-			summonerId: number;
-		}
+            summonerId: number;
+        }
 		
 		/**
 		 * Contains a collection of champion stats information
 		 */
-		export interface ChampionStatsDto {
+        export interface ChampionStatsDto {
 			/**
 			 * Champion ID. Note that champion ID 0 represents the combined stats for all champions. For static information correlating to champion IDs, please refer to the LoL Static Data API.
 			 */
-			id: number;
+            id: number;
 			/**
 			 * Aggregated stats associated with the champion.
 			 */
-			stats: AggregatedStatsDto;
-		}
+            stats: AggregatedStatsDto;
+        }
 		
 		/**
 		 * Contains aggregated stat information
 		 */
-		export interface AggregatedStatsDto {
+        export interface AggregatedStatsDto {
 			/**
 			 * Dominion only.
 			 */
-			averageAssists: number;
+            averageAssists: number;
 			/**
 			 * Dominion only.
 			 */
-			averageChampionsKilled: number;
+            averageChampionsKilled: number;
 			/**
 			 * Dominion only.
 			 */
-			averageCombatPlayerScore: number;
+            averageCombatPlayerScore: number;
 			/**
 			 * Dominion only.
 			 */
-			averageNodeCapture: number;
+            averageNodeCapture: number;
 			/**
 			 * Dominion only.
 			 */
-			averageNodeCaptureAssist: number;
+            averageNodeCaptureAssist: number;
 			/**
 			 * Dominion only.
 			 */
-			averageNodeNeutralize: number;
+            averageNodeNeutralize: number;
 			/**
 			 * Dominion only.
 			 */
-			averageNodeNeutralizeAssist: number;
+            averageNodeNeutralizeAssist: number;
 			/**
 			 * Dominion only.
 			 */
-			averageNumDeaths: number;
+            averageNumDeaths: number;
 			/**
 			 * Dominion only.
 			 */
-			averageObjectivePlayerScore: number;
+            averageObjectivePlayerScore: number;
 			/**
 			 * Dominion only.
 			 */
-			averageTeamObjective: number;
+            averageTeamObjective: number;
 			/**
 			 * Dominion only.
 			 */
-			averageTotalPlayerScore: number;
+            averageTotalPlayerScore: number;
 			/**
 			 * 
 			 */
-			botGamesPlayed: number;
+            botGamesPlayed: number;
 			/**
 			 * 
 			 */
-			killingSpree: number;
+            killingSpree: number;
 			/**
 			 * Dominion only.
 			 */
-			maxAssists: number;
+            maxAssists: number;
 			/**
 			 * 
 			 */
-			maxChampionsKilled: number;
+            maxChampionsKilled: number;
 			/**
 			 * Dominion only.
 			 */
-			maxCombatPlayerScore: number;
+            maxCombatPlayerScore: number;
 			/**
 			 * 
 			 */
-			maxLargestCriticalStrike: number;
+            maxLargestCriticalStrike: number;
 			/**
 			 * 
 			 */
-			maxLargestKillingSpree: number;
+            maxLargestKillingSpree: number;
 			/**
 			 * Dominion only.
 			 */
-			maxNodeCapture: number;
+            maxNodeCapture: number;
 			/**
 			 * Dominion only.
 			 */
-			maxNodeCaptureAssist: number;
+            maxNodeCaptureAssist: number;
 			/**
 			 * Dominion only.
 			 */
-			maxNodeNeutralize: number;
+            maxNodeNeutralize: number;
 			/**
 			 * Dominion only.
 			 */
-			maxNodeNeutralizeAssist: number;
+            maxNodeNeutralizeAssist: number;
 			/**
 			 * Only returned for ranked statistics.
 			 */
-			maxNumDeaths: number;
+            maxNumDeaths: number;
 			/**
 			 * Dominion only.
 			 */
-			maxObjectivePlayerScore: number;
+            maxObjectivePlayerScore: number;
 			/**
 			 * Dominion only.
 			 */
-			maxTeamObjective: number;
+            maxTeamObjective: number;
 			/**
 			 * 
 			 */
-			maxTimePlayed: number;
+            maxTimePlayed: number;
 			/**
 			 * 
 			 */
-			maxTimeSpentLiving: number;
+            maxTimeSpentLiving: number;
 			/**
 			 * Dominion only.
 			 */
-			maxTotalPlayerScore: number;
+            maxTotalPlayerScore: number;
 			/**
 			 * 
 			 */
-			mostChampionKillsPerSession: number;
+            mostChampionKillsPerSession: number;
 			/**
 			 * 
 			 */
-			mostSpellsCast: number;
+            mostSpellsCast: number;
 			/**
 			 * 
 			 */
-			normalGamesPlayed: number;
+            normalGamesPlayed: number;
 			/**
 			 * 
 			 */
-			rankedPremadeGamesPlayed: number;
+            rankedPremadeGamesPlayed: number;
 			/**
 			 * 
 			 */
-			rankedSoloGamesPlayed: number;
+            rankedSoloGamesPlayed: number;
 			/**
 			 * 
 			 */
-			totalAssists: number;
+            totalAssists: number;
 			/**
 			 * 
 			 */
-			totalChampionKills: number;
+            totalChampionKills: number;
 			/**
 			 * 
 			 */
-			totalDamageDealt: number;
+            totalDamageDealt: number;
 			/**
 			 * 
 			 */
-			totalDamageTaken: number;
+            totalDamageTaken: number;
 			/**
 			 * Only returned for ranked statistics.
 			 */
-			totalDeathsPerSession: number;
+            totalDeathsPerSession: number;
 			/**
 			 * 
 			 */
-			totalDoubleKills: number;
+            totalDoubleKills: number;
 			/**
 			 * 
 			 */
-			totalFirstBlood: number;
+            totalFirstBlood: number;
 			/**
 			 * 
 			 */
-			totalGoldEarned: number;
+            totalGoldEarned: number;
 			/**
 			 * 
 			 */
-			totalHeal: number;
+            totalHeal: number;
 			/**
 			 * 
 			 */
-			totalMagicDamageDealt: number;
+            totalMagicDamageDealt: number;
 			/**
 			 * 
 			 */
-			totalMinionKills: number;
+            totalMinionKills: number;
 			/**
 			 * 
 			 */
-			totalNeutralMinionsKilled: number;
+            totalNeutralMinionsKilled: number;
 			/**
 			 * Dominion only.
 			 */
-			totalNodeCapture: number;
+            totalNodeCapture: number;
 			/**
 			 * Dominion only.
 			 */
-			totalNodeNeutralize: number;
+            totalNodeNeutralize: number;
 			/**
 			 * 
 			 */
-			totalPentaKills: number;
+            totalPentaKills: number;
 			/**
 			 * 
 			 */
-			totalPhysicalDamageDealt: number;
+            totalPhysicalDamageDealt: number;
 			/**
 			 * 
 			 */
-			totalQuadraKills: number;
+            totalQuadraKills: number;
 			/**
 			 * 
 			 */
-			totalSessionsLost: number;
+            totalSessionsLost: number;
 			/**
 			 * 
 			 */
-			totalSessionsPlayed: number;
+            totalSessionsPlayed: number;
 			/**
 			 * 
 			 */
-			totalSessionsWon: number;
+            totalSessionsWon: number;
 			/**
 			 * 
 			 */
-			totalTripleKills: number;
+            totalTripleKills: number;
 			/**
 			 * 
 			 */
-			totalTurretsKilled: number;
+            totalTurretsKilled: number;
 			/**
 			 * 
 			 */
-			totalUnrealKills: number;
-		}
+            totalUnrealKills: number;
+        }
         
         /**
 		 * Contains a collection of player stats summary information.
 		 */
-		export interface PlayerStatsSummaryListDto {
+        export interface PlayerStatsSummaryListDto {
 			/**
 			 * Collection of player stats summaries associated with the summoner.
 			 */
-			playerStatSummaries: PlayerStatsSummaryDto[];
+            playerStatSummaries: PlayerStatsSummaryDto[];
 			/**
 			 * Summoner ID.
 			 */
-			summonerId: number;
-		}
+            summonerId: number;
+        }
         
         /**
 		 * Contains player stats summary information.
 		 */
-		export interface PlayerStatsSummaryDto  {
+        export interface PlayerStatsSummaryDto {
 			/**
 			 * Aggregated stats.
 			 */
-			aggregatedStats: AggregatedStatsDto;
+            aggregatedStats: AggregatedStatsDto;
 			/**
 			 * Number of losses for this queue type. Returned for ranked queue types only.
 			 */
-			losses: number;
+            losses: number;
             /**
 			 * Date stats were last modified specified as epoch milliseconds.
 			 */
-			modifyDate: number;
+            modifyDate: number;
             /**
 			 * Player stats summary type. (Legal values: AramUnranked5x5, Ascension, CAP5x5, CoopVsAI, CoopVsAI3x3, CounterPick, FirstBlood1x1, FirstBlood2x2, Hexakill, KingPoro, NightmareBot, OdinUnranked, OneForAll5x5, RankedPremade3x3, RankedPremade5x5, RankedSolo5x5, RankedTeam3x3, RankedTeam5x5, SummonersRift6x6, Unranked, Unranked3x3, URF, URFBots, Bilgewater)
 			 */
-			playerStatSummaryType: string;
+            playerStatSummaryType: string;
             /**
 			 * Number of wins for this queue type.
 			 */
-			wins: number;
-		}
-	}
+            wins: number;
+        }
+    }
 	
 	/**
 	 * summoner-v1.4
 	 */
-	export module summoner {
-        export interface Endpoint {
-            /**
-             * Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
-             * Should call GET /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
-             * @param region        Region where to retrieve the data.
-             * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
-             */
-            summonerByNames(
-                region: string,
-                summonerNames: string
-            ): { [s: string]: SummonerDto; };
+    export module summoner {
+        /**
+         * Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
+         * Should call GET /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
+         * @param region        Region where to retrieve the data.
+         * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
+         */
+        export function summonerByNames(
+            region: string,
+            summonerNames: string
+        ): { [s: string]: SummonerDto; };
 
-            /**
-             * Get summoner objects mapped by summoner ID for a given list of summoner IDs. (REST)
-             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}
-             * @param region      Region where to retrieve the data.
-             * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
-             */
-            summonerBySummonerIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: SummonerDto; };
+        /**
+         * Get summoner objects mapped by summoner ID for a given list of summoner IDs. (REST)
+         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}
+         * @param region      Region where to retrieve the data.
+         * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
+         */
+        export function summonerBySummonerIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: SummonerDto; };
 
-            /**
-             * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
-             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/masteries
-             * @param region      Region where to retrieve the data.
-             * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
-             */
-            masteryBySummonerIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: MasteryPagesDto; };
+        /**
+         * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
+         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/masteries
+         * @param region      Region where to retrieve the data.
+         * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
+         */
+        export function masteryBySummonerIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: MasteryPagesDto; };
 
-            /**
-             * Get summoner names mapped by summoner ID for a given list of summoner IDs. (REST)
-             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/name
-             * @param region      Region where to retrieve the data.
-             * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
-             */
-            namesBySummonerIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: string; };
+        /**
+         * Get summoner names mapped by summoner ID for a given list of summoner IDs. (REST)
+         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/name
+         * @param region      Region where to retrieve the data.
+         * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
+         */
+        export function namesBySummonerIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: string; };
 
-            /**
-             * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
-             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/runes
-             * @param region      Region where to retrieve the data.
-             * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
-             */
-            runesBySummonerIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: RunePagesDto; };
-        }
+        /**
+         * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
+         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/runes
+         * @param region      Region where to retrieve the data.
+         * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
+         */
+        export function runesBySummonerIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: RunePagesDto; };
 
 		/**
 		 * Contains summoner information
 		 */
-		export interface SummonerDto {
+        export interface SummonerDto {
 			/**
 			 * Summoner ID.
 			 */
-			id: number;
+            id: number;
 			/**
 			 * Summoner name.
 			 */
-			name: string;
+            name: string;
 			/**
 			 * ID of the summoner icon associated with the summoner.
 			 */
-			profileIconId: number;
+            profileIconId: number;
 			/**
 			 * Date summoner was last modified specified as epoch milliseconds. The following events will update this timestamp: profile icon change, playing the tutorial or advanced tutorial, finishing a game, summoner name change
 			 */
-			revisionDate: number;
+            revisionDate: number;
 			/**
 			 * Summoner level associated with the summoner.
 			 */
-			summonerLevel: number;
-		}
+            summonerLevel: number;
+        }
 		
 		/**
 		 * Contains masteries information
 		 */
-		export interface MasteryPagesDto {
+        export interface MasteryPagesDto {
 			/**
 			 * Collection of mastery pages associated with the summoner.
 			 */
-			pages: MasteryPageDto[];
+            pages: MasteryPageDto[];
 			/**
 			 * Summoner ID.
 			 */
-			summonerId: number;
-		}
+            summonerId: number;
+        }
 		
 		/**
 		 * Contains mastery page information
 		 */
-		export interface MasteryPageDto {
+        export interface MasteryPageDto {
 			/**
 			 * Indicates if the mastery page is the current mastery page.
 			 */
-			current: boolean;
+            current: boolean;
 			/**
 			 * Mastery page ID.
 			 */
-			id: number;
+            id: number;
 			/**
 			 * Collection of masteries associated with the mastery page.
 			 */
-			masteries: MasteryDto[];
+            masteries: MasteryDto[];
 			/**
 			 * Mastery page name.
 			 */
-			name: string;
-		}
+            name: string;
+        }
 		
 		/**
 		 * Contains mastery information
 		 */
-		export interface MasteryDto {
+        export interface MasteryDto {
 			/**
 			 * Mastery ID. For static information correlating to masteries, please refer to the LoL Static Data API.
 			 */
-			id: number;
+            id: number;
 			/**
 			 * Mastery rank (i.e., the number of points put into this mastery).
 			 */
-			rank: number;
-		}
+            rank: number;
+        }
 		
 		/**
 		 * Contains rune pages information
 		 */
-		export interface RunePagesDto {
+        export interface RunePagesDto {
 			/**
 			 * Collection of rune pages associated with the summoner.
 			 */
-			pages: RunePageDto[];
+            pages: RunePageDto[];
 			/**
 			 * Summoner ID.
 			 */
-			summonerId: number;
-		}
+            summonerId: number;
+        }
 
 		/**
 		 * Contains rune page information
 		 */
-		export interface RunePageDto {
+        export interface RunePageDto {
 			/**
 			 * Indicates if the page is the current page.
 			 */
-			current: boolean;
+            current: boolean;
 			/**
 			 * Rune page ID.
 			 */
-			id: number;
+            id: number;
 			/**
 			 * Rune page name.
 			 */
-			name: string;
+            name: string;
 			/**
 			 * Collection of rune slots associated with the rune page.
 			 */
-			slots: RuneSlotDto[];
-		}
+            slots: RuneSlotDto[];
+        }
 		
 		/**
 		 * Contains rune slot information
 		 */
-		export interface RuneSlotDto {
+        export interface RuneSlotDto {
 			/**
 			 * Rune ID associated with the rune slot. For static information correlating to rune IDs, please refer to the LoL Static Data API.
 			 */
-			runeId: number;
+            runeId: number;
 			/**
 			 * Rune slot ID.
 			 */
-			runeSlotId: number;
-		}
-	}
+            runeSlotId: number;
+        }
+    }
 
 	/**
 	 * team-v2.4
 	 */
-	export module team {
-        export interface Endpoint {
-            /**
-             * Get teams mapped by summoner ID for a given list of summoner IDs. (REST)
-             * Should call GET /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
-             * @param region      The region of the summoner.
-             * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
-             */
-            teamsBySummonerIds(
-                region: string,
-                summonerIds: string
-            ): { [s: string]: TeamDto[]; };
+    export module team {
+        /**
+         * Get teams mapped by summoner ID for a given list of summoner IDs. (REST)
+         * Should call GET /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
+         * @param region      The region of the summoner.
+         * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
+         */
+        export function teamsBySummonerIds(
+            region: string,
+            summonerIds: string
+        ): { [s: string]: TeamDto[]; };
 
-            /**
-             * Get teams mapped by team ID for a given list of team IDs. (REST)
-             * Should call GET /api/lol/{region}/v2.4/team/{teamIds}
-             * @param region  The region of the summoner.
-             * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
-             */
-            teamsByTeamIds(
-                region: string,
-                teamIds: string
-            ): { [s: string]: TeamDto; };
-        }
+        /**
+         * Get teams mapped by team ID for a given list of team IDs. (REST)
+         * Should call GET /api/lol/{region}/v2.4/team/{teamIds}
+         * @param region  The region of the summoner.
+         * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+         */
+        export function teamsByTeamIds(
+            region: string,
+            teamIds: string
+        ): { [s: string]: TeamDto; };
         
 		/**
 		 * Contains team information
 		 */
-		export interface TeamDto {
+        export interface TeamDto {
 			/**
 			 * Date that team was created specified as epoch milliseconds.
 			 */
-			createDate: number;
+            createDate: number;
 			/**
 			 * 
 			 */
-			fullId: string;
+            fullId: string;
 			/**
 			 * Date that last game played by team ended specified as epoch milliseconds.
 			 */
-			lastGameDate: number;
+            lastGameDate: number;
 			/**
 			 * Date that last member joined specified as epoch milliseconds.
 			 */
-			lastJoinDate: number;
+            lastJoinDate: number;
 			/**
 			 * Date that team last joined the ranked team queue specified as epoch milliseconds.
 			 */
-			lastJoinedRankedTeamQueueDate: number;
+            lastJoinedRankedTeamQueueDate: number;
 			/**
 			 * 
 			 */
-			matchHistory: MatchHistorySummaryDto[];
+            matchHistory: MatchHistorySummaryDto[];
 			/**
 			 * Date that team was last modified specified as epoch milliseconds.
 			 */
-			modifyDate: number;
+            modifyDate: number;
 			/**
 			 * 
 			 */
-			name: string;
+            name: string;
 			/**
 			 * 
 			 */
-			roster: RosterDto;
+            roster: RosterDto;
 			/**
 			 * Date that second to last member joined specified as epoch milliseconds.
 			 */
-			secondLastJoinDate: number;
+            secondLastJoinDate: number;
 			/**
 			 * 
 			 */
-			status: string;
+            status: string;
 			/**
 			 * 
 			 */
-			tag: string;
+            tag: string;
 			/**
 			 * 
 			 */
-			teamStatDetails: TeamStatDetailDto[];
+            teamStatDetails: TeamStatDetailDto[];
 			/**
 			 * Date that third to last member joined specified as epoch milliseconds.
 			 */
-			thirdLastJoinDate: number;
-		}
+            thirdLastJoinDate: number;
+        }
 
 		/**
 		 * Contains match history summary information
 		 */
-		export interface MatchHistorySummaryDto {
+        export interface MatchHistorySummaryDto {
 			/**
 			 * 
 			 */
-			assists: number;
+            assists: number;
 			/**
 			 * Date that match was completed specified as epoch milliseconds.
 			 */
-			date: number;
+            date: number;
 			/**
 			 * 
 			 */
-			deaths: number;
+            deaths: number;
 			/**
 			 * 
 			 */
-			gameId: number;
+            gameId: number;
 			/**
 			 * 
 			 */
-			gameMode: string;
+            gameMode: string;
 			/**
 			 * 
 			 */
-			invalid: boolean;
+            invalid: boolean;
 			/**
 			 * 
 			 */
-			kills: number;
+            kills: number;
 			/**
 			 * 
 			 */
-			mapId: number;
+            mapId: number;
 			/**
 			 * 
 			 */
-			opposingTeamKills: number;
+            opposingTeamKills: number;
 			/**
 			 * 
 			 */
-			opposingTeamName: string;
+            opposingTeamName: string;
 			/**
 			 * 
 			 */
-			win: boolean;
-		}
+            win: boolean;
+        }
 
 		/**
 		 * Contains roster information
 		 */
-		export interface RosterDto {
+        export interface RosterDto {
 			/**
 			 * 
 			 */
-			memberList: TeamMemberInfoDto[];
+            memberList: TeamMemberInfoDto[];
 			/**
 			 * 
 			 */
-			ownerId: number;
-		}
+            ownerId: number;
+        }
 
 		/**
 		 * Contains team statistics detail information
 		 */
-		export interface TeamStatDetailDto {
+        export interface TeamStatDetailDto {
 			/**
 			 * 
 			 */
-			averageGamesPlayed: number;
+            averageGamesPlayed: number;
 			/**
 			 * 
 			 */
-			losses: number;
+            losses: number;
 			/**
 			 * 
 			 */
-			teamStatType: string;
+            teamStatType: string;
 			/**
 			 * 
 			 */
-			wins: number;
-		}
+            wins: number;
+        }
 
 		/**
 		 * Contains team member information
 		 */
-		export interface TeamMemberInfoDto {
+        export interface TeamMemberInfoDto {
 			/**
 			 * Date that team member was invited to team specified as epoch milliseconds.
 			 */
-			inviteDate: number;
+            inviteDate: number;
 			/**
 			 * Date that team member joined team specified as epoch milliseconds.
 			 */
-			joinDate: number;
+            joinDate: number;
 			/**
 			 * 
 			 */
-			playerId: number;
+            playerId: number;
 			/**
 			 * 
 			 */
-			status: string;
-		}
-	}
+            status: string;
+        }
+    }
 
     /**
 	 * tournament-provider-v1
 	 */
-	export module tournamentProvider {
-        export interface Endpoint {
-            /**
-             * Create a tournament code for the given tournament. (REST)
-             * Should call POST /tournament/public/v1/code
-             * @param tournamentId The tournament ID
-             * @param count        The number of codes to create (max 1000)
-             * @param body         Metadata for the generated code
-             */
-            tournamentCodesByTournamentId(
-                tournamentId: number,
-                count: number,
-                body: TournamentCodeParameters
-            ): string[];
+    export module tournamentProvider {
+        /**
+         * Create a tournament code for the given tournament. (REST)
+         * Should call POST /tournament/public/v1/code
+         * @param tournamentId The tournament ID
+         * @param count        The number of codes to create (max 1000)
+         * @param body         Metadata for the generated code
+         */
+        export function tournamentCodesByTournamentId(
+            tournamentId: number,
+            count: number,
+            body: TournamentCodeParameters
+        ): string[];
 
-            /**
-             * Returns the tournament code DTO associated with a tournament code string. (REST)
-             * Should call GET /tournament/public/v1/code/{tournamentCode}
-             * @param tournamentCode The tournament code string.
-             */
-            tournamentByTournamentsCode(
-                tournamentCode: string
-            ): TournamentCodeDTO;
+        /**
+         * Returns the tournament code DTO associated with a tournament code string. (REST)
+         * Should call GET /tournament/public/v1/code/{tournamentCode}
+         * @param tournamentCode The tournament code string.
+         */
+        export function tournamentByTournamentsCode(
+            tournamentCode: string
+        ): TournamentCodeDTO;
 
-            /**
-             * Update the pick type, map, spectator type, or allowed summoners for a code (REST)
-             * Should call PUT /tournament/public/v1/code/{tournamentCode}
-             * @param tournamentCode The tournament code to update
-             * @param body           The fields to update
-             */
-            updateByTournamentCode(
-                tournamentCode: string,
-                body: TournamentCodeUpdateParameters
-            ): void;
+        /**
+         * Update the pick type, map, spectator type, or allowed summoners for a code (REST)
+         * Should call PUT /tournament/public/v1/code/{tournamentCode}
+         * @param tournamentCode The tournament code to update
+         * @param body           The fields to update
+         */
+        export function updateByTournamentCode(
+            tournamentCode: string,
+            body: TournamentCodeUpdateParameters
+        ): void;
 
-            /**
-             * Gets a list of lobby events by tournament code (REST)
-             * Should call GET /tournament/public/v1/lobby/events/by-code/{tournamentCode}
-             * @param tournamentCode The short code to look up lobby events for
-             */
-            getLobbyEventsByTournamentCode(
-                tournamentCode: string
-            ): LobbyEventDTOWrapper;
+        /**
+         * Gets a list of lobby events by tournament code (REST)
+         * Should call GET /tournament/public/v1/lobby/events/by-code/{tournamentCode}
+         * @param tournamentCode The short code to look up lobby events for
+         */
+        export function getLobbyEventsByTournamentCode(
+            tournamentCode: string
+        ): LobbyEventDTOWrapper;
 
-            /**
-             * Creates a tournament provider and returns its ID. (REST)
-             * Should call POST /tournament/public/v1/provider
-             * @param body The provider definition.
-             */
-            createTournamentProvider(
-                body: ProviderRegistrationParameters
-            ): number;
-            
-            /**
-             * Creates a tournament and returns its ID. (REST)
-             * Should call POST /tournament/public/v1/tournament
-             * @param body The tournament definition.
-             */
-            createTournament(
-                body: TournamentRegistrationParameters
-            ): number;
-        }
+        /**
+         * Creates a tournament provider and returns its ID. (REST)
+         * Should call POST /tournament/public/v1/provider
+         * @param body The provider definition.
+         */
+        export function createTournamentProvider(
+            body: ProviderRegistrationParameters
+        ): number;
+        
+        /**
+         * Creates a tournament and returns its ID. (REST)
+         * Should call POST /tournament/public/v1/tournament
+         * @param body The tournament definition.
+         */
+        export function createTournament(
+            body: TournamentRegistrationParameters
+        ): number;
         
 		/**
 		 * 
 		 */
-		export interface TournamentCodeParameters {
+        export interface TournamentCodeParameters {
 			/**
 			 * Optional list of participants in order to validate the players eligible to join the lobby.
              * NOTE: We currently do not enforce participants at the team level, but rather the aggregate of teamOne and teamTwo.
              * We may add the ability to enforce at the team level in the future.
 			 */
-			allowedSummonerIds?: SummonerIdParams;
+            allowedSummonerIds?: SummonerIdParams;
             /**
              * The map type of the game. Valid values are SUMMONERS_RIFT, TWISTED_TREELINE, CRYSTAL_SCAR, and HOWLING_ABYSS.
              */
@@ -4771,7 +4718,7 @@ declare module riotGamesApi {
         /**
          * 
          */
-		export interface TournamentCodeDTO {
+        export interface TournamentCodeDTO {
             /**
              * The tournament code.
              */
