@@ -97,16 +97,7 @@ declare module riotGamesApi {
                 platformId: string,
                 summonerId: number
             ): CurrentGameInfo;
-            
-            /**
-             * Get list of featured games. (REST)
-             * Should call GET /observer-mode/rest/featured
-			 * @param region Region where to retrieve the data.
-			 */
-			featuredGames(
-                region: string
-            ): CurrentGameInfo;
-		}
+        }
         
 		/**
 		 * 
@@ -261,8 +252,25 @@ declare module riotGamesApi {
 			 */
 			runeId: number;
 		}
+    }
 		
-		/* features-games-v1.0 */
+	/**
+	 * featured-game-v1.0
+	 */
+	export module FeaturedGames {
+        /**
+         * Contains all operations of the endpoint.
+         */
+		export interface Endpoint {
+            /**
+             * Get list of featured games. (REST)
+             * Should call GET /observer-mode/rest/featured
+			 * @param region Region where to retrieve the data.
+			 */
+			featuredGames(
+                region: string
+            ): FeaturedGames;
+		}
 		
 		/**
 		 * 
@@ -328,9 +336,109 @@ declare module riotGamesApi {
 			platformId: string;
 		}
 		
-		// BannedChampion is already defined
+        /**
+		 * 
+		 */
+		export interface BannedChampion {
+			/**
+			 * The ID of the banned champion
+			 */
+			championId: number;
+	
+			/**
+			 * The turn during which the champion was banned
+			 */
+			pickTurn: number;
+	
+			/**
+			 * The ID of the team that banned the champion
+			 */
+			teamId: number;
+		}
 		
-		// Observer is already defined
+		/**
+		 * 
+		 */
+		export interface CurrentGameParticipant {
+			/**
+			 * Flag indicating whether or not this participant is a bot
+			 */
+			bot: boolean;
+			/**
+			 * The ID of the champion played by this participant
+			 */
+			championId: number;
+			/**
+			 * The masteries used by this participant
+			 */
+			masteries: Mastery[];
+			/**
+			 * The ID of the profile icon used by this participant
+			 */
+			profileIconId: number;
+			/**
+			 * The runes used by this participant
+			 */
+			runes: Rune[];
+			/**
+			 * The ID of the first summoner spell used by this participant
+			 */
+			spell1Id: number;
+			/**
+			 * The ID of the second summoner spell used by this participant
+			 */
+			spell2Id: number;
+			/**
+			 * The summoner ID of this participant
+			 */
+			summonerId: number;
+			/**
+			 * The summoner name of this participant
+			 */
+			summonerName: string;
+			/**
+			 * The team ID of this participant, indicating the participant's team
+			 */
+			teamId: number;
+		}
+		
+		/**
+		 * 
+		 */
+		export interface Observer {
+			/**
+			 * Key used to decrypt the spectator grid game data for playback
+			 */
+			encryptionKey: string;
+		}
+		 
+		/**
+		 * 
+		 */
+		export interface Mastery {
+			/**
+			 * The ID of the mastery
+			 */
+			masteryId: number;
+			/**
+			 * The number of points put into this mastery by the user
+			 */
+			rank: number;
+		}
+		
+		/**
+		 * 
+		 */
+		export interface Rune {
+			/**
+			 * The count of this rune used by the participant
+			 */
+			count: number;
+			/**
+			 * The ID of the rune
+			 */
+			runeId: number;
+		}
 		
 		/**
 		 * 
