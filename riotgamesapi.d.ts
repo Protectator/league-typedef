@@ -258,7 +258,7 @@ declare module riotGamesApi {
 	/**
 	 * featured-game-v1.0
 	 */
-    export module FeaturedGames {
+    export module featuredGames {
         /**
          * Get list of featured games. (REST)
          * Should call GET /observer-mode/rest/featured
