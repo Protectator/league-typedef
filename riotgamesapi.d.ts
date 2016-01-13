@@ -4,32 +4,28 @@
 // Definitions: https://github.com/Protectator/riotgamesapi-typedef
 
 declare module riotGamesApi {
-    
+
     /**
      * champion-v1.2
      */
     export module champion {
-        /**
-         * Retrieve all champions. (REST)
-         * Sould call GET /api/lol/{region}/v1.2/champion
-         * @param region     Region where to retrieve the data.
-         * @param freeToPlay Optional filter param to retrieve only free to play champions.
-         */
-        export function getChampions(
-            region: string,
-            freeToPlay?: boolean
-        ): ChampionListDto;
-        
-        /**
-         * Retrieve champion by ID. (REST)
-         * Should call GET /api/lol/{region}/v1.2/champion/{id}
-         * @param region Region where to retrieve the data.
-         * @param id     ID of the champion to retrieve.
-         */
-        export function getChampionById(
-            region: string,
-            id: number
-        ): ChampionDto;
+        export interface Endpoints {
+            /**
+             * Retrieve all champions. (REST)
+             * Sould call GET /api/lol/{region}/v1.2/champion
+             * @param region     Region where to retrieve the data.
+             * @param freeToPlay Optional filter param to retrieve only free to play champions.
+             */
+            getChampions(region:string, freeToPlay?:boolean): ChampionListDto;
+
+            /**
+             * Retrieve champion by ID. (REST)
+             * Should call GET /api/lol/{region}/v1.2/champion/{id}
+             * @param region Region where to retrieve the data.
+             * @param id     ID of the champion to retrieve.
+             */
+            getChampionById(region:string, id:number): ChampionDto
+        }
 
         /**
          * Contains a collection of champion information
@@ -40,7 +36,7 @@ declare module riotGamesApi {
              */
             champions: ChampionDto[];
         }
-        
+
         /**
          * Contains champion information
          */
@@ -73,10 +69,10 @@ declare module riotGamesApi {
             rankedPlayEnabled: boolean;
         }
     }
-    
+
     // Interfaces to both current-game and featured-games
     /**
-     * 
+     *
      */
     export interface GenericBannedChampion {
         /**
@@ -96,7 +92,7 @@ declare module riotGamesApi {
     }
 
     /**
-     * 
+     *
      */
     export interface GenericObserver {
         /**
@@ -104,7 +100,7 @@ declare module riotGamesApi {
          */
         encryptionKey: string;
     }
-    
+
     /**
      * current-game-v1.0
      */
@@ -115,13 +111,11 @@ declare module riotGamesApi {
          * @param platformId The platform ID for which to fetch data.
          * @param summonerId The ID of the summoner.
          */
-        export function getSpectatorGameInfoBySummonerId(
-            platformId: string,
-            summonerId: number
-        ): CurrentGameInfo;
-        
+        export function getSpectatorGameInfoBySummonerId(platformId:string,
+                                                         summonerId:number):CurrentGameInfo;
+
         /**
-         * 
+         *
          */
         export interface CurrentGameInfo {
             /**
@@ -169,14 +163,15 @@ declare module riotGamesApi {
              */
             platformId: string;
         }
-        
+
         /**
-         * 
+         *
          */
-        export interface BannedChampion extends GenericBannedChampion { }
-        
+        export interface BannedChampion extends GenericBannedChampion {
+        }
+
         /**
-         * 
+         *
          */
         export interface CurrentGameParticipant {
             /**
@@ -220,14 +215,15 @@ declare module riotGamesApi {
              */
             teamId: number;
         }
-        
+
         /**
-         * 
+         *
          */
-        export interface Observer extends GenericObserver { }
-         
+        export interface Observer extends GenericObserver {
+        }
+
         /**
-         * 
+         *
          */
         export interface Mastery {
             /**
@@ -239,9 +235,9 @@ declare module riotGamesApi {
              */
             rank: number;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface Rune {
             /**
@@ -254,7 +250,7 @@ declare module riotGamesApi {
             runeId: number;
         }
     }
-        
+
     /**
      * featured-game-v1.0
      */
@@ -264,12 +260,10 @@ declare module riotGamesApi {
          * Should call GET /observer-mode/rest/featured
          * @param region Region where to retrieve the data.
          */
-        export function getGeaturedGames(
-            region: string
-        ): FeaturedGames;
-        
+        export function getGeaturedGames(region:string):FeaturedGames;
+
         /**
-         * 
+         *
          */
         export interface FeaturedGames {
             /**
@@ -281,9 +275,9 @@ declare module riotGamesApi {
              */
             gameList: FeaturedGameInfo[];
         }
-        
+
         /**
-         * 
+         *
          */
         export interface FeaturedGameInfo {
             /**
@@ -331,14 +325,15 @@ declare module riotGamesApi {
              */
             platformId: string;
         }
-        
+
         /**
-         * 
+         *
          */
-        export interface BannedChampion extends GenericBannedChampion { }
-        
+        export interface BannedChampion extends GenericBannedChampion {
+        }
+
         /**
-         * 
+         *
          */
         export interface CurrentGameParticipant {
             /**
@@ -382,14 +377,15 @@ declare module riotGamesApi {
              */
             teamId: number;
         }
-        
+
         /**
-         * 
+         *
          */
-        export interface Observer extends GenericObserver { }
-         
+        export interface Observer extends GenericObserver {
+        }
+
         /**
-         * 
+         *
          */
         export interface Mastery {
             /**
@@ -401,9 +397,9 @@ declare module riotGamesApi {
              */
             rank: number;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface Rune {
             /**
@@ -415,9 +411,9 @@ declare module riotGamesApi {
              */
             runeId: number;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface Participant {
             /**
@@ -450,7 +446,7 @@ declare module riotGamesApi {
             teamId: number;
         }
     }
-    
+
     /**
      * game-v1.3
      */
@@ -461,12 +457,10 @@ declare module riotGamesApi {
          * @param region     Region where to retrieve the data.
          * @param summonerId ID of the summoner for which to retrieve recent games.
          */
-        export function getRecentGamesBySummonerId(
-            region: string,
-            summonerId: number
-        ): RecentGamesDto;
-        
-        
+        export function getRecentGamesBySummonerId(region:string,
+                                                   summonerId:number):RecentGamesDto;
+
+
         /**
          * Contains recent games information
          */
@@ -480,7 +474,7 @@ declare module riotGamesApi {
              */
             summonerId: number;
         }
-        
+
         /**
          * Contains game information
          */
@@ -546,7 +540,7 @@ declare module riotGamesApi {
              */
             teamId: number;
         }
-        
+
         /**
          * Contains player information
          */
@@ -564,13 +558,13 @@ declare module riotGamesApi {
              */
             teamId: number;
         }
-        
+
         /**
          * Contains raw stat information
          */
         export interface RawStatsDto {
             /**
-             * 
+             *
              */
             assists: number;
             /**
@@ -578,87 +572,87 @@ declare module riotGamesApi {
              */
             barracksKilled: number;
             /**
-             * 
+             *
              */
             championsKilled: number;
             /**
-             * 
+             *
              */
             combatPlayerScore: number;
             /**
-             * 
+             *
              */
             consumablesPurchased: number;
             /**
-             * 
+             *
              */
             damageDealtPlayer: number;
             /**
-             * 
+             *
              */
             doubleKills: number;
             /**
-             * 
+             *
              */
             firstBlood: number;
             /**
-             * 
+             *
              */
             gold: number;
             /**
-             * 
+             *
              */
             goldEarned: number;
             /**
-             * 
+             *
              */
             goldSpent: number;
             /**
-             * 
+             *
              */
             item0: number;
             /**
-             * 
+             *
              */
             item1: number;
             /**
-             * 
+             *
              */
             item2: number;
             /**
-             * 
+             *
              */
             item3: number;
             /**
-             * 
+             *
              */
             item4: number;
             /**
-             * 
+             *
              */
             item5: number;
             /**
-             * 
+             *
              */
             item6: number;
             /**
-             * 
+             *
              */
             itemsPurchased: number;
             /**
-             * 
+             *
              */
             killingSprees: number;
             /**
-             * 
+             *
              */
             largestCriticalStrike: number;
             /**
-             * 
+             *
              */
             largestKillingSpree: number;
             /**
-             * 
+             *
              */
             largestMultiKill: number;
             /**
@@ -666,39 +660,39 @@ declare module riotGamesApi {
              */
             legendaryItemsCreated: number;
             /**
-             * 
+             *
              */
             level: number;
             /**
-             * 
+             *
              */
             magicDamageDealtPlayer: number;
             /**
-             * 
+             *
              */
             magicDamageDealtToChampions: number;
             /**
-             * 
+             *
              */
             magicDamageTaken: number;
             /**
-             * 
+             *
              */
             minionsDenied: number;
             /**
-             * 
+             *
              */
             minionsKilled: number;
             /**
-             * 
+             *
              */
             neutralMinionsKilled: number;
             /**
-             * 
+             *
              */
             neutralMinionsKilledEnemyJungle: number;
             /**
-             * 
+             *
              */
             neutralMinionsKilledYourJungle: number;
             /**
@@ -706,63 +700,63 @@ declare module riotGamesApi {
              */
             nexusKilled: boolean;
             /**
-             * 
+             *
              */
             nodeCapture: number;
             /**
-             * 
+             *
              */
             nodeCaptureAssist: number;
             /**
-             * 
+             *
              */
             nodeNeutralize: number;
             /**
-             * 
+             *
              */
             nodeNeutralizeAssist: number;
             /**
-             * 
+             *
              */
             numDeaths: number;
             /**
-             * 
+             *
              */
             numItemsBought: number;
             /**
-             * 
+             *
              */
             objectivePlayerScore: number;
             /**
-             * 
+             *
              */
             pentaKills: number;
             /**
-             * 
+             *
              */
             physicalDamageDealtPlayer: number;
             /**
-             * 
+             *
              */
             physicalDamageDealtToChampions: number;
             /**
-             * 
+             *
              */
             physicalDamageTaken: number;
             /**
-             * 
+             *
              */
             playerPosition: number;
             /**
-             * 
+             *
              */
             playerRole: number;
             /**
-             * 
+             *
              */
             quadraKills: number;
             /**
-             * 
+             *
              */
             sightWardsBought: number;
             /**
@@ -782,99 +776,99 @@ declare module riotGamesApi {
              */
             spell4Cast: number;
             /**
-             * 
+             *
              */
             summonSpell1Cast: number;
             /**
-             * 
+             *
              */
             summonSpell2Cast: number;
             /**
-             * 
+             *
              */
             superMonsterKilled: number;
             /**
-             * 
+             *
              */
             team: number;
             /**
-             * 
+             *
              */
             teamObjective: number;
             /**
-             * 
+             *
              */
             timePlayed: number;
             /**
-             * 
+             *
              */
             totalDamageDealt: number;
             /**
-             * 
+             *
              */
             totalDamageDealtToChampions: number;
             /**
-             * 
+             *
              */
             totalDamageTaken: number;
             /**
-             * 
+             *
              */
             totalHeal: number;
             /**
-             * 
+             *
              */
             totalPlayerScore: number;
             /**
-             * 
+             *
              */
             totalScoreRank: number;
             /**
-             * 
+             *
              */
             totalTimeCrowdControlDealt: number;
             /**
-             * 
+             *
              */
             totalUnitsHealed: number;
             /**
-             * 
+             *
              */
             tripleKills: number;
             /**
-             * 
+             *
              */
             trueDamageDealtPlayer: number;
             /**
-             * 
+             *
              */
             trueDamageDealtToChampions: number;
             /**
-             * 
+             *
              */
             trueDamageTaken: number;
             /**
-             * 
+             *
              */
             turretsKilled: number;
             /**
-             * 
+             *
              */
             unrealKills: number;
             /**
-             * 
+             *
              */
             victoryPointTotal: number;
             /**
-             * 
+             *
              */
             visionWardsBought: number;
             /**
-             * 
+             *
              */
             wardKilled: number;
             /**
-             * 
+             *
              */
             wardPlaced: number;
             /**
@@ -883,7 +877,7 @@ declare module riotGamesApi {
             win: boolean;
         }
     }
-    
+
     /**
      * league-v2.5
      */
@@ -894,66 +888,54 @@ declare module riotGamesApi {
          * @param region       The region of the leagues.
          * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
-        export function getLeagueBySummonerIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: LeagueDto[]; };
-            
+        export function getLeagueBySummonerIds(region:string,
+                                               summonerIds:string):{ [s: string]: LeagueDto[]; };
+
         /**
          * Get league entries mapped by summoner ID for a given list of summoner IDs. (REST)
          * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry
          * @param region       The region of the leagues.
          * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
-        export function getLeagueEntryBySummonerIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: LeagueDto[]; };
-            
+        export function getLeagueEntryBySummonerIds(region:string,
+                                                    summonerIds:string):{ [s: string]: LeagueDto[]; };
+
         /**
          * Get leagues mapped by team ID for a given list of team IDs. (REST)
          * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}
          * @param region  The region of the leagues.
          * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
          */
-        export function getLeagueByTeamIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: LeagueDto[]; };
-            
+        export function getLeagueByTeamIds(region:string,
+                                           summonerIds:string):{ [s: string]: LeagueDto[]; };
+
         /**
          * Get league entries mapped by team ID for a given list of team IDs. (REST)
          * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}/entry
          * @param region  The region of the leagues.
          * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
          */
-        export function getLeagueEntryByTeamIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: LeagueDto[]; };
-            
+        export function getLeagueEntryByTeamIds(region:string,
+                                                summonerIds:string):{ [s: string]: LeagueDto[]; };
+
         /**
          * Get challenger tier leagues. (REST)
          * Should call GET /api/lol/{region}/v2.5/league/challenger
          * @param region Region where to retrieve the data.
          * @param type   Game queue type.
          */
-        export function getLeagueChallenger(
-            region: string,
-            type: string
-        ): LeagueDto;
-            
+        export function getLeagueChallenger(region:string,
+                                            type:string):LeagueDto;
+
         /**
          * Get master tier leagues. (REST)
          * Should call GET /api/lol/{region}/v2.5/league/master
          * @param region Region where to retrieve the data.
          * @param type   Game queue type.
          */
-        export function getLeagueMaster(
-            region: string,
-            type: string
-        ): LeagueDto;
-        
+        export function getLeagueMaster(region:string,
+                                        type:string):LeagueDto;
+
         /**
          * Contains league information
          */
@@ -982,7 +964,7 @@ declare module riotGamesApi {
              */
             tier: string;
         }
-        
+
         /**
          * Contains league participant information representing a summoner or team.
          */
@@ -1032,7 +1014,7 @@ declare module riotGamesApi {
              */
             wins: number;
         }
-        
+
         /**
          * Contains mini series information.
          */
@@ -1055,7 +1037,7 @@ declare module riotGamesApi {
             wins: number;
         }
     }
-    
+
     /**
      * lol-static-data-v1.2
      */
@@ -1069,13 +1051,11 @@ declare module riotGamesApi {
          * @param dataById  If specified as true, the returned data map will use the champions' IDs as the keys. If not specified or specified as false, the returned data map will use the champions' keys instead.
          * @param champData Tags to return additional data. Only type, version, data, id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getChampions(
-            region: string,
-            locale: string,
-            version: string,
-            dataById: boolean,
-            champData: string
-        ): ChampionListDto;
+        export function getChampions(region:string,
+                                     locale:string,
+                                     version:string,
+                                     dataById:boolean,
+                                     champData:string):ChampionListDto;
 
         /**
          * Retrieves a champion by its id. (REST)
@@ -1086,13 +1066,11 @@ declare module riotGamesApi {
          * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param champData Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getChampionById(
-            region: string,
-            id: number,
-            locale: string,
-            version: string,
-            champData: string
-        ): ChampionDto;
+        export function getChampionById(region:string,
+                                        id:number,
+                                        locale:string,
+                                        version:string,
+                                        champData:string):ChampionDto;
 
         /**
          * Retrieves item list. (REST)
@@ -1102,12 +1080,10 @@ declare module riotGamesApi {
          * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param itemListData Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getItems(
-            region: string,
-            locale: string,
-            version: string,
-            itemListData: string
-        ): ItemListDto;
+        export function getItems(region:string,
+                                 locale:string,
+                                 version:string,
+                                 itemListData:string):ItemListDto;
 
         /**
          * Retrieves item by its unique id. (REST)
@@ -1118,13 +1094,11 @@ declare module riotGamesApi {
          * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param itemData Tags to return additional data. Only id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getItemById(
-            region: string,
-            id: number,
-            locale: string,
-            version: string,
-            itemData: string
-        ): ItemDto;
+        export function getItemById(region:string,
+                                    id:number,
+                                    locale:string,
+                                    version:string,
+                                    itemData:string):ItemDto;
 
         /**
          * Retrieve language strings data. (REST)
@@ -1133,21 +1107,17 @@ declare module riotGamesApi {
          * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
          * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          */
-        export function getLanguageStrings(
-            region: string,
-            locale: string,
-            version: string
-        ): LanguageStringsDto;
+        export function getLanguageStrings(region:string,
+                                           locale:string,
+                                           version:string):LanguageStringsDto;
 
         /**
          * Retrieve supported languages data. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/languages
          * @param region Region from which to retrieve data.
          */
-        export function getLanguages(
-            region: string
-        ): string[];
-        
+        export function getLanguages(region:string):string[];
+
         /**
          * Retrieve map data. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/map
@@ -1155,12 +1125,10 @@ declare module riotGamesApi {
          * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
          * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          */
-        export function getMaps(
-            region: string,
-            locale: string,
-            version: string
-        ): MapDataDto;
-        
+        export function getMaps(region:string,
+                                locale:string,
+                                version:string):MapDataDto;
+
         /**
          * Retrieves mastery list. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/mastery
@@ -1169,13 +1137,11 @@ declare module riotGamesApi {
          * @param version         Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param masteryListData Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getMasteries(
-            region: string,
-            locale: string,
-            version: string,
-            masteryListData: string
-        ): MasteryListDto;
-        
+        export function getMasteries(region:string,
+                                     locale:string,
+                                     version:string,
+                                     masteryListData:string):MasteryListDto;
+
         /**
          * Retrieves mastery item by its unique id. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/mastery/{id}
@@ -1185,23 +1151,19 @@ declare module riotGamesApi {
          * @param version     Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param masteryData Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getMasteryById(
-            region: string,
-            id: number,
-            locale: string,
-            version: string,
-            masteryData: string
-        ): MasteryDto;
-        
+        export function getMasteryById(region:string,
+                                       id:number,
+                                       locale:string,
+                                       version:string,
+                                       masteryData:string):MasteryDto;
+
         /**
          * Retrieve realm data. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/realm
          * @param region Region corresponding to data to retrieve.
          */
-        export function getRealm(
-            region: string
-        ): RealmDto;
-        
+        export function getRealm(region:string):RealmDto;
+
         /**
          * Retrieves rune list. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/rune
@@ -1210,13 +1172,11 @@ declare module riotGamesApi {
          * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param runeListData Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getRunes(
-            region: string,
-            locale: string,
-            version: string,
-            runeListData: string
-        ): RuneListDto;
-        
+        export function getRunes(region:string,
+                                 locale:string,
+                                 version:string,
+                                 runeListData:string):RuneListDto;
+
         /**
          * Retrieves rune by its unique id. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/rune/{id}
@@ -1226,14 +1186,12 @@ declare module riotGamesApi {
          * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param runeData Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getRuneById(
-            region: string,
-            id: number,
-            locale: string,
-            version: string,
-            runeData: string
-        ): RuneDto;
-        
+        export function getRuneById(region:string,
+                                    id:number,
+                                    locale:string,
+                                    version:string,
+                                    runeData:string):RuneDto;
+
         /**
          * Retrieves summoner spell list. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell
@@ -1243,14 +1201,12 @@ declare module riotGamesApi {
          * @param dataById  If specified as true, the returned data map will use the spells' IDs as the keys. If not specified or specified as false, the returned data map will use the spells' keys instead.
          * @param spellData Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getSummonerSpells(
-            region: string,
-            locale: string,
-            version: string,
-            dataById: boolean,
-            spellData: string
-        ): SummonerSpellListDto;
-        
+        export function getSummonerSpells(region:string,
+                                          locale:string,
+                                          version:string,
+                                          dataById:boolean,
+                                          spellData:string):SummonerSpellListDto;
+
         /**
          * Retrieves summoner spell by its unique id. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell/{id}
@@ -1260,153 +1216,149 @@ declare module riotGamesApi {
          * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
          * @param spellData Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
          */
-        export function getSummonerSpellById(
-            region: string,
-            id: number,
-            locale: string,
-            version: string,
-            spellData: string
-        ): SummonerSpellDto;    
-        
+        export function getSummonerSpellById(region:string,
+                                             id:number,
+                                             locale:string,
+                                             version:string,
+                                             spellData:string):SummonerSpellDto;
+
         /**
          * Retrieve version data. (REST)
          * Should call GET /api/lol/static-data/{region}/v1.2/versions
          * @param region Region from which to retrieve data.
          */
-        export function getVersions(
-            region: string
-        ): string[];
-            
+        export function getVersions(region:string):string[];
+
         /**
          * Contains champion list data.
          */
         export interface ChampionListDto {
             /**
-             * 
+             *
              */
             data: { [s: string]: ChampionDto; };
             /**
-             * 
+             *
              */
             format: string;
             /**
-             * 
+             *
              */
             keys: { [s: string]: string; };
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
             /**
-             * 
+             *
              */
             version: string;
         }
-        
+
         /**
          * Contains champion data.
          */
         export interface ChampionDto {
             /**
-             * 
+             *
              */
             allytips: string[];
             /**
-             * 
+             *
              */
             blurb: string;
             /**
-             * 
+             *
              */
             enemytips: string[];
             /**
-             * 
+             *
              */
             id: number;
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
-             * 
+             *
              */
             info: InfoDto;
             /**
-             * 
+             *
              */
             key: string;
             /**
-             * 
+             *
              */
             lore: string;
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             partype: string;
             /**
-             * 
+             *
              */
             passive: PassiveDto;
             /**
-             * 
+             *
              */
             recommended: RecommendedDto[];
             /**
-             * 
+             *
              */
             skins: SkinDto[];
             /**
-             * 
+             *
              */
             spells: ChampionSpellDto[];
             /**
-             * 
+             *
              */
             stats: StatsDto;
             /**
-             * 
+             *
              */
             tags: string[];
             /**
-             * 
+             *
              */
             title: string;
         }
-        
+
         /**
          * Contains champion spell data
          */
         export interface ChampionSpellDto {
             /**
-             * 
+             *
              */
             altimages: ImageDto[];
             /**
-             * 
+             *
              */
             cooldown: number[];
             /**
-             * 
+             *
              */
             cooldownBurn: string;
             /**
-             * 
+             *
              */
             cost: number[];
             /**
-             * 
+             *
              */
             costBurn: string;
             /**
-             * 
+             *
              */
             costType: string;
             /**
-             * 
+             *
              */
             description: string;
             /**
@@ -1414,27 +1366,27 @@ declare module riotGamesApi {
              */
             effect: number[][];
             /**
-             * 
+             *
              */
             effectBurn: string[];
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
-             * 
+             *
              */
             key: string;
             /**
-             * 
+             *
              */
             leveltip: LevelTipDto;
             /**
-             * 
+             *
              */
             maxrank: number;
             /**
-             * 
+             *
              */
             name: string;
             /**
@@ -1442,377 +1394,377 @@ declare module riotGamesApi {
              */
             range: string | number[];
             /**
-             * 
+             *
              */
             rangeBurn: string;
             /**
-             * 
+             *
              */
             resource: string;
             /**
-             * 
+             *
              */
             sanitizedDescription: string;
             /**
-             * 
+             *
              */
             sanitizedTooltip: string;
             /**
-             * 
+             *
              */
             tooltip: string;
             /**
-             * 
+             *
              */
             vars: SpellVarsDto[];
         }
-        
+
         /**
          * Contains image data.
          */
         export interface ImageDto {
             /**
-             * 
+             *
              */
             full: string;
             /**
-             * 
+             *
              */
             group: string;
             /**
-             * 
+             *
              */
             h: number;
             /**
-             * 
+             *
              */
             sprite: string;
             /**
-             * 
+             *
              */
             w: number;
             /**
-             * 
+             *
              */
             x: number;
             /**
-             * 
+             *
              */
             y: number;
         }
-        
+
         /**
          * Contains champion information
          */
         export interface InfoDto {
             /**
-             * 
+             *
              */
             attack: number;
             /**
-             * 
+             *
              */
             defense: number;
             /**
-             * 
+             *
              */
             difficulty: number;
             /**
-             * 
+             *
              */
             magic: number;
         }
-        
+
         /**
          * Contains champion passive data.
          */
         export interface PassiveDto {
             /**
-             * 
+             *
              */
             description: string;
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             sanitizedDescription: string;
         }
-        
+
         /**
          * Contains champion recommended data.
          */
         export interface RecommendedDto {
             /**
-             * 
+             *
              */
             blocks: BlockDto[];
             /**
-             * 
+             *
              */
             champion: string;
             /**
-             * 
+             *
              */
             map: string;
             /**
-             * 
+             *
              */
             mode: string;
             /**
-             * 
+             *
              */
             priority: boolean;
             /**
-             * 
+             *
              */
             title: string;
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
         }
-        
+
         /**
          * Contains champion skin data.
          */
         export interface SkinDto {
             /**
-             * 
+             *
              */
             id: number;
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             num: number;
         }
-        
+
         /**
          * Contains champion stats data.
          */
         export interface StatsDto {
             /**
-             * 
+             *
              */
             armor: number;
             /**
-             * 
+             *
              */
             armorperlevel: number;
             /**
-             * 
+             *
              */
             attackdamage: number;
             /**
-             * 
+             *
              */
             attackdamageperlevel: number;
             /**
-             * 
+             *
              */
             attackrange: number;
             /**
-             * 
+             *
              */
             attackspeedoffset: number;
             /**
-             * 
+             *
              */
             attackspeedperlevel: number;
             /**
-             * 
+             *
              */
             crit: number;
             /**
-             * 
+             *
              */
             critperlevel: number;
             /**
-             * 
+             *
              */
             hp: number;
             /**
-             * 
+             *
              */
             hpperlevel: number;
             /**
-             * 
+             *
              */
             hpregen: number;
             /**
-             * 
+             *
              */
             hpregenperlevel: number;
             /**
-             * 
+             *
              */
             movespeed: number;
             /**
-             * 
+             *
              */
             mp: number;
             /**
-             * 
+             *
              */
             mpperlevel: number;
             /**
-             * 
+             *
              */
             mpregen: number;
             /**
-             * 
+             *
              */
             mpregenperlevel: number;
             /**
-             * 
+             *
              */
             spellblock: number;
             /**
-             * 
+             *
              */
             spellblockperlevel: number;
         }
-        
+
         /**
          * Contains champion level tip data.
          */
         export interface LevelTipDto {
             /**
-             * 
+             *
              */
             effect: string[];
             /**
-             * 
+             *
              */
             label: string[];
         }
-        
+
         /**
          * Contains spell vars data.
          */
         export interface SpellVarsDto {
             /**
-             * 
+             *
              */
             coeff: number[];
             /**
-             * 
+             *
              */
             dyn: string;
             /**
-             * 
+             *
              */
             key: string;
             /**
-             * 
+             *
              */
             link: string;
             /**
-             * 
+             *
              */
             ranksWith: string;
         }
-        
+
         /**
          * Contains champion recommended block data
          */
         export interface BlockDto {
             /**
-             * 
+             *
              */
             items: BlockItemDto[];
             /**
-             * 
+             *
              */
             recMath: boolean;
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
         }
-        
+
         /**
          * Contains champion recommended block item data.
          */
         export interface BlockItemDto {
             /**
-             * 
+             *
              */
             count: number;
             /**
-             * 
+             *
              */
             id: number;
         }
-        
+
         /**
          * Contains item list data.
          */
         export interface ItemListDto {
             /**
-             * 
+             *
              */
             basic: BasicDataDto;
             /**
-             * 
+             *
              */
             data: { [s: string]: ItemDto; };
             /**
-             * 
+             *
              */
             groups: GroupDto[];
             /**
-             * 
+             *
              */
             tree: ItemTreeDto[];
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
             /**
-             * 
+             *
              */
             version: string;
         }
-        
+
         /**
          * Contains basic data.
          */
         export interface BasicDataDto {
             /**
-             * 
+             *
              */
             colloq: string;
             /**
-             * 
+             *
              */
             consumeOnFull: boolean;
             /**
-             * 
+             *
              */
             consumed: boolean;
             /**
-             * 
+             *
              */
             depth: number;
             /**
-             * 
+             *
              */
             description: string;
             /**
-             * 
+             *
              */
-            from: string[];
+                from: string[];
             /**
              * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
              * However, only items have a gold field on them, representing their gold cost in the store.
@@ -1820,117 +1772,117 @@ declare module riotGamesApi {
              */
             gold: GoldDto;
             /**
-             * 
+             *
              */
             group: string;
             /**
-             * 
+             *
              */
             hideFromAll: boolean;
             /**
-             * 
+             *
              */
             id: number;
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
-             * 
+             *
              */
             inStore: boolean;
             /**
-             * 
+             *
              */
             into: string[];
             /**
-             * 
+             *
              */
             maps: { [s: string]: boolean; };
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             plaintext: string;
             /**
-             * 
+             *
              */
             requiredChampion: string;
             /**
-             * 
+             *
              */
             rune: MetaDataDto;
             /**
-             * 
+             *
              */
             sanitizedDescription: string;
             /**
-             * 
+             *
              */
             specialRecipe: number;
             /**
-             * 
+             *
              */
             stacks: number;
             /**
-             * 
+             *
              */
             stats: BasicDataStatsDto;
             /**
-             * 
+             *
              */
             tags: string[];
         }
-        
+
         /**
          * Contains item group data.
          */
         export interface GroupDto {
             /**
-             * 
+             *
              */
             MaxGroupOwnable: string;
             /**
-             * 
+             *
              */
             key: string;
         }
-        
+
         /**
          * Contains item data.
          */
         export interface ItemDto {
             /**
-             * 
+             *
              */
             colloq: string;
             /**
-             * 
+             *
              */
             consumeOnFull: boolean;
             /**
-             * 
+             *
              */
             consumed: boolean;
             /**
-             * 
+             *
              */
             depth: number;
             /**
-             * 
+             *
              */
             description: string;
             /**
-             * 
+             *
              */
             effect: { [s: string]: string; };
             /**
-             * 
+             *
              */
-            from: string[];
+                from: string[];
             /**
              * Data Dragon includes the gold field for basic data, which is shared by both rune and item.
              * However, only items have a gold field on them, representing their gold cost in the store.
@@ -1938,485 +1890,485 @@ declare module riotGamesApi {
              */
             gold: GoldDto;
             /**
-             * 
+             *
              */
             group: string;
             /**
-             * 
+             *
              */
             hideFromAll: boolean;
             /**
-             * 
+             *
              */
             id: number;
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
-             * 
+             *
              */
             inStore: boolean;
             /**
-             * 
+             *
              */
             into: string[];
             /**
-             * 
+             *
              */
             maps: { [s: string]: boolean; };
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             plaintext: string;
             /**
-             * 
+             *
              */
             requiredChampion: string;
             /**
-             * 
+             *
              */
             rune: MetaDataDto;
             /**
-             * 
+             *
              */
             sanitizedDescription: string;
             /**
-             * 
+             *
              */
             specialRecipe: number;
             /**
-             * 
+             *
              */
             stacks: number;
             /**
-             * 
+             *
              */
             stats: BasicDataStatsDto;
             /**
-             * 
+             *
              */
             tags: string[];
         }
-        
+
         /**
          * Contains item tree data.
          */
         export interface ItemTreeDto {
             /**
-             * 
+             *
              */
             header: string;
             /**
-             * 
+             *
              */
             tags: string[];
         }
-        
+
         /**
          * Contains basic data stats.
          */
         export interface BasicDataStatsDto {
             /**
-             * 
+             *
              */
             FlatArmorMod: number;
             /**
-             * 
+             *
              */
             FlatAttackSpeedMod: number;
             /**
-             * 
+             *
              */
             FlatBlockMod: number;
             /**
-             * 
+             *
              */
             FlatCritChanceMod: number;
             /**
-             * 
+             *
              */
             FlatCritDamageMod: number;
             /**
-             * 
+             *
              */
             FlatEXPBonus: number;
             /**
-             * 
+             *
              */
             FlatEnergyPoolMod: number;
             /**
-             * 
+             *
              */
             FlatEnergyRegenMod: number;
             /**
-             * 
+             *
              */
             FlatHPPoolMod: number;
             /**
-             * 
+             *
              */
             FlatHPRegenMod: number;
             /**
-             * 
+             *
              */
             FlatMPPoolMod: number;
             /**
-             * 
+             *
              */
             FlatMPRegenMod: number;
             /**
-             * 
+             *
              */
             FlatMagicDamageMod: number;
             /**
-             * 
+             *
              */
             FlatMovementSpeedMod: number;
             /**
-             * 
+             *
              */
             FlatPhysicalDamageMod: number;
             /**
-             * 
+             *
              */
             FlatSpellBlockMod: number;
             /**
-             * 
+             *
              */
             PercentArmorMod: number;
             /**
-             * 
+             *
              */
             PercentAttackSpeedMod: number;
             /**
-             * 
+             *
              */
             PercentBlockMod: number;
             /**
-             * 
+             *
              */
             PercentCritChanceMod: number;
             /**
-             * 
+             *
              */
             PercentCritDamageMod: number;
             /**
-             * 
+             *
              */
             PercentDodgeMod: number;
             /**
-             * 
+             *
              */
             PercentEXPBonus: number;
             /**
-             * 
+             *
              */
             PercentHPPoolMod: number;
             /**
-             * 
+             *
              */
             PercentHPRegenMod: number;
             /**
-             * 
+             *
              */
             PercentLifeStealMod: number;
             /**
-             * 
+             *
              */
             PercentMPPoolMod: number;
             /**
-             * 
+             *
              */
             PercentMPRegenMod: number;
             /**
-             * 
+             *
              */
             PercentMagicDamageMod: number;
             /**
-             * 
+             *
              */
             PercentMovementSpeedMod: number;
             /**
-             * 
+             *
              */
             PercentPhysicalDamageMod: number;
             /**
-             * 
+             *
              */
             PercentSpellBlockMod: number;
             /**
-             * 
+             *
              */
             PercentSpellVampMod: number;
             /**
-             * 
+             *
              */
             rFlatArmorModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatArmorPenetrationMod: number;
             /**
-             * 
+             *
              */
             rFlatArmorPenetrationModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatCritChanceModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatCritDamageModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatDodgeMod: number;
             /**
-             * 
+             *
              */
             rFlatDodgeModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatEnergyModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatEnergyRegenModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatGoldPer10Mod: number;
             /**
-             * 
+             *
              */
             rFlatHPModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatHPRegenModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatMPModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatMPRegenModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatMagicDamageModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatMagicPenetrationMod: number;
             /**
-             * 
+             *
              */
             rFlatMagicPenetrationModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatMovementSpeedModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatPhysicalDamageModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatSpellBlockModPerLevel: number;
             /**
-             * 
+             *
              */
             rFlatTimeDeadMod: number;
             /**
-             * 
+             *
              */
             rFlatTimeDeadModPerLevel: number;
             /**
-             * 
+             *
              */
             rPercentArmorPenetrationMod: number;
             /**
-             * 
+             *
              */
             rPercentArmorPenetrationModPerLevel: number;
             /**
-             * 
+             *
              */
             rPercentAttackSpeedModPerLevel: number;
             /**
-             * 
+             *
              */
             rPercentCooldownMod: number;
             /**
-             * 
+             *
              */
             rPercentCooldownModPerLevel: number;
             /**
-             * 
+             *
              */
             rPercentMagicPenetrationMod: number;
             /**
-             * 
+             *
              */
             rPercentMagicPenetrationModPerLevel: number;
             /**
-             * 
+             *
              */
             rPercentMovementSpeedModPerLevel: number;
             /**
-             * 
+             *
              */
             rPercentTimeDeadMod: number;
             /**
-             * 
+             *
              */
             rPercentTimeDeadModPerLevel: number;
         }
-        
+
         /**
          * Contains item gold data.
          */
         export interface GoldDto {
             /**
-             * 
+             *
              */
             base: number;
             /**
-             * 
+             *
              */
             purchasable: boolean;
             /**
-             * 
+             *
              */
             sell: number;
             /**
-             * 
+             *
              */
             total: number;
         }
-        
+
         /**
          * Contains image meta data.
          */
         export interface MetaDataDto {
             /**
-             * 
+             *
              */
             isRune: boolean;
             /**
-             * 
+             *
              */
             tier: string;
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
         }
-        
+
         /**
          * Contains language strings data
          */
         export interface LanguageStringsDto {
             /**
-             * 
+             *
              */
             data: { [s: string]: string; };
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
             /**
-             * 
+             *
              */
             version: string;
         }
-        
+
         /**
          * Contains map data.
          */
         export interface MapDataDto {
             /**
-             * 
+             *
              */
             data: { [s: string]: MapDetailsDto; }
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
             /**
-             * 
+             *
              */
             version: string;
         }
-        
+
         /**
          * Contains map details data.
          */
         export interface MapDetailsDto {
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
-             * 
+             *
              */
             mapId: number;
             /**
-             * 
+             *
              */
             mapName: string;
             /**
-             * 
+             *
              */
             unpurchasableItemList: number[];
         }
-        
+
         /**
          * Contains mastery list data.
          */
         export interface MasteryListDto {
             /**
-             * 
+             *
              */
             data: { [s: string]: MasteryDto; };
             /**
-             * 
+             *
              */
             tree: MasteryTreeDto;
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
             /**
-             * 
+             *
              */
             version: string;
         }
-        
+
         /**
          * Contains mastery data.
          */
         export interface MasteryDto {
             /**
-             * 
+             *
              */
             description: string[];
             /**
-             * 
+             *
              */
             id: number;
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
@@ -2424,65 +2376,65 @@ declare module riotGamesApi {
              */
             masteryTree: string;
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             prereq: string;
             /**
-             * 
+             *
              */
             ranks: number;
             /**
-             * 
+             *
              */
             sanitizedDescription: string[];
         }
-        
+
         /**
          * Contains mastery tree data.
          */
         export interface MasteryTreeDto {
             /**
-             * 
+             *
              */
             Defense: MasteryTreeListDto[];
             /**
-             * 
+             *
              */
             Offense: MasteryTreeListDto[];
             /**
-             * 
+             *
              */
             Utility: MasteryTreeListDto[];
         }
-        
+
         /**
          * Contains mastery tree list data.
          */
         export interface MasteryTreeListDto {
             /**
-             * 
+             *
              */
             masteryTreeItems: MasteryTreeItemDto[];
         }
-        
+
         /**
          * Contains mastery tree item data.
          */
         export interface MasteryTreeItemDto {
             /**
-             * 
+             *
              */
             masteryId: number;
             /**
-             * 
+             *
              */
             prereq: string;
         }
-        
+
         /**
          * Contains realm data.
          */
@@ -2524,167 +2476,167 @@ declare module riotGamesApi {
              */
             v: string;
         }
-        
+
         /**
          * Contains rune list data
          */
         export interface RuneListDto {
             /**
-             * 
+             *
              */
             basic: BasicDataDto;
             /**
-             * 
+             *
              */
             data: { [s: string]: RuneDto; };
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
             /**
-             * 
+             *
              */
             version: string;
         }
-        
+
         /**
          * Contains rune data.
          */
         export interface RuneDto {
             /**
-             * 
+             *
              */
             colloq: string;
             /**
-             * 
+             *
              */
             consumeOnFull: boolean;
             /**
-             * 
+             *
              */
             consumed: boolean;
             /**
-             * 
+             *
              */
             depth: number;
             /**
-             * 
+             *
              */
             description: string;
             /**
-             * 
+             *
              */
-            from: string[];
+                from: string[];
             /**
-             * 
+             *
              */
             group: string;
             /**
-             * 
+             *
              */
             hideFromAll: boolean;
             /**
-             * 
+             *
              */
             id: number;
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
-             * 
+             *
              */
             inStore: boolean;
             /**
-             * 
+             *
              */
             into: string[];
             /**
-             * 
+             *
              */
             maps: { [s: string]: boolean; };
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             plaintext: string;
             /**
-             * 
+             *
              */
             requiredChampion: string;
             /**
-             * 
+             *
              */
             rune: MetaDataDto;
             /**
-             * 
+             *
              */
             sanitizedDescription: string;
             /**
-             * 
+             *
              */
             specialRecipe: number;
             /**
-             * 
+             *
              */
             stacks: number;
             /**
-             * 
+             *
              */
             stats: BasicDataStatsDto;
             /**
-             * 
+             *
              */
             tags: string[];
         }
-        
+
         /**
          * Contains summoner spell list data.
          */
         export interface SummonerSpellListDto {
             /**
-             * 
+             *
              */
             data: { [s: string]: SummonerSpellDto; };
             /**
-             * 
+             *
              */
-            type: string;
+                type: string;
             /**
-             * 
+             *
              */
             version: string;
         }
-        
+
         /**
          * Contains summoner spell data.
          */
         export interface SummonerSpellDto {
             /**
-             * 
+             *
              */
             cooldown: number[];
             /**
-             * 
+             *
              */
             cooldownBurn: string;
             /**
-             * 
+             *
              */
             cost: number[];
             /**
-             * 
+             *
              */
             costBurn: string;
             /**
-             * 
+             *
              */
             costType: string;
             /**
-             * 
+             *
              */
             description: string;
             /**
@@ -2692,35 +2644,35 @@ declare module riotGamesApi {
              */
             effect: number[][];
             /**
-             * 
+             *
              */
             effectBurn: string[];
             /**
-             * 
+             *
              */
             id: number;
             /**
-             * 
+             *
              */
             image: ImageDto;
             /**
-             * 
+             *
              */
             key: string;
             /**
-             * 
+             *
              */
             leveltip: LevelTipDto;
             /**
-             * 
+             *
              */
             maxrank: number;
             /**
-             * 
+             *
              */
             modes: string[];
             /**
-             * 
+             *
              */
             name: string;
             /**
@@ -2728,36 +2680,36 @@ declare module riotGamesApi {
              */
             range: number[] | string;
             /**
-             * 
+             *
              */
             rangeBurn: string;
             /**
-             * 
+             *
              */
             resource: string;
             /**
-             * 
+             *
              */
             sanitizedDescription: string;
             /**
-             * 
+             *
              */
             sanitizedTooltip: string;
             /**
-             * 
+             *
              */
             summonerLevel: number;
             /**
-             * 
+             *
              */
             tooltip: string;
             /**
-             * 
+             *
              */
             vars: SpellVarsDto[];
         }
     }
-    
+
     /**
      * lol-status-v1.0
      */
@@ -2766,87 +2718,85 @@ declare module riotGamesApi {
          * Get shard list. (REST)
          * Should call GET /shards
          */
-        export function getShards(): Shard[];
-        
+        export function getShards():Shard[];
+
         /**
          * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region. (REST)
          * Should call GET /shards/{region}
          * @param region The region for which to fetch data.
          */
-        export function getShard(
-            region: string
-        ): ShardStatus;
+        export function getShard(region:string):ShardStatus;
 
         /**
-         * 
+         *
          */
         export interface Shard {
             /**
-             * 
+             *
              */
             hostname: string;
             /**
-             * 
+             *
              */
             locales: string[];
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             region_tag: string;
             /**
-             * 
+             *
              */
             slug: string;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface ShardStatus {
             /**
-             * 
+             *
              */
             hostname: string;
             /**
-             * 
+             *
              */
             locales: string[];
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             region_tag: string;
             /**
-             * 
+             *
              */
             services: Service[];
             /**
-             * 
+             *
              */
             slug: string;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface Service {
             /**
-             * 
+             *
              */
             incidents: Incident[];
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             slug: string;
             /**
@@ -2856,42 +2806,42 @@ declare module riotGamesApi {
         }
 
         /**
-         * 
+         *
          */
         export interface Incident {
             /**
-             * 
+             *
              */
             active: boolean;
             /**
-             * 
+             *
              */
             created_at: string;
             /**
-             * 
+             *
              */
             id: number;
             /**
-             * 
+             *
              */
             updates: Message[];
         }
 
         export interface Message {
             /**
-             * 
+             *
              */
             author: string;
             /**
-             * 
+             *
              */
             content: string;
             /**
-             * 
+             *
              */
             created_at: string;
             /**
-             * 
+             *
              */
             id: number;
             /**
@@ -2899,34 +2849,34 @@ declare module riotGamesApi {
              */
             severity: string;
             /**
-             * 
+             *
              */
             translations: Translation[];
             /**
-             * 
+             *
              */
             updated_at: string;
         }
 
         /**
-         * 
+         *
          */
         export interface Translation {
             /**
-             * 
+             *
              */
             content: string;
             /**
-             * 
+             *
              */
             locale: string;
             /**
-             * 
+             *
              */
             updated_at: string;
         }
     }
-    
+
     /**
      * match-v2.2
      */
@@ -2937,11 +2887,9 @@ declare module riotGamesApi {
          * @param region         The region of the match.
          * @param tournamentCode The tournament code of the match
          */
-        export function getMatchIdsByTournamentCode(
-            region: string,
-            tournamentCode: string
-        ): number[];
-        
+        export function getMatchIdsByTournamentCode(region:string,
+                                                    tournamentCode:string):number[];
+
         /**
          * Retrieve match by match ID and tournament code. (REST)
          * Should call GET /api/lol/{region}/v2.2/match/for-tournament/{matchId}
@@ -2950,13 +2898,11 @@ declare module riotGamesApi {
          * @param tournamentCode  The tournament code of the match
          * @param includeTimeline Flag indicating whether or not to include match timeline data
          */
-        export function getMatchByIdAndTournamentCode(
-            region: string,
-            matchId: number,
-            tournamentCode: string,
-            includeTimeline: boolean
-        ): MatchDetail;
-        
+        export function getMatchByIdAndTournamentCode(region:string,
+                                                      matchId:number,
+                                                      tournamentCode:string,
+                                                      includeTimeline:boolean):MatchDetail;
+
         /**
          * Retrieve match by match ID. (REST)
          * Should call GET /api/lol/{region}/v2.2/match/{matchId}
@@ -2964,11 +2910,9 @@ declare module riotGamesApi {
          * @param matchId         The ID of the match.
          * @param includeTimeline Flag indicating whether or not to include match timeline data
          */
-        export function getMatchById(
-            region: string,
-            matchId: number,
-            includeTimeline: boolean
-        ): MatchDetail;
+        export function getMatchById(region:string,
+                                     matchId:number,
+                                     includeTimeline:boolean):MatchDetail;
 
         /**
          * Contains match detail information.
@@ -3035,7 +2979,7 @@ declare module riotGamesApi {
              */
             timeline: Timeline;
         }
-        
+
         /**
          * Contains match participant information
          */
@@ -3081,7 +3025,7 @@ declare module riotGamesApi {
              */
             timeline: ParticipantTimeline;
         }
-        
+
         /**
          * Contains participant identity information
          */
@@ -3095,7 +3039,7 @@ declare module riotGamesApi {
              */
             player: Player;
         }
-        
+
         /**
          * Containts team information
          */
@@ -3161,7 +3105,7 @@ declare module riotGamesApi {
              */
             winner: boolean;
         }
-        
+
         /**
          * Contains game timeline information.
          */
@@ -3175,7 +3119,7 @@ declare module riotGamesApi {
              */
             frames: Frame[];
         }
-        
+
         /**
          * Contains mastery information.
          */
@@ -3189,7 +3133,7 @@ declare module riotGamesApi {
              */
             rank: number;
         }
-        
+
         /**
          * Contains participant statistics information.
          */
@@ -3447,7 +3391,7 @@ declare module riotGamesApi {
              */
             winner: boolean;
         }
-        
+
         /**
          * Contains all timeline information.
          */
@@ -3561,7 +3505,7 @@ declare module riotGamesApi {
              */
             xpPerMinDeltas: ParticipantTimelineData;
         }
-        
+
         /**
          * Contains rune information.
          */
@@ -3575,7 +3519,7 @@ declare module riotGamesApi {
              */
             runeId: number;
         }
-        
+
         /**
          * Contains match player information.
          */
@@ -3597,7 +3541,7 @@ declare module riotGamesApi {
              */
             summonerName: string;
         }
-        
+
         /**
          * Contains information about banned champions.
          */
@@ -3611,7 +3555,7 @@ declare module riotGamesApi {
              */
             pickTurn: number;
         }
-        
+
         /**
          * Contains contains game frame information.
          */
@@ -3629,7 +3573,7 @@ declare module riotGamesApi {
              */
             timestamp: number;
         }
-        
+
         /**
          * Contains timeline data.
          */
@@ -3651,7 +3595,7 @@ declare module riotGamesApi {
              */
             zeroToTen: number;
         }
-        
+
         /**
          * Contains game event information. Note that not all legal type values documented below are valid for all games. Event data evolves over time and certain values may be relevant only for older or newer games.
          */
@@ -3741,7 +3685,7 @@ declare module riotGamesApi {
              */
             wardType: string;
         }
-        
+
         /**
          * Contains participant frame information.
          */
@@ -3787,22 +3731,22 @@ declare module riotGamesApi {
              */
             xp: number;
         }
-        
+
         /**
          * Contains participant frame position information.
          */
         export interface Position {
             /**
-             * 
+             *
              */
             x: number;
             /**
-             * 
+             *
              */
             y: number;
         }
     }
-    
+
     /**
      * matchlist-v2.2
      */
@@ -3820,46 +3764,44 @@ declare module riotGamesApi {
          * @param beginIndex   The begin index to use for fetching games.
          * @param endIndex     The end index to use for fetching games.
          */
-        export function getMatchesBySummonerId(
-            region: string,
-            summonerId: number,
-            championIds: string,
-            rankedQueues: string,
-            seasons: string,
-            beginTime: number,
-            endTime: number,
-            beginIndex: number,
-            endIndex: number
-        ): MatchList;
+        export function getMatchesBySummonerId(region:string,
+                                               summonerId:number,
+                                               championIds:string,
+                                               rankedQueues:string,
+                                               seasons:string,
+                                               beginTime:number,
+                                               endTime:number,
+                                               beginIndex:number,
+                                               endIndex:number):MatchList;
 
         /**
          * This object contains match list information
          */
         export interface MatchList {
             /**
-             * 
+             *
              */
             endIndex: number;
             /**
-             * 
+             *
              */
             matches: MatchReference[];
             /**
-             * 
+             *
              */
             startIndex: number;
             /**
-             * 
+             *
              */
             totalGames: number;
         }
-        
+
         /**
          * This object contains match reference information
          */
         export interface MatchReference {
             /**
-             * 
+             *
              */
             champion: number;
             /**
@@ -3867,11 +3809,11 @@ declare module riotGamesApi {
              */
             lane: string;
             /**
-             * 
+             *
              */
             matchId: number;
             /**
-             * 
+             *
              */
             platformId: string;
             /**
@@ -3887,12 +3829,12 @@ declare module riotGamesApi {
              */
             season: string;
             /**
-             * 
+             *
              */
             timestamp: number;
         }
     }
-    
+
     /**
      * stats-v1.3
      */
@@ -3904,11 +3846,9 @@ declare module riotGamesApi {
          * @param summonerId ID of the summoner for which to retrieve ranked stats.
          * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
          */
-        export function getRankedBySummonerId(
-            region: string,
-            summonerId: number,
-            season: string
-        ): RankedStatsDto;
+        export function getRankedBySummonerId(region:string,
+                                              summonerId:number,
+                                              season:string):RankedStatsDto;
 
         /**
          * Get player stats summaries by summoner ID. (REST)
@@ -3917,12 +3857,10 @@ declare module riotGamesApi {
          * @param summonerId ID of the summoner for which to retrieve player stats.
          * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
          */
-        export function getSummaryBySummonerId(
-            region: string,
-            summonerId: number,
-            season: string
-        ): PlayerStatsSummaryListDto;
-        
+        export function getSummaryBySummonerId(region:string,
+                                               summonerId:number,
+                                               season:string):PlayerStatsSummaryListDto;
+
         /**
          * Contains ranked stats information
          */
@@ -3940,7 +3878,7 @@ declare module riotGamesApi {
              */
             summonerId: number;
         }
-        
+
         /**
          * Contains a collection of champion stats information
          */
@@ -3954,7 +3892,7 @@ declare module riotGamesApi {
              */
             stats: AggregatedStatsDto;
         }
-        
+
         /**
          * Contains aggregated stat information
          */
@@ -4004,11 +3942,11 @@ declare module riotGamesApi {
              */
             averageTotalPlayerScore: number;
             /**
-             * 
+             *
              */
             botGamesPlayed: number;
             /**
-             * 
+             *
              */
             killingSpree: number;
             /**
@@ -4016,7 +3954,7 @@ declare module riotGamesApi {
              */
             maxAssists: number;
             /**
-             * 
+             *
              */
             maxChampionsKilled: number;
             /**
@@ -4024,11 +3962,11 @@ declare module riotGamesApi {
              */
             maxCombatPlayerScore: number;
             /**
-             * 
+             *
              */
             maxLargestCriticalStrike: number;
             /**
-             * 
+             *
              */
             maxLargestKillingSpree: number;
             /**
@@ -4060,11 +3998,11 @@ declare module riotGamesApi {
              */
             maxTeamObjective: number;
             /**
-             * 
+             *
              */
             maxTimePlayed: number;
             /**
-             * 
+             *
              */
             maxTimeSpentLiving: number;
             /**
@@ -4072,39 +4010,39 @@ declare module riotGamesApi {
              */
             maxTotalPlayerScore: number;
             /**
-             * 
+             *
              */
             mostChampionKillsPerSession: number;
             /**
-             * 
+             *
              */
             mostSpellsCast: number;
             /**
-             * 
+             *
              */
             normalGamesPlayed: number;
             /**
-             * 
+             *
              */
             rankedPremadeGamesPlayed: number;
             /**
-             * 
+             *
              */
             rankedSoloGamesPlayed: number;
             /**
-             * 
+             *
              */
             totalAssists: number;
             /**
-             * 
+             *
              */
             totalChampionKills: number;
             /**
-             * 
+             *
              */
             totalDamageDealt: number;
             /**
-             * 
+             *
              */
             totalDamageTaken: number;
             /**
@@ -4112,31 +4050,31 @@ declare module riotGamesApi {
              */
             totalDeathsPerSession: number;
             /**
-             * 
+             *
              */
             totalDoubleKills: number;
             /**
-             * 
+             *
              */
             totalFirstBlood: number;
             /**
-             * 
+             *
              */
             totalGoldEarned: number;
             /**
-             * 
+             *
              */
             totalHeal: number;
             /**
-             * 
+             *
              */
             totalMagicDamageDealt: number;
             /**
-             * 
+             *
              */
             totalMinionKills: number;
             /**
-             * 
+             *
              */
             totalNeutralMinionsKilled: number;
             /**
@@ -4148,43 +4086,43 @@ declare module riotGamesApi {
              */
             totalNodeNeutralize: number;
             /**
-             * 
+             *
              */
             totalPentaKills: number;
             /**
-             * 
+             *
              */
             totalPhysicalDamageDealt: number;
             /**
-             * 
+             *
              */
             totalQuadraKills: number;
             /**
-             * 
+             *
              */
             totalSessionsLost: number;
             /**
-             * 
+             *
              */
             totalSessionsPlayed: number;
             /**
-             * 
+             *
              */
             totalSessionsWon: number;
             /**
-             * 
+             *
              */
             totalTripleKills: number;
             /**
-             * 
+             *
              */
             totalTurretsKilled: number;
             /**
-             * 
+             *
              */
             totalUnrealKills: number;
         }
-        
+
         /**
          * Contains a collection of player stats summary information.
          */
@@ -4198,7 +4136,7 @@ declare module riotGamesApi {
              */
             summonerId: number;
         }
-        
+
         /**
          * Contains player stats summary information.
          */
@@ -4225,7 +4163,7 @@ declare module riotGamesApi {
             wins: number;
         }
     }
-    
+
     /**
      * summoner-v1.4
      */
@@ -4236,10 +4174,8 @@ declare module riotGamesApi {
          * @param region        Region where to retrieve the data.
          * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
          */
-        export function getSummonerByNames(
-            region: string,
-            summonerNames: string
-        ): { [s: string]: SummonerDto; };
+        export function getSummonerByNames(region:string,
+                                           summonerNames:string):{ [s: string]: SummonerDto; };
 
         /**
          * Get summoner objects mapped by summoner ID for a given list of summoner IDs. (REST)
@@ -4247,10 +4183,8 @@ declare module riotGamesApi {
          * @param region      Region where to retrieve the data.
          * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
          */
-        export function getSummonerByIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: SummonerDto; };
+        export function getSummonerByIds(region:string,
+                                         summonerIds:string):{ [s: string]: SummonerDto; };
 
         /**
          * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
@@ -4258,10 +4192,8 @@ declare module riotGamesApi {
          * @param region      Region where to retrieve the data.
          * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
          */
-        export function getMasteryPagesBySummonerIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: MasteryPagesDto; };
+        export function getMasteryPagesBySummonerIds(region:string,
+                                                     summonerIds:string):{ [s: string]: MasteryPagesDto; };
 
         /**
          * Get summoner names mapped by summoner ID for a given list of summoner IDs. (REST)
@@ -4269,10 +4201,8 @@ declare module riotGamesApi {
          * @param region      Region where to retrieve the data.
          * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
          */
-        export function getNameBySummonerIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: string; };
+        export function getNameBySummonerIds(region:string,
+                                             summonerIds:string):{ [s: string]: string; };
 
         /**
          * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
@@ -4280,10 +4210,8 @@ declare module riotGamesApi {
          * @param region      Region where to retrieve the data.
          * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
          */
-        export function getRunePagesBySummonerIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: RunePagesDto; };
+        export function getRunePagesBySummonerIds(region:string,
+                                                  summonerIds:string):{ [s: string]: RunePagesDto; };
 
         /**
          * Contains summoner information
@@ -4310,7 +4238,7 @@ declare module riotGamesApi {
              */
             summonerLevel: number;
         }
-        
+
         /**
          * Contains masteries information
          */
@@ -4324,7 +4252,7 @@ declare module riotGamesApi {
              */
             summonerId: number;
         }
-        
+
         /**
          * Contains mastery page information
          */
@@ -4346,7 +4274,7 @@ declare module riotGamesApi {
              */
             name: string;
         }
-        
+
         /**
          * Contains mastery information
          */
@@ -4360,7 +4288,7 @@ declare module riotGamesApi {
              */
             rank: number;
         }
-        
+
         /**
          * Contains rune pages information
          */
@@ -4396,7 +4324,7 @@ declare module riotGamesApi {
              */
             slots: RuneSlotDto[];
         }
-        
+
         /**
          * Contains rune slot information
          */
@@ -4422,10 +4350,8 @@ declare module riotGamesApi {
          * @param region      The region of the summoner.
          * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
          */
-        export function getTeamsBySummonerIds(
-            region: string,
-            summonerIds: string
-        ): { [s: string]: TeamDto[]; };
+        export function getTeamsBySummonerIds(region:string,
+                                              summonerIds:string):{ [s: string]: TeamDto[]; };
 
         /**
          * Get teams mapped by team ID for a given list of team IDs. (REST)
@@ -4433,11 +4359,9 @@ declare module riotGamesApi {
          * @param region  The region of the summoner.
          * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
          */
-        export function getTeamsByTeamIds(
-            region: string,
-            teamIds: string
-        ): { [s: string]: TeamDto; };
-        
+        export function getTeamsByTeamIds(region:string,
+                                          teamIds:string):{ [s: string]: TeamDto; };
+
         /**
          * Contains team information
          */
@@ -4447,7 +4371,7 @@ declare module riotGamesApi {
              */
             createDate: number;
             /**
-             * 
+             *
              */
             fullId: string;
             /**
@@ -4463,7 +4387,7 @@ declare module riotGamesApi {
              */
             lastJoinedRankedTeamQueueDate: number;
             /**
-             * 
+             *
              */
             matchHistory: MatchHistorySummaryDto[];
             /**
@@ -4471,11 +4395,11 @@ declare module riotGamesApi {
              */
             modifyDate: number;
             /**
-             * 
+             *
              */
             name: string;
             /**
-             * 
+             *
              */
             roster: RosterDto;
             /**
@@ -4483,15 +4407,15 @@ declare module riotGamesApi {
              */
             secondLastJoinDate: number;
             /**
-             * 
+             *
              */
             status: string;
             /**
-             * 
+             *
              */
             tag: string;
             /**
-             * 
+             *
              */
             teamStatDetails: TeamStatDetailDto[];
             /**
@@ -4505,7 +4429,7 @@ declare module riotGamesApi {
          */
         export interface MatchHistorySummaryDto {
             /**
-             * 
+             *
              */
             assists: number;
             /**
@@ -4513,39 +4437,39 @@ declare module riotGamesApi {
              */
             date: number;
             /**
-             * 
+             *
              */
             deaths: number;
             /**
-             * 
+             *
              */
             gameId: number;
             /**
-             * 
+             *
              */
             gameMode: string;
             /**
-             * 
+             *
              */
             invalid: boolean;
             /**
-             * 
+             *
              */
             kills: number;
             /**
-             * 
+             *
              */
             mapId: number;
             /**
-             * 
+             *
              */
             opposingTeamKills: number;
             /**
-             * 
+             *
              */
             opposingTeamName: string;
             /**
-             * 
+             *
              */
             win: boolean;
         }
@@ -4555,11 +4479,11 @@ declare module riotGamesApi {
          */
         export interface RosterDto {
             /**
-             * 
+             *
              */
             memberList: TeamMemberInfoDto[];
             /**
-             * 
+             *
              */
             ownerId: number;
         }
@@ -4569,19 +4493,19 @@ declare module riotGamesApi {
          */
         export interface TeamStatDetailDto {
             /**
-             * 
+             *
              */
             averageGamesPlayed: number;
             /**
-             * 
+             *
              */
             losses: number;
             /**
-             * 
+             *
              */
             teamStatType: string;
             /**
-             * 
+             *
              */
             wins: number;
         }
@@ -4599,11 +4523,11 @@ declare module riotGamesApi {
              */
             joinDate: number;
             /**
-             * 
+             *
              */
             playerId: number;
             /**
-             * 
+             *
              */
             status: string;
         }
@@ -4620,20 +4544,16 @@ declare module riotGamesApi {
          * @param count        The number of codes to create (max 1000)
          * @param body         Metadata for the generated code
          */
-        export function createTournamentCodesById(
-            tournamentId: number,
-            count: number,
-            body: TournamentCodeParameters
-        ): string[];
+        export function createTournamentCodesById(tournamentId:number,
+                                                  count:number,
+                                                  body:TournamentCodeParameters):string[];
 
         /**
          * Returns the tournament code DTO associated with a tournament code string. (REST)
          * Should call GET /tournament/public/v1/code/{tournamentCode}
          * @param tournamentCode The tournament code string.
          */
-        export function getTournamentByCode(
-            tournamentCode: string
-        ): TournamentCodeDTO;
+        export function getTournamentByCode(tournamentCode:string):TournamentCodeDTO;
 
         /**
          * Update the pick type, map, spectator type, or allowed summoners for a code (REST)
@@ -4641,40 +4561,32 @@ declare module riotGamesApi {
          * @param tournamentCode The tournament code to update
          * @param body           The fields to update
          */
-        export function updateTournamentByCode(
-            tournamentCode: string,
-            body: TournamentCodeUpdateParameters
-        ): void;
+        export function updateTournamentByCode(tournamentCode:string,
+                                               body:TournamentCodeUpdateParameters):void;
 
         /**
          * Gets a list of lobby events by tournament code (REST)
          * Should call GET /tournament/public/v1/lobby/events/by-code/{tournamentCode}
          * @param tournamentCode The short code to look up lobby events for
          */
-        export function getLobbyEventsByTournamentCode(
-            tournamentCode: string
-        ): LobbyEventDTOWrapper;
+        export function getLobbyEventsByTournamentCode(tournamentCode:string):LobbyEventDTOWrapper;
 
         /**
          * Creates a tournament provider and returns its ID. (REST)
          * Should call POST /tournament/public/v1/provider
          * @param body The provider definition.
          */
-        export function createTournamentProvider(
-            body: ProviderRegistrationParameters
-        ): number;
-        
+        export function createTournamentProvider(body:ProviderRegistrationParameters):number;
+
         /**
          * Creates a tournament and returns its ID. (REST)
          * Should call POST /tournament/public/v1/tournament
          * @param body The tournament definition.
          */
-        export function createTournament(
-            body: TournamentRegistrationParameters
-        ): number;
-        
+        export function createTournament(body:TournamentRegistrationParameters):number;
+
         /**
-         * 
+         *
          */
         export interface TournamentCodeParameters {
             /**
@@ -4704,9 +4616,9 @@ declare module riotGamesApi {
              */
             teamSize: number;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface SummonerIdParams {
             /**
@@ -4714,9 +4626,9 @@ declare module riotGamesApi {
              */
             participants: number[];
         }
-        
+
         /**
-         * 
+         *
          */
         export interface TournamentCodeDTO {
             /**
@@ -4740,7 +4652,7 @@ declare module riotGamesApi {
              */
             metaData: string;
             /**
-             * 
+             *
              */
             participants: number[];
             /**
@@ -4772,9 +4684,9 @@ declare module riotGamesApi {
              */
             tournamentId: number;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface TournamentCodeUpdateParameters {
             /**
@@ -4794,19 +4706,19 @@ declare module riotGamesApi {
              */
             spectatorType: string;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface LobbyEventDTOWrapper {
             /**
-             * 
+             *
              */
             eventList: LobbyEventDTO[];
         }
-        
+
         /**
-         * 
+         *
          */
         export interface LobbyEventDTO {
             /**
@@ -4824,7 +4736,7 @@ declare module riotGamesApi {
         }
 
         /**
-         * 
+         *
          */
         export interface ProviderRegistrationParameters {
             /**
@@ -4836,9 +4748,9 @@ declare module riotGamesApi {
              */
             url: string;
         }
-        
+
         /**
-         * 
+         *
          */
         export interface TournamentRegistrationParameters {
             /**
@@ -4851,4 +4763,8 @@ declare module riotGamesApi {
             providerId: number;
         }
     }
+}
+
+declare module "riotGamesApi" {
+    export = riotGamesApi;
 }
