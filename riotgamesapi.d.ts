@@ -102,6 +102,101 @@ declare module riotGamesApi {
     }
 
     /**
+     * championmastery
+     */
+    export module championmastery {
+        /**
+         * Get a champion mastery by summoner ID and champion ID, returns null if given player has no mastery for given champion. (REST)
+         * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/champion/{championId}
+         * @param platformId Region where to retrieve the data.
+         * @param summonerId Summoner ID associated with the player
+         * @param championId Champion ID to retrieve Champion Mastery for
+         */
+        export function getChampionMastery(
+            platformId: string,
+            summonerId: number,
+            championId: number
+        ): ChampionMasteryDto;
+        
+        /**
+         * Get all champion mastery entries sorted by number of champion points descending. (REST)
+         * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/champions
+         * @param platformId Region where to retrieve the data.
+         * @param summonerId Summoner ID associated with the player
+         */
+        export function getChampionsMastery(
+            platformId: string,
+            summonerId: number
+        ): ChampionMasteryDto[];
+
+        /**
+         * Get a player's total champion mastery score, which is sum of individual champion mastery levels. (REST)
+         * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/score
+         * @param platformId Region where to retrieve the data.
+         * @param summonerId Summoner ID associated with the player
+         */
+        export function getScore(
+            platformId: string,
+            summonerId: number
+        ): number;
+        
+        /**
+         * Get specified number of top champion mastery entries sorted by number of champion points descending. (REST)
+         * Should call GET /championmastery/location/{platformId}/player/{summonerId}/topchampions
+         * @param platformId Region where to retrieve the data.
+         * @param summonerId Summoner ID associated with the player
+         * @param count      Number of entries to retrieve, defaults to 3
+         */
+        export function getTopChampions(
+            platformId: string,
+            summonerId: number,
+            count: number
+        ): ChampionMasteryDto[];
+
+        /**
+         * This object contains single Champion Mastery information for player and champion combination.
+         */
+        export interface ChampionMasteryDto {
+            /**
+             * Champion ID for this entry.
+             */
+            championId: number,
+            /**
+             * Champion level for specified player and champion combination.
+             */
+            championLevel: number,
+            /**
+             * Total number of champion points for this player and champion combination - they are used to determine championLevel.
+             */
+            championPoints: number,
+            /**
+             * Number of points earned since current level has been achieved. Zero if player reached maximum champion level for this champion.
+             */
+            championPointsSinceLastLevel: number,
+            /**
+             * Number of points needed to achieve next level. Zero if player reached maximum champion level for this champion.
+             */
+            championPointsUntilNextLevel: number,
+            /**
+             * Is chest granted for this champion or not in current season.
+             */
+            chestGranted: boolean,
+            /**
+             * The highest grade of this champion of current season.
+             */
+            highestGrade: string,
+            /**
+             * Last time this champion was played by this player - in Unix milliseconds time format.
+             */
+            lastPlayTime: number,
+            /**
+             * Player ID for this entry.
+             */
+            playerId: number
+        }
+    }
+    
+    /**
      * current-game-v1.0
      */
     export module currentGame {
