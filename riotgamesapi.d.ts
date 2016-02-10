@@ -9,14 +9,18 @@ declare module riotGamesApi {
      * champion-v1.2
      */
     export module champion {
-        export interface Endpoints {
+        export interface Operations {
             /**
              * Retrieve all champions. (REST)
              * Sould call GET /api/lol/{region}/v1.2/champion
              * @param region     Region where to retrieve the data.
              * @param freeToPlay Optional filter param to retrieve only free to play champions.
              */
-            getChampions(region:string, freeToPlay?:boolean, callback?:(data: ChampionListDto) => void): void;
+            getChampions(
+                region: string,
+                freeToPlay?: boolean,
+                callback?: (data: ChampionListDto) => void
+            ): void;
 
             /**
              * Retrieve champion by ID. (REST)
@@ -24,7 +28,11 @@ declare module riotGamesApi {
              * @param region Region where to retrieve the data.
              * @param id     ID of the champion to retrieve.
              */
-            getChampionById(region:string, id:number, callback?:(data: ChampionDto) => void): void
+            getChampionById(
+                region: string,
+                id: number,
+                callback?: (data: ChampionDto) => void
+            ): void
         }
 
         /**
@@ -105,53 +113,59 @@ declare module riotGamesApi {
      * championmastery
      */
     export module championmastery {
-        /**
-         * Get a champion mastery by summoner ID and champion ID, returns null if given player has no mastery for given champion. (REST)
-         * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/champion/{championId}
-         * @param platformId Region where to retrieve the data.
-         * @param summonerId Summoner ID associated with the player
-         * @param championId Champion ID to retrieve Champion Mastery for
-         */
-        export function getChampionMastery(
-            platformId: string,
-            summonerId: number,
-            championId: number
-        ): ChampionMasteryDto;
-        
-        /**
-         * Get all champion mastery entries sorted by number of champion points descending. (REST)
-         * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/champions
-         * @param platformId Region where to retrieve the data.
-         * @param summonerId Summoner ID associated with the player
-         */
-        export function getChampionsMastery(
-            platformId: string,
-            summonerId: number
-        ): ChampionMasteryDto[];
+        export interface Operations {
+            /**
+             * Get a champion mastery by summoner ID and champion ID, returns null if given player has no mastery for given champion. (REST)
+             * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/champion/{championId}
+             * @param platformId Region where to retrieve the data.
+             * @param summonerId Summoner ID associated with the player
+             * @param championId Champion ID to retrieve Champion Mastery for
+             */
+            getChampionMastery(
+                platformId: string,
+                summonerId: number,
+                championId: number,
+                callback?: (data:ChampionMasteryDto) => void
+            ): void;
+            
+            /**
+             * Get all champion mastery entries sorted by number of champion points descending. (REST)
+             * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/champions
+             * @param platformId Region where to retrieve the data.
+             * @param summonerId Summoner ID associated with the player
+             */
+            getChampionsMastery(
+                platformId: string,
+                summonerId: number,
+                callback?: (data:ChampionMasteryDto[]) => void
+            ): void;
 
-        /**
-         * Get a player's total champion mastery score, which is sum of individual champion mastery levels. (REST)
-         * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/score
-         * @param platformId Region where to retrieve the data.
-         * @param summonerId Summoner ID associated with the player
-         */
-        export function getScore(
-            platformId: string,
-            summonerId: number
-        ): number;
-        
-        /**
-         * Get specified number of top champion mastery entries sorted by number of champion points descending. (REST)
-         * Should call GET /championmastery/location/{platformId}/player/{summonerId}/topchampions
-         * @param platformId Region where to retrieve the data.
-         * @param summonerId Summoner ID associated with the player
-         * @param count      Number of entries to retrieve, defaults to 3
-         */
-        export function getTopChampions(
-            platformId: string,
-            summonerId: number,
-            count: number
-        ): ChampionMasteryDto[];
+            /**
+             * Get a player's total champion mastery score, which is sum of individual champion mastery levels. (REST)
+             * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/score
+             * @param platformId Region where to retrieve the data.
+             * @param summonerId Summoner ID associated with the player
+             */
+            getScore(
+                platformId: string,
+                summonerId: number,
+                callback?: (data:number) => void
+            ): void;
+            
+            /**
+             * Get specified number of top champion mastery entries sorted by number of champion points descending. (REST)
+             * Should call GET /championmastery/location/{platformId}/player/{summonerId}/topchampions
+             * @param platformId Region where to retrieve the data.
+             * @param summonerId Summoner ID associated with the player
+             * @param count      Number of entries to retrieve, defaults to 3
+             */
+            getTopChampions(
+                platformId: string,
+                summonerId: number,
+                count: number,
+                callback?: (data: ChampionMasteryDto[]) => void
+            ): void;
+        }
 
         /**
          * This object contains single Champion Mastery information for player and champion combination.
@@ -200,14 +214,19 @@ declare module riotGamesApi {
      * current-game-v1.0
      */
     export module currentGame {
-        /**
-         * Get current game information for the given summoner ID. (REST)
-         * Should call GET /observer-mode/rest/consumer/getSpectatorGameInfo/{platformId}/{summonerId}
-         * @param platformId The platform ID for which to fetch data.
-         * @param summonerId The ID of the summoner.
-         */
-        export function getSpectatorGameInfoBySummonerId(platformId:string,
-                                                         summonerId:number):CurrentGameInfo;
+        export interface Operations {
+            /**
+             * Get current game information for the given summoner ID. (REST)
+             * Should call GET /observer-mode/rest/consumer/getSpectatorGameInfo/{platformId}/{summonerId}
+             * @param platformId The platform ID for which to fetch data.
+             * @param summonerId The ID of the summoner.
+             */
+            getSpectatorGameInfoBySummonerId(
+                platformId: string,
+                summonerId: number,
+                callback?: (data: CurrentGameInfo) => void
+            ): void;
+        }
 
         /**
          *
@@ -350,12 +369,17 @@ declare module riotGamesApi {
      * featured-game-v1.0
      */
     export module featuredGames {
-        /**
-         * Get list of featured games. (REST)
-         * Should call GET /observer-mode/rest/featured
-         * @param region Region where to retrieve the data.
-         */
-        export function getGeaturedGames(region:string):FeaturedGames;
+        export interface Operations {
+            /**
+             * Get list of featured games. (REST)
+             * Should call GET /observer-mode/rest/featured
+             * @param region Region where to retrieve the data.
+             */
+            getGeaturedGames(
+                region: string,
+                callback?: (data: FeaturedGames) => void
+            ): FeaturedGames;
+        }
 
         /**
          *
@@ -546,15 +570,19 @@ declare module riotGamesApi {
      * game-v1.3
      */
     export module game {
-        /**
-         * Get recent games by summoner ID. (REST)
-         * Should call GET /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
-         * @param region     Region where to retrieve the data.
-         * @param summonerId ID of the summoner for which to retrieve recent games.
-         */
-        export function getRecentGamesBySummonerId(region:string,
-                                                   summonerId:number):RecentGamesDto;
-
+        export interface Operations {
+            /**
+             * Get recent games by summoner ID. (REST)
+             * Should call GET /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
+             * @param region     Region where to retrieve the data.
+             * @param summonerId ID of the summoner for which to retrieve recent games.
+             */
+            getRecentGamesBySummonerId(
+                region: string,
+                summonerId: number,
+                callback?: (data: RecentGamesDto) => void
+            ): void;   
+        }
 
         /**
          * Contains recent games information
@@ -977,59 +1005,79 @@ declare module riotGamesApi {
      * league-v2.5
      */
     export module league {
-        /**
-         * Get leagues mapped by summoner ID for a given list of summoner IDs. (REST)
-         * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}
-         * @param region       The region of the leagues.
-         * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
-         */
-        export function getLeagueBySummonerIds(region:string,
-                                               summonerIds:string):{ [s: string]: LeagueDto[]; };
+        export interface Operations {
+            /**
+             * Get leagues mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}
+             * @param region       The region of the leagues.
+             * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
+             */
+            getLeagueBySummonerIds(
+                region: string,
+                summonerIds: string,
+                callback?: (data: {[s: string]: LeagueDto[]}) => void
+            ): void;
 
-        /**
-         * Get league entries mapped by summoner ID for a given list of summoner IDs. (REST)
-         * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry
-         * @param region       The region of the leagues.
-         * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
-         */
-        export function getLeagueEntryBySummonerIds(region:string,
-                                                    summonerIds:string):{ [s: string]: LeagueDto[]; };
+            /**
+             * Get league entries mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/by-summoner/{summonerIds}/entry
+             * @param region       The region of the leagues.
+             * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
+             */
+            getLeagueEntryBySummonerIds(
+                region: string,
+                summonerIds: string,
+                callback?: (data: {[s: string]: LeagueDto[]}) => void
+            ): void;
 
-        /**
-         * Get leagues mapped by team ID for a given list of team IDs. (REST)
-         * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}
-         * @param region  The region of the leagues.
-         * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
-         */
-        export function getLeagueByTeamIds(region:string,
-                                           summonerIds:string):{ [s: string]: LeagueDto[]; };
+            /**
+             * Get leagues mapped by team ID for a given list of team IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}
+             * @param region  The region of the leagues.
+             * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+             */
+            getLeagueByTeamIds(
+                region: string,
+                summonerIds: string,
+                callback?: (data: {[s: string]: LeagueDto[]}) => void
+            ): void;
 
-        /**
-         * Get league entries mapped by team ID for a given list of team IDs. (REST)
-         * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}/entry
-         * @param region  The region of the leagues.
-         * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
-         */
-        export function getLeagueEntryByTeamIds(region:string,
-                                                summonerIds:string):{ [s: string]: LeagueDto[]; };
+            /**
+             * Get league entries mapped by team ID for a given list of team IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/by-team/{teamIds}/entry
+             * @param region  The region of the leagues.
+             * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+             */
+            getLeagueEntryByTeamIds(
+                region: string,
+                summonerIds: string,
+                callback?: (data: {[s: string]: LeagueDto[]}) => void
+            ): void;
 
-        /**
-         * Get challenger tier leagues. (REST)
-         * Should call GET /api/lol/{region}/v2.5/league/challenger
-         * @param region Region where to retrieve the data.
-         * @param type   Game queue type.
-         */
-        export function getLeagueChallenger(region:string,
-                                            type:string):LeagueDto;
+            /**
+             * Get challenger tier leagues. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/challenger
+             * @param region Region where to retrieve the data.
+             * @param type   Game queue type.
+             */
+            getLeagueChallenger(
+                region: string,
+                type: string,
+                callback?: (data: LeagueDto) => void
+            ): void;
 
-        /**
-         * Get master tier leagues. (REST)
-         * Should call GET /api/lol/{region}/v2.5/league/master
-         * @param region Region where to retrieve the data.
-         * @param type   Game queue type.
-         */
-        export function getLeagueMaster(region:string,
-                                        type:string):LeagueDto;
+            /**
+             * Get master tier leagues. (REST)
+             * Should call GET /api/lol/{region}/v2.5/league/master
+             * @param region Region where to retrieve the data.
+             * @param type   Game queue type.
+             */
+            getLeagueMaster(
+                region: string,
+                type: string,
+                callback?: (data: LeagueDto) => void
+            ): void;
+        }
 
         /**
          * Contains league information
