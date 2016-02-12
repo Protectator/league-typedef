@@ -375,10 +375,10 @@ declare module riotGamesApi {
              * Should call GET /observer-mode/rest/featured
              * @param region Region where to retrieve the data.
              */
-            getGeaturedGames(
+            getFeaturedGames(
                 region: string,
                 callback?: (data: FeaturedGames) => void
-            ): FeaturedGames;
+            ): void;
         }
 
         /**
@@ -2890,18 +2890,25 @@ declare module riotGamesApi {
      * lol-status-v1.0
      */
     export module lolStatus {
-        /**
-         * Get shard list. (REST)
-         * Should call GET /shards
-         */
-        export function getShards():Shard[];
+        export interface Operations {
+            /**
+             * Get shard list. (REST)
+             * Should call GET /shards
+             */
+            getShards(
+                callback?: (data: Shard[]) => void
+            ):void;
 
-        /**
-         * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region. (REST)
-         * Should call GET /shards/{region}
-         * @param region The region for which to fetch data.
-         */
-        export function getShard(region:string):ShardStatus;
+            /**
+             * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region. (REST)
+             * Should call GET /shards/{region}
+             * @param region The region for which to fetch data.
+             */
+            getShard(
+                region: string,
+                callback?: (data: ShardStatus) => void
+            ): void;
+        }
 
         /**
          *
@@ -3057,38 +3064,49 @@ declare module riotGamesApi {
      * match-v2.2
      */
     export module match {
-        /**
-         * Retrieve match IDs by tournament code. (REST)
-         * Should call GET /api/lol/{region}/v2.2/match/by-tournament/{tournamentCode}/ids
-         * @param region         The region of the match.
-         * @param tournamentCode The tournament code of the match
-         */
-        export function getMatchIdsByTournamentCode(region:string,
-                                                    tournamentCode:string):number[];
+        export interface Operations {
+            /**
+             * Retrieve match IDs by tournament code. (REST)
+             * Should call GET /api/lol/{region}/v2.2/match/by-tournament/{tournamentCode}/ids
+             * @param region         The region of the match.
+             * @param tournamentCode The tournament code of the match
+             */
+            getMatchIdsByTournamentCode(
+                region: string,
+                tournamentCode: string,
+                callback?: (data: number[]) => void
+            ): void;
 
-        /**
-         * Retrieve match by match ID and tournament code. (REST)
-         * Should call GET /api/lol/{region}/v2.2/match/for-tournament/{matchId}
-         * @param region          The region of the match.
-         * @param matchId         The ID of the match.
-         * @param tournamentCode  The tournament code of the match
-         * @param includeTimeline Flag indicating whether or not to include match timeline data
-         */
-        export function getMatchByIdAndTournamentCode(region:string,
-                                                      matchId:number,
-                                                      tournamentCode:string,
-                                                      includeTimeline:boolean):MatchDetail;
+            /**
+             * Retrieve match by match ID and tournament code. (REST)
+             * Should call GET /api/lol/{region}/v2.2/match/for-tournament/{matchId}
+             * @param region          The region of the match.
+             * @param matchId         The ID of the match.
+             * @param tournamentCode  The tournament code of the match
+             * @param includeTimeline Flag indicating whether or not to include match timeline data
+             */
+            getMatchByIdAndTournamentCode(
+                region: string,
+                matchId: number,
+                tournamentCode: string,
+                includeTimeline: boolean,
+                callback?: (data: MatchDetail) => void
+            ): void;
 
-        /**
-         * Retrieve match by match ID. (REST)
-         * Should call GET /api/lol/{region}/v2.2/match/{matchId}
-         * @param region          The region of the summoner.
-         * @param matchId         The ID of the match.
-         * @param includeTimeline Flag indicating whether or not to include match timeline data
-         */
-        export function getMatchById(region:string,
-                                     matchId:number,
-                                     includeTimeline:boolean):MatchDetail;
+            /**
+             * Retrieve match by match ID. (REST)
+             * Should call GET /api/lol/{region}/v2.2/match/{matchId}
+             * @param region          The region of the summoner.
+             * @param matchId         The ID of the match.
+             * @param includeTimeline Flag indicating whether or not to include match timeline data
+             */
+            getMatchById(
+                region: string,
+                matchId: number,
+                includeTimeline: boolean,
+                callback?: (data: MatchDetail) => void
+            ): void;
+        }
 
         /**
          * Contains match detail information.
@@ -3927,28 +3945,33 @@ declare module riotGamesApi {
      * matchlist-v2.2
      */
     export module matchlist {
-        /**
-         * Retrieve match list by summoner ID. (REST)
-         * Should call GET /api/lol/{region}/v2.2/matchlist/by-summoner/{summonerId}
-         * @param region       The region of the summoner.
-         * @param summonerId   The ID of the summoner.
-         * @param championIds  Comma-separated list of champion IDs to use for fetching games.
-         * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
-         * @param seasons      Comma-separated list of seasons to use for fetching games.
-         * @param beginTime    The begin time to use for fetching games specified as epoch milliseconds.
-         * @param endTime      The end time to use for fetching games specified as epoch milliseconds.
-         * @param beginIndex   The begin index to use for fetching games.
-         * @param endIndex     The end index to use for fetching games.
-         */
-        export function getMatchesBySummonerId(region:string,
-                                               summonerId:number,
-                                               championIds:string,
-                                               rankedQueues:string,
-                                               seasons:string,
-                                               beginTime:number,
-                                               endTime:number,
-                                               beginIndex:number,
-                                               endIndex:number):MatchList;
+        export interface Operations {
+            /**
+             * Retrieve match list by summoner ID. (REST)
+             * Should call GET /api/lol/{region}/v2.2/matchlist/by-summoner/{summonerId}
+             * @param region       The region of the summoner.
+             * @param summonerId   The ID of the summoner.
+             * @param championIds  Comma-separated list of champion IDs to use for fetching games.
+             * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
+             * @param seasons      Comma-separated list of seasons to use for fetching games.
+             * @param beginTime    The begin time to use for fetching games specified as epoch milliseconds.
+             * @param endTime      The end time to use for fetching games specified as epoch milliseconds.
+             * @param beginIndex   The begin index to use for fetching games.
+             * @param endIndex     The end index to use for fetching games.
+             */
+             getMatchesBySummonerId(
+                 region: string,
+                 summonerId: number,
+                 championIds: string,
+                 rankedQueues: string,
+                 seasons: string,
+                 beginTime: number,
+                 endTime: number,
+                 beginIndex: number,
+                 endIndex: number,
+                 callback?: (data: MatchList) => void
+             ): void;
+        }
 
         /**
          * This object contains match list information
@@ -4015,27 +4038,35 @@ declare module riotGamesApi {
      * stats-v1.3
      */
     export module stats {
-        /**
-         * Get ranked stats by summoner ID. (REST)
-         * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked
-         * @param region     Region where to retrieve the data.
-         * @param summonerId ID of the summoner for which to retrieve ranked stats.
-         * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-         */
-        export function getRankedBySummonerId(region:string,
-                                              summonerId:number,
-                                              season:string):RankedStatsDto;
+        export interface Operations {
+            /**
+             * Get ranked stats by summoner ID. (REST)
+             * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked
+             * @param region     Region where to retrieve the data.
+             * @param summonerId ID of the summoner for which to retrieve ranked stats.
+             * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+             */
+            getRankedBySummonerId(
+                region: string,
+                summonerId: number,
+                season: string,
+                callback?: (data: RankedStatsDto) => void
+            ): void;
 
-        /**
-         * Get player stats summaries by summoner ID. (REST)
-         * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/summary
-         * @param region     Region where to retrieve the data.
-         * @param summonerId ID of the summoner for which to retrieve player stats.
-         * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-         */
-        export function getSummaryBySummonerId(region:string,
-                                               summonerId:number,
-                                               season:string):PlayerStatsSummaryListDto;
+            /**
+             * Get player stats summaries by summoner ID. (REST)
+             * Should call GET /api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/summary
+             * @param region     Region where to retrieve the data.
+             * @param summonerId ID of the summoner for which to retrieve player stats.
+             * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+             */
+            getSummaryBySummonerId(
+                region: string,
+                summonerId: number,
+                season: string,
+                callback?: (data: PlayerStatsSummaryListDto) => void
+            ): void;
+        }
 
         /**
          * Contains ranked stats information
@@ -4344,50 +4375,67 @@ declare module riotGamesApi {
      * summoner-v1.4
      */
     export module summoner {
-        /**
-         * Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
-         * Should call GET /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
-         * @param region        Region where to retrieve the data.
-         * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
-         */
-        export function getSummonerByNames(region:string,
-                                           summonerNames:string):{ [s: string]: SummonerDto; };
+        export interface Operations {
+            /**
+             * Get summoner objects mapped by standardized summoner name for a given list of summoner names. (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
+             * @param region        Region where to retrieve the data.
+             * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
+             */
+            getSummonerByNames(
+                region: string,
+                summonerNames: string,
+                callback?: (data: {[s: string]: SummonerDto}) => void
+            ): void;
 
-        /**
-         * Get summoner objects mapped by summoner ID for a given list of summoner IDs. (REST)
-         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}
-         * @param region      Region where to retrieve the data.
-         * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
-         */
-        export function getSummonerByIds(region:string,
-                                         summonerIds:string):{ [s: string]: SummonerDto; };
+            /**
+             * Get summoner objects mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}
+             * @param region      Region where to retrieve the data.
+             * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
+             */
+            getSummonerByIds(
+                region: string,
+                summonerIds: string,
+                callback?: (data: {[s: string]: SummonerDto}) => void
+            ): void;
 
-        /**
-         * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
-         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/masteries
-         * @param region      Region where to retrieve the data.
-         * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
-         */
-        export function getMasteryPagesBySummonerIds(region:string,
-                                                     summonerIds:string):{ [s: string]: MasteryPagesDto; };
+            /**
+             * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/masteries
+             * @param region      Region where to retrieve the data.
+             * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
+             */
+            getMasteryPagesBySummonerIds(
+                region: string,
+                summonerIds: string,
+                callback?: (data: {[s: string]: MasteryPagesDto}) => void
+            ): void;
 
-        /**
-         * Get summoner names mapped by summoner ID for a given list of summoner IDs. (REST)
-         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/name
-         * @param region      Region where to retrieve the data.
-         * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
-         */
-        export function getNameBySummonerIds(region:string,
-                                             summonerIds:string):{ [s: string]: string; };
+            /**
+             * Get summoner names mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/name
+             * @param region      Region where to retrieve the data.
+             * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
+             */
+            getNameBySummonerIds(
+                region: string,
+                summonerIds: string,
+                callback?: (data: {[s: string]: string}) => void
+            ): void;
 
-        /**
-         * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
-         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/runes
-         * @param region      Region where to retrieve the data.
-         * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
-         */
-        export function getRunePagesBySummonerIds(region:string,
-                                                  summonerIds:string):{ [s: string]: RunePagesDto; };
+            /**
+             * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/runes
+             * @param region      Region where to retrieve the data.
+             * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
+             */
+            getRunePagesBySummonerIds(
+                region: string,
+                summonerIds: string,
+                callback?: (data: {[s: string]: RunePagesDto}) => void
+            ): void;
+        }
 
         /**
          * Contains summoner information
@@ -4520,23 +4568,31 @@ declare module riotGamesApi {
      * team-v2.4
      */
     export module team {
-        /**
-         * Get teams mapped by summoner ID for a given list of summoner IDs. (REST)
-         * Should call GET /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
-         * @param region      The region of the summoner.
-         * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
-         */
-        export function getTeamsBySummonerIds(region:string,
-                                              summonerIds:string):{ [s: string]: TeamDto[]; };
+        export interface Operations {
+            /**
+             * Get teams mapped by summoner ID for a given list of summoner IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.4/team/by-summoner/{summonerIds}
+             * @param region      The region of the summoner.
+             * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
+             */
+            getTeamsBySummonerIds(
+                region:string,
+                summonerIds:string,
+                callback?: (data: {[s: string]: TeamDto[]}) => void
+            ): void;
 
-        /**
-         * Get teams mapped by team ID for a given list of team IDs. (REST)
-         * Should call GET /api/lol/{region}/v2.4/team/{teamIds}
-         * @param region  The region of the summoner.
-         * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
-         */
-        export function getTeamsByTeamIds(region:string,
-                                          teamIds:string):{ [s: string]: TeamDto; };
+            /**
+             * Get teams mapped by team ID for a given list of team IDs. (REST)
+             * Should call GET /api/lol/{region}/v2.4/team/{teamIds}
+             * @param region  The region of the summoner.
+             * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
+             */
+            getTeamsByTeamIds(
+                region:string,
+                teamIds:string,
+                callback?: (data: {[s: string]: TeamDto}) => void
+            ): void;
+        }
 
         /**
          * Contains team information
@@ -4713,53 +4769,73 @@ declare module riotGamesApi {
      * tournament-provider-v1
      */
     export module tournamentProvider {
-        /**
-         * Create a tournament code for the given tournament. (REST)
-         * Should call POST /tournament/public/v1/code
-         * @param tournamentId The tournament ID
-         * @param count        The number of codes to create (max 1000)
-         * @param body         Metadata for the generated code
-         */
-        export function createTournamentCodesById(tournamentId:number,
-                                                  count:number,
-                                                  body:TournamentCodeParameters):string[];
+        export interface Operations {
+            /**
+             * Create a tournament code for the given tournament. (REST)
+             * Should call POST /tournament/public/v1/code
+             * @param tournamentId The tournament ID
+             * @param count        The number of codes to create (max 1000)
+             * @param body         Metadata for the generated code
+             */
+            createTournamentCodesById(
+                tournamentId:number,
+                count:number,
+                body:TournamentCodeParameters,
+                callback?: (data: string[]) => void
+            ): void;
 
-        /**
-         * Returns the tournament code DTO associated with a tournament code string. (REST)
-         * Should call GET /tournament/public/v1/code/{tournamentCode}
-         * @param tournamentCode The tournament code string.
-         */
-        export function getTournamentByCode(tournamentCode:string):TournamentCodeDTO;
+            /**
+             * Returns the tournament code DTO associated with a tournament code string. (REST)
+             * Should call GET /tournament/public/v1/code/{tournamentCode}
+             * @param tournamentCode The tournament code string.
+             */
+            getTournamentByCode(
+                tournamentCode:string,
+                callback?: (data: TournamentCodeDTO) => void
+            ): void;
 
-        /**
-         * Update the pick type, map, spectator type, or allowed summoners for a code (REST)
-         * Should call PUT /tournament/public/v1/code/{tournamentCode}
-         * @param tournamentCode The tournament code to update
-         * @param body           The fields to update
-         */
-        export function updateTournamentByCode(tournamentCode:string,
-                                               body:TournamentCodeUpdateParameters):void;
+            /**
+             * Update the pick type, map, spectator type, or allowed summoners for a code (REST)
+             * Should call PUT /tournament/public/v1/code/{tournamentCode}
+             * @param tournamentCode The tournament code to update
+             * @param body           The fields to update
+             */
+            updateTournamentByCode(
+                tournamentCode:string,
+                body:TournamentCodeUpdateParameters,
+                callback?: (data: void) => void
+            ): void;
 
-        /**
-         * Gets a list of lobby events by tournament code (REST)
-         * Should call GET /tournament/public/v1/lobby/events/by-code/{tournamentCode}
-         * @param tournamentCode The short code to look up lobby events for
-         */
-        export function getLobbyEventsByTournamentCode(tournamentCode:string):LobbyEventDTOWrapper;
+            /**
+             * Gets a list of lobby events by tournament code (REST)
+             * Should call GET /tournament/public/v1/lobby/events/by-code/{tournamentCode}
+             * @param tournamentCode The short code to look up lobby events for
+             */
+            getLobbyEventsByTournamentCode(
+                tournamentCode:string,
+                callback?: (data: LobbyEventDTOWrapper) => void
+            ): void;
 
-        /**
-         * Creates a tournament provider and returns its ID. (REST)
-         * Should call POST /tournament/public/v1/provider
-         * @param body The provider definition.
-         */
-        export function createTournamentProvider(body:ProviderRegistrationParameters):number;
+            /**
+             * Creates a tournament provider and returns its ID. (REST)
+             * Should call POST /tournament/public/v1/provider
+             * @param body The provider definition.
+             */
+            createTournamentProvider(
+                body:ProviderRegistrationParameters,
+                callback?: (data: number) => void
+            ): void;
 
-        /**
-         * Creates a tournament and returns its ID. (REST)
-         * Should call POST /tournament/public/v1/tournament
-         * @param body The tournament definition.
-         */
-        export function createTournament(body:TournamentRegistrationParameters):number;
+            /**
+             * Creates a tournament and returns its ID. (REST)
+             * Should call POST /tournament/public/v1/tournament
+             * @param body The tournament definition.
+             */
+            createTournament(
+                body:TournamentRegistrationParameters,
+                callback?: (data: number) => void
+            ): void;
+        }
 
         /**
          *
