@@ -1185,192 +1185,225 @@ declare module riotGamesApi {
      * lol-static-data-v1.2
      */
     export module lolStaticData {
-        /**
-         * Retrieves champion list. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/champion
-         * @param region    Region from which to retrieve data.
-         * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param dataById  If specified as true, the returned data map will use the champions' IDs as the keys. If not specified or specified as false, the returned data map will use the champions' keys instead.
-         * @param champData Tags to return additional data. Only type, version, data, id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getChampions(region:string,
-                                     locale:string,
-                                     version:string,
-                                     dataById:boolean,
-                                     champData:string):ChampionListDto;
+        export interface Operations {
+            /**
+             * Retrieves champion list. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/champion
+             * @param region    Region from which to retrieve data.
+             * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param dataById  If specified as true, the returned data map will use the champions' IDs as the keys. If not specified or specified as false, the returned data map will use the champions' keys instead.
+             * @param champData Tags to return additional data. Only type, version, data, id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getChampions(region:string,
+                         locale:string,
+                         version:string,
+                         dataById:boolean,
+                         champData:string,
+                callback?:(data: ChampionListDto) => void
+            ): void;
 
-        /**
-         * Retrieves a champion by its id. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/champion/{id}
-         * @param region    Region from which to retrieve data.
-         * @param id        Champion ID
-         * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param champData Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getChampionById(region:string,
-                                        id:number,
-                                        locale:string,
-                                        version:string,
-                                        champData:string):ChampionDto;
+            /**
+             * Retrieves a champion by its id. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/champion/{id}
+             * @param region    Region from which to retrieve data.
+             * @param id        Champion ID
+             * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param champData Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getChampionById(region:string,
+                            id:number,
+                            locale:string,
+                            version:string,
+                            champData:string,
+                callback?:(data: ChampionDto) => void
+            ): void;
 
-        /**
-         * Retrieves item list. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/item
-         * @param region       Region from which to retrieve data.
-         * @param locale       Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param itemListData Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getItems(region:string,
+            /**
+             * Retrieves item list. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/item
+             * @param region       Region from which to retrieve data.
+             * @param locale       Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param itemListData Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getItems(region:string,
+                     locale:string,
+                     version:string,
+                     itemListData:string,
+                callback?:(data: ItemListDto) => void
+            ): void;
+
+            /**
+             * Retrieves item by its unique id. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/item/{id}
+             * @param region   Region from which to retrieve data.
+             * @param id       Item ID
+             * @param locale   Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param itemData Tags to return additional data. Only id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getItemById(region:string,
+                        id:number,
+                        locale:string,
+                        version:string,
+                        itemData:string,
+                callback?:(data: ItemDto) => void
+            ): void;
+
+            /**
+             * Retrieve language strings data. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/language-strings
+             * @param region  Region from which to retrieve data.
+             * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             */
+            getLanguageStrings(region:string,
+                               locale:string,
+                               version:string,
+                callback?:(data: LanguageStringsDto) => void
+            ): void;
+
+            /**
+             * Retrieve supported languages data. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/languages
+             * @param region Region from which to retrieve data.
+             */
+            getLanguages(region:string,
+                callback?:(data: string[]) => void
+            ): void;
+
+            /**
+             * Retrieve map data. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/map
+             * @param region  Region from which to retrieve data.
+             * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             */
+            getMaps(region:string,
+                    locale:string,
+                    version:string,
+                callback?:(data: MapDataDto) => void
+            ): void;
+
+            /**
+             * Retrieves mastery list. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/mastery
+             * @param region          Region from which to retrieve data.
+             * @param locale          Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version         Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param masteryListData Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getMasteries(region:string,
+                         locale:string,
+                         version:string,
+                         masteryListData:string,
+                callback?:(data: MasteryListDto) => void
+            ): void;
+
+            /**
+             * Retrieves mastery item by its unique id. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/mastery/{id}
+             * @param region      Region from which to retrieve data.
+             * @param id          Mastery ID
+             * @param locale      Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version     Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param masteryData Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getMasteryById(region:string,
+                           id:number,
+                           locale:string,
+                           version:string,
+                           masteryData:string,
+                callback?:(data: MasteryDto) => void
+            ): void;
+
+            /**
+             * Retrieve realm data. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/realm
+             * @param region Region corresponding to data to retrieve.
+             */
+            getRealm(region:string,
+                callback?:(data: RealmDto) => void
+            ): void;
+
+            /**
+             * Retrieves rune list. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/rune
+             * @param region       Region from which to retrieve data.
+             * @param locale       Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param runeListData Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getRunes(region:string,
+                     locale:string,
+                     version:string,
+                     runeListData:string,
+                callback?:(data: RuneListDto) => void
+            ): void;
+
+            /**
+             * Retrieves rune by its unique id. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/rune/{id}
+             * @param region   Region from which to retrieve data.
+             * @param id       Rune ID
+             * @param locale   Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param runeData Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getRuneById(region:string,
+                        id:number,
+                        locale:string,
+                        version:string,
+                        runeData:string,
+                callback?:(data: RuneDto) => void
+            ): void;
+
+            /**
+             * Retrieves summoner spell list. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell
+             * @param region    Region from which to retrieve data.
+             * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param dataById  If specified as true, the returned data map will use the spells' IDs as the keys. If not specified or specified as false, the returned data map will use the spells' keys instead.
+             * @param spellData Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getSummonerSpells(region:string,
+                              locale:string,
+                              version:string,
+                              dataById:boolean,
+                              spellData:string,
+                callback?:(data: SummonerSpellListDto) => void
+            ): void;
+
+            /**
+             * Retrieves summoner spell by its unique id. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell/{id}
+             * @param region    Region from which to retrieve data.
+             * @param id        Summoner spell ID
+             * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+             * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
+             * @param spellData Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
+             */
+            getSummonerSpellById(region:string,
+                                 id:number,
                                  locale:string,
                                  version:string,
-                                 itemListData:string):ItemListDto;
+                                 spellData:string,
+                callback?:(data: SummonerSpellDto) => void
+            ): void;
 
-        /**
-         * Retrieves item by its unique id. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/item/{id}
-         * @param region   Region from which to retrieve data.
-         * @param id       Item ID
-         * @param locale   Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param itemData Tags to return additional data. Only id, name, plaintext, group, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getItemById(region:string,
-                                    id:number,
-                                    locale:string,
-                                    version:string,
-                                    itemData:string):ItemDto;
+            /**
+             * Retrieve version data. (REST)
+             * Should call GET /api/lol/static-data/{region}/v1.2/versions
+             * @param region Region from which to retrieve data.
+             */
+            getVersions(region:string,
+                callback?:(data: string[]) => void
+            ): void;
 
-        /**
-         * Retrieve language strings data. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/language-strings
-         * @param region  Region from which to retrieve data.
-         * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         */
-        export function getLanguageStrings(region:string,
-                                           locale:string,
-                                           version:string):LanguageStringsDto;
-
-        /**
-         * Retrieve supported languages data. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/languages
-         * @param region Region from which to retrieve data.
-         */
-        export function getLanguages(region:string):string[];
-
-        /**
-         * Retrieve map data. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/map
-         * @param region  Region from which to retrieve data.
-         * @param locale  Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         */
-        export function getMaps(region:string,
-                                locale:string,
-                                version:string):MapDataDto;
-
-        /**
-         * Retrieves mastery list. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/mastery
-         * @param region          Region from which to retrieve data.
-         * @param locale          Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version         Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param masteryListData Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getMasteries(region:string,
-                                     locale:string,
-                                     version:string,
-                                     masteryListData:string):MasteryListDto;
-
-        /**
-         * Retrieves mastery item by its unique id. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/mastery/{id}
-         * @param region      Region from which to retrieve data.
-         * @param id          Mastery ID
-         * @param locale      Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version     Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param masteryData Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getMasteryById(region:string,
-                                       id:number,
-                                       locale:string,
-                                       version:string,
-                                       masteryData:string):MasteryDto;
-
-        /**
-         * Retrieve realm data. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/realm
-         * @param region Region corresponding to data to retrieve.
-         */
-        export function getRealm(region:string):RealmDto;
-
-        /**
-         * Retrieves rune list. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/rune
-         * @param region       Region from which to retrieve data.
-         * @param locale       Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version      Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param runeListData Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getRunes(region:string,
-                                 locale:string,
-                                 version:string,
-                                 runeListData:string):RuneListDto;
-
-        /**
-         * Retrieves rune by its unique id. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/rune/{id}
-         * @param region   Region from which to retrieve data.
-         * @param id       Rune ID
-         * @param locale   Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version  Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param runeData Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getRuneById(region:string,
-                                    id:number,
-                                    locale:string,
-                                    version:string,
-                                    runeData:string):RuneDto;
-
-        /**
-         * Retrieves summoner spell list. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell
-         * @param region    Region from which to retrieve data.
-         * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param dataById  If specified as true, the returned data map will use the spells' IDs as the keys. If not specified or specified as false, the returned data map will use the spells' keys instead.
-         * @param spellData Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getSummonerSpells(region:string,
-                                          locale:string,
-                                          version:string,
-                                          dataById:boolean,
-                                          spellData:string):SummonerSpellListDto;
-
-        /**
-         * Retrieves summoner spell by its unique id. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/summoner-spell/{id}
-         * @param region    Region from which to retrieve data.
-         * @param id        Summoner spell ID
-         * @param locale    Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
-         * @param version   Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions can be obtained from the /versions endpoint.
-         * @param spellData Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified. To return all additional data, use the tag 'all'.
-         */
-        export function getSummonerSpellById(region:string,
-                                             id:number,
-                                             locale:string,
-                                             version:string,
-                                             spellData:string):SummonerSpellDto;
-
-        /**
-         * Retrieve version data. (REST)
-         * Should call GET /api/lol/static-data/{region}/v1.2/versions
-         * @param region Region from which to retrieve data.
-         */
-        export function getVersions(region:string):string[];
+        }
 
         /**
          * Contains champion list data.
