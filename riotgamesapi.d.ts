@@ -116,39 +116,39 @@ declare module riotGamesApi {
         export interface Operations {
             /**
              * Get a champion mastery by summoner ID and champion ID, returns null if given player has no mastery for given champion. (REST)
-             * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/champion/{championId}
+             * Sould call GET /championmastery/location/{platformId}/player/{playerId}/champion/{championId}
              * @param platformId Region where to retrieve the data.
-             * @param summonerId Summoner ID associated with the player
+             * @param playerId   Summoner ID associated with the player
              * @param championId Champion ID to retrieve Champion Mastery for
              */
             getChampionMastery(
                 platformId: string,
-                summonerId: number,
+                playerId: number,
                 championId: number,
                 callback?: (data:ChampionMasteryDto) => void
             ): void;
             
             /**
              * Get all champion mastery entries sorted by number of champion points descending. (REST)
-             * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/champions
+             * Sould call GET /championmastery/location/{platformId}/player/{playerId}/champions
              * @param platformId Region where to retrieve the data.
-             * @param summonerId Summoner ID associated with the player
+             * @param playerId   Summoner ID associated with the player
              */
             getChampionsMastery(
                 platformId: string,
-                summonerId: number,
+                playerId: number,
                 callback?: (data:ChampionMasteryDto[]) => void
             ): void;
 
             /**
              * Get a player's total champion mastery score, which is sum of individual champion mastery levels. (REST)
-             * Sould call GET /championmastery/location/{platformId}/player/{summonerId}/score
+             * Sould call GET /championmastery/location/{platformId}/player/{playerId}/score
              * @param platformId Region where to retrieve the data.
-             * @param summonerId Summoner ID associated with the player
+             * @param playerId   Summoner ID associated with the player
              */
             getScore(
                 platformId: string,
-                summonerId: number,
+                playerId: number,
                 callback?: (data:number) => void
             ): void;
             
@@ -156,12 +156,12 @@ declare module riotGamesApi {
              * Get specified number of top champion mastery entries sorted by number of champion points descending. (REST)
              * Should call GET /championmastery/location/{platformId}/player/{summonerId}/topchampions
              * @param platformId Region where to retrieve the data.
-             * @param summonerId Summoner ID associated with the player
+             * @param playerId   Summoner ID associated with the player
              * @param count      Number of entries to retrieve, defaults to 3
              */
             getTopChampions(
                 platformId: string,
-                summonerId: number,
+                playerId: number,
                 count: number,
                 callback?: (data: ChampionMasteryDto[]) => void
             ): void;
