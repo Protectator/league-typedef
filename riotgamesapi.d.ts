@@ -454,81 +454,7 @@ declare module riotGamesApi {
         /**
          *
          */
-        export interface CurrentGameParticipant {
-            /**
-             * Flag indicating whether or not this participant is a bot
-             */
-            bot: boolean;
-            /**
-             * The ID of the champion played by this participant
-             */
-            championId: number;
-            /**
-             * The masteries used by this participant
-             */
-            masteries: Mastery[];
-            /**
-             * The ID of the profile icon used by this participant
-             */
-            profileIconId: number;
-            /**
-             * The runes used by this participant
-             */
-            runes: Rune[];
-            /**
-             * The ID of the first summoner spell used by this participant
-             */
-            spell1Id: number;
-            /**
-             * The ID of the second summoner spell used by this participant
-             */
-            spell2Id: number;
-            /**
-             * The summoner ID of this participant
-             */
-            summonerId: number;
-            /**
-             * The summoner name of this participant
-             */
-            summonerName: string;
-            /**
-             * The team ID of this participant, indicating the participant's team
-             */
-            teamId: number;
-        }
-
-        /**
-         *
-         */
         export interface Observer extends GenericObserver {
-        }
-
-        /**
-         *
-         */
-        export interface Mastery {
-            /**
-             * The ID of the mastery
-             */
-            masteryId: number;
-            /**
-             * The number of points put into this mastery by the user
-             */
-            rank: number;
-        }
-
-        /**
-         *
-         */
-        export interface Rune {
-            /**
-             * The count of this rune used by the participant
-             */
-            count: number;
-            /**
-             * The ID of the rune
-             */
-            runeId: number;
         }
 
         /**
@@ -1038,7 +964,7 @@ declare module riotGamesApi {
              */
             getLeagueByTeamIds(
                 region: string,
-                summonerIds: string,
+                teamIds: string,
                 callback?: (data: {[s: string]: LeagueDto[]}) => void
             ): void;
 
@@ -1050,7 +976,7 @@ declare module riotGamesApi {
              */
             getLeagueEntryByTeamIds(
                 region: string,
-                summonerIds: string,
+                teamIds: string,
                 callback?: (data: {[s: string]: LeagueDto[]}) => void
             ): void;
 
