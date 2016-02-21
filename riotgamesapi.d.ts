@@ -16,7 +16,7 @@ declare module riotGamesApi {
              * @param region     Region where to retrieve the data.
              * @param freeToPlay Optional filter param to retrieve only free to play champions.
              */
-            getChampions(
+            getChampionsStatus(
                 region: string,
                 freeToPlay?: boolean,
                 callback?: (data: ChampionListDto) => void
@@ -28,7 +28,7 @@ declare module riotGamesApi {
              * @param region Region where to retrieve the data.
              * @param id     ID of the champion to retrieve.
              */
-            getChampionById(
+            getChampionStatusById(
                 region: string,
                 id: number,
                 callback?: (data: ChampionDto) => void
