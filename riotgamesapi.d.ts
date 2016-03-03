@@ -493,11 +493,13 @@ declare module riotGamesApi {
     }
 
     /**
+     * @deprecated Use module 'matchlist' instead
      * game-v1.3
      */
     export module game {
         export interface Operations {
             /**
+             * @deprecated Use 'matchlist' instead
              * Get recent games by summoner ID. (REST)
              * Should call GET /api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent
              * @param region     Region where to retrieve the data.
