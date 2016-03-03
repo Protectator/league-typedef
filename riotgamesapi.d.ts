@@ -16,11 +16,9 @@ declare module riotGamesApi {
              * @param region     Region where to retrieve the data.
              * @param freeToPlay Optional filter param to retrieve only free to play champions.
              */
-            getChampionsStatus(
-                region: string,
-                freeToPlay?: boolean,
-                callback?: (data: ChampionListDto) => void
-            ): void;
+            getChampionsStatus(region:string,
+                               freeToPlay?:boolean,
+                               callback?:(error:Error, data:ChampionListDto) => void): void;
 
             /**
              * Retrieve champion by ID. (REST)
@@ -28,11 +26,9 @@ declare module riotGamesApi {
              * @param region Region where to retrieve the data.
              * @param id     ID of the champion to retrieve.
              */
-            getChampionStatusById(
-                region: string,
-                id: number,
-                callback?: (data: ChampionDto) => void
-            ): void
+            getChampionStatusById(region:string,
+                                  id:number,
+                                  callback?:(error:Error, data:ChampionDto) => void): void
         }
 
         /**
@@ -121,24 +117,20 @@ declare module riotGamesApi {
              * @param playerId   Summoner ID associated with the player
              * @param championId Champion ID to retrieve Champion Mastery for
              */
-            getChampionMastery(
-                platformId: string,
-                playerId: number,
-                championId: number,
-                callback?: (data:ChampionMasteryDto) => void
-            ): void;
-            
+            getChampionMastery(platformId:string,
+                               playerId:number,
+                               championId:number,
+                               callback?:(error:Error, data:ChampionMasteryDto) => void): void;
+
             /**
              * Get all champion mastery entries sorted by number of champion points descending. (REST)
              * Sould call GET /championmastery/location/{platformId}/player/{playerId}/champions
              * @param platformId Region where to retrieve the data.
              * @param playerId   Summoner ID associated with the player
              */
-            getChampionsMastery(
-                platformId: string,
-                playerId: number,
-                callback?: (data:ChampionMasteryDto[]) => void
-            ): void;
+            getChampionsMastery(platformId:string,
+                                playerId:number,
+                                callback?:(error:Error, data:ChampionMasteryDto[]) => void): void;
 
             /**
              * Get a player's total champion mastery score, which is sum of individual champion mastery levels. (REST)
@@ -146,12 +138,10 @@ declare module riotGamesApi {
              * @param platformId Region where to retrieve the data.
              * @param playerId   Summoner ID associated with the player
              */
-            getScore(
-                platformId: string,
-                playerId: number,
-                callback?: (data:number) => void
-            ): void;
-            
+            getScore(platformId:string,
+                     playerId:number,
+                     callback?:(error:Error, data:number) => void): void;
+
             /**
              * Get specified number of top champion mastery entries sorted by number of champion points descending. (REST)
              * Should call GET /championmastery/location/{platformId}/player/{summonerId}/topchampions
@@ -159,12 +149,10 @@ declare module riotGamesApi {
              * @param playerId   Summoner ID associated with the player
              * @param count      Number of entries to retrieve, defaults to 3
              */
-            getTopChampions(
-                platformId: string,
-                playerId: number,
-                count: number,
-                callback?: (data: ChampionMasteryDto[]) => void
-            ): void;
+            getTopChampions(platformId:string,
+                            playerId:number,
+                            count:number,
+                            callback?:(error:Error, data:ChampionMasteryDto[]) => void): void;
         }
 
         /**
@@ -209,7 +197,7 @@ declare module riotGamesApi {
             playerId: number
         }
     }
-    
+
     /**
      * current-game-v1.0
      */
@@ -221,11 +209,9 @@ declare module riotGamesApi {
              * @param platformId The platform ID for which to fetch data.
              * @param summonerId The ID of the summoner.
              */
-            getSpectatorGameInfoBySummonerId(
-                platformId: string,
-                summonerId: number,
-                callback?: (data: CurrentGameInfo) => void
-            ): void;
+            getSpectatorGameInfoBySummonerId(platformId:string,
+                                             summonerId:number,
+                                             callback?:(error:Error, data:CurrentGameInfo) => void): void;
         }
 
         /**
@@ -375,10 +361,8 @@ declare module riotGamesApi {
              * Should call GET /observer-mode/rest/featured
              * @param region Region where to retrieve the data.
              */
-            getFeaturedGames(
-                region: string,
-                callback?: (data: FeaturedGames) => void
-            ): void;
+            getFeaturedGames(region:string,
+                             callback?:(error:Error, data:FeaturedGames) => void): void;
         }
 
         /**
@@ -505,11 +489,9 @@ declare module riotGamesApi {
              * @param region     Region where to retrieve the data.
              * @param summonerId ID of the summoner for which to retrieve recent games.
              */
-            getRecentGamesBySummonerId(
-                region: string,
-                summonerId: number,
-                callback?: (data: RecentGamesDto) => void
-            ): void;   
+            getRecentGamesBySummonerId(region:string,
+                                       summonerId:number,
+                                       callback?:(error:Error, data:RecentGamesDto) => void): void;
         }
 
         /**
@@ -940,11 +922,9 @@ declare module riotGamesApi {
              * @param region       The region of the leagues.
              * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
              */
-            getLeagueBySummonerIds(
-                region: string,
-                summonerIds: string,
-                callback?: (data: {[s: string]: LeagueDto[]}) => void
-            ): void;
+            getLeagueBySummonerIds(region:string,
+                                   summonerIds:string,
+                                   callback?:(error:Error, data:{[s: string]: LeagueDto[]}) => void): void;
 
             /**
              * Get league entries mapped by summoner ID for a given list of summoner IDs. (REST)
@@ -952,11 +932,9 @@ declare module riotGamesApi {
              * @param region       The region of the leagues.
              * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
              */
-            getLeagueEntryBySummonerIds(
-                region: string,
-                summonerIds: string,
-                callback?: (data: {[s: string]: LeagueDto[]}) => void
-            ): void;
+            getLeagueEntryBySummonerIds(region:string,
+                                        summonerIds:string,
+                                        callback?:(error:Error, data:{[s: string]: LeagueDto[]}) => void): void;
 
             /**
              * Get leagues mapped by team ID for a given list of team IDs. (REST)
@@ -964,11 +942,9 @@ declare module riotGamesApi {
              * @param region  The region of the leagues.
              * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
              */
-            getLeagueByTeamIds(
-                region: string,
-                teamIds: string,
-                callback?: (data: {[s: string]: LeagueDto[]}) => void
-            ): void;
+            getLeagueByTeamIds(region:string,
+                               teamIds:string,
+                               callback?:(error:Error, data:{[s: string]: LeagueDto[]}) => void): void;
 
             /**
              * Get league entries mapped by team ID for a given list of team IDs. (REST)
@@ -976,11 +952,9 @@ declare module riotGamesApi {
              * @param region  The region of the leagues.
              * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
              */
-            getLeagueEntryByTeamIds(
-                region: string,
-                teamIds: string,
-                callback?: (data: {[s: string]: LeagueDto[]}) => void
-            ): void;
+            getLeagueEntryByTeamIds(region:string,
+                                    teamIds:string,
+                                    callback?:(error:Error, data:{[s: string]: LeagueDto[]}) => void): void;
 
             /**
              * Get challenger tier leagues. (REST)
@@ -988,11 +962,9 @@ declare module riotGamesApi {
              * @param region Region where to retrieve the data.
              * @param type   Game queue type.
              */
-            getLeagueChallenger(
-                region: string,
-                type: string,
-                callback?: (data: LeagueDto) => void
-            ): void;
+            getLeagueChallenger(region:string,
+                                type:string,
+                                callback?:(error:Error, data:LeagueDto) => void): void;
 
             /**
              * Get master tier leagues. (REST)
@@ -1000,11 +972,9 @@ declare module riotGamesApi {
              * @param region Region where to retrieve the data.
              * @param type   Game queue type.
              */
-            getLeagueMaster(
-                region: string,
-                type: string,
-                callback?: (data: LeagueDto) => void
-            ): void;
+            getLeagueMaster(region:string,
+                            type:string,
+                            callback?:(error:Error, data:LeagueDto) => void): void;
         }
 
         /**
@@ -1128,8 +1098,7 @@ declare module riotGamesApi {
                          version:string,
                          dataById:boolean,
                          champData:string,
-                callback?:(data: ChampionListDto) => void
-            ): void;
+                         callback?:(error:Error, data:ChampionListDto) => void): void;
 
             /**
              * Retrieves a champion by its id. (REST)
@@ -1145,8 +1114,7 @@ declare module riotGamesApi {
                             locale:string,
                             version:string,
                             champData:string,
-                callback?:(data: ChampionDto) => void
-            ): void;
+                            callback?:(error:Error, data:ChampionDto) => void): void;
 
             /**
              * Retrieves item list. (REST)
@@ -1160,8 +1128,7 @@ declare module riotGamesApi {
                      locale:string,
                      version:string,
                      itemListData:string,
-                callback?:(data: ItemListDto) => void
-            ): void;
+                     callback?:(error:Error, data:ItemListDto) => void): void;
 
             /**
              * Retrieves item by its unique id. (REST)
@@ -1177,8 +1144,7 @@ declare module riotGamesApi {
                         locale:string,
                         version:string,
                         itemData:string,
-                callback?:(data: ItemDto) => void
-            ): void;
+                        callback?:(error:Error, data:ItemDto) => void): void;
 
             /**
              * Retrieve language strings data. (REST)
@@ -1190,8 +1156,7 @@ declare module riotGamesApi {
             getLanguageStrings(region:string,
                                locale:string,
                                version:string,
-                callback?:(data: LanguageStringsDto) => void
-            ): void;
+                               callback?:(error:Error, data:LanguageStringsDto) => void): void;
 
             /**
              * Retrieve supported languages data. (REST)
@@ -1199,8 +1164,7 @@ declare module riotGamesApi {
              * @param region Region from which to retrieve data.
              */
             getLanguages(region:string,
-                callback?:(data: string[]) => void
-            ): void;
+                         callback?:(error:Error, data:string[]) => void): void;
 
             /**
              * Retrieve map data. (REST)
@@ -1212,8 +1176,7 @@ declare module riotGamesApi {
             getMaps(region:string,
                     locale:string,
                     version:string,
-                callback?:(data: MapDataDto) => void
-            ): void;
+                    callback?:(error:Error, data:MapDataDto) => void): void;
 
             /**
              * Retrieves mastery list. (REST)
@@ -1227,8 +1190,7 @@ declare module riotGamesApi {
                          locale:string,
                          version:string,
                          masteryListData:string,
-                callback?:(data: MasteryListDto) => void
-            ): void;
+                         callback?:(error:Error, data:MasteryListDto) => void): void;
 
             /**
              * Retrieves mastery item by its unique id. (REST)
@@ -1244,8 +1206,7 @@ declare module riotGamesApi {
                            locale:string,
                            version:string,
                            masteryData:string,
-                callback?:(data: MasteryDto) => void
-            ): void;
+                           callback?:(error:Error, data:MasteryDto) => void): void;
 
             /**
              * Retrieve realm data. (REST)
@@ -1253,8 +1214,7 @@ declare module riotGamesApi {
              * @param region Region corresponding to data to retrieve.
              */
             getRealm(region:string,
-                callback?:(data: RealmDto) => void
-            ): void;
+                     callback?:(error:Error, data:RealmDto) => void): void;
 
             /**
              * Retrieves rune list. (REST)
@@ -1268,8 +1228,7 @@ declare module riotGamesApi {
                      locale:string,
                      version:string,
                      runeListData:string,
-                callback?:(data: RuneListDto) => void
-            ): void;
+                     callback?:(error:Error, data:RuneListDto) => void): void;
 
             /**
              * Retrieves rune by its unique id. (REST)
@@ -1285,8 +1244,7 @@ declare module riotGamesApi {
                         locale:string,
                         version:string,
                         runeData:string,
-                callback?:(data: RuneDto) => void
-            ): void;
+                        callback?:(error:Error, data:RuneDto) => void): void;
 
             /**
              * Retrieves summoner spell list. (REST)
@@ -1302,8 +1260,7 @@ declare module riotGamesApi {
                               version:string,
                               dataById:boolean,
                               spellData:string,
-                callback?:(data: SummonerSpellListDto) => void
-            ): void;
+                              callback?:(error:Error, data:SummonerSpellListDto) => void): void;
 
             /**
              * Retrieves summoner spell by its unique id. (REST)
@@ -1319,8 +1276,7 @@ declare module riotGamesApi {
                                  locale:string,
                                  version:string,
                                  spellData:string,
-                callback?:(data: SummonerSpellDto) => void
-            ): void;
+                                 callback?:(error:Error, data:SummonerSpellDto) => void): void;
 
             /**
              * Retrieve version data. (REST)
@@ -1328,8 +1284,7 @@ declare module riotGamesApi {
              * @param region Region from which to retrieve data.
              */
             getVersions(region:string,
-                callback?:(data: string[]) => void
-            ): void;
+                        callback?:(error:Error, data:string[]) => void): void;
 
         }
 
@@ -2823,19 +2778,15 @@ declare module riotGamesApi {
              * Get shard list. (REST)
              * Should call GET /shards
              */
-            getShards(
-                callback?: (data: Shard[]) => void
-            ):void;
+            getShards(callback?:(error:Error, data:Shard[]) => void):void;
 
             /**
              * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region. (REST)
              * Should call GET /shards/{region}
              * @param region The region for which to fetch data.
              */
-            getShard(
-                region: string,
-                callback?: (data: ShardStatus) => void
-            ): void;
+            getShard(region:string,
+                     callback?:(error:Error, data:ShardStatus) => void): void;
         }
 
         /**
@@ -2999,11 +2950,9 @@ declare module riotGamesApi {
              * @param region         The region of the match.
              * @param tournamentCode The tournament code of the match
              */
-            getMatchIdsByTournamentCode(
-                region: string,
-                tournamentCode: string,
-                callback?: (data: number[]) => void
-            ): void;
+            getMatchIdsByTournamentCode(region:string,
+                                        tournamentCode:string,
+                                        callback?:(error:Error, data:number[]) => void): void;
 
             /**
              * Retrieve match by match ID and tournament code. (REST)
@@ -3013,13 +2962,11 @@ declare module riotGamesApi {
              * @param tournamentCode  The tournament code of the match
              * @param includeTimeline Flag indicating whether or not to include match timeline data
              */
-            getMatchByIdAndTournamentCode(
-                region: string,
-                matchId: number,
-                tournamentCode: string,
-                includeTimeline: boolean,
-                callback?: (data: MatchDetail) => void
-            ): void;
+            getMatchByIdAndTournamentCode(region:string,
+                                          matchId:number,
+                                          tournamentCode:string,
+                                          includeTimeline:boolean,
+                                          callback?:(error:Error, data:MatchDetail) => void): void;
 
             /**
              * Retrieve match by match ID. (REST)
@@ -3028,12 +2975,10 @@ declare module riotGamesApi {
              * @param matchId         The ID of the match.
              * @param includeTimeline Flag indicating whether or not to include match timeline data
              */
-            getMatchById(
-                region: string,
-                matchId: number,
-                includeTimeline: boolean,
-                callback?: (data: MatchDetail) => void
-            ): void;
+            getMatchById(region:string,
+                         matchId:number,
+                         includeTimeline:boolean,
+                         callback?:(error:Error, data:MatchDetail) => void): void;
         }
 
         /**
@@ -3887,18 +3832,16 @@ declare module riotGamesApi {
              * @param beginIndex   The begin index to use for fetching games.
              * @param endIndex     The end index to use for fetching games.
              */
-             getMatchesBySummonerId(
-                 region: string,
-                 summonerId: number,
-                 championIds: string,
-                 rankedQueues: string,
-                 seasons: string,
-                 beginTime: number,
-                 endTime: number,
-                 beginIndex: number,
-                 endIndex: number,
-                 callback?: (data: MatchList) => void
-             ): void;
+            getMatchesBySummonerId(region:string,
+                                   summonerId:number,
+                                   championIds:string,
+                                   rankedQueues:string,
+                                   seasons:string,
+                                   beginTime:number,
+                                   endTime:number,
+                                   beginIndex:number,
+                                   endIndex:number,
+                                   callback?:(error:Error, data:MatchList) => void): void;
         }
 
         /**
@@ -3974,12 +3917,10 @@ declare module riotGamesApi {
              * @param summonerId ID of the summoner for which to retrieve ranked stats.
              * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
              */
-            getRankedBySummonerId(
-                region: string,
-                summonerId: number,
-                season: string,
-                callback?: (data: RankedStatsDto) => void
-            ): void;
+            getRankedBySummonerId(region:string,
+                                  summonerId:number,
+                                  season:string,
+                                  callback?:(error:Error, data:RankedStatsDto) => void): void;
 
             /**
              * Get player stats summaries by summoner ID. (REST)
@@ -3988,12 +3929,10 @@ declare module riotGamesApi {
              * @param summonerId ID of the summoner for which to retrieve player stats.
              * @param season     If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
              */
-            getSummaryBySummonerId(
-                region: string,
-                summonerId: number,
-                season: string,
-                callback?: (data: PlayerStatsSummaryListDto) => void
-            ): void;
+            getSummaryBySummonerId(region:string,
+                                   summonerId:number,
+                                   season:string,
+                                   callback?:(error:Error, data:PlayerStatsSummaryListDto) => void): void;
         }
 
         /**
@@ -4310,11 +4249,9 @@ declare module riotGamesApi {
              * @param region        Region where to retrieve the data.
              * @param summonerNames Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum allowed at once is 40.
              */
-            getSummonerByNames(
-                region: string,
-                summonerNames: string,
-                callback?: (data: {[s: string]: SummonerDto}) => void
-            ): void;
+            getSummonerByNames(region:string,
+                               summonerNames:string,
+                               callback?:(error:Error, data:{[s: string]: SummonerDto}) => void): void;
 
             /**
              * Get summoner objects mapped by summoner ID for a given list of summoner IDs. (REST)
@@ -4322,11 +4259,9 @@ declare module riotGamesApi {
              * @param region      Region where to retrieve the data.
              * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
              */
-            getSummonerByIds(
-                region: string,
-                summonerIds: string,
-                callback?: (data: {[s: string]: SummonerDto}) => void
-            ): void;
+            getSummonerByIds(region:string,
+                             summonerIds:string,
+                             callback?:(error:Error, data:{[s: string]: SummonerDto}) => void): void;
 
             /**
              * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
@@ -4334,11 +4269,9 @@ declare module riotGamesApi {
              * @param region      Region where to retrieve the data.
              * @param summonerIds Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
              */
-            getMasteryPagesBySummonerIds(
-                region: string,
-                summonerIds: string,
-                callback?: (data: {[s: string]: MasteryPagesDto}) => void
-            ): void;
+            getMasteryPagesBySummonerIds(region:string,
+                                         summonerIds:string,
+                                         callback?:(error:Error, data:{[s: string]: MasteryPagesDto}) => void): void;
 
             /**
              * Get summoner names mapped by summoner ID for a given list of summoner IDs. (REST)
@@ -4346,11 +4279,9 @@ declare module riotGamesApi {
              * @param region      Region where to retrieve the data.
              * @param summonerIds Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
              */
-            getNameBySummonerIds(
-                region: string,
-                summonerIds: string,
-                callback?: (data: {[s: string]: string}) => void
-            ): void;
+            getNameBySummonerIds(region:string,
+                                 summonerIds:string,
+                                 callback?:(error:Error, data:{[s: string]: string}) => void): void;
 
             /**
              * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
@@ -4358,11 +4289,9 @@ declare module riotGamesApi {
              * @param region      Region where to retrieve the data.
              * @param summonerIds Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
              */
-            getRunePagesBySummonerIds(
-                region: string,
-                summonerIds: string,
-                callback?: (data: {[s: string]: RunePagesDto}) => void
-            ): void;
+            getRunePagesBySummonerIds(region:string,
+                                      summonerIds:string,
+                                      callback?:(error:Error, data:{[s: string]: RunePagesDto}) => void): void;
         }
 
         /**
@@ -4503,11 +4432,9 @@ declare module riotGamesApi {
              * @param region      The region of the summoner.
              * @param summonerIds Comma-separated list of summoner IDs. Maximum allowed at once is 10.
              */
-            getTeamsBySummonerIds(
-                region:string,
-                summonerIds:string,
-                callback?: (data: {[s: string]: TeamDto[]}) => void
-            ): void;
+            getTeamsBySummonerIds(region:string,
+                                  summonerIds:string,
+                                  callback?:(error:Error, data:{[s: string]: TeamDto[]}) => void): void;
 
             /**
              * Get teams mapped by team ID for a given list of team IDs. (REST)
@@ -4515,11 +4442,9 @@ declare module riotGamesApi {
              * @param region  The region of the summoner.
              * @param teamIds Comma-separated list of team IDs. Maximum allowed at once is 10.
              */
-            getTeamsByTeamIds(
-                region:string,
-                teamIds:string,
-                callback?: (data: {[s: string]: TeamDto}) => void
-            ): void;
+            getTeamsByTeamIds(region:string,
+                              teamIds:string,
+                              callback?:(error:Error, data:{[s: string]: TeamDto}) => void): void;
         }
 
         /**
@@ -4705,22 +4630,18 @@ declare module riotGamesApi {
              * @param count        The number of codes to create (max 1000)
              * @param body         Metadata for the generated code
              */
-            createTournamentCodesById(
-                tournamentId:number,
-                count:number,
-                body:TournamentCodeParameters,
-                callback?: (data: string[]) => void
-            ): void;
+            createTournamentCodesById(tournamentId:number,
+                                      count:number,
+                                      body:TournamentCodeParameters,
+                                      callback?:(error:Error, data:string[]) => void): void;
 
             /**
              * Returns the tournament code DTO associated with a tournament code string. (REST)
              * Should call GET /tournament/public/v1/code/{tournamentCode}
              * @param tournamentCode The tournament code string.
              */
-            getTournamentByCode(
-                tournamentCode:string,
-                callback?: (data: TournamentCodeDTO) => void
-            ): void;
+            getTournamentByCode(tournamentCode:string,
+                                callback?:(error:Error, data:TournamentCodeDTO) => void): void;
 
             /**
              * Update the pick type, map, spectator type, or allowed summoners for a code (REST)
@@ -4728,41 +4649,33 @@ declare module riotGamesApi {
              * @param tournamentCode The tournament code to update
              * @param body           The fields to update
              */
-            updateTournamentByCode(
-                tournamentCode:string,
-                body:TournamentCodeUpdateParameters,
-                callback?: (data: void) => void
-            ): void;
+            updateTournamentByCode(tournamentCode:string,
+                                   body:TournamentCodeUpdateParameters,
+                                   callback?:(error:Error, data:void) => void): void;
 
             /**
              * Gets a list of lobby events by tournament code (REST)
              * Should call GET /tournament/public/v1/lobby/events/by-code/{tournamentCode}
              * @param tournamentCode The short code to look up lobby events for
              */
-            getLobbyEventsByTournamentCode(
-                tournamentCode:string,
-                callback?: (data: LobbyEventDTOWrapper) => void
-            ): void;
+            getLobbyEventsByTournamentCode(tournamentCode:string,
+                                           callback?:(error:Error, data:LobbyEventDTOWrapper) => void): void;
 
             /**
              * Creates a tournament provider and returns its ID. (REST)
              * Should call POST /tournament/public/v1/provider
              * @param body The provider definition.
              */
-            createTournamentProvider(
-                body:ProviderRegistrationParameters,
-                callback?: (data: number) => void
-            ): void;
+            createTournamentProvider(body:ProviderRegistrationParameters,
+                                     callback?:(error:Error, data:number) => void): void;
 
             /**
              * Creates a tournament and returns its ID. (REST)
              * Should call POST /tournament/public/v1/tournament
              * @param body The tournament definition.
              */
-            createTournament(
-                body:TournamentRegistrationParameters,
-                callback?: (data: number) => void
-            ): void;
+            createTournament(body:TournamentRegistrationParameters,
+                             callback?:(error:Error, data:number) => void): void;
         }
 
         /**
