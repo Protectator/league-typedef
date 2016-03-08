@@ -1,9 +1,9 @@
 // Type definitions for the Riot Game's API
 // Project: https://developer.riotgames.com/api/methods
 // Definitions by: Kewin Dousse (Protectator) <https://github.com/Protectator>
-// Definitions: https://github.com/Protectator/riotgamesapi-typedef
+// Definitions: https://github.com/Protectator/league-typedef
 
-declare module riotGamesApi {
+declare module leagueApi {
 
     /**
      * champion-v1.2
@@ -4858,6 +4858,6 @@ declare module riotGamesApi {
     }
 }
 
-declare module "riotGamesApi" {
-    export = riotGamesApi;
+declare module "leagueApi" {
+    export = leagueApi;
 }
