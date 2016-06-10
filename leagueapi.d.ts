@@ -184,10 +184,6 @@ declare module leagueApi {
              */
             chestGranted: boolean,
             /**
-             * The highest grade of this champion of current season.
-             */
-            highestGrade: string,
-            /**
              * Last time this champion was played by this player - in Unix milliseconds time format.
              */
             lastPlayTime: number,
