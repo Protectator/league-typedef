@@ -1,4 +1,6 @@
 # league-typedef
+[![NPM version](https://badge.fury.io/js/league-typedef.svg?branch=master)](https://www.npmjs.com/package/league-typedef)
+
 TypeScript Type Definitions for League of Legends' API at https://developer.riotgames.com/api/methods
 
 ## Installation
