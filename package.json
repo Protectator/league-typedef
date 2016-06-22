@@ -1,0 +1,29 @@
+{
+  "name": "league-typedef",
+  "version": "1.0.0",
+  "description": "TypeScript Definitions for Riot Games' API",
+  "typings": "index.d.ts",
+  "scripts": {
+    "postinstall" : "echo \"league-typedef consists of only TypeScript Definitions, it can't be run on its own. Read the file README.md for more explanations.\"",
+    "start" : "echo \"league-typedef consists of only TypeScript Definitions, it can't be run on its own. Read the file README.md for more explanations.\"",
+    "test": "echo \"No implemented tests.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Protectator/riotgamesapi-typedef.git"
+  },
+  "keywords": [
+    "league",
+    "of",
+    "legends",
+    "api",
+    "games",
+    "riot"
+  ],
+  "author": "Kewin Dousse <me@protectator.ch> (Protectator)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Protectator/riotgamesapi-typedef/issues"
+  },
+  "homepage": "https://github.com/Protectator/riotgamesapi-typedef#readme"
+}

@@ -1,7 +1,22 @@
 # league-typedef
 TypeScript Type Definitions for League of Legends' API at https://developer.riotgames.com/api/methods
 
-## Current types version
+## Installation
+`npm install --save-dev league-typedef`
+
+## Usage
+Use these type definitions when building a TypeScript library around League of Legends' official API.
+NB : This package consists of **only** TypeScript Type Definitions (`.d.ts`). Its intended use is to ease the writing of *League of Legends* Typescript programs by providing types for all the API endpoints.
+
+### In your Typescript file
+```typescript
+import * as api from 'league-typedef';
+```
+
+### Example
+[league-typenode](https://github.com/Protectator/league-typenode) is a Node.js wrapper that uses these definitions.
+
+## Types version
 | Method        	| Module name | Version 	| Remarks
 |-----------------	|-----------  |------	    |--------
 | [champion](https://developer.riotgames.com/api/methods#!/1015)        	| leagueApi.champion | v1.2 | |
@@ -18,12 +33,6 @@ TypeScript Type Definitions for League of Legends' API at https://developer.riot
 | [summoner](https://developer.riotgames.com/api/methods#!/1061)        	| leagueApi.summoner	| v1.4 | |
 | [team](https://developer.riotgames.com/api/methods#!/986)            	| leagueApi.team | v2.4 | |
 | [tournament-provider](https://developer.riotgames.com/api/methods#!/1057) | leagueApi.tournamentProvider | v1 | Uses a [different api key](https://developer.riotgames.com/docs/tournaments-api) |
-
-## Usage
-Use these type definitions when building a TypeScript library around League of Legends' official API !
-
-### Example
-[league-typenode](https://github.com/Protectator/league-typenode) is a Node.js wrapper that uses these definitions.
 
 ## License
 league-typedef is distributed under [The MIT License](http://opensource.org/licenses/MIT).
