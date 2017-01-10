@@ -33,7 +33,7 @@ import * as api from 'league-typedef';
 | [matchlist](https://developer.riotgames.com/api/methods#!/1069)         | leagueApi.matchlist | v2.2 | |
 | [stats](https://developer.riotgames.com/api/methods#!/1062)           	| leagueApi.stats | v1.3 | |
 | [summoner](https://developer.riotgames.com/api/methods#!/1061)        	| leagueApi.summoner	| v1.4 | |
-| [team](https://developer.riotgames.com/api/methods#!/986)            	| leagueApi.team | v2.4 | |
+| ~~[team](https://developer.riotgames.com/api/methods#!/986)~~            	| ~~leagueApi.team~~ | ~~v2.4~~ | deprecated |
 | [tournament-provider](https://developer.riotgames.com/api/methods#!/1057) | leagueApi.tournamentProvider | v1 | Uses a [different api key](https://developer.riotgames.com/docs/tournaments-api) |
 
 ## License
