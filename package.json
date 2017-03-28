@@ -1,6 +1,6 @@
 {
   "name": "league-typedef",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "TypeScript Definitions for Riot Games' API",
   "typings": "index.d.ts",
   "scripts": {
