@@ -109,6 +109,106 @@ export interface GenericObserver {
 }
 
 /**
+ * Contains masteries information
+ */
+export interface GenericMasteryPagesDto {
+    /**
+     * Collection of mastery pages associated with the summoner.
+     */
+    pages: GenericMasteryPageDto[];
+    /**
+     * Summoner ID.
+     */
+    summonerId: number;
+}
+
+/**
+ * Contains mastery page information
+ */
+export interface GenericMasteryPageDto {
+    /**
+     * Indicates if the mastery page is the current mastery page.
+     */
+    current: boolean;
+    /**
+     * Mastery page ID.
+     */
+    id: number;
+    /**
+     * Collection of masteries associated with the mastery page.
+     */
+    masteries: GenericMasteryDto[];
+    /**
+     * Mastery page name.
+     */
+    name: string;
+}
+
+/**
+ * Contains mastery information
+ */
+export interface GenericMasteryDto {
+    /**
+     * Mastery ID. For static information correlating to masteries, please refer to the LoL Static Data API.
+     */
+    id: number;
+    /**
+     * Mastery rank (i.e., the number of points put into this mastery).
+     */
+    rank: number;
+}
+
+/**
+ * Contains rune pages information
+ */
+export interface GenericRunePagesDto {
+    /**
+     * Collection of rune pages associated with the summoner.
+     */
+    pages: GenericRunePageDto[];
+    /**
+     * Summoner ID.
+     */
+    summonerId: number;
+}
+
+/**
+ * Contains rune page information
+ */
+export interface GenericRunePageDto {
+    /**
+     * Indicates if the page is the current page.
+     */
+    current: boolean;
+    /**
+     * Rune page ID.
+     */
+    id: number;
+    /**
+     * Rune page name.
+     */
+    name: string;
+    /**
+     * Collection of rune slots associated with the rune page.
+     */
+    slots: GenericRuneSlotDto[];
+}
+
+/**
+ * Contains rune slot information
+ */
+export interface GenericRuneSlotDto {
+    /**
+     * Rune ID associated with the rune slot. For static information correlating to rune IDs, please refer to the LoL Static Data API.
+     */
+    runeId: number;
+    /**
+     * Rune slot ID.
+     */
+    runeSlotId: number;
+}
+
+/**
  * championmastery
  */
 export module championmastery {
@@ -3901,6 +4001,133 @@ export module matchlist {
          *
          */
         timestamp: number;
+    }
+}
+
+/**
+ * runes-masteries-v1.4
+ */
+export module runesMasteries {
+    export interface Operations {
+        /**
+         * Get mastery pages mapped by summoner ID for a given list of summoner IDs (REST)
+         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/masteries
+         * @param region      Region where to retrieve the data.
+         * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
+         */
+        getMasteriesBySummonerId(region: string,
+                                 summonerIds: number,
+                                 callback?: (error: Error, data: {[s: string]: MasteryPagesDto}) => void): void;
+
+        /**
+         * Get rune pages mapped by summoner ID for a given list of summoner IDs. (REST)
+         * Should call GET /api/lol/{region}/v1.4/summoner/{summonerIds}/runes
+         * @param region      Region where to retrieve the data.
+         * @param summonerIds Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
+         */
+        getRunesBySummonerId(region: string,
+                             summonerIds: number,
+                             callback?: (error: Error, data: {[s: string]: RunePagesDto}) => void): void;
+    }
+
+    /**
+     * Contains masteries information
+     */
+    export interface MasteryPagesDto extends GenericMasteryPagesDto {
+        /**
+         * Collection of mastery pages associated with the summoner.
+         */
+        pages: MasteryPageDto[];
+        /**
+         * Summoner ID.
+         */
+        summonerId: number;
+    }
+
+    /**
+     * Contains mastery page information
+     */
+    export interface MasteryPageDto extends GenericMasteryPageDto {
+        /**
+         * Indicates if the mastery page is the current mastery page.
+         */
+        current: boolean;
+        /**
+         * Mastery page ID.
+         */
+        id: number;
+        /**
+         * Collection of masteries associated with the mastery page.
+         */
+        masteries: MasteryDto[];
+        /**
+         * Mastery page name.
+         */
+        name: string;
+    }
+
+    /**
+     * Contains mastery information
+     */
+    export interface MasteryDto extends GenericMasteryDto {
+        /**
+         * Mastery ID. For static information correlating to masteries, please refer to the LoL Static Data API.
+         */
+        id: number;
+        /**
+         * Mastery rank (i.e., the number of points put into this mastery).
+         */
+        rank: number;
+    }
+
+    /**
+     * Contains rune pages information
+     */
+    export interface RunePagesDto extends GenericRunePagesDto {
+        /**
+         * Collection of rune pages associated with the summoner.
+         */
+        pages: GenericRunePageDto[];
+        /**
+         * Summoner ID.
+         */
+        summonerId: number;
+    }
+
+    /**
+     * Contains rune page information
+     */
+    export interface RunePageDto extends GenericRunePageDto {
+        /**
+         * Indicates if the page is the current page.
+         */
+        current: boolean;
+        /**
+         * Rune page ID.
+         */
+        id: number;
+        /**
+         * Rune page name.
+         */
+        name: string;
+        /**
+         * Collection of rune slots associated with the rune page.
+         */
+        slots: GenericRuneSlotDto[];
+    }
+
+    /**
+     * Contains rune slot information
+     */
+    export interface RuneSlotDto extends GenericRuneSlotDto {
+        /**
+         * Rune ID associated with the rune slot. For static information correlating to rune IDs, please refer to the LoL Static Data API.
+         */
+        runeId: number;
+        /**
+         * Rune slot ID.
+         */
+        runeSlotId: number;
     }
 }
 
